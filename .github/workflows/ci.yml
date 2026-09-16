@@ -16,9 +16,35 @@ name: CI
 #     are produced by pure string processing and ARE reproducible, so those
 #     are diffed - that is the check that actually catches a stale document.
 
+# Prose-only commits do not run these jobs. Editing a README should not
+# spend four runners, and a pipeline that cries wolf on every typo is one
+# nobody reads. The pre-registration seal is NOT filtered -- it lives in
+# .github/workflows/seal.yml and runs on everything, because a prose commit
+# is exactly how that seal gets broken.
 on:
-  push: { branches: [main] }
-  pull_request: { branches: [main] }
+  push:
+    branches: [main]
+    paths:
+      - 'src/**'
+      - 'tests/**'
+      - 'tools/**'
+      - 'scripts/**'
+      - 'Makefile'
+      - 'pyproject.toml'
+      - 'requirements*.txt'
+      - '.github/workflows/ci.yml'
+  pull_request:
+    branches: [main]
+    paths:
+      - 'src/**'
+      - 'tests/**'
+      - 'tools/**'
+      - 'scripts/**'
+      - 'Makefile'
+      - 'pyproject.toml'
+      - 'requirements*.txt'
+      - '.github/workflows/ci.yml'
+  workflow_dispatch:        # run the whole thing by hand when you want to
 
 concurrency:
   group: ${{ github.workflow }}-${{ github.ref }}
@@ -169,46 +195,49 @@ jobs:
             outputs/metrics/*.json
             outputs/figures/*.png
 
-  documents:
+  # The proposal and the decks moved to a separate PRIVATE repository on
+  # 2026-09-15, so this job spent a day failing on `docs/proposal/` not
+  # existing. What remains in this repository is the figure layer, and that
+  # is all this job now builds. The seal check that used to live here is in
+  # .github/workflows/seal.yml, unfiltered.
+  figures:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-python@v5
         with: { python-version: "3.11", cache: pip }
+      - run: pip install -e ".[docs]"
 
-      # The pre-registration seal. docs/PREREG_METRO_MODEL.md fixed the
-      # hypothesis before the metro model was fitted, and its md5 is recorded
-      # inside the result artefact. If the two ever disagree, either the
-      # pre-registration was edited after the fact or the artefact was
-      # regenerated against a different one -- and the whole claim to having
-      # pre-registered evaporates. Corrections belong in the ERRATA file,
-      # which is deliberately not covered by this hash.
-      - name: Pre-registration seal matches the recorded hash
-        run: |
-          set -euo pipefail
-          recorded=$(python -c "import json;print(json.load(open('outputs/metrics/metro_entry.json'))['prereg_md5'])")
-          actual=$(md5sum docs/PREREG_METRO_MODEL.md | cut -d' ' -f1)
-          echo "recorded in artefact : $recorded"
-          echo "actual on disk       : $actual"
-          test "$recorded" = "$actual"
-
-      - run: pip install -e ".[viz,docs]"
-
-      - name: Build and validate figures, proposal and decks
+      - name: Figures rebuild, and every value still reads from an artefact
         run: |
           set -euo pipefail
           python tools/figures/build_all.py
-          python tools/proposal/build_v4.py
-          python tools/deck/build_deck.py
-          for v in v1_overview v2_technical; do
-            python tools/deck/check_layout.py \
-              "docs/proposal/Siting_Atlas_Deck_${v}.pptx"
+          python tools/figures/fig_paper.py
+          python tools/figures/fig_hero_cost.py
+          python tools/figures/fig_social_card.py
+
+      - name: Every figure the docs reference exists
+        run: |
+          set -euo pipefail
+          # NOT a byte-comparison. Matplotlib embeds a creation timestamp in
+          # PNG metadata and its raster output shifts with the freetype
+          # version, so a rebuilt figure is almost never byte-identical to a
+          # committed one -- a diff check here would go red on the runner for
+          # a reason that has nothing to do with this repository. Tested
+          # locally before it was written: six of fourteen differed.
+          #
+          # What is worth checking is that every figure the documentation
+          # points at was actually produced.
+          missing=0
+          for f in $(grep -rhoE 'docs/figures/[A-Za-z0-9_]+\.png' \
+                     README.md docs/*.md 2>/dev/null | sort -u); do
+            [ -f "$f" ] || { echo "referenced but not built: $f"; missing=1; }
           done
+          n=$(ls docs/figures/*.png | wc -l)
+          echo "$n figures present"
+          exit $missing
 
       - uses: actions/upload-artifact@v4
         with:
-          name: siting-atlas-documents
-          path: |
-            docs/proposal/*.docx
-            docs/proposal/*.pptx
-            docs/figures/*.png
+          name: siting-atlas-figures
+          path: docs/figures/*.png

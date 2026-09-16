@@ -1,0 +1,56 @@
+# The pre-registration seal, on its own, on every single push.
+#
+# Split out of ci.yml on 2026-09-16. It is five seconds of work and it is the
+# one check that must never be skipped: docs/PREREG_METRO_MODEL.md fixed the
+# hypothesis before the metro model was fitted, and its MD5 is recorded inside
+# outputs/metrics/metro_entry.json. If those two ever disagree, either the
+# pre-registration was edited after the fact or the artefact was regenerated
+# against a different one -- and the claim to having pre-registered is gone.
+#
+# It has caught a real break twice: once when a repo-wide documentation sweep
+# rewrote three artefact paths inside the sealed file, and once when a path
+# repoint did the same thing thirty minutes after the first restore.
+#
+# No path filter, deliberately. The heavy jobs in ci.yml skip prose-only
+# commits; this one does not, because a prose-only commit is exactly how the
+# seal gets broken.
+
+name: seal
+
+on:
+  push:
+  pull_request:
+
+permissions:
+  contents: read
+
+jobs:
+  prereg-seal:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Pre-registration seal matches the hash in the artefact
+        run: |
+          set -euo pipefail
+          recorded=$(python -c "import json; print(json.load(open('outputs/metrics/metro_entry.json'))['prereg_md5'])")
+          actual=$(md5sum docs/PREREG_METRO_MODEL.md | cut -d' ' -f1)
+          echo "recorded in metro_entry.json : $recorded"
+          echo "actual on disk               : $actual"
+          if [ "$recorded" != "$actual" ]; then
+            echo ""
+            echo "SEAL BROKEN."
+            echo "The pre-registration has changed since the model was fitted."
+            echo ""
+            echo "Do NOT fix this by re-hashing the file or by editing the"
+            echo "artefact -- both make the break invisible, which is worse"
+            echo "than the break. Restore the sealed copy instead:"
+            echo ""
+            echo "    cp reproducibility/seals/PREREG_METRO_MODEL.946f7ef7.md \\"
+            echo "       docs/PREREG_METRO_MODEL.md"
+            echo ""
+            echo "Corrections belong in docs/PREREG_METRO_MODEL_ERRATA.md,"
+            echo "which is deliberately not covered by this hash."
+            exit 1
+          fi
+          echo "seal intact"
