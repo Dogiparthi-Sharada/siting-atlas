@@ -54,22 +54,45 @@ def zctas(lats, lons=None, codes=None) -> pd.DataFrame:
 
 # -- loading ---------------------------------------------------------------
 
-def test_load_stations_keeps_only_address_level_coordinates():
-    """The committed panel must yield exactly the geocoded subset."""
-    raw = pd.read_csv(STATION_FILE)
-    got = load_stations()
+def test_load_stations_keeps_only_address_level_coordinates(tmp_path):
+    """Only rows with true coordinates survive, and metadata still joins."""
+    raw = pd.DataFrame({
+        "facility_id": ["001", "002", "003", "004"],
+        "latitude": [40.7, np.nan, 41.2, 39.9],
+        "longitude": [-73.9, -74.1, np.nan, -75.2],
+        "zcta_of_point": ["10001", "10002", "10003", "10004"],
+    })
+    meta = pd.DataFrame({
+        "facility_id": ["001", "002", "003", "004"],
+        "operator": ["Amazon", "Amazon", "UPS", "FedEx"],
+        "facility_type": ["Delivery Station"] * 4,
+        "city": ["A", "B", "C", "D"],
+        "state": ["NY", "NY", "NJ", "PA"],
+        "cbsa_title": ["x", "x", "y", "z"],
+        "cbsa_code": ["11111", "11111", "22222", "33333"],
+        "status": ["Open"] * 4,
+    })
+    raw_path = tmp_path / "geocoded_expanded.csv"
+    meta_path = tmp_path / "national_facilities_expanded.csv"
+    raw.to_csv(raw_path, index=False)
+    meta.to_csv(meta_path, index=False)
+
+    got = load_stations(path=raw_path, meta_path=meta_path)
     expected = int((raw["latitude"].notna()
                     & raw["longitude"].notna()).sum())
     assert len(got) == expected
     assert got["station_lat"].notna().all()
     assert got["station_lon"].notna().all()
-    # The excluded rows are the ZCTA-centroid fallbacks, and there are some:
-    # a run where every row survived would mean the fallback column moved.
+    assert set(got["station_id"]) == {"001", "004"}
+    assert set(got["operator"]) == {"Amazon", "FedEx"}
     assert len(got) < len(raw)
 
 
+@pytest.mark.integration
 def test_load_stations_pins_the_published_count():
     """501 of 693. Quoted in the module docstring and in the write-up."""
+    if not STATION_FILE.exists():
+        pytest.skip("facility panel is not available in this test root")
     assert len(load_stations()) == 501
 
 
