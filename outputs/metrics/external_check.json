@@ -1,0 +1,88 @@
+{
+  "run_id": "20260916-072758-9c24",
+  "written_at": "2026-09-16T07:27:58+00:00",
+  "results": [
+    {
+      "key": "facility_panel",
+      "what": "the target variable: facility openings",
+      "critical": true,
+      "path": "data/external/facility_panel/facilities.csv",
+      "bytes": 4778,
+      "size_human": "4.7KB",
+      "errors": [],
+      "warnings": [],
+      "stats": {
+        "rows": 43,
+        "delivery_stations": 43,
+        "year_range": "2015-2025",
+        "operators": [
+          "Amazon"
+        ],
+        "types": [
+          "DS"
+        ],
+        "states": 10,
+        "with_quarter": 24
+      },
+      "status": "ok"
+    },
+    {
+      "key": "zillow_zori",
+      "what": "Zillow Observed Rent Index, ZIP grain",
+      "critical": false,
+      "path": "data/external/zillow_zori/Zip_zori_uc_sfrcondomfr_sm_sa_month.csv",
+      "bytes": 9918419,
+      "size_human": "9.5MB",
+      "status": "ok"
+    },
+    {
+      "key": "zillow_zhvi",
+      "what": "Zillow Home Value Index, ZIP grain",
+      "critical": false,
+      "path": "data/external/zillow_zhvi/Zip_zhvi_uc_sfrcondo_tier_0.33_0.67_sm_sa_month.csv",
+      "bytes": 123065811,
+      "size_human": "117.4MB",
+      "status": "ok"
+    },
+    {
+      "key": "ejscreen",
+      "what": "EJScreen tract-level indicators",
+      "critical": false,
+      "path": "data/external/ejscreen/EJScreen_2024_Tract_with_AS_CNMI_GU_VI.csv.zip",
+      "bytes": 50654636,
+      "size_human": "48.3MB",
+      "archive": {
+        "members": [
+          "EJScreen_2024_Tract_with_AS_CNMI_GU_VI.csv"
+        ],
+        "member_count": 1
+      },
+      "status": "ok"
+    },
+    {
+      "key": "bls_oes",
+      "what": "BLS OES metropolitan wage tables",
+      "critical": false,
+      "path": "data/external/bls_oes/oesm25ma.zip",
+      "bytes": 39932338,
+      "size_human": "38.1MB",
+      "archive": {
+        "members": [
+          "oesm25ma/",
+          "oesm25ma/BOS_M2025_dl.xlsx",
+          "oesm25ma/file_descriptions.xlsx",
+          "oesm25ma/MSA_M2025_dl.xlsx"
+        ],
+        "member_count": 4
+      },
+      "status": "ok"
+    },
+    {
+      "key": "eia_prices",
+      "what": "EIA regional energy prices",
+      "critical": false,
+      "status": "missing",
+      "hint": "place a file matching *.csv or *.json in data/external/eia_prices/"
+    }
+  ]
+}

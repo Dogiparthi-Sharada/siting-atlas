@@ -1,0 +1,161 @@
+{
+  "run_id": "20260912-doc-verify",
+  "written_at": "2026-09-12T09:33:40+00:00",
+  "probed_on": "2026-09-12",
+  "results": [
+    {
+      "key": "acs5",
+      "declared": "needs_key",
+      "url": "https://api.census.gov/data/2022/acs/acs5?get=NAME,B19013_001E&for=zip%20code%20tabulation%20area:94608",
+      "status": null,
+      "bytes": null,
+      "content_type": "",
+      "seconds": 25.38,
+      "verdict": "unreachable",
+      "detail": "ReadTimeout: HTTPSConnectionPool(host='api.census.gov', port=443): Read timed out. (read timeout=25)"
+    },
+    {
+      "key": "acs1",
+      "declared": "needs_key",
+      "url": "https://api.census.gov/data/2022/acs/acs1?get=NAME,B01003_001E&for=metropolitan%20statistical%20area/micropolitan%20statistical%20area:41860",
+      "status": 206,
+      "bytes": 2048,
+      "content_type": "text/html",
+      "seconds": 0.46,
+      "verdict": "needs_key",
+      "detail": "HTML body on a 200 \u2014 credential likely required"
+    },
+    {
+      "key": "gaz_zcta",
+      "declared": "open",
+      "url": "https://www2.census.gov/geo/docs/maps-data/data/gazetteer/2023_Gazetteer/2023_Gaz_zcta_national.zip",
+      "status": 206,
+      "bytes": 2048,
+      "content_type": "application/zip",
+      "seconds": 0.18,
+      "verdict": "open",
+      "detail": ""
+    },
+    {
+      "key": "cbsa_county",
+      "declared": "open",
+      "url": "https://www2.census.gov/programs-surveys/metro-micro/geographies/reference-files/2023/delineation-files/list1_2023.xlsx",
+      "status": 206,
+      "bytes": 2048,
+      "content_type": "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet",
+      "seconds": 0.13,
+      "verdict": "open",
+      "detail": ""
+    },
+    {
+      "key": "zcta_county_xwalk",
+      "declared": "open",
+      "url": "https://www2.census.gov/geo/docs/maps-data/data/rel2020/zcta520/tab20_zcta520_county20_natl.txt",
+      "status": 206,
+      "bytes": 2048,
+      "content_type": "text/plain",
+      "seconds": 0.16,
+      "verdict": "open",
+      "detail": ""
+    },
+    {
+      "key": "tiger_zcta",
+      "declared": "open",
+      "url": "https://www2.census.gov/geo/tiger/TIGER2020/ZCTA520/tl_2020_us_zcta520.zip",
+      "status": 206,
+      "bytes": 2048,
+      "content_type": "application/zip",
+      "seconds": 0.21,
+      "verdict": "open",
+      "detail": ""
+    },
+    {
+      "key": "cbp_zip",
+      "declared": "open",
+      "url": "https://www2.census.gov/programs-surveys/cbp/datasets/2022/zbp22totals.zip",
+      "status": 206,
+      "bytes": 2048,
+      "content_type": "application/zip",
+      "seconds": 0.2,
+      "verdict": "open",
+      "detail": ""
+    },
+    {
+      "key": "bps_county",
+      "declared": "open",
+      "url": "https://www2.census.gov/econ/bps/County/co2212y.txt",
+      "status": 206,
+      "bytes": 2048,
+      "content_type": "text/plain",
+      "seconds": 0.18,
+      "verdict": "open",
+      "detail": ""
+    },
+    {
+      "key": "zillow_zori",
+      "declared": "blocked",
+      "url": "https://files.zillowstatic.com/research/public_csvs/zori/Zip_zori_uc_sfrcondomfr_sm_month.csv",
+      "status": null,
+      "bytes": null,
+      "content_type": "",
+      "seconds": 0.04,
+      "verdict": "unreachable",
+      "detail": "ProxyError: HTTPSConnectionPool(host='files.zillowstatic.com', port=443): Max retries exceeded with url: /research/public_csvs/zori/Zip_zori_uc_sfrcondomfr_sm_m"
+    },
+    {
+      "key": "bls_oes",
+      "declared": "blocked",
+      "url": "https://www.bls.gov/oes/special-requests/oesm22ma.zip",
+      "status": 403,
+      "bytes": 1325,
+      "content_type": "text/html",
+      "seconds": 0.15,
+      "verdict": "blocked",
+      "detail": "HTTP 403 refused"
+    },
+    {
+      "key": "eia_prices",
+      "declared": "needs_key",
+      "url": "https://api.eia.gov/v2/electricity/retail-sales/data/?frequency=monthly&data[0]=price&length=1",
+      "status": 403,
+      "bytes": 163,
+      "content_type": "application/json",
+      "seconds": 0.28,
+      "verdict": "blocked",
+      "detail": "HTTP 403 refused"
+    },
+    {
+      "key": "facility_panel",
+      "declared": "manual",
+      "url": "",
+      "status": null,
+      "bytes": null,
+      "content_type": "",
+      "seconds": null,
+      "verdict": "manual",
+      "detail": "no stable endpoint; file placed by hand"
+    },
+    {
+      "key": "ejscreen",
+      "declared": "manual",
+      "url": "",
+      "status": null,
+      "bytes": null,
+      "content_type": "",
+      "seconds": null,
+      "verdict": "manual",
+      "detail": "no stable endpoint; file placed by hand"
+    },
+    {
+      "key": "osm",
+      "declared": "open",
+      "url": "https://download.geofabrik.de/north-america/us/california-latest.osm.pbf",
+      "status": 206,
+      "bytes": 2048,
+      "content_type": "application/octet-stream",
+      "seconds": 0.82,
+      "verdict": "open",
+      "detail": ""
+    }
+  ]
+}

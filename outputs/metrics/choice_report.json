@@ -1,0 +1,333 @@
+{
+  "run_id": "20260916-064214-0618",
+  "written_at": "2026-09-16T06:44:21+00:00",
+  "frame": "national",
+  "n_decisions_total": 94,
+  "n_train_decisions": 56,
+  "n_test_decisions": 38,
+  "seed": 20260914,
+  "fit": {
+    "beta": {
+      "households": 1.0,
+      "land_area_sqmi": 4.195370552967938e-16,
+      "establishments": 1.7090856838484523e-15,
+      "warehousing_establishments": 1.442822756492977
+    },
+    "theta": [
+      -35.40737981983227,
+      -34.00281785520054,
+      0.36660144237433034
+    ],
+    "n_parameters": 3,
+    "numeraire": "households",
+    "log_likelihood": -203.44972616186044,
+    "log_likelihood_uniform": -253.3351229198304,
+    "mcfadden_rho_squared": 0.19691464879805287,
+    "n_decisions": 56,
+    "converged": true
+  },
+  "inference": {
+    "n_decisions": 56,
+    "n_metros": 38,
+    "seed": 20260914,
+    "alpha": 0.05,
+    "resampling_unit": "decision (never an alternative)",
+    "replicates": 1000,
+    "replicates_clustered": 1500,
+    "convergence_settled": true,
+    "convergence_trace": [
+      {
+        "replicates": 250,
+        "settled": false,
+        "param_2": {
+          "lower": 0.7359712272022926,
+          "upper": 3.607744554783048,
+          "mcse_lower": 0.06906474301083007,
+          "mcse_upper": 0.9037988587313915,
+          "near_endpoint_mcse_share_of_width": 0.024049510575060506,
+          "near_endpoint_distance_from_one_in_mcse": 3.8229168934474274
+        }
+      },
+      {
+        "replicates": 500,
+        "settled": false,
+        "param_2": {
+          "lower": 0.7754126651261563,
+          "upper": 4.773983443794794,
+          "mcse_lower": 0.029874108292925083,
+          "mcse_upper": 2.208735481275551,
+          "near_endpoint_mcse_share_of_width": 0.007471196571609006,
+          "near_endpoint_distance_from_one_in_mcse": 7.517792085095691
+        }
+      },
+      {
+        "replicates": 750,
+        "settled": false,
+        "param_2": {
+          "lower": 0.768517171702834,
+          "upper": 4.7682354899318895,
+          "mcse_lower": 0.025834170973719605,
+          "mcse_upper": 0.958109924743221,
+          "near_endpoint_mcse_share_of_width": 0.0064589975888997425,
+          "near_endpoint_distance_from_one_in_mcse": 8.960335074527732
+        }
+      },
+      {
+        "replicates": 1000,
+        "settled": true,
+        "param_2": {
+          "lower": 0.7596811031583603,
+          "upper": 4.762487536068984,
+          "mcse_lower": 0.02071994902175217,
+          "mcse_upper": 0.6337898092978294,
+          "near_endpoint_mcse_share_of_width": 0.00517635548184271,
+          "near_endpoint_distance_from_one_in_mcse": 11.598430893307151
+        }
+      }
+    ],
+    "convergence_rule": "batches of 250, minimum 500, ceiling 4000. Stop when every interior parameter's endpoint nearest 1.0 has a Monte Carlo standard error under 1% of the interval width AND under 1/10 of its distance from 1.0, so Monte Carlo noise cannot flip the verdict. That error comes from resampling the replicates, needing no refits. The far endpoint is measured and NOT chased: at n = 56 the right tail does not settle.",
+    "parameters": {
+      "land_area_sqmi": {
+        "beta_point": 4.195370552967938e-16,
+        "at_boundary": true,
+        "interpretation": "households per unit of land_area_sqmi: the ratio beta_land_area_sqmi / beta_households, which is what scale invariance identifies. NOT an absolute effect.",
+        "bootstrap_over_decisions": {
+          "kind": "one-sided percentile",
+          "lower": 0.0,
+          "upper": 0.1646545940855634,
+          "mcse_upper": 0.021313335547900783,
+          "excludes_ratio_one": true,
+          "share_of_replicates_at_boundary": 0.807,
+          "note": "at the boundary the sampling distribution has an atom at zero, so a two-sided interval would be a fiction; all of alpha goes to the upper tail"
+        },
+        "bootstrap_over_metros": {
+          "kind": "one-sided percentile",
+          "lower": 0.0,
+          "upper": 0.22767619567435254,
+          "mcse_upper": 0.0271712241898516,
+          "excludes_ratio_one": true,
+          "share_of_replicates_at_boundary": 0.8066666666666666,
+          "note": "at the boundary the sampling distribution has an atom at zero, so a two-sided interval would be a fiction; all of alpha goes to the upper tail"
+        },
+        "stopping_rule_diagnostic": {
+          "lower": 7.143463695052347e-17,
+          "upper": 0.2779218251951896,
+          "mcse_lower": 1.305104993339215e-17,
+          "mcse_upper": 0.05417742072615353,
+          "near_endpoint_mcse_share_of_width": 0.19493762567262843,
+          "near_endpoint_distance_from_one_in_mcse": 13.328027896614786
+        },
+        "bca": {
+          "available": false,
+          "reason": "BCa needs a smooth statistic and a well-defined bias correction. With the replicates pinned at zero the jackknife acceleration estimates nothing and z0 is degenerate, so the percentile interval stands alone."
+        }
+      },
+      "establishments": {
+        "beta_point": 1.7090856838484523e-15,
+        "at_boundary": true,
+        "interpretation": "households per unit of establishments: the ratio beta_establishments / beta_households, which is what scale invariance identifies. NOT an absolute effect.",
+        "bootstrap_over_decisions": {
+          "kind": "one-sided percentile",
+          "lower": 0.0,
+          "upper": 0.765106704355402,
+          "mcse_upper": 0.10283395468415414,
+          "excludes_ratio_one": true,
+          "share_of_replicates_at_boundary": 0.79,
+          "note": "at the boundary the sampling distribution has an atom at zero, so a two-sided interval would be a fiction; all of alpha goes to the upper tail"
+        },
+        "bootstrap_over_metros": {
+          "kind": "one-sided percentile",
+          "lower": 0.0,
+          "upper": 1.2380542272183512,
+          "mcse_upper": 0.2694967173095682,
+          "excludes_ratio_one": false,
+          "share_of_replicates_at_boundary": 0.8,
+          "note": "at the boundary the sampling distribution has an atom at zero, so a two-sided interval would be a fiction; all of alpha goes to the upper tail"
+        },
+        "stopping_rule_diagnostic": {
+          "lower": 3.153846380477103e-16,
+          "upper": 1.8959102086150734,
+          "mcse_lower": 3.574371389175883e-17,
+          "mcse_upper": 0.4746368927551653,
+          "near_endpoint_mcse_share_of_width": 0.250347769951552,
+          "near_endpoint_distance_from_one_in_mcse": 1.8875696817719056
+        },
+        "bca": {
+          "available": false,
+          "reason": "BCa needs a smooth statistic and a well-defined bias correction. With the replicates pinned at zero the jackknife acceleration estimates nothing and z0 is degenerate, so the percentile interval stands alone."
+        }
+      },
+      "warehousing_establishments": {
+        "beta_point": 1.442822756492977,
+        "at_boundary": false,
+        "interpretation": "households per unit of warehousing_establishments: the ratio beta_warehousing_establishments / beta_households, which is what scale invariance identifies. NOT an absolute effect.",
+        "bootstrap_over_decisions": {
+          "kind": "percentile",
+          "lower": 0.7596811031583603,
+          "upper": 4.762487536068984,
+          "excludes_ratio_one": false,
+          "share_of_replicates_below_one": 0.118,
+          "bootstrap_median": 1.5492954778633925,
+          "bias_point_minus_median": -0.10647272137041552
+        },
+        "bootstrap_over_metros": {
+          "kind": "percentile",
+          "lower": 0.7024623336109657,
+          "upper": 10.012643314323277,
+          "excludes_ratio_one": false,
+          "share_of_replicates_below_one": 0.134,
+          "bootstrap_median": 1.5290430194800488,
+          "bias_point_minus_median": -0.08622026298707186
+        },
+        "stopping_rule_diagnostic": {
+          "lower": 0.7596811031583603,
+          "upper": 4.762487536068984,
+          "mcse_lower": 0.02071994902175217,
+          "mcse_upper": 0.6337898092978294,
+          "near_endpoint_mcse_share_of_width": 0.00517635548184271,
+          "near_endpoint_distance_from_one_in_mcse": 11.598430893307151
+        },
+        "bca": {
+          "kind": "BCa",
+          "lower": 0.7135241326620603,
+          "upper": 3.522085975287557,
+          "z0": -0.1307159681198632,
+          "acceleration": -0.007316609336333513,
+          "excludes_ratio_one": false
+        }
+      }
+    },
+    "sandwich": {
+      "land_area_sqmi": {
+        "available": false,
+        "beta": 4.195370552967938e-16,
+        "reason": "beta is at the boundary (beta = exp(theta) = 0 requires theta -> -inf), so the maximum is not interior, the gradient does not vanish and the Hessian block is not the information matrix the sandwich asymptotics assume. A standard error here would be a number with no interpretation, so none is printed. The bootstrap is the estimator to read instead."
+      },
+      "establishments": {
+        "available": false,
+        "beta": 1.7090856838484523e-15,
+        "reason": "beta is at the boundary (beta = exp(theta) = 0 requires theta -> -inf), so the maximum is not interior, the gradient does not vanish and the Hessian block is not the information matrix the sandwich asymptotics assume. A standard error here would be a number with no interpretation, so none is printed. The bootstrap is the estimator to read instead."
+      },
+      "warehousing_establishments": {
+        "available": true,
+        "beta": 1.442822756492977,
+        "se_log_beta": 0.344611466632082,
+        "se_beta_delta_method": 0.4972132662051881,
+        "lower": 0.7343095412922036,
+        "upper": 2.8349590868595382,
+        "z_against_ratio_one": 1.063810922942171,
+        "p_two_sided_against_ratio_one": 0.2874143621054134,
+        "conditional_on_boundary_selection": true
+      }
+    },
+    "null_that_matters": "beta = 1, not beta = 0. households is the numeraire, so beta = 1 means the covariate is worth exactly one household and the model cannot tell them apart.",
+    "train_precondition": "Train (2009) Sec. 8.6, p. 202, on the bootstrap: 'The sampling covariance of an estimator is, by definition, a measure of the amount by which the estimates change when different samples are taken from the population. Our original sample is one sample from the population. However, if this sample is large enough, then it is probably similar to the population, such that drawing from it is similar to drawing from the population itself.' At 56 decisions that italicised precondition is exactly what is in doubt. These intervals measure how much the estimate moves with WHICH OF OUR 56 decisions are included. That is a real and useful quantity. It is not a licence to read them as sampling variability over the population of siting decisions."
+  },
+  "in_sample": {
+    "n_decisions": 56,
+    "n_alternatives": 7717,
+    "brier": 0.0067532734237572035,
+    "brier_uniform_null": 0.007133077662865515,
+    "mean_prob_of_chosen": 0.06791966039197414,
+    "mean_prob_uniform": 0.01703642277976456,
+    "top1": 0.19642857142857142,
+    "top1_uniform": 0.03571428571428571,
+    "top5": 0.39285714285714285,
+    "top5_uniform": 0.07142857142857142,
+    "top10": 0.5535714285714286,
+    "top10_uniform": 0.14285714285714285
+  },
+  "held_out": {
+    "n_decisions": 38,
+    "n_alternatives": 3998,
+    "brier": 0.008723683397343156,
+    "brier_uniform_null": 0.009316368565573278,
+    "mean_prob_of_chosen": 0.0847124940590129,
+    "mean_prob_uniform": 0.019819959864158878,
+    "top1": 0.18421052631578946,
+    "top1_uniform": 0.02631578947368421,
+    "top5": 0.42105263157894735,
+    "top5_uniform": 0.07894736842105263,
+    "top10": 0.5,
+    "top10_uniform": 0.18421052631578946
+  },
+  "benchmarks_single_covariate": {
+    "households": {
+      "top1": 0.02631578947368421,
+      "top5": 0.13157894736842105,
+      "top10": 0.2631578947368421,
+      "brier": 0.009271002807082212
+    },
+    "land_area_sqmi": {
+      "top1": 0.0,
+      "top5": 0.07894736842105263,
+      "top10": 0.15789473684210525,
+      "brier": 0.009815763269734365
+    },
+    "establishments": {
+      "top1": 0.0,
+      "top5": 0.21052631578947367,
+      "top10": 0.23684210526315788,
+      "brier": 0.009307119849383544
+    },
+    "warehousing_establishments": {
+      "top1": 0.21052631578947367,
+      "top5": 0.42105263157894735,
+      "top10": 0.5263157894736842,
+      "brier": 0.008950627001903305
+    }
+  },
+  "conformal": {
+    "alpha_0.10": {
+      "alpha": 0.1,
+      "nominal_coverage": 0.9,
+      "q_hat": 0.9846216784007896,
+      "n_decisions": 24,
+      "empirical_coverage": 1.0,
+      "set_size_median": 38.5,
+      "set_size_mean": 72.20833333333333,
+      "set_size_min": 14,
+      "set_size_max": 313,
+      "median_share_of_choice_set": 0.7143385070214339,
+      "choice_set_size_median": 59.5
+    },
+    "alpha_0.20": {
+      "alpha": 0.2,
+      "nominal_coverage": 0.8,
+      "q_hat": 0.9659642422758505,
+      "n_decisions": 24,
+      "empirical_coverage": 0.9583333333333334,
+      "set_size_median": 34.0,
+      "set_size_mean": 62.25,
+      "set_size_min": 12,
+      "set_size_max": 286,
+      "median_share_of_choice_set": 0.6166666666666667,
+      "choice_set_size_median": 59.5
+    },
+    "alpha_0.30": {
+      "alpha": 0.3,
+      "nominal_coverage": 0.7,
+      "q_hat": 0.850502933377905,
+      "n_decisions": 24,
+      "empirical_coverage": 0.8333333333333334,
+      "set_size_median": 18.5,
+      "set_size_mean": 35.916666666666664,
+      "set_size_min": 7,
+      "set_size_max": 175,
+      "median_share_of_choice_set": 0.3399926008139105,
+      "choice_set_size_median": 59.5
+    },
+    "split": {
+      "train": 47,
+      "calibrate": 23,
+      "test": 24
+    }
+  },
+  "attractions": [
+    "households",
+    "land_area_sqmi",
+    "establishments",
+    "warehousing_establishments"
+  ],
+  "reporting_rule": "Raw Brier PAIR and top-k against a uniform-within-choice-set null. Never a skill score: Gneiting & Raftery (2007) Sec. 2.3 p.362 shows skill scores are generally improper even when the underlying score is proper."
+}

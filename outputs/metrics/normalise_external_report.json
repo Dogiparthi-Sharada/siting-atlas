@@ -1,0 +1,57 @@
+{
+  "run_id": "20260913-143850-70a6",
+  "written_at": "2026-09-13T14:39:21+00:00",
+  "results": [
+    {
+      "source": "zillow_zhvi",
+      "status": "ok",
+      "rows": 3435525,
+      "cols": [
+        "month",
+        "home_value",
+        "zcta",
+        "year",
+        "state",
+        "metro",
+        "county_name"
+      ],
+      "path": "data/interim/zillow_zhvi.parquet"
+    },
+    {
+      "source": "bls_wages",
+      "status": "ok",
+      "rows": 1571,
+      "cols": [
+        "area_code",
+        "area_title",
+        "state",
+        "occ_code",
+        "occ_title",
+        "total_employment",
+        "annual_median_wage",
+        "annual_mean_wage",
+        "wage_suppressed"
+      ],
+      "path": "data/interim/bls_wages.parquet"
+    },
+    {
+      "source": "ejscreen_tract",
+      "status": "ok",
+      "rows": 86082,
+      "cols": [
+        "tract_geoid",
+        "state_name",
+        "total_pop",
+        "demog_index_2",
+        "demog_index_5",
+        "people_of_colour_pct",
+        "low_income_pct",
+        "pm25",
+        "diesel_pm",
+        "traffic_proximity",
+        "county_geoid"
+      ],
+      "path": "data/interim/ejscreen_tract.parquet"
+    }
+  ]
+}

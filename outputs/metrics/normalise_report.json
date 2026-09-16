@@ -1,0 +1,89 @@
+{
+  "run_id": "20260912-111233-13a9",
+  "written_at": "2026-09-12T11:12:37+00:00",
+  "results": [
+    {
+      "source": "gazetteer",
+      "status": "ok",
+      "rows": 33791,
+      "cols": [
+        "zcta",
+        "land_area_sqmi",
+        "water_area_sqmi",
+        "latitude",
+        "longitude"
+      ],
+      "path": "data/interim/gazetteer.parquet"
+    },
+    {
+      "source": "cbp",
+      "status": "ok",
+      "rows": 35002,
+      "cols": [
+        "zcta",
+        "establishments",
+        "employment",
+        "annual_payroll",
+        "state",
+        "county_name"
+      ],
+      "path": "data/interim/cbp.parquet"
+    },
+    {
+      "source": "building_permits",
+      "status": "ok",
+      "rows": 15812,
+      "cols": [
+        "county_geoid",
+        "county_name",
+        "year",
+        "permit_units_total",
+        "u1_units",
+        "u5p_units"
+      ],
+      "path": "data/interim/building_permits.parquet"
+    },
+    {
+      "source": "zcta_county",
+      "status": "ok",
+      "rows": 33791,
+      "cols": [
+        "zcta",
+        "county_geoid",
+        "shared_land_area"
+      ],
+      "path": "data/interim/zcta_county.parquet"
+    },
+    {
+      "source": "cbsa_county",
+      "status": "ok",
+      "rows": 1915,
+      "cols": [
+        "county_geoid",
+        "county_name",
+        "cbsa_code",
+        "cbsa_title",
+        "csa_title",
+        "area_type",
+        "is_metro",
+        "county_role"
+      ],
+      "path": "data/interim/cbsa_county.parquet"
+    },
+    {
+      "source": "zillow_zori",
+      "status": "ok",
+      "rows": 456917,
+      "cols": [
+        "month",
+        "rent_index",
+        "zcta",
+        "year",
+        "metro",
+        "county_name",
+        "state"
+      ],
+      "path": "data/interim/zillow_zori.parquet"
+    }
+  ]
+}

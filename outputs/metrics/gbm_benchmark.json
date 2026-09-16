@@ -1,0 +1,221 @@
+{
+  "run_id": "20260916-071336-fc15",
+  "written_at": "2026-09-16T07:14:52+00:00",
+  "frame": "national",
+  "n_decisions_total": 94,
+  "n_test_decisions": 38,
+  "n_repeats": 50,
+  "seed": 20260914,
+  "attractions": [
+    "households",
+    "land_area_sqmi",
+    "establishments",
+    "warehousing_establishments"
+  ],
+  "spec": "docs/MODEL_SPEC.md section 9.4",
+  "headline_split": {
+    "conditional_logit": {
+      "top1": 7,
+      "top5": 16,
+      "top10": 19,
+      "brier": 0.008723683397343156,
+      "brier_uniform_null": 0.009316368565573278,
+      "mean_prob_of_chosen": 0.0847124940590129
+    },
+    "raw_count": {
+      "top1": 8,
+      "top5": 16,
+      "top10": 20,
+      "brier": 0.008950627001903305,
+      "brier_uniform_null": 0.009316368565573278,
+      "mean_prob_of_chosen": 0.11968264102084021
+    },
+    "gbm stump/200  shares": {
+      "top1": 4,
+      "top5": 18,
+      "top10": 24,
+      "brier": 0.009313322424508545,
+      "brier_uniform_null": 0.009316368565573278,
+      "mean_prob_of_chosen": 0.09063976289860272
+    },
+    "gbm small/100  shares": {
+      "top1": 3,
+      "top5": 20,
+      "top10": 23,
+      "brier": 0.00936460216213136,
+      "brier_uniform_null": 0.009316368565573278,
+      "mean_prob_of_chosen": 0.09076694210505488
+    },
+    "gbm deep/300   shares": {
+      "top1": 2,
+      "top5": 16,
+      "top10": 20,
+      "brier": 0.013116161638635047,
+      "brier_uniform_null": 0.009316368565573278,
+      "mean_prob_of_chosen": 0.06478870614342262
+    },
+    "gbm stump/200  levels": {
+      "top1": 5,
+      "top5": 18,
+      "top10": 23,
+      "brier": 0.008999897344120692,
+      "brier_uniform_null": 0.009316368565573278,
+      "mean_prob_of_chosen": 0.09522155341190743
+    },
+    "gbm small/100  levels": {
+      "top1": 4,
+      "top5": 15,
+      "top10": 23,
+      "brier": 0.009085513666907899,
+      "brier_uniform_null": 0.009316368565573278,
+      "mean_prob_of_chosen": 0.10400578929991768
+    },
+    "gbm deep/300   levels": {
+      "top1": 1,
+      "top5": 15,
+      "top10": 18,
+      "brier": 0.012781105396278913,
+      "brier_uniform_null": 0.009316368565573278,
+      "mean_prob_of_chosen": 0.0631297944309956
+    }
+  },
+  "headline_split_warning": "DO NOT QUOTE THE GBM ROWS OF headline_split. Measured 2026-09-15: multiplying the attraction matrix by (1 + 1e-12 * standard normal) -- a perturbation far below the precision of any input and about what a parquet float round-trip costs -- moves the GBM top-10 on this single split by up to 2 of 38 decisions (deep/300 shares 20 -> 19, 22, 18; deep/300 levels 18 -> 17, 20, 19; the four shallow arms by 1), over three perturbation draws. conditional_logit (19) and raw_count (20) do not move at all in any draw. The GBM figures here are therefore a draw from LightGBM's histogram bin boundaries, not a measurement. across_repeats is the block to quote: over the same three draws its top10_mean moves by at most 0.48 of a decision on a mean near 22, and the ordering that carries the verdict -- shallow GBM ~22.1-22.7 > raw_count ~20.5-21.0 ~ conditional_logit 20.6 > deep GBM ~18.5-18.9 -- is unchanged in every draw. NOTE that raw_count's own top10_mean moved 0.5 in one draw, so across_repeats is stable to about half a decision rather than exactly. NOT FIXED BY A FLAG: lgb.LGBMRanker(deterministic=True, force_row_wise=True) was tested against every arm and returned bit-identical counts to the plain call in all eight comparisons (base, a repeat of base, and three perturbations). The call was already reproducible on identical input at n_jobs=1; the instability is sensitivity to the DATA, which no determinism flag removes.",
+  "across_repeats": {
+    "conditional_logit": {
+      "top10_mean": 20.6,
+      "top10_sd": 2.718042512920064,
+      "top10_min": 15.0,
+      "top10_max": 26.0,
+      "top10_p2.5": 16.225,
+      "top10_p97.5": 25.0,
+      "top1_mean": 6.7,
+      "top5_mean": 15.44,
+      "brier_mean": 0.007550399158980405,
+      "vs_raw_count_mean": -0.36,
+      "vs_raw_count_sd": 1.1385633625812157,
+      "vs_raw_count_wins": 11,
+      "vs_raw_count_losses": 23
+    },
+    "raw_count": {
+      "top10_mean": 20.96,
+      "top10_sd": 2.498652698180051,
+      "top10_min": 16.0,
+      "top10_max": 26.0,
+      "top10_p2.5": 17.225,
+      "top10_p97.5": 25.775,
+      "top1_mean": 7.08,
+      "top5_mean": 15.88,
+      "brier_mean": 0.0077926302762319636,
+      "vs_raw_count_mean": 0.0,
+      "vs_raw_count_sd": 0.0,
+      "vs_raw_count_wins": 0,
+      "vs_raw_count_losses": 0
+    },
+    "gbm stump/200  shares": {
+      "top10_mean": 22.2,
+      "top10_sd": 2.695423180587601,
+      "top10_min": 18.0,
+      "top10_max": 28.0,
+      "top10_p2.5": 18.0,
+      "top10_p97.5": 27.775,
+      "top1_mean": 5.54,
+      "top5_mean": 16.34,
+      "brier_mean": 0.007839476802400226,
+      "vs_raw_count_mean": 1.24,
+      "vs_raw_count_sd": 2.227472256406626,
+      "vs_raw_count_wins": 30,
+      "vs_raw_count_losses": 10
+    },
+    "gbm small/100  shares": {
+      "top10_mean": 22.14,
+      "top10_sd": 2.814031895733252,
+      "top10_min": 14.0,
+      "top10_max": 29.0,
+      "top10_p2.5": 18.0,
+      "top10_p97.5": 27.775,
+      "top1_mean": 5.9,
+      "top5_mean": 16.42,
+      "brier_mean": 0.007863057228611456,
+      "vs_raw_count_mean": 1.18,
+      "vs_raw_count_sd": 1.8260026599886743,
+      "vs_raw_count_wins": 33,
+      "vs_raw_count_losses": 10
+    },
+    "gbm deep/300   shares": {
+      "top10_mean": 18.56,
+      "top10_sd": 2.548789228361624,
+      "top10_min": 13.0,
+      "top10_max": 25.0,
+      "top10_p2.5": 14.0,
+      "top10_p97.5": 22.775,
+      "top1_mean": 3.9,
+      "top5_mean": 13.22,
+      "brier_mean": 0.011015935686908401,
+      "vs_raw_count_mean": -2.4,
+      "vs_raw_count_sd": 2.610809554642438,
+      "vs_raw_count_wins": 7,
+      "vs_raw_count_losses": 39
+    },
+    "gbm stump/200  levels": {
+      "top10_mean": 22.26,
+      "top10_sd": 2.753921137696768,
+      "top10_min": 18.0,
+      "top10_max": 30.0,
+      "top10_p2.5": 18.0,
+      "top10_p97.5": 27.0,
+      "top1_mean": 5.5,
+      "top5_mean": 16.3,
+      "brier_mean": 0.0076813553537795655,
+      "vs_raw_count_mean": 1.3,
+      "vs_raw_count_sd": 2.2519832529192065,
+      "vs_raw_count_wins": 30,
+      "vs_raw_count_losses": 11
+    },
+    "gbm small/100  levels": {
+      "top10_mean": 22.18,
+      "top10_sd": 2.6394959320882094,
+      "top10_min": 17.0,
+      "top10_max": 29.0,
+      "top10_p2.5": 17.225,
+      "top10_p97.5": 27.0,
+      "top1_mean": 5.46,
+      "top5_mean": 16.7,
+      "brier_mean": 0.007782306316583377,
+      "vs_raw_count_mean": 1.22,
+      "vs_raw_count_sd": 1.7646182451228387,
+      "vs_raw_count_wins": 34,
+      "vs_raw_count_losses": 10
+    },
+    "gbm deep/300   levels": {
+      "top10_mean": 18.76,
+      "top10_sd": 2.478972795826727,
+      "top10_min": 13.0,
+      "top10_max": 24.0,
+      "top10_p2.5": 14.225,
+      "top10_p97.5": 24.0,
+      "top1_mean": 3.96,
+      "top5_mean": 13.7,
+      "brier_mean": 0.010391876150662838,
+      "vs_raw_count_mean": -2.2,
+      "vs_raw_count_sd": 2.6726124191242437,
+      "vs_raw_count_wins": 10,
+      "vs_raw_count_losses": 36
+    }
+  },
+  "best_gbm_by_cv_top10": "gbm stump/200  levels",
+  "gain_importance": {
+    "households": 0.14263655541913503,
+    "land_area_sqmi": 0.1854355802244501,
+    "establishments": 0.1366296320825797,
+    "warehousing_establishments": 0.5352982322738352
+  },
+  "caveats": [
+    "The interval is the spread over 60/40 RE-SPLITS of one sample of 94 decisions. It is not a confidence interval for the population of siting decisions.",
+    "Re-splits share decisions, so the repeats are not independent and the sd understates true sampling variability.",
+    "Splits are random over decisions and NOT clustered by metro, to match choice_runner. Decisions in one metro share a choice set.",
+    "Brier depends on the fitted softmax temperature and so is not invariant to the score-to-probability map. Only top-k is. Read top-k as the comparison and Brier as a secondary.",
+    "The smallest choice set has 9 alternatives, so top-10 is a certain hit there for every method including the null.",
+    "GBM hyperparameters were not tuned and not pre-registered. The verdict is taken on the RANGE across the grid, not on a winner.",
+    "DO NOT QUOTE THE GBM ROWS OF headline_split. Measured 2026-09-15: multiplying the attraction matrix by (1 + 1e-12 * standard normal) -- a perturbation far below the precision of any input and about what a parquet float round-trip costs -- moves the GBM top-10 on this single split by up to 2 of 38 decisions (deep/300 shares 20 -> 19, 22, 18; deep/300 levels 18 -> 17, 20, 19; the four shallow arms by 1), over three perturbation draws. conditional_logit (19) and raw_count (20) do not move at all in any draw. The GBM figures here are therefore a draw from LightGBM's histogram bin boundaries, not a measurement. across_repeats is the block to quote: over the same three draws its top10_mean moves by at most 0.48 of a decision on a mean near 22, and the ordering that carries the verdict -- shallow GBM ~22.1-22.7 > raw_count ~20.5-21.0 ~ conditional_logit 20.6 > deep GBM ~18.5-18.9 -- is unchanged in every draw. NOTE that raw_count's own top10_mean moved 0.5 in one draw, so across_repeats is stable to about half a decision rather than exactly. NOT FIXED BY A FLAG: lgb.LGBMRanker(deterministic=True, force_row_wise=True) was tested against every arm and returned bit-identical counts to the plain call in all eight comparisons (base, a repeat of base, and three perturbations). The call was already reproducible on identical input at n_jobs=1; the instability is sensitivity to the DATA, which no determinism flag removes."
+  ]
+}

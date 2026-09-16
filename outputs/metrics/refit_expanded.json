@@ -1,0 +1,69 @@
+{
+  "run_id": "20260915-195645-1f05",
+  "written_at": "2026-09-15T19:58:06+00:00",
+  "repeats": 50,
+  "seed": 20260914,
+  "arms": {
+    "original_104": {
+      "n_decisions": 94,
+      "n_test": 38,
+      "covariates": [
+        "households",
+        "land_area_sqmi",
+        "establishments",
+        "warehousing_establishments"
+      ],
+      "top10_rate": 0.5421052631578948,
+      "top10_rate_sd": 0.07152743455052801,
+      "top10_uniform_rate": 0.14736842105263157,
+      "brier": 0.007550399158980405,
+      "beta_mean": {
+        "land_area_sqmi": 0.03796325699235791,
+        "establishments": 0.0021390054695172647,
+        "warehousing_establishments": 1.528159476030922
+      },
+      "beta_p025": {
+        "land_area_sqmi": 2.1985999808898855e-20,
+        "establishments": 4.193411535177718e-16,
+        "warehousing_establishments": 0.9849638955710411
+      },
+      "beta_p975": {
+        "land_area_sqmi": 0.2610822064823932,
+        "establishments": 1.7202875971606793e-13,
+        "warehousing_establishments": 2.54973741661065
+      },
+      "facilities": 100
+    },
+    "expanded_658": {
+      "n_decisions": 483,
+      "n_test": 193,
+      "covariates": [
+        "households",
+        "land_area_sqmi",
+        "establishments",
+        "warehousing_establishments"
+      ],
+      "top10_rate": 0.5195854922279792,
+      "top10_rate_sd": 0.027317814962402584,
+      "top10_uniform_rate": 0.19367875647668395,
+      "brier": 0.005036322750640323,
+      "beta_mean": {
+        "land_area_sqmi": 4.025582295958208e-16,
+        "establishments": 0.29910494061188864,
+        "warehousing_establishments": 1.1912267162151375
+      },
+      "beta_p025": {
+        "land_area_sqmi": 4.316953776211866e-18,
+        "establishments": 0.022314234129774083,
+        "warehousing_establishments": 0.9558081885530566
+      },
+      "beta_p975": {
+        "land_area_sqmi": 9.625976052830206e-16,
+        "establishments": 0.7116659960337632,
+        "warehousing_establishments": 1.4901095087417995
+      },
+      "facilities": 687
+    }
+  },
+  "caveat": "The expanded panel's added rows are OCR'd: at least one duplicate survived the screen, 72 entered unscreened, and ~3% of OCR rows merge with a neighbour. A percentile interval over re-splits is not a standard error and does not account for that measurement error."
+}

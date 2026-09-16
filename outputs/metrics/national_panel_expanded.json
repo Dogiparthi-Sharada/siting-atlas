@@ -1,0 +1,96 @@
+{
+  "source": "data/external/facility_panel/national_facilities_expanded.csv",
+  "rows_in_file": 693,
+  "buildings": 687,
+  "cbsas": 230,
+  "states": 50,
+  "coordinates_present": 0,
+  "coordinate_note": "0 of 693 rows carry a coordinate, as in the 43-row pilot file. resolve_coordinates falls back to the ZCTA centroid, so every distance covariate is known only to that precision. Not geocoded here; see PLAN.md step 8.",
+  "excluded": [
+    {
+      "edit": "E_operating_by",
+      "facility_id": "MWP-0084",
+      "site_address": "5800 Coliseum Way",
+      "claimed_open": "2024Q4",
+      "claimed_open_q_index": 8099.0,
+      "osha_operating_by": "2023-06-06",
+      "osha_activity_nr": "346750268",
+      "quarters_after_the_bound": 6
+    },
+    {
+      "edit": "E_operating_by",
+      "facility_id": "MWP-0615",
+      "site_address": "6617 Associated Blvd",
+      "claimed_open": "2024Q3",
+      "claimed_open_q_index": 8098.0,
+      "osha_operating_by": "2021-11-22",
+      "osha_activity_nr": "345651657",
+      "quarters_after_the_bound": 11
+    },
+    {
+      "edit": "E_operating_by",
+      "facility_id": "NAT-0011",
+      "site_address": "2815 W EL SEGUNDO BL",
+      "claimed_open": "2020Q2",
+      "claimed_open_q_index": 8081.0,
+      "osha_operating_by": "2017-12-29",
+      "osha_activity_nr": "342854213",
+      "quarters_after_the_bound": 10
+    },
+    {
+      "edit": "E_operating_by",
+      "facility_id": "NAT-0026",
+      "site_address": "1500 E GRANTLINE RD",
+      "claimed_open": "2026Q3",
+      "claimed_open_q_index": 8106.0,
+      "osha_operating_by": "2025-03-17",
+      "osha_activity_nr": "348129149",
+      "quarters_after_the_bound": 6
+    },
+    {
+      "edit": "E_operating_by",
+      "facility_id": "NAT-0036",
+      "site_address": "8727 HARNEY ROAD",
+      "claimed_open": "2024Q4",
+      "claimed_open_q_index": 8099.0,
+      "osha_operating_by": "2024-04-17",
+      "osha_activity_nr": "347417297",
+      "quarters_after_the_bound": 2
+    },
+    {
+      "edit": "E_operating_by",
+      "facility_id": "NAT-0079",
+      "site_address": "3610 NW ST HELENS RD",
+      "claimed_open": "2018Q3",
+      "claimed_open_q_index": 8074.0,
+      "osha_operating_by": "2017-12-21",
+      "osha_activity_nr": "342848355",
+      "quarters_after_the_bound": 3
+    }
+  ],
+  "exclusion_note": "Each record below fails the declared edit E_operating_by: it claims an opening strictly after the date an OSHA inspection proves the establishment was already operating. The CSV is untouched and claimed_open preserves the rejected value, so the exclusion is reversible from this file alone.",
+  "contradictions_remaining": [],
+  "in_panel_window": {
+    "first_year": 2018,
+    "last_year": 2025,
+    "buildings": 477,
+    "cbsas": 189,
+    "events": 453,
+    "independent_episodes": 382,
+    "left_censored": 24,
+    "outside_window": 68
+  },
+  "power": {
+    "n_events_zcta": 453,
+    "n_independent_episodes": 382,
+    "n_usable_facilities": 453,
+    "n_parameters": 5,
+    "events_per_parameter_nominal": 90.6,
+    "events_per_parameter_effective": 76.4,
+    "events_per_parameter_optimistic": 90.6,
+    "floor": 10.0,
+    "meets_floor": true,
+    "note": "The nominal ratio counts ZCTAs and is not evidence of power. Independent decisions lie between the metro-quarter episode count (lower bound, merges same-year openings in one metro) and the usable-facility count (upper bound). The verdict is taken on the upper bound."
+  },
+  "note": "Projected, not fitted. The episode count applies models.diagnostics.independent_episodes' definition to the facility frame rather than to a risk set, because no national risk set exists. For the same reason power.n_events_zcta here counts BUILDINGS, not ZCTAs, so power.events_per_parameter_nominal is not the inflated figure that field carries in hazard_report.json -- it equals the optimistic bound by construction and should be ignored. The dates remain OSHA upper bounds with a measured 4-345 month lag to the true opening."
+}

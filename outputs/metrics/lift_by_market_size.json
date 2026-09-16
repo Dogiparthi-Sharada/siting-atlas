@@ -1,0 +1,76 @@
+{
+  "superseded_by": "outputs/metrics/panel_experiments.json",
+  "superseded_at": "2026-09-14T22:16:39+00:00",
+  "superseded_note": "SUPERSEDED. This file has no emitter anywhere in the tree (docs/AUDIT_2026_09_14.md S2.4): it was written by an ad-hoc inline script, carries no run_id, and cannot be regenerated. It is marked rather than rebuilt because panel_experiments.json already measures the same thing, from code, at a higher standard -- and a second artefact making the same claim by a different method is the pathology the audit reports, not a fix for it. This block was added by hand; everything below it is the original file, unaltered.",
+  "superseded_because": [
+    "The emitter would have to live in models/panel_strata.py, where the logic already is (BUCKETS there says 'Same three cuts as lift_by_market_size.json'). Writing a second copy of it is duplication, not provenance.",
+    "panel_experiments.json reproduces both arms exactly. Its 'original_only' arm holds 7 / 41 / 46 decisions in the three strata and its 'combined' arm holds 66 / 162 / 257 -- the same decisions this file reports, to the row.",
+    "It measures them better. 50 re-splits rather than one split; an ANALYTIC chance rate min(k,J)/J rather than choice.evaluate's uniform null, which np.argsort tie-breaks by row order so 'uniform top-10' degenerates into 'is the chosen ZCTA among the first ten rows of the frame'; an 'informative' flag that marks the 7-decision small stratum as too thin to compare; and direct standardisation to a common market mix, which is what the Simpson's-paradox finding actually needs.",
+    "Standardised to the 'combined' mix, top-10 lift moves 2.858 -> 2.706. That is the like-for-like number. The pooled 2.948 -> 2.757 below is not, because the two panels ask different question mixes.",
+    "Its own 'finding' field is wrong and always was: the prose says 'Pooled lift fell 3.68x->2.61x' while the fields beside it say 2.947961916970504 -> 2.757226497889978. The small-market share quoted in the same sentence (7% -> 14%) does check out, so the numbers were recomputed at some point and the prose was not."
+  ],
+  "finding_correction": "Pooled lift fell 2.95x -> 2.76x (not 3.68x -> 2.61x) while lift ROSE in the mid and large strata. The Simpson's-paradox reading is unaffected and is the correct one; only the two pooled figures quoted in 'finding' below are wrong. Cited in docs/WHERE_WE_ARE.md, docs/research/NOTES_EXPANDED_REFIT.md, models/covariate_search.py, models/covariate_report.py and models/panel_strata.py -- all five should point at panel_experiments.json instead.",
+  "retirement_verified": {
+    "verified_at": "2026-09-15T20:10:00+00:00",
+    "why_retired_and_not_rebuilt": "An emitter was considered and rejected. It could not reproduce this file: panel_experiments.py already owns the logic, and its analytic null min(k,J)/J gives DIFFERENT lifts from the tie-broken empirical null used here, so a new emitter would emit a third set of numbers for one quantity rather than make these two reproducible. Two artefacts asserting the same finding by different methods is fine only when the difference is declared; a second artefact asserting it by a WEAKER method (one split, row-order tie-break, no informative flag, no standardisation) is the pathology the 'cite the artefact' rule exists to prevent. Retired with a pointer, per the no-delete rule.",
+    "supersession_claims_checked_independently": [
+      "REPRODUCTION, arm sizes. panel_experiments.json arms.original_only: n_decisions 94 x size_mix {0.07446808510638298, 0.43617021276595747, 0.48936170212765956} = 7 / 41 / 46, which equals original.{small_le25,mid_26_100,large_gt100}.n here. arms.combined: n_decisions 485 x size_mix {0.1360824742268041, 0.334020618556701, 0.5298969072164949} = 66 / 162 / 257, which equals expanded.*.n here. Both exact, 2026-09-15.",
+      "LIKE-FOR-LIKE POOLED FIGURE. panel_experiments.json arms.original_only.methods.conditional_logit.standardised.top10.lift = 2.8581068869775943; arms.combined = 2.7058. Standardised to reference_mix_arm 'combined'. This is the number to quote in place of the 2.948 -> 2.757 below.",
+      "SIMPSON'S READING SURVIVES. Stratum top-10 lift in panel_experiments.json: small 1.7157 -> 1.4280, mid 2.7509 -> 3.0348, large 6.1804 -> 6.3303. Mid and large RISE, small falls, small's share of decisions rises 7.4% -> 13.6%. The conclusion this file was cited for is correct; only its pooled numbers and its prose were not.",
+      "SMALL STRATUM IS TOO THIN TO COMPARE. panel_experiments.json flags arms.original_only strata small_le25 informative=false at 7 decisions (MIN_INFORMATIVE=20). This file reports 1.657x there with no such flag, which is the specific way it misleads."
+    ],
+    "citations_repointed": [
+      "src/siting_atlas/models/panel_strata.py -- docstring table replaced with the panel_experiments figures; it had been repeating this file's WRONG '3.68x -> 2.61x' prose verbatim inside source.",
+      "src/siting_atlas/models/covariate_report.py -- now cites panel_experiments.json and names the field path.",
+      "src/siting_atlas/models/covariate_search.py -- now cites panel_experiments.json.",
+      "src/siting_atlas/ingest/mwpvl_coverage.py -- left alone ON PURPOSE. It cites this file as an EXAMPLE of the no-emitter defect, which is still true and is the reason that module exists.",
+      "docs/ -- prose citations left as written. docs/research/NOTES_*.md are dated session notes and rewriting them would falsify a record; docs/proposal/ is another agent's. docs/data/ARTEFACTS.md now carries the supersession so a reader arriving from any of them lands on the pointer."
+    ],
+    "still_true_in_the_block_below": "The stratum COUNTS (7/41/46 and 66/162/257) and the small-market share shift (7% -> 14%) both check out against panel_experiments.json. The two pooled_lift values and every 'chance' and 'lift' value below come from the tie-broken null and should not be quoted."
+  },
+  "original": {
+    "n_decisions": 94,
+    "pooled_lift": 2.947961916970504,
+    "small_le25": {
+      "n": 7,
+      "top10": 1.0,
+      "chance": 0.6034707982076403,
+      "lift": 1.6570810103323728
+    },
+    "mid_26_100": {
+      "n": 41,
+      "top10": 0.6585365853658537,
+      "chance": 0.2470711294529177,
+      "lift": 2.665372465103599
+    },
+    "large_gt100": {
+      "n": 46,
+      "top10": 0.34782608695652173,
+      "chance": 0.056666489106832724,
+      "lift": 6.138126650140067
+    }
+  },
+  "expanded": {
+    "n_decisions": 485,
+    "pooled_lift": 2.757226497889978,
+    "small_le25": {
+      "n": 66,
+      "top10": 0.9696969696969697,
+      "chance": 0.6735714283008976,
+      "lift": 1.439634950287391
+    },
+    "mid_26_100": {
+      "n": 162,
+      "top10": 0.7037037037037037,
+      "chance": 0.22760202138338867,
+      "lift": 3.091816581533502
+    },
+    "large_gt100": {
+      "n": 257,
+      "top10": 0.3151750972762646,
+      "chance": 0.04905732485898301,
+      "lift": 6.424628700856526
+    }
+  },
+  "finding": "Pooled lift fell 3.68x->2.61x while lift ROSE in mid and large markets. Simpson paradox: MWPVL rows are weighted to small markets (7%->14% of decisions with <=25 alternatives) where chance already scores 67% and lift is structurally capped near 1.5x. The model did not get worse; the question mix changed. Pooled lift across heterogeneous choice-set sizes is not an interpretable statistic and should be reported stratified."
+}

@@ -1,0 +1,56 @@
+{
+  "run_id": "20260916-071325-e8fa",
+  "written_at": "2026-09-16T07:13:25+00:00",
+  "source": "Good Jobs First Subsidy Tracker, Amazon parent",
+  "downloaded": "2026-09-14",
+  "cost_usd": 25,
+  "year_range": [
+    2000,
+    2026
+  ],
+  "total_disclosed_usd": 16056944450.0,
+  "by_facility_class": {
+    "warehouse_distribution": {
+      "records": 67,
+      "total_usd": 2662749209.0,
+      "median_usd": 5000000.0
+    },
+    "data_centre": {
+      "records": 16,
+      "total_usd": 10028000000.0,
+      "median_usd": 176000000.0
+    },
+    "headquarters_office": {
+      "records": 2,
+      "total_usd": 905220000.0,
+      "median_usd": 452610000.0
+    },
+    "unclassified": {
+      "records": 492,
+      "total_usd": 3261975241.0,
+      "median_usd": 1184000.0
+    }
+  },
+  "granularity": {
+    "records": 576,
+    "with_a_postcode": 30,
+    "with_a_street_address": 86,
+    "with_a_county": 414,
+    "with_a_city": 216,
+    "with_a_subsidy_value": 457,
+    "with_a_job_count": 288
+  },
+  "join_to_facility_panel": {
+    "facility_cities": 538,
+    "subsidy_cities": 80,
+    "overlapping_cities": 16,
+    "share_of_facility_cities": 0.02973977695167286
+  },
+  "deals_under_50m": {
+    "records": 428,
+    "total_usd": 1723183356.0,
+    "median_usd": 1287505.0
+  },
+  "what_this_cannot_support": "Facility-level attribution. 30 of 576 records carry a postcode and 86 a street address, so a subsidy cannot be tied to a building. Any statement of the form 'facilities like yours received X' is unsupported by this file.",
+  "why_megadeals_are_not_winsorised": "A data-centre award is not an outlier in a delivery-station distribution; it is a different population. Excluding it by class is correct and trimming it by value would not be."
+}

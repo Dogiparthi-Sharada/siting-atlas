@@ -1,0 +1,519 @@
+{
+  "conclusion_robustness": {
+    "auc_at_or_above_0_80_at": [],
+    "beats_constant_null_on_brier_at": [
+      8.3,
+      12.7,
+      15.0,
+      19.6,
+      25.0,
+      45.0
+    ],
+    "null_better_calibrated_at": [
+      8.3,
+      12.7,
+      15.0,
+      19.6,
+      25.0,
+      45.0
+    ],
+    "households_significant_at": [
+      8.3,
+      12.7,
+      15.0,
+      19.6,
+      25.0,
+      45.0
+    ],
+    "all_three_covariates_significant_at": [
+      25.0,
+      45.0
+    ]
+  },
+  "baseline_reproduction": {
+    "radius_miles": 15.0,
+    "panel_parquet_enabled_cells": 27914,
+    "recomputed_enabled_cells": 27914,
+    "mismatched_cells": 0
+  },
+  "recorded_vs_remeasured": [
+    {
+      "radius_miles": 5.0,
+      "recorded": 383,
+      "remeasured": 383,
+      "agrees": true
+    },
+    {
+      "radius_miles": 10.0,
+      "recorded": 882,
+      "remeasured": 882,
+      "agrees": true
+    },
+    {
+      "radius_miles": 15.0,
+      "recorded": 1257,
+      "remeasured": 1257,
+      "agrees": true
+    },
+    {
+      "radius_miles": 20.0,
+      "recorded": 1593,
+      "remeasured": 1593,
+      "agrees": true
+    },
+    {
+      "radius_miles": 25.0,
+      "recorded": 1819,
+      "remeasured": 1819,
+      "agrees": true
+    },
+    {
+      "radius_miles": 30.0,
+      "recorded": 2006,
+      "remeasured": 2006,
+      "agrees": true
+    }
+  ],
+  "band_endpoints_miles": [
+    8.3,
+    45.0
+  ],
+  "points": [
+    {
+      "radius_miles": 8.3,
+      "in_band": true,
+      "anchor": "45-min drive, congested profile (params.py:295: 16 / 1.45)",
+      "zctas_ever_enabled": 721,
+      "enabled_cells": 14121,
+      "pct_of_panel": 1.306,
+      "facilities_attached": 43,
+      "zctas_per_facility": 33.3,
+      "zctas_served_by_2plus_pct": 57.3,
+      "units_in_scope": 2206,
+      "risk_set": {
+        "units": 1977,
+        "rows": 51937,
+        "events": 559
+      },
+      "test_events": 113,
+      "auc": 0.7081,
+      "brier": 0.010743,
+      "brier_null": 0.010799,
+      "beats_null_on_brier": true,
+      "brier_skill": 0.00516,
+      "ece": 0.00292,
+      "ece_null": 0.00048,
+      "coefficients": {
+        "intercept": {
+          "coefficient": -5.184129,
+          "p_value": 0.0,
+          "hazard_ratio": 0.0056
+        },
+        "t": {
+          "coefficient": 0.003049,
+          "p_value": 0.934856,
+          "hazard_ratio": 1.00305
+        },
+        "households": {
+          "coefficient": 6e-05,
+          "p_value": 0.0,
+          "hazard_ratio": 1.00006
+        },
+        "median_household_income": {
+          "coefficient": -2e-06,
+          "p_value": 0.61922,
+          "hazard_ratio": 1.0
+        },
+        "establishments": {
+          "coefficient": 0.000116,
+          "p_value": 0.322968,
+          "hazard_ratio": 1.00012
+        }
+      },
+      "covariates_p_lt_0_05": [
+        "households"
+      ],
+      "meets_v4_auc_criterion": false
+    },
+    {
+      "radius_miles": 12.7,
+      "in_band": true,
+      "anchor": "45-min drive, cost baseline (22.0 mph / 1.30)",
+      "zctas_ever_enabled": 1093,
+      "enabled_cells": 23626,
+      "pct_of_panel": 2.185,
+      "facilities_attached": 43,
+      "zctas_per_facility": 68.2,
+      "zctas_served_by_2plus_pct": 67.9,
+      "units_in_scope": 2206,
+      "risk_set": {
+        "units": 1833,
+        "rows": 43973,
+        "events": 748
+      },
+      "test_events": 143,
+      "auc": 0.6689,
+      "brier": 0.015633,
+      "brier_null": 0.015684,
+      "beats_null_on_brier": true,
+      "brier_skill": 0.00317,
+      "ece": 0.00559,
+      "ece_null": 0.00089,
+      "coefficients": {
+        "intercept": {
+          "coefficient": -4.502078,
+          "p_value": 0.0,
+          "hazard_ratio": 0.01109
+        },
+        "t": {
+          "coefficient": -0.001473,
+          "p_value": 0.964137,
+          "hazard_ratio": 0.99853
+        },
+        "households": {
+          "coefficient": 5.3e-05,
+          "p_value": 5.5e-05,
+          "hazard_ratio": 1.00005
+        },
+        "median_household_income": {
+          "coefficient": -1e-06,
+          "p_value": 0.745105,
+          "hazard_ratio": 1.0
+        },
+        "establishments": {
+          "coefficient": 7.5e-05,
+          "p_value": 0.64528,
+          "hazard_ratio": 1.00008
+        }
+      },
+      "covariates_p_lt_0_05": [
+        "households"
+      ],
+      "meets_v4_auc_criterion": false
+    },
+    {
+      "radius_miles": 15.0,
+      "in_band": true,
+      "anchor": "CURRENT VALUE, facilities.CATCHMENT_MILES['DS']",
+      "zctas_ever_enabled": 1257,
+      "enabled_cells": 27914,
+      "pct_of_panel": 2.581,
+      "facilities_attached": 43,
+      "zctas_per_facility": 87.6,
+      "zctas_served_by_2plus_pct": 72.0,
+      "units_in_scope": 2206,
+      "risk_set": {
+        "units": 1756,
+        "rows": 40358,
+        "events": 812
+      },
+      "test_events": 161,
+      "auc": 0.6894,
+      "brier": 0.019522,
+      "brier_null": 0.019614,
+      "beats_null_on_brier": true,
+      "brier_skill": 0.00471,
+      "ece": 0.00863,
+      "ece_null": 5e-05,
+      "coefficients": {
+        "intercept": {
+          "coefficient": -4.67386,
+          "p_value": 0.0,
+          "hazard_ratio": 0.00934
+        },
+        "t": {
+          "coefficient": 0.002336,
+          "p_value": 0.935454,
+          "hazard_ratio": 1.00234
+        },
+        "households": {
+          "coefficient": 5.2e-05,
+          "p_value": 7e-05,
+          "hazard_ratio": 1.00005
+        },
+        "median_household_income": {
+          "coefficient": 1e-06,
+          "p_value": 0.780357,
+          "hazard_ratio": 1.0
+        },
+        "establishments": {
+          "coefficient": 0.000149,
+          "p_value": 0.297732,
+          "hazard_ratio": 1.00015
+        }
+      },
+      "covariates_p_lt_0_05": [
+        "households"
+      ],
+      "meets_v4_auc_criterion": false
+    },
+    {
+      "radius_miles": 19.6,
+      "in_band": true,
+      "anchor": "45-min drive, fast end of COST_RANGES (30 mph / 1.15)",
+      "zctas_ever_enabled": 1568,
+      "enabled_cells": 36064,
+      "pct_of_panel": 3.335,
+      "facilities_attached": 43,
+      "zctas_per_facility": 124.9,
+      "zctas_served_by_2plus_pct": 73.6,
+      "units_in_scope": 2206,
+      "risk_set": {
+        "units": 1610,
+        "rows": 33811,
+        "events": 910
+      },
+      "test_events": 175,
+      "auc": 0.6829,
+      "brier": 0.024315,
+      "brier_null": 0.024428,
+      "beats_null_on_brier": true,
+      "brier_skill": 0.00443,
+      "ece": 0.0101,
+      "ece_null": 0.00231,
+      "coefficients": {
+        "intercept": {
+          "coefficient": -4.6601,
+          "p_value": 0.0,
+          "hazard_ratio": 0.00947
+        },
+        "t": {
+          "coefficient": 0.006612,
+          "p_value": 0.820659,
+          "hazard_ratio": 1.00663
+        },
+        "households": {
+          "coefficient": 5.1e-05,
+          "p_value": 0.004087,
+          "hazard_ratio": 1.00005
+        },
+        "median_household_income": {
+          "coefficient": 3e-06,
+          "p_value": 0.144398,
+          "hazard_ratio": 1.0
+        },
+        "establishments": {
+          "coefficient": 0.000215,
+          "p_value": 0.071028,
+          "hazard_ratio": 1.00021
+        }
+      },
+      "covariates_p_lt_0_05": [
+        "households"
+      ],
+      "meets_v4_auc_criterion": false
+    },
+    {
+      "radius_miles": 25.0,
+      "in_band": true,
+      "anchor": "Holmes (2011) choice radius; HNS (2023) FC-to-SC rule",
+      "zctas_ever_enabled": 1819,
+      "enabled_cells": 43942,
+      "pct_of_panel": 4.064,
+      "facilities_attached": 43,
+      "zctas_per_facility": 168.1,
+      "zctas_served_by_2plus_pct": 76.9,
+      "units_in_scope": 2206,
+      "risk_set": {
+        "units": 1444,
+        "rows": 27834,
+        "events": 921
+      },
+      "test_events": 187,
+      "auc": 0.6406,
+      "brier": 0.032288,
+      "brier_null": 0.03248,
+      "beats_null_on_brier": true,
+      "brier_skill": 0.00588,
+      "ece": 0.00647,
+      "ece_null": 0.00053,
+      "coefficients": {
+        "intercept": {
+          "coefficient": -4.599776,
+          "p_value": 0.0,
+          "hazard_ratio": 0.01005
+        },
+        "t": {
+          "coefficient": 0.00792,
+          "p_value": 0.784114,
+          "hazard_ratio": 1.00795
+        },
+        "households": {
+          "coefficient": 4.3e-05,
+          "p_value": 0.000411,
+          "hazard_ratio": 1.00004
+        },
+        "median_household_income": {
+          "coefficient": 4e-06,
+          "p_value": 0.037052,
+          "hazard_ratio": 1.0
+        },
+        "establishments": {
+          "coefficient": 0.000311,
+          "p_value": 0.000623,
+          "hazard_ratio": 1.00031
+        }
+      },
+      "covariates_p_lt_0_05": [
+        "establishments",
+        "households",
+        "median_household_income"
+      ],
+      "meets_v4_auc_criterion": false
+    },
+    {
+      "radius_miles": 45.0,
+      "in_band": true,
+      "anchor": "MWPVL line 383: DS 'designed to service a 45-mile radius'",
+      "zctas_ever_enabled": 2572,
+      "enabled_cells": 67216,
+      "pct_of_panel": 6.216,
+      "facilities_attached": 43,
+      "zctas_per_facility": 293.1,
+      "zctas_served_by_2plus_pct": 80.2,
+      "units_in_scope": 2206,
+      "risk_set": {
+        "units": 1076,
+        "rows": 15276,
+        "events": 856
+      },
+      "test_events": 169,
+      "auc": 0.6269,
+      "brier": 0.051275,
+      "brier_null": 0.051771,
+      "beats_null_on_brier": true,
+      "brier_skill": 0.00945,
+      "ece": 0.00645,
+      "ece_null": 0.0025,
+      "coefficients": {
+        "intercept": {
+          "coefficient": -4.315468,
+          "p_value": 0.0,
+          "hazard_ratio": 0.01336
+        },
+        "t": {
+          "coefficient": 0.001636,
+          "p_value": 0.958196,
+          "hazard_ratio": 1.00164
+        },
+        "households": {
+          "coefficient": 4.5e-05,
+          "p_value": 1.6e-05,
+          "hazard_ratio": 1.00004
+        },
+        "median_household_income": {
+          "coefficient": 8e-06,
+          "p_value": 0.001555,
+          "hazard_ratio": 1.00001
+        },
+        "establishments": {
+          "coefficient": 0.000175,
+          "p_value": 0.032736,
+          "hazard_ratio": 1.00017
+        }
+      },
+      "covariates_p_lt_0_05": [
+        "establishments",
+        "households",
+        "median_household_income"
+      ],
+      "meets_v4_auc_criterion": false
+    },
+    {
+      "radius_miles": 60.0,
+      "in_band": false,
+      "anchor": "OVER-RUN PROBE: MWPVL rows stating 50-90 are rural",
+      "zctas_ever_enabled": 3153,
+      "enabled_cells": 84536,
+      "pct_of_panel": 7.818,
+      "facilities_attached": 43,
+      "zctas_per_facility": 377.3,
+      "zctas_served_by_2plus_pct": 83.0,
+      "units_in_scope": 2206,
+      "risk_set": {
+        "units": 952,
+        "rows": 11735,
+        "events": 805
+      },
+      "test_events": 161,
+      "auc": 0.6247,
+      "brier": 0.061226,
+      "brier_null": 0.062151,
+      "beats_null_on_brier": true,
+      "brier_skill": 0.01487,
+      "ece": 0.00774,
+      "ece_null": 0.00087,
+      "coefficients": {
+        "intercept": {
+          "coefficient": -3.888915,
+          "p_value": 0.0,
+          "hazard_ratio": 0.02047
+        },
+        "t": {
+          "coefficient": -0.004137,
+          "p_value": 0.912737,
+          "hazard_ratio": 0.99587
+        },
+        "households": {
+          "coefficient": 3.2e-05,
+          "p_value": 0.01058,
+          "hazard_ratio": 1.00003
+        },
+        "median_household_income": {
+          "coefficient": 8e-06,
+          "p_value": 0.000554,
+          "hazard_ratio": 1.00001
+        },
+        "establishments": {
+          "coefficient": 6.4e-05,
+          "p_value": 0.405373,
+          "hazard_ratio": 1.00006
+        }
+      },
+      "covariates_p_lt_0_05": [
+        "households",
+        "median_household_income"
+      ],
+      "meets_v4_auc_criterion": false
+    }
+  ],
+  "band": {
+    "zctas_ever_enabled": {
+      "low": 721,
+      "baseline": 1257,
+      "high": 2572,
+      "ratio_high_low": 3.567
+    },
+    "enabled_cells": {
+      "low": 14121,
+      "baseline": 27914,
+      "high": 67216,
+      "ratio_high_low": 4.76
+    },
+    "facilities_attached": {
+      "low": 43,
+      "baseline": 43,
+      "high": 43,
+      "ratio_high_low": 1.0
+    },
+    "zctas_served_by_2plus_pct": {
+      "low": 57.3,
+      "baseline": 72.0,
+      "high": 80.2,
+      "ratio_high_low": 1.4
+    },
+    "auc": {
+      "low": 0.6269,
+      "baseline": 0.6894,
+      "high": 0.7081,
+      "ratio_high_low": 1.13
+    },
+    "brier_skill": {
+      "low": 0.00317,
+      "baseline": 0.00471,
+      "high": 0.00945,
+      "ratio_high_low": 2.981
+    }
+  },
+  "interpretation": "NOT a confidence interval. There is one true catchment radius and we do not know it. This is a sensitivity range over an assumption, in the sense optimize/montecarlo states about its own output: how far the answer moves across the range we can defend from MWPVL's own statements, propagating our reading of them, not the world's."
+}

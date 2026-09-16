@@ -1,0 +1,186 @@
+{
+  "estimand": "US cities (city+state) containing at least one Amazon facility. NOT buildings: OSHA holds 1.39 buildings per city, and nothing here measures whether the unseen cities hold as many.",
+  "direction_of_bias": "OSHA and NLRB are both driven by worker grievance, so presence on one raises the chance of presence on the other. Positive dependence inflates the overlap and deflates n1*n2/M. Every population figure here is therefore a LOWER BOUND and every coverage figure an UPPER BOUND.",
+  "national_two_list": {
+    "label": "national",
+    "n_nlrb": 208,
+    "n_osha": 340,
+    "overlap": 112,
+    "observed_union": 436,
+    "nlrb_only": 96,
+    "osha_only": 228,
+    "lincoln_petersen": 631.4285714285714,
+    "chapman": 629.6991150442478,
+    "chapman_ci95": [
+      575.4066477319958,
+      705.1359973094993
+    ],
+    "chao_lower_bound": 899.0619469026549,
+    "chao_ci95": [
+      778.4665635673946,
+      1062.1235095060013
+    ],
+    "osha_coverage_upper_bound_chapman": 0.5399404126145371,
+    "osha_coverage_upper_bound_chao": 0.3781719392877532
+  },
+  "osm_frame_three_list": {
+    "frame_states": [
+      "AZ",
+      "CA",
+      "CO",
+      "FL",
+      "ID",
+      "IL",
+      "NY",
+      "TN",
+      "TX",
+      "WA"
+    ],
+    "labels": [
+      "nlrb",
+      "osha",
+      "osm"
+    ],
+    "n_by_list": {
+      "nlrb": 103,
+      "osha": 139,
+      "osm": 110
+    },
+    "observed_union": 228,
+    "cells": {
+      "001": 34,
+      "010": 54,
+      "011": 37,
+      "100": 42,
+      "101": 13,
+      "110": 22,
+      "111": 26
+    },
+    "measured_odds_ratios": {
+      "nlrb_osha_given_osm": 1.837837837837838,
+      "nlrb_osm_given_osha": 1.7248157248157248,
+      "osha_osm_given_nlrb": 3.8181818181818183
+    },
+    "models": {
+      "[1][2][3]": {
+        "df": 3,
+        "deviance": 10.842824692593243,
+        "aic": 55.52924855116617,
+        "population": 285.6797466669168,
+        "ci95": [
+          269.08400053248766,
+          308.97928956380173
+        ],
+        "osha_coverage": 0.48655881847327653
+      },
+      "[12][3]": {
+        "df": 2,
+        "deviance": 10.455570729656174,
+        "aic": 57.14199458822898,
+        "population": 280.78947368421007,
+        "ci95": [
+          261.90280382157266,
+          310.1975830235814
+        ],
+        "osha_coverage": 0.4950328022492979
+      },
+      "[13][2]": {
+        "df": 2,
+        "deviance": 10.808131467221633,
+        "aic": 57.49455532579448,
+        "population": 284.5411764705874,
+        "ci95": [
+          265.92467331310024,
+          312.29616809840275
+        ],
+        "osha_coverage": 0.48850574712643824
+      },
+      "[23][1]": {
+        "df": 2,
+        "deviance": 3.078688514386804,
+        "aic": 49.7651123729597,
+        "population": 314.06557377048614,
+        "ci95": [
+          283.96889087792914,
+          360.34643160248856
+        ],
+        "osha_coverage": 0.44258273306191426
+      },
+      "[12][13]": {
+        "df": 1,
+        "deviance": 10.297200239111055,
+        "aic": 58.98362409768394,
+        "population": 277.6216216216217,
+        "ci95": [
+          257.0152397795375,
+          312.86248437263987
+        ],
+        "osha_coverage": 0.5006814641744546
+      },
+      "[12][23]": {
+        "df": 1,
+        "deviance": 2.310673417749844,
+        "aic": 50.99709727632273,
+        "population": 337.8461538461536,
+        "ci95": [
+          282.1638356863148,
+          450.77184327699877
+        ],
+        "osha_coverage": 0.4114298724954466
+      },
+      "[13][23]": {
+        "df": 1,
+        "deviance": 2.208623930962337,
+        "aic": 50.89504778953519,
+        "population": 331.09090909090924,
+        "ci95": [
+          285.68000681791466,
+          412.2533682553115
+        ],
+        "osha_coverage": 0.4198242723778142
+      },
+      "[12][13][23]": {
+        "df": 0,
+        "deviance": 1.3544720900415336e-14,
+        "aic": 50.68642385857289,
+        "population": 417.4643734643737,
+        "ci95": [
+          297.79546737957145,
+          742.3134670483538
+        ],
+        "osha_coverage": 0.33296254443581214
+      }
+    },
+    "lowest_aic": "[23][1]",
+    "two_list_same_frame": {
+      "label": "NLRB x OSHA, OSM frame only",
+      "n_nlrb": 103,
+      "n_osha": 139,
+      "overlap": 48,
+      "observed_union": 194,
+      "nlrb_only": 55,
+      "osha_only": 91,
+      "lincoln_petersen": 298.2708333333333,
+      "chapman": 296.14285714285717,
+      "chapman_ci95": [
+        258.08941625789055,
+        356.7907363569038
+      ],
+      "chao_lower_bound": 410.0204081632653,
+      "chao_ci95": [
+        330.86552346302955,
+        534.9537739109949
+      ],
+      "osha_coverage_upper_bound_chapman": 0.4693680656054028,
+      "osha_coverage_upper_bound_chao": 0.3390075158030959
+    }
+  },
+  "naive_city_key": {
+    "nlrb": 209,
+    "osha": 340,
+    "overlap": 108,
+    "nlrb_only": 101,
+    "lincoln_petersen": 657.9629629629629
+  },
+  "nlrb_only_city_count": 96
+}

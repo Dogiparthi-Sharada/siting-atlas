@@ -1,0 +1,484 @@
+{
+  "run_id": "20260915-195256-1c53",
+  "written_at": "2026-09-15T19:52:58+00:00",
+  "mwpvl_rows_in_file": 1904,
+  "mwpvl_tables_used": [
+    "08_us_delivery_station",
+    "08_us_delivery_station_part2"
+  ],
+  "mwpvl_rows_excluded_wrong_facility_class": 1269,
+  "mwpvl_rows": 635,
+  "internal_duplicates_dropped": 1,
+  "after_internal_dedup": 634,
+  "already_in_panel": 40,
+  "held_for_clerical_review": 5,
+  "new_rows_added": 589,
+  "panel_rows_before": 104,
+  "panel_rows_after": 693,
+  "internal_duplicate_groups": [
+    {
+      "facility_ids": [
+        "MWP-0086",
+        "MWP-0087"
+      ],
+      "open_q_index_lower": 8086.0,
+      "open_q_index_upper": 8086.0,
+      "quarters_apart": 0,
+      "contradicted": false,
+      "unresolved": false,
+      "resolved_by": "",
+      "source_types": [
+        "other"
+      ],
+      "winner": ""
+    }
+  ],
+  "cross_matches": {
+    "MWP-0006": [
+      "NAT-0001"
+    ],
+    "MWP-0031": [
+      "NAT-0007"
+    ],
+    "MWP-0040": [
+      "NAT-0014"
+    ],
+    "MWP-0054": [
+      "NAT-0006"
+    ],
+    "MWP-0056": [
+      "NAT-0011",
+      "NAT-0012"
+    ],
+    "MWP-0064": [
+      "NAT-0017"
+    ],
+    "MWP-0067": [
+      "NAT-0027"
+    ],
+    "MWP-0088": [
+      "NAT-0018"
+    ],
+    "MWP-0112": [
+      "NAT-0028"
+    ],
+    "MWP-0142": [
+      "NAT-0037"
+    ],
+    "MWP-0161": [
+      "NAT-0031"
+    ],
+    "MWP-0165": [
+      "NAT-0032"
+    ],
+    "MWP-0167": [
+      "NAT-0035"
+    ],
+    "MWP-0195": [
+      "NAT-0038"
+    ],
+    "MWP-0202": [
+      "NAT-0043"
+    ],
+    "MWP-0251": [
+      "NAT-0047"
+    ],
+    "MWP-0256": [
+      "NAT-0049"
+    ],
+    "MWP-0276": [
+      "NAT-0056"
+    ],
+    "MWP-0285": [
+      "NAT-0054"
+    ],
+    "MWP-0292": [
+      "NAT-0052"
+    ],
+    "MWP-0293": [
+      "NAT-0050"
+    ],
+    "MWP-0301": [
+      "NAT-0059"
+    ],
+    "MWP-0426": [
+      "NAT-0065"
+    ],
+    "MWP-0427": [
+      "NAT-0066"
+    ],
+    "MWP-0433": [
+      "NAT-0068"
+    ],
+    "MWP-0434": [
+      "NAT-0067"
+    ],
+    "MWP-0456": [
+      "NAT-0075"
+    ],
+    "MWP-0474": [
+      "NAT-0078",
+      "NAT-0079"
+    ],
+    "MWP-0476": [
+      "NAT-0080"
+    ],
+    "MWP-0491": [
+      "NAT-0087"
+    ],
+    "MWP-0495": [
+      "NAT-0086"
+    ],
+    "MWP-0512": [
+      "NAT-0082"
+    ],
+    "MWP-0519": [
+      "NAT-0088"
+    ],
+    "MWP-0520": [
+      "NAT-0089"
+    ],
+    "MWP-0530": [
+      "NAT-0090"
+    ],
+    "MWP-0578": [
+      "NAT-0092"
+    ],
+    "MWP-0584": [
+      "NAT-0094"
+    ],
+    "MWP-0586": [
+      "NAT-0098"
+    ],
+    "MWP-0599": [
+      "NAT-0102"
+    ],
+    "MWP-0608": [
+      "NAT-0103"
+    ]
+  },
+  "cross_review_band": [
+    {
+      "mwpvl_id": "MWP-0032",
+      "panel_id": "NAT-0008",
+      "why": "suffix RD/BLVD",
+      "score": 1.0,
+      "mwpvl_address": "15930 Valley Road"
+    },
+    {
+      "mwpvl_id": "MWP-0187",
+      "panel_id": "NAT-0041",
+      "why": "no ZIP or city corroboration",
+      "score": 1.0,
+      "mwpvl_address": "4800 Highlands Parkway SE"
+    },
+    {
+      "mwpvl_id": "MWP-0337",
+      "panel_id": "NAT-0064",
+      "why": "street similarity 0.80",
+      "score": 0.805,
+      "mwpvl_address": "2400 N-E. Coronado Drive"
+    },
+    {
+      "mwpvl_id": "MWP-0062",
+      "panel_id": "NAT-0005",
+      "why": "street similarity 0.91",
+      "score": 0.911,
+      "mwpvl_address": "3001 & 3175 Mission Oaks Blvd"
+    },
+    {
+      "mwpvl_id": "MWP-0098",
+      "panel_id": "NAT-0002",
+      "why": "no ZIP or city corroboration",
+      "score": 1.0,
+      "mwpvl_address": "300 Boone Drive"
+    }
+  ],
+  "code_diagnostics": {
+    "groups_whose_codes_disagree": 1,
+    "groups_whose_codes_disagree_ids": [
+      [
+        "MWP-0086",
+        "MWP-0087"
+      ]
+    ],
+    "unmerged_rows_sharing_a_code": 0,
+    "unmerged_rows_sharing_a_code_ids": [],
+    "rows_in_a_merged_group": 2,
+    "note": "Reported, not acted on. linkage.compare would settle either case outright on a code pair, but these codes are OCR'd from the same image as the rest of the row, so letting them override parsed-address evidence would be trusting the weaker reading. Both lists are clerical review."
+  },
+  "screenability": {
+    "rows": 634,
+    "no_street_at_all_unscreenable": 54,
+    "street_but_no_house_number": 0,
+    "fully_screenable": 580,
+    "unscreenable_ids": [
+      "MWP-0025",
+      "MWP-0035",
+      "MWP-0063",
+      "MWP-0100",
+      "MWP-0102",
+      "MWP-0111",
+      "MWP-0126",
+      "MWP-0182",
+      "MWP-0183",
+      "MWP-0184",
+      "MWP-0193",
+      "MWP-0207",
+      "MWP-0229",
+      "MWP-0242",
+      "MWP-0255",
+      "MWP-0267",
+      "MWP-0269",
+      "MWP-0295",
+      "MWP-0296",
+      "MWP-0314",
+      "MWP-0320",
+      "MWP-0322",
+      "MWP-0331",
+      "MWP-0340",
+      "MWP-0342"
+    ],
+    "note": "compare() calls a pair with no comparable street a NONMATCH, so these rows enter the panel as new by default rather than by evidence. The count is the size of that blind spot."
+  },
+  "recall_probe_vs_postcode_and_house_number": {
+    "pairs_sharing_postcode_and_house_number": 43,
+    "verdicts": {
+      "match": 40,
+      "review": 3
+    },
+    "rejected": [],
+    "note": "A rejected pair is EITHER two buildings at the same number in one ZIP OR a miss caused by a damaged street string. Each is listed so it can be read rather than assumed."
+  },
+  "geography_mwpvl": {
+    "crosswalks_present": true,
+    "zcta_county": "data/interim/zcta_county.parquet",
+    "cbsa_county": "data/interim/cbsa_county.parquet",
+    "rows": 635,
+    "with_zcta": 628,
+    "with_state": 628,
+    "with_cbsa": 607,
+    "by_status": {
+      "ok": 607,
+      "county_in_no_cbsa": 11,
+      "connecticut_county_vintage_gap": 10,
+      "postcode_not_a_zcta": 7
+    },
+    "note": "A postal code is read as a ZCTA, which is what warehouse/facility_load already does for the 104 national rows. Rows counted under postcode_not_a_zcta are postcodes with no ZCTA of that number in the 2020 relationship file; they are left unplaced, not geocoded. connecticut_county_vintage_gap is the OMB-2023-vs-2020 county vintage gap recorded in ingest/registry.py, not a failure of this row."
+  },
+  "geography_national": {
+    "crosswalks_present": true,
+    "zcta_county": "data/interim/zcta_county.parquet",
+    "cbsa_county": "data/interim/cbsa_county.parquet",
+    "rows": 104,
+    "with_zcta": 104,
+    "with_state": 104,
+    "with_cbsa": 104,
+    "by_status": {
+      "ok": 104
+    },
+    "note": "A postal code is read as a ZCTA, which is what warehouse/facility_load already does for the 104 national rows. Rows counted under postcode_not_a_zcta are postcodes with no ZCTA of that number in the 2020 relationship file; they are left unplaced, not geocoded. connecticut_county_vintage_gap is the OMB-2023-vs-2020 county vintage gap recorded in ingest/registry.py, not a failure of this row."
+  },
+  "ocr_state_grade": {
+    "ocr_state_parsed": 613,
+    "ocr_state_unparsed": 22,
+    "comparable": 606,
+    "agree": 604,
+    "disagree": 2,
+    "agreement_rate": 0.9966996699669967
+  },
+  "new_row_geography": {
+    "rows": 589,
+    "with_zcta": 582,
+    "with_cbsa_code": 561,
+    "without_zcta": 7,
+    "without_cbsa_county_in_no_metro": 11,
+    "without_cbsa_connecticut_vintage_gap": 10,
+    "distinct_cbsas": 214,
+    "by_status": {
+      "ok": 561,
+      "county_in_no_cbsa": 11,
+      "connecticut_county_vintage_gap": 10,
+      "postcode_not_a_zcta": 7
+    }
+  },
+  "new_row_dates": {
+    "with_open_year": 447,
+    "without_open_year": 142,
+    "with_open_quarter": 330,
+    "by_precision": {
+      "month": 303,
+      "none": 142,
+      "year": 117,
+      "quarter": 27
+    },
+    "dated_and_placed_in_a_cbsa": 427,
+    "date_flags": {
+      "year_outside_2013_2030": 2
+    },
+    "note": "dated_and_placed_in_a_cbsa is the count models/choice can actually use: build() drops a facility with no cbsa_code and scores it on a CBP vintage keyed to open_year."
+  },
+  "new_row_provenance": {
+    "source_dataset": "mwpvl_2025q1",
+    "vouched_by_mwpvl": 542,
+    "not_vouched_by_mwpvl": 47,
+    "flags": {
+      "not_confirmed": 20,
+      "delayed": 27,
+      "cancelled": 0,
+      "closed": 2,
+      "sqft_estimated": 28,
+      "colocated": 16,
+      "rural_wagon_wheel": 68
+    },
+    "status": {
+      "open": 569,
+      "announced": 20
+    },
+    "confidence": {
+      "medium": 542,
+      "low": 47
+    },
+    "note": "not_confirmed / delayed / cancelled are MWPVL declining to vouch for the row. They are kept, marked and countable, never dropped and never silently promoted."
+  },
+  "expanded_panel": {
+    "rows": 693,
+    "by_source_dataset": {
+      "mwpvl_2025q1": 589,
+      "national_facilities": 104
+    },
+    "dated": 551,
+    "undated": 142,
+    "dated_and_placed_in_a_cbsa": 531,
+    "distinct_cbsas": 230,
+    "distinct_zctas": 629,
+    "year_range": [
+      2013,
+      2094
+    ],
+    "in_panel_window": {
+      "first_year": 2018,
+      "last_year": 2025,
+      "decisions": 440,
+      "independent_episodes": 378,
+      "per_parameter_at_5_parameters": 75.6,
+      "note": "Projected, not fitted \u2014 the same move warehouse/national.summarise makes, applied to the facility frame because no national risk set exists. warehouse/national reports 80 decisions and 79 episodes on the 104-row file, against a floor of 10 events per parameter. Nothing has been refitted; models/ is untouched."
+    }
+  },
+  "validation_E_operating_by": {
+    "evaluated": true,
+    "disposition": "report",
+    "panel_rows": 693,
+    "rows_with_a_date": 551,
+    "linked_to_an_osha_building": 136,
+    "unchecked_no_osha_match": 415,
+    "falsified": 6,
+    "pass_rate": 0.9559,
+    "by_source_dataset": {
+      "mwpvl_2025q1": {
+        "linked": 32,
+        "falsified": 2,
+        "pass_rate": 0.9375
+      },
+      "national_facilities": {
+        "linked": 104,
+        "falsified": 4,
+        "pass_rate": 0.9615
+      }
+    },
+    "failures": [
+      {
+        "edit": "E_operating_by",
+        "facility_id": "MWP-0084",
+        "site_address": "5800 Coliseum Way",
+        "claimed_open": "2024Q4",
+        "claimed_open_q_index": 8099.0,
+        "osha_operating_by": "2023-06-06",
+        "osha_activity_nr": "346750268",
+        "quarters_after_the_bound": 6
+      },
+      {
+        "edit": "E_operating_by",
+        "facility_id": "MWP-0615",
+        "site_address": "6617 Associated Blvd",
+        "claimed_open": "2024Q3",
+        "claimed_open_q_index": 8098.0,
+        "osha_operating_by": "2021-11-22",
+        "osha_activity_nr": "345651657",
+        "quarters_after_the_bound": 11
+      },
+      {
+        "edit": "E_operating_by",
+        "facility_id": "NAT-0011",
+        "site_address": "2815 W EL SEGUNDO BL",
+        "claimed_open": "2020Q2",
+        "claimed_open_q_index": 8081.0,
+        "osha_operating_by": "2017-12-29",
+        "osha_activity_nr": "342854213",
+        "quarters_after_the_bound": 10
+      },
+      {
+        "edit": "E_operating_by",
+        "facility_id": "NAT-0026",
+        "site_address": "1500 E GRANTLINE RD",
+        "claimed_open": "2026Q3",
+        "claimed_open_q_index": 8106.0,
+        "osha_operating_by": "2025-03-17",
+        "osha_activity_nr": "348129149",
+        "quarters_after_the_bound": 6
+      },
+      {
+        "edit": "E_operating_by",
+        "facility_id": "NAT-0036",
+        "site_address": "8727 HARNEY ROAD",
+        "claimed_open": "2024Q4",
+        "claimed_open_q_index": 8099.0,
+        "osha_operating_by": "2024-04-17",
+        "osha_activity_nr": "347417297",
+        "quarters_after_the_bound": 2
+      },
+      {
+        "edit": "E_operating_by",
+        "facility_id": "NAT-0079",
+        "site_address": "3610 NW ST HELENS RD",
+        "claimed_open": "2018Q3",
+        "claimed_open_q_index": 8074.0,
+        "osha_operating_by": "2017-12-21",
+        "osha_activity_nr": "342848355",
+        "quarters_after_the_bound": 3
+      }
+    ],
+    "note": "An unchecked row is not a passing row. The edit can only speak about the rows an OSHA building was matched to."
+  },
+  "facility_check": {
+    "passes": false,
+    "errors": [
+      "142 row(s) have a non-numeric open_year"
+    ],
+    "warnings": [],
+    "stats": {
+      "rows": 693,
+      "delivery_stations": 693,
+      "year_range": "2013-2094",
+      "operators": [
+        "Amazon"
+      ],
+      "types": [
+        "DS"
+      ],
+      "states": 50,
+      "with_quarter": 434
+    },
+    "note": "ingest/facility_check treats open_year as REQUIRED, so the expanded file does not pass it: MWPVL prints no year on a quarter of its rows. The alternatives are to drop those rows, which throws away the location a fourth capture list exists to supply, or to invent a year. Neither is taken. The failure is reported here so nobody discovers it by running --check."
+  },
+  "output": "data/external/facility_panel/national_facilities_expanded.csv",
+  "caveats": [
+    "MWPVL declares its own incompleteness five times and line 391 \u2014 'the data concerning this network is challenging to track' \u2014 is about this exact table (docs/data/MWPVL_2025.md \u00a76).",
+    "A date here is a claim by a consultancy, not a record from a registry. source_type is 'other', which ranks last in facility_dedup.DATE_RELIABILITY, and that is the intended rank.",
+    "The OCR has a measured ~3% row-merge defect: 18 of 535 rows on the delivery-station table carry two facilities' text and one facility's code (docs/data/MWPVL_OCR_PIPELINE.md \u00a713.1). A merged row is a row this merge cannot see as two buildings.",
+    "Only 2 of MWPVL's 13 tables have been parsed, both of them the US delivery-station table (\u00a713.3). 591 is 591 delivery stations, not 591 Amazon buildings.",
+    "No coordinate is geocoded and none is present. Every distance covariate downstream still falls back to a ZCTA centroid.",
+    "A postal code is read as a ZCTA. They are different objects; this is what warehouse/facility_load already does for all 104 national rows.",
+    "Nothing is corrected. A date that fails a check is flagged in date_flag and left at its OCR'd value."
+  ]
+}

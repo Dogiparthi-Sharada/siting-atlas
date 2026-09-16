@@ -1,0 +1,1608 @@
+{
+  "batch_rows": 362,
+  "unknown_answers": 8,
+  "delivery_stations": 135,
+  "already_in_a_frame": 122,
+  "in_national": 98,
+  "in_pilot": 24,
+  "candidates": 13,
+  "cbsas": 8,
+  "cbsas_new_to_national": 8,
+  "unplaced_in_any_cbsa": 2,
+  "operating_by_failures": [],
+  "edit_note": "E_operating_by compares a CLAIMED opening against the bound. Every candidate claims nothing, so the edit passes by construction and the empty failure list above corroborates no date.",
+  "first_in_metro_share_before": 0.65,
+  "first_in_metro_share_after": 0.6903,
+  "duplicates": [
+    {
+      "site_address": "300 BOONE DRIVE.",
+      "site_city": "AMERICAN CANYON",
+      "site_state": "CA",
+      "batch": "1",
+      "item": "8",
+      "matches": [
+        "NAT-0002"
+      ],
+      "frames": [
+        "national"
+      ]
+    },
+    {
+      "site_address": "1601 PETROL ROAD",
+      "site_city": "BAKERSFIELD",
+      "site_state": "CA",
+      "batch": "1",
+      "item": "9",
+      "matches": [
+        "NAT-0003"
+      ],
+      "frames": [
+        "national"
+      ]
+    },
+    {
+      "site_address": "3388 SOUTH CACTUS AVENUE",
+      "site_city": "BLOOMINGTON",
+      "site_state": "CA",
+      "batch": "1",
+      "item": "11",
+      "matches": [
+        "NAT-0004"
+      ],
+      "frames": [
+        "national"
+      ]
+    },
+    {
+      "site_address": "3001 MISSION OAKS BOULEVARD",
+      "site_city": "CAMARILLO",
+      "site_state": "CA",
+      "batch": "1",
+      "item": "13",
+      "matches": [
+        "NAT-0005"
+      ],
+      "frames": [
+        "national"
+      ]
+    },
+    {
+      "site_address": "20730 PRAIRIE STREET",
+      "site_city": "CHATSWORTH",
+      "site_state": "CA",
+      "batch": "1",
+      "item": "14",
+      "matches": [
+        "NAT-0007"
+      ],
+      "frames": [
+        "national"
+      ]
+    },
+    {
+      "site_address": "9031 LURLINE AVE.",
+      "site_city": "CHATSWORTH",
+      "site_state": "CA",
+      "batch": "1",
+      "item": "15",
+      "matches": [
+        "NAT-0006"
+      ],
+      "frames": [
+        "national"
+      ]
+    },
+    {
+      "site_address": "15930 VALLEY BOULEVARD",
+      "site_city": "CITY OF INDUSTRY",
+      "site_state": "CA",
+      "batch": "1",
+      "item": "16",
+      "matches": [
+        "NAT-0008"
+      ],
+      "frames": [
+        "national"
+      ]
+    },
+    {
+      "site_address": "64615 19TH AVENUE",
+      "site_city": "DESERT HOT SPRINGS",
+      "site_state": "CA",
+      "batch": "1",
+      "item": "18",
+      "matches": [
+        "NAT-0009"
+      ],
+      "frames": [
+        "national"
+      ]
+    },
+    {
+      "site_address": "44109 PACIFIC COMMONS BLVD.",
+      "site_city": "FREMONT",
+      "site_state": "CA",
+      "batch": "1",
+      "item": "21",
+      "matches": [
+        "DS-002"
+      ],
+      "frames": [
+        "pilot"
+      ]
+    },
+    {
+      "site_address": "2325 S. CEDAR AVE",
+      "site_city": "FRESNO",
+      "site_state": "CA",
+      "batch": "1",
+      "item": "22",
+      "matches": [
+        "NAT-0010"
+      ],
+      "frames": [
+        "national"
+      ]
+    },
+    {
+      "site_address": "2815 W. EL SEGUNDO BLVD.",
+      "site_city": "HOLLYGLEN",
+      "site_state": "CA",
+      "batch": "1",
+      "item": "24",
+      "matches": [
+        "NAT-0011",
+        "NAT-0012"
+      ],
+      "frames": [
+        "national"
+      ]
+    },
+    {
+      "site_address": "3565 NORTH AIRPORT WAY",
+      "site_city": "MANTECA",
+      "site_state": "CA",
+      "batch": "1",
+      "item": "26",
+      "matches": [
+        "NAT-0013"
+      ],
+      "frames": [
+        "national"
+      ]
+    },
+    {
+      "site_address": "25725 JERONIMO ROAD",
+      "site_city": "MISSION VIEJO",
+      "site_state": "CA",
+      "batch": "1",
+      "item": "27",
+      "matches": [
+        "NAT-0014"
+      ],
+      "frames": [
+        "national"
+      ]
+    },
+    {
+      "site_address": "3731 FINCH ROAD",
+      "site_city": "MODESTO",
+      "site_state": "CA",
+      "batch": "1",
+      "item": "28",
+      "matches": [
+        "NAT-0015"
+      ],
+      "frames": [
+        "national"
+      ]
+    },
+    {
+      "site_address": "5800 COLISEUM WAY",
+      "site_city": "OAKLAND",
+      "site_state": "CA",
+      "batch": "1",
+      "item": "31",
+      "matches": [
+        "DS-004"
+      ],
+      "frames": [
+        "pilot"
+      ]
+    },
+    {
+      "site_address": "2496 W. WALNUT AVENUE",
+      "site_city": "RIALTO",
+      "site_state": "CA",
+      "batch": "1",
+      "item": "38",
+      "matches": [
+        "NAT-0016"
+      ],
+      "frames": [
+        "national"
+      ]
+    },
+    {
+      "site_address": "6045 GIANT HWY",
+      "site_city": "RICHMOND",
+      "site_state": "CA",
+      "batch": "1",
+      "item": "39",
+      "matches": [
+        "DS-005"
+      ],
+      "frames": [
+        "pilot"
+      ]
+    },
+    {
+      "site_address": "4187 TEMPLE CITY BOULEVARD",
+      "site_city": "ROSEMEAD",
+      "site_state": "CA",
+      "batch": "1",
+      "item": "40",
+      "matches": [
+        "NAT-0017"
+      ],
+      "frames": [
+        "national"
+      ]
+    },
+    {
+      "site_address": "7601 FOOTHILLS BLVD",
+      "site_city": "ROSEVILLE",
+      "site_state": "CA",
+      "batch": "1",
+      "item": "41",
+      "matches": [
+        "NAT-0018"
+      ],
+      "frames": [
+        "national"
+      ]
+    },
+    {
+      "site_address": "2400 MCCLELLAN PARK DRIVE",
+      "site_city": "SACRAMENTO",
+      "site_state": "CA",
+      "batch": "1",
+      "item": "42",
+      "matches": [
+        "NAT-0019"
+      ],
+      "frames": [
+        "national"
+      ]
+    },
+    {
+      "site_address": "7601 METRO AIR PARKWAY",
+      "site_city": "SACRAMENTO",
+      "site_state": "CA",
+      "batch": "1",
+      "item": "43",
+      "matches": [
+        "NAT-0020"
+      ],
+      "frames": [
+        "national"
+      ]
+    },
+    {
+      "site_address": "5990 NORTH CAJON BLVD",
+      "site_city": "SAN BERNARDINO",
+      "site_state": "CA",
+      "batch": "1",
+      "item": "46",
+      "matches": [
+        "NAT-0021"
+      ],
+      "frames": [
+        "national"
+      ]
+    },
+    {
+      "site_address": "6971 OTAY MESA RD.",
+      "site_city": "SAN DIEGO",
+      "site_state": "CA",
+      "batch": "1",
+      "item": "47",
+      "matches": [
+        "NAT-0022"
+      ],
+      "frames": [
+        "national"
+      ]
+    },
+    {
+      "site_address": "6001 S AUSTIN RD.",
+      "site_city": "STOCKTON",
+      "site_state": "CA",
+      "batch": "1",
+      "item": "52",
+      "matches": [
+        "NAT-0023"
+      ],
+      "frames": [
+        "national"
+      ]
+    },
+    {
+      "site_address": "6201 NEWCASTLE RD",
+      "site_city": "STOCKTON",
+      "site_state": "CA",
+      "batch": "1",
+      "item": "53",
+      "matches": [
+        "NAT-0024"
+      ],
+      "frames": [
+        "national"
+      ]
+    },
+    {
+      "site_address": "1500 EAST GRANT LINE ROAD",
+      "site_city": "TRACY",
+      "site_state": "CA",
+      "batch": "1",
+      "item": "54",
+      "matches": [
+        "NAT-0025",
+        "NAT-0026"
+      ],
+      "frames": [
+        "national"
+      ]
+    },
+    {
+      "site_address": "28820 CHASE PLACE",
+      "site_city": "VALENCIA",
+      "site_state": "CA",
+      "batch": "1",
+      "item": "62",
+      "matches": [
+        "NAT-0027"
+      ],
+      "frames": [
+        "national"
+      ]
+    },
+    {
+      "site_address": "7704 MILTON E PROBY PKWY",
+      "site_city": "COLORADO SPRINGS",
+      "site_state": "CO",
+      "batch": "1",
+      "item": "70",
+      "matches": [
+        "NAT-0028"
+      ],
+      "frames": [
+        "national"
+      ]
+    },
+    {
+      "site_address": "6150 DOWNING ST BUILDING 5",
+      "site_city": "DENVER",
+      "site_state": "CO",
+      "batch": "2",
+      "item": "1",
+      "matches": [
+        "DS-012"
+      ],
+      "frames": [
+        "pilot"
+      ]
+    },
+    {
+      "site_address": "700 BANYAN TRAIL",
+      "site_city": "BOCA RATON",
+      "site_state": "FL",
+      "batch": "2",
+      "item": "3",
+      "matches": [
+        "DS-015"
+      ],
+      "frames": [
+        "pilot"
+      ]
+    },
+    {
+      "site_address": "2318 WAVERLY BARN ROAD",
+      "site_city": "DAVENPORT",
+      "site_state": "FL",
+      "batch": "2",
+      "item": "4",
+      "matches": [
+        "NAT-0029"
+      ],
+      "frames": [
+        "national"
+      ]
+    },
+    {
+      "site_address": "17030 MENTMORE BOULEVARD",
+      "site_city": "LAND O LAKES",
+      "site_state": "FL",
+      "batch": "2",
+      "item": "9",
+      "matches": [
+        "NAT-0030"
+      ],
+      "frames": [
+        "national"
+      ]
+    },
+    {
+      "site_address": "1900 NORTHWEST 132ND PLACE",
+      "site_city": "MIAMI",
+      "site_state": "FL",
+      "batch": "2",
+      "item": "10",
+      "matches": [
+        "DS-016"
+      ],
+      "frames": [
+        "pilot"
+      ]
+    },
+    {
+      "site_address": "7469 KINGSPOINTE PARKWAY",
+      "site_city": "ORLANDO",
+      "site_state": "FL",
+      "batch": "2",
+      "item": "11",
+      "matches": [
+        "NAT-0031"
+      ],
+      "frames": [
+        "national"
+      ]
+    },
+    {
+      "site_address": "2906 CORPORATE WAY",
+      "site_city": "PALMETTO",
+      "site_state": "FL",
+      "batch": "2",
+      "item": "14",
+      "matches": [
+        "NAT-0032"
+      ],
+      "frames": [
+        "national"
+      ]
+    },
+    {
+      "site_address": "1760 COUNTY LINE ROAD",
+      "site_city": "PLANT CITY",
+      "site_state": "FL",
+      "batch": "2",
+      "item": "15",
+      "matches": [
+        "NAT-0033"
+      ],
+      "frames": [
+        "national"
+      ]
+    },
+    {
+      "site_address": "6384 HARNEY ROAD",
+      "site_city": "TAMPA",
+      "site_state": "FL",
+      "batch": "2",
+      "item": "18",
+      "matches": [
+        "NAT-0034"
+      ],
+      "frames": [
+        "national"
+      ]
+    },
+    {
+      "site_address": "8824 E ADAMO DRIVE",
+      "site_city": "TAMPA",
+      "site_state": "FL",
+      "batch": "2",
+      "item": "19",
+      "matches": [
+        "NAT-0035"
+      ],
+      "frames": [
+        "national"
+      ]
+    },
+    {
+      "site_address": "770 COMMERCE DRIVE",
+      "site_city": "VENICE",
+      "site_state": "FL",
+      "batch": "2",
+      "item": "20",
+      "matches": [
+        "NAT-0037"
+      ],
+      "frames": [
+        "national"
+      ]
+    },
+    {
+      "site_address": "5000 LANIER ISLANDS PARKWAY",
+      "site_city": "BUFORD",
+      "site_state": "GA",
+      "batch": "2",
+      "item": "23",
+      "matches": [
+        "NAT-0038"
+      ],
+      "frames": [
+        "national"
+      ]
+    },
+    {
+      "site_address": "60 TRIPLE-B TRAIL",
+      "site_city": "POOLER",
+      "site_state": "GA",
+      "batch": "2",
+      "item": "26",
+      "matches": [
+        "NAT-0039"
+      ],
+      "frames": [
+        "national"
+      ]
+    },
+    {
+      "site_address": "1500 CROSSGATE ROAD",
+      "site_city": "PORT WENTWORTH",
+      "site_state": "GA",
+      "batch": "2",
+      "item": "27",
+      "matches": [
+        "NAT-0040"
+      ],
+      "frames": [
+        "national"
+      ]
+    },
+    {
+      "site_address": "4800 HIGHLANDS PARKWAY",
+      "site_city": "SMYRNA",
+      "site_state": "GA",
+      "batch": "2",
+      "item": "28",
+      "matches": [
+        "NAT-0041"
+      ],
+      "frames": [
+        "national"
+      ]
+    },
+    {
+      "site_address": "2255 WEST PARK PLACE BLVD.",
+      "site_city": "STONE MOUNTAIN",
+      "site_state": "GA",
+      "batch": "2",
+      "item": "29",
+      "matches": [
+        "NAT-0042"
+      ],
+      "frames": [
+        "national"
+      ]
+    },
+    {
+      "site_address": "4500 WESTERN AVE.",
+      "site_city": "LISLE",
+      "site_state": "IL",
+      "batch": "2",
+      "item": "37",
+      "matches": [
+        "DS-022"
+      ],
+      "frames": [
+        "pilot"
+      ]
+    },
+    {
+      "site_address": "39 BAYVIEW COURT",
+      "site_city": "BAYONNE",
+      "site_state": "NJ",
+      "batch": "2",
+      "item": "41",
+      "matches": [
+        "DS-026"
+      ],
+      "frames": [
+        "pilot"
+      ]
+    },
+    {
+      "site_address": "310 N. PRAGUE AVENUE",
+      "site_city": "EGG HARBOR CITY",
+      "site_state": "NJ",
+      "batch": "2",
+      "item": "43",
+      "matches": [
+        "NAT-0069"
+      ],
+      "frames": [
+        "national"
+      ]
+    },
+    {
+      "site_address": "630 SULLIVAN ROAD",
+      "site_city": "ELIZABETH",
+      "site_state": "NJ",
+      "batch": "2",
+      "item": "44",
+      "matches": [
+        "DS-027"
+      ],
+      "frames": [
+        "pilot"
+      ]
+    },
+    {
+      "site_address": "50 CENTRAL AVENUE",
+      "site_city": "KEARNY",
+      "site_state": "NJ",
+      "batch": "2",
+      "item": "45",
+      "matches": [
+        "DS-028"
+      ],
+      "frames": [
+        "pilot"
+      ]
+    },
+    {
+      "site_address": "429 DELANCY STREET",
+      "site_city": "NEWARK",
+      "site_state": "NJ",
+      "batch": "2",
+      "item": "49",
+      "matches": [
+        "DS-029"
+      ],
+      "frames": [
+        "pilot"
+      ]
+    },
+    {
+      "site_address": "2321 INDUSTRIAL WAY SUITE A",
+      "site_city": "VINELAND",
+      "site_state": "NJ",
+      "batch": "2",
+      "item": "53",
+      "matches": [
+        "NAT-0070"
+      ],
+      "frames": [
+        "national"
+      ]
+    },
+    {
+      "site_address": "1 BULOVA AVENUE",
+      "site_city": "FLUSHING",
+      "site_state": "NY",
+      "batch": "2",
+      "item": "55",
+      "matches": [
+        "DS-031"
+      ],
+      "frames": [
+        "pilot"
+      ]
+    },
+    {
+      "site_address": "500 HUDSON VALLEY AVENUE",
+      "site_city": "NEW WINDSOR",
+      "site_state": "NY",
+      "batch": "2",
+      "item": "56",
+      "matches": [
+        "NAT-0073"
+      ],
+      "frames": [
+        "national"
+      ]
+    },
+    {
+      "site_address": "2303 HURRICANE LANE",
+      "site_city": "FRESNO",
+      "site_state": "TX",
+      "batch": "2",
+      "item": "61",
+      "matches": [
+        "NAT-0091"
+      ],
+      "frames": [
+        "national"
+      ]
+    },
+    {
+      "site_address": "3002 EAST MUNICIPAL DRIVE",
+      "site_city": "LUBBOCK",
+      "site_state": "TX",
+      "batch": "2",
+      "item": "69",
+      "matches": [
+        "NAT-0092"
+      ],
+      "frames": [
+        "national"
+      ]
+    },
+    {
+      "site_address": "6558 E CAMPUS DR BUILDING 2",
+      "site_city": "SAN ANTONIO",
+      "site_state": "TX",
+      "batch": "3",
+      "item": "1",
+      "matches": [
+        "NAT-0093"
+      ],
+      "frames": [
+        "national"
+      ]
+    },
+    {
+      "site_address": "7555 AIRPORT WAY SW",
+      "site_city": "BREMERTON",
+      "site_state": "WA",
+      "batch": "3",
+      "item": "5",
+      "matches": [
+        "NAT-0103"
+      ],
+      "frames": [
+        "national"
+      ]
+    },
+    {
+      "site_address": "315 SHUKSAN WAY DWS4",
+      "site_city": "EVERETT",
+      "site_state": "WA",
+      "batch": "3",
+      "item": "7",
+      "matches": [
+        "DS-033"
+      ],
+      "frames": [
+        "pilot"
+      ]
+    },
+    {
+      "site_address": "6617 ASSOCIATED BLVD",
+      "site_city": "EVERETT",
+      "site_state": "WA",
+      "batch": "3",
+      "item": "9",
+      "matches": [
+        "DS-034"
+      ],
+      "frames": [
+        "pilot"
+      ]
+    },
+    {
+      "site_address": "20202 84TH AVE S",
+      "site_city": "KENT",
+      "site_state": "WA",
+      "batch": "3",
+      "item": "11",
+      "matches": [
+        "DS-035"
+      ],
+      "frames": [
+        "pilot"
+      ]
+    },
+    {
+      "site_address": "22001 84TH AVE S",
+      "site_city": "KENT",
+      "site_state": "WA",
+      "batch": "3",
+      "item": "15",
+      "matches": [
+        "DS-036"
+      ],
+      "frames": [
+        "pilot"
+      ]
+    },
+    {
+      "site_address": "3300 HOGUM BAY RD NE",
+      "site_city": "LACEY",
+      "site_state": "WA",
+      "batch": "3",
+      "item": "17",
+      "matches": [
+        "NAT-0104"
+      ],
+      "frames": [
+        "national"
+      ]
+    },
+    {
+      "site_address": "14802 SPRING ST SW",
+      "site_city": "LAKEWOOD",
+      "site_state": "WA",
+      "batch": "3",
+      "item": "18",
+      "matches": [
+        "DS-037"
+      ],
+      "frames": [
+        "pilot"
+      ]
+    },
+    {
+      "site_address": "23226 WITTE RD SE",
+      "site_city": "MAPLE VALLEY",
+      "site_state": "WA",
+      "batch": "3",
+      "item": "19",
+      "matches": [
+        "DS-038"
+      ],
+      "frames": [
+        "pilot"
+      ]
+    },
+    {
+      "site_address": "5509 MILITARY RD.",
+      "site_city": "PUYALLUP",
+      "site_state": "WA",
+      "batch": "3",
+      "item": "20",
+      "matches": [
+        "DS-039"
+      ],
+      "frames": [
+        "pilot"
+      ]
+    },
+    {
+      "site_address": "1101 SW 16TH ST",
+      "site_city": "RENTON",
+      "site_state": "WA",
+      "batch": "3",
+      "item": "21",
+      "matches": [
+        "DS-040"
+      ],
+      "frames": [
+        "pilot"
+      ]
+    },
+    {
+      "site_address": "2201 140TH AVE E",
+      "site_city": "SUMNER",
+      "site_state": "WA",
+      "batch": "3",
+      "item": "32",
+      "matches": [
+        "DS-041"
+      ],
+      "frames": [
+        "pilot"
+      ]
+    },
+    {
+      "site_address": "3711 142ND AVE E",
+      "site_city": "SUMNER",
+      "site_state": "WA",
+      "batch": "3",
+      "item": "33",
+      "matches": [
+        "DS-042"
+      ],
+      "frames": [
+        "pilot"
+      ]
+    },
+    {
+      "site_address": "2871 S 102ND ST",
+      "site_city": "TUKWILA",
+      "site_state": "WA",
+      "batch": "3",
+      "item": "34",
+      "matches": [
+        "DS-043"
+      ],
+      "frames": [
+        "pilot"
+      ]
+    },
+    {
+      "site_address": "5900 OLD SEWARD HIGHWAY",
+      "site_city": "ANCHORAGE",
+      "site_state": "AK",
+      "batch": "3",
+      "item": "36",
+      "matches": [
+        "NAT-0001"
+      ],
+      "frames": [
+        "national"
+      ]
+    },
+    {
+      "site_address": "2101 AUIKI STREET",
+      "site_city": "HONOLULU",
+      "site_state": "HI",
+      "batch": "3",
+      "item": "45",
+      "matches": [
+        "NAT-0043"
+      ],
+      "frames": [
+        "national"
+      ]
+    },
+    {
+      "site_address": "1301 SE GATEWAY DRIVE",
+      "site_city": "GRIMES",
+      "site_state": "IA",
+      "batch": "3",
+      "item": "47",
+      "matches": [
+        "NAT-0044"
+      ],
+      "frames": [
+        "national"
+      ]
+    },
+    {
+      "site_address": "1411 3RD AVE NORTH",
+      "site_city": "NAMPA",
+      "site_state": "ID",
+      "batch": "3",
+      "item": "48",
+      "matches": [
+        "DS-017"
+      ],
+      "frames": [
+        "pilot"
+      ]
+    },
+    {
+      "site_address": "5510 FLAUGH ROAD",
+      "site_city": "FORT WAYNE",
+      "site_state": "IN",
+      "batch": "3",
+      "item": "52",
+      "matches": [
+        "NAT-0045"
+      ],
+      "frames": [
+        "national"
+      ]
+    },
+    {
+      "site_address": "31100 STATE ROUTE 2",
+      "site_city": "NEW CARLISLE",
+      "site_state": "IN",
+      "batch": "3",
+      "item": "58",
+      "matches": [
+        "NAT-0046"
+      ],
+      "frames": [
+        "national"
+      ]
+    },
+    {
+      "site_address": "4054 POWELL DRIVE",
+      "site_city": "SHAWNEE",
+      "site_state": "KS",
+      "batch": "3",
+      "item": "65",
+      "matches": [
+        "NAT-0047"
+      ],
+      "frames": [
+        "national"
+      ]
+    },
+    {
+      "site_address": "2305 LITTON LANE",
+      "site_city": "HEBRON",
+      "site_state": "KY",
+      "batch": "4",
+      "item": "5",
+      "matches": [
+        "NAT-0048"
+      ],
+      "frames": [
+        "national"
+      ]
+    },
+    {
+      "site_address": "1180 NEWTOWN PIKE",
+      "site_city": "LEXINGTON",
+      "site_state": "KY",
+      "batch": "4",
+      "item": "8",
+      "matches": [
+        "NAT-0049"
+      ],
+      "frames": [
+        "national"
+      ]
+    },
+    {
+      "site_address": "351 MAPLE STREET",
+      "site_city": "BELLINGHAM",
+      "site_state": "MA",
+      "batch": "4",
+      "item": "16",
+      "matches": [
+        "NAT-0050"
+      ],
+      "frames": [
+        "national"
+      ]
+    },
+    {
+      "site_address": "201 BEACHAM STREET",
+      "site_city": "EVERETT",
+      "site_state": "MA",
+      "batch": "4",
+      "item": "17",
+      "matches": [
+        "NAT-0051"
+      ],
+      "frames": [
+        "national"
+      ]
+    },
+    {
+      "site_address": "750 EVERETT STREET",
+      "site_city": "NORWOOD",
+      "site_state": "MA",
+      "batch": "4",
+      "item": "20",
+      "matches": [
+        "NAT-0052"
+      ],
+      "frames": [
+        "national"
+      ]
+    },
+    {
+      "site_address": "515 DOUGLAS STREET",
+      "site_city": "UXBRIDGE",
+      "site_state": "MA",
+      "batch": "4",
+      "item": "22",
+      "matches": [
+        "NAT-0053"
+      ],
+      "frames": [
+        "national"
+      ]
+    },
+    {
+      "site_address": "110 FORDHAM ROAD",
+      "site_city": "WILMINGTON",
+      "site_state": "MA",
+      "batch": "4",
+      "item": "23",
+      "matches": [
+        "NAT-0054"
+      ],
+      "frames": [
+        "national"
+      ]
+    },
+    {
+      "site_address": "913 OLD PHILADELPHIA ROAD",
+      "site_city": "ABERDEEN",
+      "site_state": "MD",
+      "batch": "4",
+      "item": "24",
+      "matches": [
+        "NAT-0055"
+      ],
+      "frames": [
+        "national"
+      ]
+    },
+    {
+      "site_address": "2203 LAKESIDE BOULEVARD",
+      "site_city": "EDGEWOOD",
+      "site_state": "MD",
+      "batch": "4",
+      "item": "29",
+      "matches": [
+        "NAT-0056"
+      ],
+      "frames": [
+        "national"
+      ]
+    },
+    {
+      "site_address": "7200 DORSEY RUN ROAD",
+      "site_city": "ELKRIDGE",
+      "site_state": "MD",
+      "batch": "4",
+      "item": "30",
+      "matches": [
+        "NAT-0057"
+      ],
+      "frames": [
+        "national"
+      ]
+    },
+    {
+      "site_address": "5501 HOLABIRD AVENUE",
+      "site_city": "HIGHLANDTOWN",
+      "site_state": "MD",
+      "batch": "4",
+      "item": "34",
+      "matches": [
+        "NAT-0058"
+      ],
+      "frames": [
+        "national"
+      ]
+    },
+    {
+      "site_address": "1400 E 10 MILE RD SUITE 190",
+      "site_city": "HAZEL PARK",
+      "site_state": "MI",
+      "batch": "4",
+      "item": "39",
+      "matches": [
+        "NAT-0059"
+      ],
+      "frames": [
+        "national"
+      ]
+    },
+    {
+      "site_address": "550 W. WESTERN AVE",
+      "site_city": "MUSKEGON",
+      "site_state": "MI",
+      "batch": "4",
+      "item": "40",
+      "matches": [
+        "NAT-0060"
+      ],
+      "frames": [
+        "national"
+      ]
+    },
+    {
+      "site_address": "10440 89TH AVE N",
+      "site_city": "OSSEO",
+      "site_state": "MN",
+      "batch": "4",
+      "item": "46",
+      "matches": [
+        "NAT-0061"
+      ],
+      "frames": [
+        "national"
+      ]
+    },
+    {
+      "site_address": "3130 LEXINGTON AVE S",
+      "site_city": "SAINT PAUL",
+      "site_state": "MN",
+      "batch": "4",
+      "item": "48",
+      "matches": [
+        "NAT-0062"
+      ],
+      "frames": [
+        "national"
+      ]
+    },
+    {
+      "site_address": "8850 SPRINGDALE AVENUE",
+      "site_city": "BERKELEY",
+      "site_state": "MO",
+      "batch": "4",
+      "item": "49",
+      "matches": [
+        "NAT-0063"
+      ],
+      "frames": [
+        "national"
+      ]
+    },
+    {
+      "site_address": "2400 NORTHEAST CORONADO DRIVE",
+      "site_city": "BLUE SPRINGS",
+      "site_state": "MO",
+      "batch": "4",
+      "item": "50",
+      "matches": [
+        "NAT-0064"
+      ],
+      "frames": [
+        "national"
+      ]
+    },
+    {
+      "site_address": "7929 NATIONAL SERVICE RD",
+      "site_city": "COLFAX",
+      "site_state": "NC",
+      "batch": "4",
+      "item": "54",
+      "matches": [
+        "NAT-0065"
+      ],
+      "frames": [
+        "national"
+      ]
+    },
+    {
+      "site_address": "413 GOODMAN ROAD",
+      "site_city": "CONCORD",
+      "site_state": "NC",
+      "batch": "4",
+      "item": "55",
+      "matches": [
+        "NAT-0066"
+      ],
+      "frames": [
+        "national"
+      ]
+    },
+    {
+      "site_address": "1275 PERSON STREET",
+      "site_city": "DURHAM",
+      "site_state": "NC",
+      "batch": "4",
+      "item": "57",
+      "matches": [
+        "NAT-0067"
+      ],
+      "frames": [
+        "national"
+      ]
+    },
+    {
+      "site_address": "1201 N GREENFIELD PARKWAY",
+      "site_city": "GARNER",
+      "site_state": "NC",
+      "batch": "4",
+      "item": "59",
+      "matches": [
+        "NAT-0068"
+      ],
+      "frames": [
+        "national"
+      ]
+    },
+    {
+      "site_address": "12300 SOUTH BERMUDA ROAD",
+      "site_city": "HENDERSON",
+      "site_state": "NV",
+      "batch": "4",
+      "item": "67",
+      "matches": [
+        "NAT-0071"
+      ],
+      "frames": [
+        "national"
+      ]
+    },
+    {
+      "site_address": "3777 MARION DRIVE",
+      "site_city": "LAS VEGAS",
+      "site_state": "NV",
+      "batch": "4",
+      "item": "68",
+      "matches": [
+        "NAT-0072"
+      ],
+      "frames": [
+        "national"
+      ]
+    },
+    {
+      "site_address": "2450 ROMIG ROAD",
+      "site_city": "AKRON",
+      "site_state": "OH",
+      "batch": "5",
+      "item": "5",
+      "matches": [
+        "NAT-0074"
+      ],
+      "frames": [
+        "national"
+      ]
+    },
+    {
+      "site_address": "6465 BUSCH BOULEVARD",
+      "site_city": "COLUMBUS",
+      "site_state": "OH",
+      "batch": "5",
+      "item": "7",
+      "matches": [
+        "NAT-0075"
+      ],
+      "frames": [
+        "national"
+      ]
+    },
+    {
+      "site_address": "5585 CANAL ROAD",
+      "site_city": "VALLEY VIEW",
+      "site_state": "OH",
+      "batch": "5",
+      "item": "14",
+      "matches": [
+        "NAT-0076"
+      ],
+      "frames": [
+        "national"
+      ]
+    },
+    {
+      "site_address": "3108 NE 230TH AVE",
+      "site_city": "FAIRVIEW",
+      "site_state": "OR",
+      "batch": "5",
+      "item": "18",
+      "matches": [
+        "NAT-0077"
+      ],
+      "frames": [
+        "national"
+      ]
+    },
+    {
+      "site_address": "3610 NW SAINT HELENS RD",
+      "site_city": "PORTLAND",
+      "site_state": "OR",
+      "batch": "5",
+      "item": "24",
+      "matches": [
+        "NAT-0078",
+        "NAT-0079"
+      ],
+      "frames": [
+        "national"
+      ]
+    },
+    {
+      "site_address": "21409 SW 115TH AVE",
+      "site_city": "TUALATIN",
+      "site_state": "OR",
+      "batch": "5",
+      "item": "27",
+      "matches": [
+        "NAT-0080"
+      ],
+      "frames": [
+        "national"
+      ]
+    },
+    {
+      "site_address": "177 MCCLAREN ROAD",
+      "site_city": "CORAOPOLIS",
+      "site_state": "PA",
+      "batch": "5",
+      "item": "32",
+      "matches": [
+        "NAT-0081"
+      ],
+      "frames": [
+        "national"
+      ]
+    },
+    {
+      "site_address": "2424 WEST 23RD STREET",
+      "site_city": "ERIE",
+      "site_state": "PA",
+      "batch": "5",
+      "item": "33",
+      "matches": [
+        "NAT-0082"
+      ],
+      "frames": [
+        "national"
+      ]
+    },
+    {
+      "site_address": "45 VALLEY VIEW DRIVE",
+      "site_city": "JESSUP",
+      "site_state": "PA",
+      "batch": "5",
+      "item": "37",
+      "matches": [
+        "NAT-0083"
+      ],
+      "frames": [
+        "national"
+      ]
+    },
+    {
+      "site_address": "360 INDEPENDENCE AVE",
+      "site_city": "MECHANICSBURG",
+      "site_state": "PA",
+      "batch": "5",
+      "item": "39",
+      "matches": [
+        "NAT-0084"
+      ],
+      "frames": [
+        "national"
+      ]
+    },
+    {
+      "site_address": "3327 EAST HARRISBURG PIKE",
+      "site_city": "MIDDLETOWN",
+      "site_state": "PA",
+      "batch": "5",
+      "item": "40",
+      "matches": [
+        "NAT-0085"
+      ],
+      "frames": [
+        "national"
+      ]
+    },
+    {
+      "site_address": "4219 RICHMOND STREET",
+      "site_city": "PHILADELPHIA",
+      "site_state": "PA",
+      "batch": "5",
+      "item": "41",
+      "matches": [
+        "NAT-0087"
+      ],
+      "frames": [
+        "national"
+      ]
+    },
+    {
+      "site_address": "7575 BREWSTER AVE",
+      "site_city": "PHILADELPHIA",
+      "site_state": "PA",
+      "batch": "5",
+      "item": "42",
+      "matches": [
+        "NAT-0086"
+      ],
+      "frames": [
+        "national"
+      ]
+    },
+    {
+      "site_address": "115 DUPONT DR.",
+      "site_city": "PROVIDENCE",
+      "site_state": "RI",
+      "batch": "5",
+      "item": "47",
+      "matches": [
+        "NAT-0088"
+      ],
+      "frames": [
+        "national"
+      ]
+    },
+    {
+      "site_address": "9801 HWY 78",
+      "site_city": "LADSON",
+      "site_state": "SC",
+      "batch": "5",
+      "item": "48",
+      "matches": [
+        "NAT-0089"
+      ],
+      "frames": [
+        "national"
+      ]
+    },
+    {
+      "site_address": "3001 KNOXVILLE CENTER DRIVE",
+      "site_city": "KNOXVILLE",
+      "site_state": "TN",
+      "batch": "5",
+      "item": "52",
+      "matches": [
+        "NAT-0090"
+      ],
+      "frames": [
+        "national"
+      ]
+    },
+    {
+      "site_address": "1222 S 500 E",
+      "site_city": "AMERICAN FORK",
+      "site_state": "UT",
+      "batch": "5",
+      "item": "59",
+      "matches": [
+        "NAT-0094"
+      ],
+      "frames": [
+        "national"
+      ]
+    },
+    {
+      "site_address": "346 E 1600 S",
+      "site_city": "AMERICAN FORK",
+      "site_state": "UT",
+      "batch": "5",
+      "item": "60",
+      "matches": [
+        "NAT-0095"
+      ],
+      "frames": [
+        "national"
+      ]
+    },
+    {
+      "site_address": "5420 JOHN CANNON DR STE 500",
+      "site_city": "SALT LAKE CITY",
+      "site_state": "UT",
+      "batch": "5",
+      "item": "61",
+      "matches": [
+        "NAT-0096"
+      ],
+      "frames": [
+        "national"
+      ]
+    },
+    {
+      "site_address": "7001 NEW BINGHAM HIGHWAY",
+      "site_city": "WEST JORDAN",
+      "site_state": "UT",
+      "batch": "5",
+      "item": "65",
+      "matches": [
+        "NAT-0098"
+      ],
+      "frames": [
+        "national"
+      ]
+    },
+    {
+      "site_address": "7148 W  OLD BINGHAM HIGHWAY",
+      "site_city": "WEST JORDAN",
+      "site_state": "UT",
+      "batch": "5",
+      "item": "66",
+      "matches": [
+        "NAT-0097"
+      ],
+      "frames": [
+        "national"
+      ]
+    },
+    {
+      "site_address": "2002 BLUE HILLS DRIVE NE",
+      "site_city": "ROANOKE",
+      "site_state": "VA",
+      "batch": "6",
+      "item": "3",
+      "matches": [
+        "NAT-0100"
+      ],
+      "frames": [
+        "national"
+      ]
+    },
+    {
+      "site_address": "2712 WEST MAIN STREET",
+      "site_city": "WAYNESBORO",
+      "site_state": "VA",
+      "batch": "6",
+      "item": "8",
+      "matches": [
+        "NAT-0102"
+      ],
+      "frames": [
+        "national"
+      ]
+    }
+  ],
+  "candidate_file": "data/collection/results/BATCH_DS_CANDIDATES.csv"
+}

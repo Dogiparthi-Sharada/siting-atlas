@@ -1,0 +1,30 @@
+{
+  "run_id": "20260916-071059-05ed",
+  "written_at": "2026-09-16T07:10:59+00:00",
+  "mwpvl_delivery_station_rows": 635,
+  "mwpvl_rows_without_a_usable_city_and_state": 39,
+  "mwpvl_delivery_station_cities": 488,
+  "osha_cities_all_facility_classes": 340,
+  "cities_in_both": 138,
+  "cities_mwpvl_names_that_osha_never_inspected": 350,
+  "share_of_mwpvl_cities_osha_has_seen": 0.2827868852459016,
+  "unseen_examples": [
+    "ABBEVILLE, LA",
+    "ABILENE, TX",
+    "ACILA, DE",
+    "AIRWAYHEIGHTS, WA",
+    "ALAMOGORDO, NM",
+    "ALBUQUERQUE, NM",
+    "ALLENTOWN, PA",
+    "ALPHARETTA, GA",
+    "ALTOONA, PA",
+    "AMERICANEENCALECANYON, CA",
+    "AMSTERDAM, NY",
+    "ANAHEIM, CA",
+    "APOPKA, FL",
+    "ARIZONA, AZ",
+    "ARLINGTON, TX"
+  ],
+  "comparison_is_conservative": "MWPVL's side is restricted to small-package delivery stations; OSHA's side is every Amazon facility class it ever inspected. OSHA is therefore allowed to match a delivery-station city on a fulfilment centre. Restricting OSHA to delivery stations would WIDEN the measured gap.",
+  "not_an_estimate": "A direct two-list intersection, not a capture-recapture estimate. It is a FLOOR on the invisibility, because MWPVL is itself incomplete and states so about this very table: 'The data concerning this network is challenging to track so we provide the best information available.' For the modelled estimate see outputs/metrics/nlrb_coverage.json."
+}

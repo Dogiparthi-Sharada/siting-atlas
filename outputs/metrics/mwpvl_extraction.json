@@ -1,0 +1,241 @@
+{
+  "run_id": "20260915-195231-c54f",
+  "written_at": "2026-09-15T19:52:37+00:00",
+  "tables": [
+    {
+      "table": "01_us_fulfillment_center",
+      "words": 9877,
+      "rows": 385,
+      "with_postcode": 385,
+      "with_year": 267,
+      "with_month": 185,
+      "with_sqft": 315,
+      "with_code": 283,
+      "columns": {
+        "address": 3,
+        "description": 6,
+        "date": 5,
+        "sqft": 4,
+        "code": 2,
+        "region": 1
+      }
+    },
+    {
+      "table": "02_us_fresh_dc",
+      "words": 569,
+      "rows": 22,
+      "with_postcode": 22,
+      "with_year": 18,
+      "with_month": 11,
+      "with_sqft": 0,
+      "with_code": 19,
+      "columns": {
+        "address": 3,
+        "description": 5,
+        "date": 4,
+        "code": 2,
+        "region": 1
+      }
+    },
+    {
+      "table": "03_us_whole_foods_dc",
+      "words": 242,
+      "rows": 11,
+      "with_postcode": 11,
+      "with_year": 0,
+      "with_month": 0,
+      "with_sqft": 9,
+      "with_code": 0,
+      "columns": {
+        "address": 3,
+        "description": 5,
+        "date": 1,
+        "sqft": 4,
+        "region": 2
+      }
+    },
+    {
+      "table": "04_us_fresh_hub",
+      "words": 1438,
+      "rows": 65,
+      "with_postcode": 65,
+      "with_year": 50,
+      "with_month": 25,
+      "with_sqft": 43,
+      "with_code": 47,
+      "columns": {
+        "address": 3,
+        "description": 6,
+        "date": 5,
+        "sqft": 4,
+        "code": 2,
+        "region": 1
+      }
+    },
+    {
+      "table": "05_us_inbound_cross_dock",
+      "words": 1400,
+      "rows": 69,
+      "with_postcode": 69,
+      "with_year": 50,
+      "with_month": 27,
+      "with_sqft": 60,
+      "with_code": 48,
+      "columns": {
+        "address": 3,
+        "description": 6,
+        "date": 5,
+        "sqft": 4,
+        "code": 2,
+        "region": 1
+      }
+    },
+    {
+      "table": "06_us_sortation_center",
+      "words": 2749,
+      "rows": 114,
+      "with_postcode": 114,
+      "with_year": 94,
+      "with_month": 53,
+      "with_sqft": 97,
+      "with_code": 82,
+      "columns": {
+        "address": 3,
+        "description": 6,
+        "date": 5,
+        "sqft": 4,
+        "code": 2,
+        "region": 1
+      }
+    },
+    {
+      "table": "07_us_air_gateway_hub",
+      "words": 637,
+      "rows": 24,
+      "with_postcode": 24,
+      "with_year": 16,
+      "with_month": 11,
+      "with_sqft": 19,
+      "with_code": 0,
+      "columns": {
+        "address": 3,
+        "description": 6,
+        "date": 5,
+        "sqft": 4,
+        "region": 2
+      }
+    },
+    {
+      "table": "08_us_delivery_station",
+      "words": 11975,
+      "rows": 535,
+      "with_postcode": 535,
+      "with_year": 402,
+      "with_month": 279,
+      "with_sqft": 427,
+      "with_code": 346,
+      "columns": {
+        "address": 3,
+        "description": 6,
+        "date": 5,
+        "sqft": 4,
+        "code": 2,
+        "region": 1
+      }
+    },
+    {
+      "table": "08_us_delivery_station_part2",
+      "words": 2162,
+      "rows": 100,
+      "with_postcode": 100,
+      "with_year": 77,
+      "with_month": 51,
+      "with_sqft": 75,
+      "with_code": 60,
+      "columns": {
+        "address": 3,
+        "description": 6,
+        "date": 5,
+        "sqft": 4,
+        "code": 2,
+        "region": 1
+      }
+    },
+    {
+      "table": "09_us_delivery_heavy_bulky",
+      "words": 3177,
+      "rows": 121,
+      "with_postcode": 121,
+      "with_year": 73,
+      "with_month": 53,
+      "with_sqft": 35,
+      "with_code": 75,
+      "columns": {
+        "address": 3,
+        "description": 6,
+        "date": 5,
+        "sqft": 4,
+        "code": 2,
+        "region": 1
+      }
+    },
+    {
+      "table": "10_row_fulfillment_center",
+      "words": 8025,
+      "rows": 160,
+      "with_postcode": 68,
+      "with_year": 135,
+      "with_month": 85,
+      "with_sqft": 152,
+      "with_code": 160,
+      "columns": {
+        "address": 3,
+        "description": 6,
+        "date": 5,
+        "sqft": 4,
+        "code": 2,
+        "region": 1
+      }
+    },
+    {
+      "table": "11_row_sortation_delivery_air",
+      "words": 13394,
+      "rows": 249,
+      "with_postcode": 249,
+      "with_year": 197,
+      "with_month": 76,
+      "with_sqft": 190,
+      "with_code": 174,
+      "columns": {
+        "address": 3,
+        "description": 6,
+        "date": 5,
+        "sqft": 4,
+        "code": 2,
+        "region": 1
+      }
+    },
+    {
+      "table": "11_row_sortation_delivery_air_part2",
+      "words": 2443,
+      "rows": 49,
+      "with_postcode": 4,
+      "with_year": 41,
+      "with_month": 17,
+      "with_sqft": 48,
+      "with_code": 49,
+      "columns": {
+        "address": 3,
+        "description": 6,
+        "date": 5,
+        "sqft": 4,
+        "code": 2,
+        "region": 1
+      }
+    }
+  ],
+  "facilities": 1904,
+  "with_year": 1420,
+  "with_month": 873,
+  "not_confirmed": 44
+}

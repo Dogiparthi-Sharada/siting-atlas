@@ -1,0 +1,90 @@
+{
+  "run_id": "20260912-103506-b1e8",
+  "written_at": "2026-09-12T10:35:06+00:00",
+  "results": [
+    {
+      "key": "acs5",
+      "status": "skipped",
+      "reason": "acquired by `python -m siting_atlas.ingest.census_api`, not by a plain GET"
+    },
+    {
+      "key": "acs1",
+      "status": "skipped",
+      "reason": "acquired by `python -m siting_atlas.ingest.census_api`, not by a plain GET"
+    },
+    {
+      "key": "gaz_zcta",
+      "status": "cached",
+      "path": "data/raw/gaz_zcta/47939b6e14e21353.zip",
+      "bytes": 1013655,
+      "sha256": "75191ab2d3df4b668fb511d2726d97c521d6d1ff555725704a5d9bb3bc2077ce"
+    },
+    {
+      "key": "cbsa_county",
+      "status": "cached",
+      "path": "data/raw/cbsa_county/b2291e17aab05222.xlsx",
+      "bytes": 143798,
+      "sha256": "952c4b1e78acbb54e6ec9412434b7602fedacbf021736351a63c181bdb753629"
+    },
+    {
+      "key": "zcta_county_xwalk",
+      "status": "cached",
+      "path": "data/raw/zcta_county_xwalk/5b797e06385c8ac7.txt",
+      "bytes": 6821287,
+      "sha256": "3ed41278d637dc249e0323306f68be8a6c234e3090f4de88ef328dee71aeaaaf"
+    },
+    {
+      "key": "tiger_zcta",
+      "status": "skipped",
+      "reason": "large download \u2014 re-run with --include-large"
+    },
+    {
+      "key": "cbp_zip",
+      "status": "cached",
+      "path": "data/raw/cbp_zip/306c4bab0cf30421.zip",
+      "bytes": 823694,
+      "sha256": "25e62a92807bce89a1f7e44f8b7303a6087105dd8bcfb10baa988bf9e71cd72a"
+    },
+    {
+      "key": "bps_county",
+      "status": "cached",
+      "vintages": [
+        "17",
+        "18",
+        "19",
+        "20",
+        "21",
+        "22",
+        "23",
+        "24",
+        "25"
+      ],
+      "bytes": 2388238
+    },
+    {
+      "key": "zillow_zori",
+      "status": "skipped",
+      "reason": "refused by this network \u2014 download manually and place in data/external"
+    },
+    {
+      "key": "bls_oes",
+      "status": "skipped",
+      "reason": "refused by this network \u2014 download manually and place in data/external"
+    },
+    {
+      "key": "eia_prices",
+      "status": "skipped",
+      "reason": "acquired by `python -m siting_atlas.ingest.eia_api`, not by a plain GET"
+    },
+    {
+      "key": "facility_panel",
+      "status": "skipped",
+      "reason": "no stable endpoint \u2014 place the file in data/external (see docs/data/facility_panel.md)"
+    },
+    {
+      "key": "ejscreen",
+      "status": "skipped",
+      "reason": "no stable endpoint \u2014 place the file in data/external (see docs/data/ejscreen.md)"
+    }
+  ]
+}

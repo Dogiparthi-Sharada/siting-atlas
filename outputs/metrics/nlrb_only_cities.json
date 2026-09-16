@@ -1,0 +1,1740 @@
+{
+  "what": "Cities with a confirmed Amazon NLRB case and no Amazon building in the OSHA extract. Panel-expansion targets: labour activity proves a worksite existed and our primary source never saw it.",
+  "caveats": [
+    "city+state only, no street address - geocoding is manual",
+    "a case may name a corporate office, not a warehouse; 100 of 969 cases sit in the city of their own NLRB regional office",
+    "operating_by is an upper bound on the opening date, never an opening date"
+  ],
+  "count": 96,
+  "cities": [
+    {
+      "city": "BIRMINGHAM",
+      "state": "AL",
+      "operating_by": "2022-05-13",
+      "latest_filed": "2022-05-13",
+      "n_cases": 1,
+      "n_unfair_labour": 1,
+      "n_petition": 0,
+      "n_with_employees": 1,
+      "n_employees_over_cutoff": 0,
+      "employees_max": 5000,
+      "employees_median": 5000,
+      "first_case_number": "10-CA-295768",
+      "n_employer_spellings": 1,
+      "regions": [
+        "Region 10, Atlanta, Georgia"
+      ]
+    },
+    {
+      "city": "NORTH LITTLE ROCK",
+      "state": "AR",
+      "operating_by": "2022-07-13",
+      "latest_filed": "2022-07-13",
+      "n_cases": 1,
+      "n_unfair_labour": 1,
+      "n_petition": 0,
+      "n_with_employees": 1,
+      "n_employees_over_cutoff": 0,
+      "employees_max": 1000,
+      "employees_median": 1000,
+      "first_case_number": "15-CA-299347",
+      "n_employer_spellings": 1,
+      "regions": [
+        "Region 15, New Orleans, Louisiana"
+      ]
+    },
+    {
+      "city": "BUCKEYE",
+      "state": "AZ",
+      "operating_by": "2025-08-05",
+      "latest_filed": "2025-08-05",
+      "n_cases": 1,
+      "n_unfair_labour": 1,
+      "n_petition": 0,
+      "n_with_employees": 1,
+      "n_employees_over_cutoff": 0,
+      "employees_max": 200,
+      "employees_median": 200,
+      "first_case_number": "28-CA-372240",
+      "n_employer_spellings": 1,
+      "regions": [
+        "Region 28, Phoenix, Arizona"
+      ]
+    },
+    {
+      "city": "CHANDLER",
+      "state": "AZ",
+      "operating_by": "2021-07-23",
+      "latest_filed": "2021-07-23",
+      "n_cases": 1,
+      "n_unfair_labour": 1,
+      "n_petition": 0,
+      "n_with_employees": 1,
+      "n_employees_over_cutoff": 0,
+      "employees_max": 250,
+      "employees_median": 250,
+      "first_case_number": "28-CA-280427",
+      "n_employer_spellings": 1,
+      "regions": [
+        "Region 28, Phoenix, Arizona"
+      ]
+    },
+    {
+      "city": "MESA",
+      "state": "AZ",
+      "operating_by": "2024-01-19",
+      "latest_filed": "2024-01-19",
+      "n_cases": 1,
+      "n_unfair_labour": 1,
+      "n_petition": 0,
+      "n_with_employees": 1,
+      "n_employees_over_cutoff": 0,
+      "employees_max": 500,
+      "employees_median": 500,
+      "first_case_number": "28-CA-334566",
+      "n_employer_spellings": 1,
+      "regions": [
+        "Region 28, Phoenix, Arizona"
+      ]
+    },
+    {
+      "city": "PRESCOTT VALLEY",
+      "state": "AZ",
+      "operating_by": "2025-08-07",
+      "latest_filed": "2025-08-07",
+      "n_cases": 1,
+      "n_unfair_labour": 1,
+      "n_petition": 0,
+      "n_with_employees": 1,
+      "n_employees_over_cutoff": 0,
+      "employees_max": 70,
+      "employees_median": 70,
+      "first_case_number": "28-CA-372404",
+      "n_employer_spellings": 1,
+      "regions": [
+        "Region 28, Phoenix, Arizona"
+      ]
+    },
+    {
+      "city": "SHOW LOW",
+      "state": "AZ",
+      "operating_by": "2025-06-02",
+      "latest_filed": "2025-06-02",
+      "n_cases": 1,
+      "n_unfair_labour": 1,
+      "n_petition": 0,
+      "n_with_employees": 1,
+      "n_employees_over_cutoff": 0,
+      "employees_max": 50,
+      "employees_median": 50,
+      "first_case_number": "28-CA-367455",
+      "n_employer_spellings": 1,
+      "regions": [
+        "Region 28, Phoenix, Arizona"
+      ]
+    },
+    {
+      "city": "TEMPE",
+      "state": "AZ",
+      "operating_by": "2020-09-28",
+      "latest_filed": "2026-03-04",
+      "n_cases": 3,
+      "n_unfair_labour": 3,
+      "n_petition": 0,
+      "n_with_employees": 3,
+      "n_employees_over_cutoff": 0,
+      "employees_max": 400,
+      "employees_median": 200,
+      "first_case_number": "20-CA-266887",
+      "n_employer_spellings": 3,
+      "regions": [
+        "Region 20, San Francisco, California",
+        "Region 28, Phoenix, Arizona"
+      ]
+    },
+    {
+      "city": "ACALANES RIDGE",
+      "state": "CA",
+      "operating_by": "2023-01-05",
+      "latest_filed": "2023-01-05",
+      "n_cases": 1,
+      "n_unfair_labour": 1,
+      "n_petition": 0,
+      "n_with_employees": 1,
+      "n_employees_over_cutoff": 0,
+      "employees_max": 800,
+      "employees_median": 800,
+      "first_case_number": "21-CA-309980",
+      "n_employer_spellings": 1,
+      "regions": [
+        "Region 21, Los Angeles, California"
+      ]
+    },
+    {
+      "city": "ANAHEIM",
+      "state": "CA",
+      "operating_by": "2024-12-23",
+      "latest_filed": "2024-12-23",
+      "n_cases": 1,
+      "n_unfair_labour": 1,
+      "n_petition": 0,
+      "n_with_employees": 1,
+      "n_employees_over_cutoff": 1,
+      "employees_max": 1000000,
+      "employees_median": 1000000,
+      "first_case_number": "21-CB-357542",
+      "n_employer_spellings": 1,
+      "regions": [
+        "Region 21, Los Angeles, California"
+      ]
+    },
+    {
+      "city": "BUENA PARK",
+      "state": "CA",
+      "operating_by": "2024-09-10",
+      "latest_filed": "2024-09-10",
+      "n_cases": 1,
+      "n_unfair_labour": 1,
+      "n_petition": 0,
+      "n_with_employees": 1,
+      "n_employees_over_cutoff": 1,
+      "employees_max": 1000000,
+      "employees_median": 1000000,
+      "first_case_number": "21-CB-350208",
+      "n_employer_spellings": 1,
+      "regions": [
+        "Region 21, Los Angeles, California"
+      ]
+    },
+    {
+      "city": "LOS ANGELES",
+      "state": "CA",
+      "operating_by": "2020-02-10",
+      "latest_filed": "2023-08-29",
+      "n_cases": 2,
+      "n_unfair_labour": 2,
+      "n_petition": 0,
+      "n_with_employees": 2,
+      "n_employees_over_cutoff": 0,
+      "employees_max": 500,
+      "employees_median": 300.0,
+      "first_case_number": "31-CA-256127",
+      "n_employer_spellings": 1,
+      "regions": [
+        "Region 31, Los Angeles, California"
+      ]
+    },
+    {
+      "city": "MARCH AIR RESERVE BASE",
+      "state": "CA",
+      "operating_by": "2025-12-23",
+      "latest_filed": "2026-09-01",
+      "n_cases": 6,
+      "n_unfair_labour": 6,
+      "n_petition": 0,
+      "n_with_employees": 6,
+      "n_employees_over_cutoff": 1,
+      "employees_max": 1000000,
+      "employees_median": 100.0,
+      "first_case_number": "21-CB-377821",
+      "n_employer_spellings": 3,
+      "regions": [
+        "Region 21, Los Angeles, California"
+      ]
+    },
+    {
+      "city": "MARCH ARB",
+      "state": "CA",
+      "operating_by": "2024-08-16",
+      "latest_filed": "2024-08-16",
+      "n_cases": 1,
+      "n_unfair_labour": 1,
+      "n_petition": 0,
+      "n_with_employees": 1,
+      "n_employees_over_cutoff": 1,
+      "employees_max": 1000000,
+      "employees_median": 1000000,
+      "first_case_number": "21-CB-348558",
+      "n_employer_spellings": 1,
+      "regions": [
+        "Region 21, Los Angeles, California"
+      ]
+    },
+    {
+      "city": "MIRA LOMA",
+      "state": "CA",
+      "operating_by": "2026-04-02",
+      "latest_filed": "2026-04-02",
+      "n_cases": 1,
+      "n_unfair_labour": 1,
+      "n_petition": 0,
+      "n_with_employees": 1,
+      "n_employees_over_cutoff": 1,
+      "employees_max": 1000000,
+      "employees_median": 1000000,
+      "first_case_number": "21-CB-384119",
+      "n_employer_spellings": 1,
+      "regions": [
+        "Region 21, Los Angeles, California"
+      ]
+    },
+    {
+      "city": "PALMDALE",
+      "state": "CA",
+      "operating_by": "2023-05-02",
+      "latest_filed": "2023-10-10",
+      "n_cases": 5,
+      "n_unfair_labour": 5,
+      "n_petition": 0,
+      "n_with_employees": 5,
+      "n_employees_over_cutoff": 2,
+      "employees_max": 1000000,
+      "employees_median": 80,
+      "first_case_number": "31-CA-317349",
+      "n_employer_spellings": 4,
+      "regions": [
+        "Region 31, Los Angeles, California"
+      ]
+    },
+    {
+      "city": "SAN FRANCISCO",
+      "state": "CA",
+      "operating_by": "2024-10-23",
+      "latest_filed": "2026-09-04",
+      "n_cases": 10,
+      "n_unfair_labour": 10,
+      "n_petition": 0,
+      "n_with_employees": 10,
+      "n_employees_over_cutoff": 4,
+      "employees_max": 1000000,
+      "employees_median": 128.0,
+      "first_case_number": "20-CA-353378",
+      "n_employer_spellings": 5,
+      "regions": [
+        "Region 20, San Francisco, California"
+      ]
+    },
+    {
+      "city": "SANTA CLARITA",
+      "state": "CA",
+      "operating_by": "2026-01-21",
+      "latest_filed": "2026-06-10",
+      "n_cases": 3,
+      "n_unfair_labour": 3,
+      "n_petition": 0,
+      "n_with_employees": 3,
+      "n_employees_over_cutoff": 1,
+      "employees_max": 1000000,
+      "employees_median": 100,
+      "first_case_number": "31-CA-379567",
+      "n_employer_spellings": 3,
+      "regions": [
+        "Region 31, Los Angeles, California"
+      ]
+    },
+    {
+      "city": "SANTA FE SPRINGS",
+      "state": "CA",
+      "operating_by": "2026-04-07",
+      "latest_filed": "2026-05-12",
+      "n_cases": 2,
+      "n_unfair_labour": 2,
+      "n_petition": 0,
+      "n_with_employees": 2,
+      "n_employees_over_cutoff": 2,
+      "employees_max": 1000000,
+      "employees_median": 1000000.0,
+      "first_case_number": "21-CB-384377",
+      "n_employer_spellings": 2,
+      "regions": [
+        "Region 21, Los Angeles, California"
+      ]
+    },
+    {
+      "city": "SANTA MONICA",
+      "state": "CA",
+      "operating_by": "2019-09-20",
+      "latest_filed": "2026-07-06",
+      "n_cases": 2,
+      "n_unfair_labour": 2,
+      "n_petition": 0,
+      "n_with_employees": 2,
+      "n_employees_over_cutoff": 0,
+      "employees_max": 500,
+      "employees_median": 251.0,
+      "first_case_number": "31-CA-248692",
+      "n_employer_spellings": 2,
+      "regions": [
+        "Region 31, Los Angeles, California"
+      ]
+    },
+    {
+      "city": "SHERMAN OAKS",
+      "state": "CA",
+      "operating_by": "2022-02-07",
+      "latest_filed": "2022-02-07",
+      "n_cases": 1,
+      "n_unfair_labour": 1,
+      "n_petition": 0,
+      "n_with_employees": 1,
+      "n_employees_over_cutoff": 1,
+      "employees_max": 100000,
+      "employees_median": 100000,
+      "first_case_number": "31-CA-290309",
+      "n_employer_spellings": 1,
+      "regions": [
+        "Region 31, Los Angeles, California"
+      ]
+    },
+    {
+      "city": "SOUTH GATE",
+      "state": "CA",
+      "operating_by": "2024-08-06",
+      "latest_filed": "2026-04-22",
+      "n_cases": 7,
+      "n_unfair_labour": 7,
+      "n_petition": 0,
+      "n_with_employees": 7,
+      "n_employees_over_cutoff": 2,
+      "employees_max": 1000000,
+      "employees_median": 75,
+      "first_case_number": "21-CB-347816",
+      "n_employer_spellings": 6,
+      "regions": [
+        "Region 21, Los Angeles, California"
+      ]
+    },
+    {
+      "city": "TEMECULA",
+      "state": "CA",
+      "operating_by": "2025-11-17",
+      "latest_filed": "2025-11-17",
+      "n_cases": 1,
+      "n_unfair_labour": 1,
+      "n_petition": 0,
+      "n_with_employees": 1,
+      "n_employees_over_cutoff": 1,
+      "employees_max": 1000000,
+      "employees_median": 1000000,
+      "first_case_number": "21-CB-374907",
+      "n_employer_spellings": 1,
+      "regions": [
+        "Region 21, Los Angeles, California"
+      ]
+    },
+    {
+      "city": "BOULDER",
+      "state": "CO",
+      "operating_by": "2024-02-16",
+      "latest_filed": "2024-02-16",
+      "n_cases": 1,
+      "n_unfair_labour": 1,
+      "n_petition": 0,
+      "n_with_employees": 1,
+      "n_employees_over_cutoff": 0,
+      "employees_max": 350,
+      "employees_median": 350,
+      "first_case_number": "27-CA-336033",
+      "n_employer_spellings": 1,
+      "regions": [
+        "Region 27, Denver, Colorado"
+      ]
+    },
+    {
+      "city": "GRAND JUNCTION",
+      "state": "CO",
+      "operating_by": "2025-12-03",
+      "latest_filed": "2025-12-03",
+      "n_cases": 1,
+      "n_unfair_labour": 1,
+      "n_petition": 0,
+      "n_with_employees": 1,
+      "n_employees_over_cutoff": 0,
+      "employees_max": 100,
+      "employees_median": 100,
+      "first_case_number": "27-CA-376287",
+      "n_employer_spellings": 1,
+      "regions": [
+        "Region 27, Denver, Colorado"
+      ]
+    },
+    {
+      "city": "LOVELAND",
+      "state": "CO",
+      "operating_by": "2024-01-22",
+      "latest_filed": "2024-01-22",
+      "n_cases": 1,
+      "n_unfair_labour": 1,
+      "n_petition": 0,
+      "n_with_employees": 1,
+      "n_employees_over_cutoff": 0,
+      "employees_max": 100,
+      "employees_median": 100,
+      "first_case_number": "27-CA-333997",
+      "n_employer_spellings": 1,
+      "regions": [
+        "Region 27, Denver, Colorado"
+      ]
+    },
+    {
+      "city": "AUBURNDALE",
+      "state": "FL",
+      "operating_by": "2023-05-03",
+      "latest_filed": "2023-05-03",
+      "n_cases": 1,
+      "n_unfair_labour": 1,
+      "n_petition": 0,
+      "n_with_employees": 1,
+      "n_employees_over_cutoff": 0,
+      "employees_max": 2000,
+      "employees_median": 2000,
+      "first_case_number": "12-CA-317273",
+      "n_employer_spellings": 1,
+      "regions": [
+        "Region 12, Tampa, Florida"
+      ]
+    },
+    {
+      "city": "POMPANO BEACH",
+      "state": "FL",
+      "operating_by": "2023-07-19",
+      "latest_filed": "2023-07-19",
+      "n_cases": 1,
+      "n_unfair_labour": 1,
+      "n_petition": 0,
+      "n_with_employees": 1,
+      "n_employees_over_cutoff": 0,
+      "employees_max": 150,
+      "employees_median": 150,
+      "first_case_number": "12-CA-322067",
+      "n_employer_spellings": 1,
+      "regions": [
+        "Region 12, Tampa, Florida"
+      ]
+    },
+    {
+      "city": "ALPHARETTA",
+      "state": "GA",
+      "operating_by": "2024-12-13",
+      "latest_filed": "2024-12-13",
+      "n_cases": 2,
+      "n_unfair_labour": 2,
+      "n_petition": 0,
+      "n_with_employees": 2,
+      "n_employees_over_cutoff": 0,
+      "employees_max": 50,
+      "employees_median": 50.0,
+      "first_case_number": "10-CA-356675",
+      "n_employer_spellings": 2,
+      "regions": [
+        "Region 10, Atlanta, Georgia"
+      ]
+    },
+    {
+      "city": "DOUGLASVILLE",
+      "state": "GA",
+      "operating_by": "2022-06-01",
+      "latest_filed": "2022-06-01",
+      "n_cases": 1,
+      "n_unfair_labour": 1,
+      "n_petition": 0,
+      "n_with_employees": 1,
+      "n_employees_over_cutoff": 1,
+      "employees_max": 1600000,
+      "employees_median": 1600000,
+      "first_case_number": "10-CA-296800",
+      "n_employer_spellings": 1,
+      "regions": [
+        "Region 10, Atlanta, Georgia"
+      ]
+    },
+    {
+      "city": "PEACHTREE CITY",
+      "state": "GA",
+      "operating_by": "2024-01-19",
+      "latest_filed": "2024-01-19",
+      "n_cases": 1,
+      "n_unfair_labour": 1,
+      "n_petition": 0,
+      "n_with_employees": 1,
+      "n_employees_over_cutoff": 0,
+      "employees_max": 100,
+      "employees_median": 100,
+      "first_case_number": "10-CA-333913",
+      "n_employer_spellings": 1,
+      "regions": [
+        "Region 10, Atlanta, Georgia"
+      ]
+    },
+    {
+      "city": "DAVENPORT",
+      "state": "IA",
+      "operating_by": "2026-07-06",
+      "latest_filed": "2026-07-06",
+      "n_cases": 1,
+      "n_unfair_labour": 1,
+      "n_petition": 0,
+      "n_with_employees": 1,
+      "n_employees_over_cutoff": 0,
+      "employees_max": 2356,
+      "employees_median": 2356,
+      "first_case_number": "25-CA-390037",
+      "n_employer_spellings": 1,
+      "regions": [
+        "Region 25, Indianapolis, Indiana"
+      ]
+    },
+    {
+      "city": "ELGIN",
+      "state": "IL",
+      "operating_by": "2020-12-08",
+      "latest_filed": "2020-12-08",
+      "n_cases": 1,
+      "n_unfair_labour": 1,
+      "n_petition": 0,
+      "n_with_employees": 1,
+      "n_employees_over_cutoff": 0,
+      "employees_max": 400,
+      "employees_median": 400,
+      "first_case_number": "13-CA-269950",
+      "n_employer_spellings": 1,
+      "regions": [
+        "Region 13, Chicago, Illinois"
+      ]
+    },
+    {
+      "city": "NORTH PEKIN",
+      "state": "IL",
+      "operating_by": "2025-08-04",
+      "latest_filed": "2025-08-04",
+      "n_cases": 1,
+      "n_unfair_labour": 1,
+      "n_petition": 0,
+      "n_with_employees": 1,
+      "n_employees_over_cutoff": 0,
+      "employees_max": 100,
+      "employees_median": 100,
+      "first_case_number": "25-CA-370677",
+      "n_employer_spellings": 1,
+      "regions": [
+        "Region 25, Indianapolis, Indiana"
+      ]
+    },
+    {
+      "city": "ROMEOVILLE",
+      "state": "IL",
+      "operating_by": "2024-04-05",
+      "latest_filed": "2024-04-05",
+      "n_cases": 1,
+      "n_unfair_labour": 1,
+      "n_petition": 0,
+      "n_with_employees": 1,
+      "n_employees_over_cutoff": 0,
+      "employees_max": 500,
+      "employees_median": 500,
+      "first_case_number": "13-CA-339458",
+      "n_employer_spellings": 1,
+      "regions": [
+        "Region 13, Chicago, Illinois"
+      ]
+    },
+    {
+      "city": "SKOKIE",
+      "state": "IL",
+      "operating_by": "2024-02-20",
+      "latest_filed": "2025-02-07",
+      "n_cases": 21,
+      "n_unfair_labour": 20,
+      "n_petition": 1,
+      "n_with_employees": 21,
+      "n_employees_over_cutoff": 4,
+      "employees_max": 1000000,
+      "employees_median": 120,
+      "first_case_number": "13-CA-336553",
+      "n_employer_spellings": 14,
+      "regions": [
+        "Region 13, Chicago, Illinois"
+      ]
+    },
+    {
+      "city": "UNIVERSITY PARK",
+      "state": "IL",
+      "operating_by": "2023-11-01",
+      "latest_filed": "2023-11-01",
+      "n_cases": 1,
+      "n_unfair_labour": 1,
+      "n_petition": 0,
+      "n_with_employees": 1,
+      "n_employees_over_cutoff": 0,
+      "employees_max": 400,
+      "employees_median": 400,
+      "first_case_number": "13-CA-329153",
+      "n_employer_spellings": 1,
+      "regions": [
+        "Region 13, Chicago, Illinois"
+      ]
+    },
+    {
+      "city": "GARY",
+      "state": "IN",
+      "operating_by": "2020-05-07",
+      "latest_filed": "2020-12-09",
+      "n_cases": 5,
+      "n_unfair_labour": 5,
+      "n_petition": 0,
+      "n_with_employees": 5,
+      "n_employees_over_cutoff": 0,
+      "employees_max": 100,
+      "employees_median": 60,
+      "first_case_number": "13-CA-260091",
+      "n_employer_spellings": 5,
+      "regions": [
+        "Region 13, Chicago, Illinois"
+      ]
+    },
+    {
+      "city": "LEBANON",
+      "state": "KY",
+      "operating_by": "2022-07-06",
+      "latest_filed": "2022-07-06",
+      "n_cases": 1,
+      "n_unfair_labour": 1,
+      "n_petition": 0,
+      "n_with_employees": 1,
+      "n_employees_over_cutoff": 0,
+      "employees_max": 1000,
+      "employees_median": 1000,
+      "first_case_number": "09-CA-298870",
+      "n_employer_spellings": 1,
+      "regions": [
+        "Region 09, Cincinnati, Ohio"
+      ]
+    },
+    {
+      "city": "LOUISVILLE",
+      "state": "KY",
+      "operating_by": "2024-10-25",
+      "latest_filed": "2024-10-25",
+      "n_cases": 1,
+      "n_unfair_labour": 1,
+      "n_petition": 0,
+      "n_with_employees": 1,
+      "n_employees_over_cutoff": 0,
+      "employees_max": 140,
+      "employees_median": 140,
+      "first_case_number": "09-CA-353502",
+      "n_employer_spellings": 1,
+      "regions": [
+        "Region 09, Cincinnati, Ohio"
+      ]
+    },
+    {
+      "city": "ELMWOOD",
+      "state": "LA",
+      "operating_by": "2023-12-20",
+      "latest_filed": "2024-01-05",
+      "n_cases": 3,
+      "n_unfair_labour": 3,
+      "n_petition": 0,
+      "n_with_employees": 3,
+      "n_employees_over_cutoff": 0,
+      "employees_max": 600,
+      "employees_median": 300,
+      "first_case_number": "15-CA-332355",
+      "n_employer_spellings": 1,
+      "regions": [
+        "Region 15, New Orleans, Louisiana"
+      ]
+    },
+    {
+      "city": "BOSTON",
+      "state": "MA",
+      "operating_by": "2026-05-29",
+      "latest_filed": "2026-05-29",
+      "n_cases": 1,
+      "n_unfair_labour": 1,
+      "n_petition": 0,
+      "n_with_employees": 1,
+      "n_employees_over_cutoff": 0,
+      "employees_max": 5000,
+      "employees_median": 5000,
+      "first_case_number": "01-CA-388015",
+      "n_employer_spellings": 1,
+      "regions": [
+        "Region 01, Boston, Massachusetts"
+      ]
+    },
+    {
+      "city": "HYATTSVILLE",
+      "state": "MD",
+      "operating_by": "2020-10-16",
+      "latest_filed": "2020-10-16",
+      "n_cases": 1,
+      "n_unfair_labour": 1,
+      "n_petition": 0,
+      "n_with_employees": 1,
+      "n_employees_over_cutoff": 0,
+      "employees_max": 1000,
+      "employees_median": 1000,
+      "first_case_number": "05-CA-267897",
+      "n_employer_spellings": 1,
+      "regions": [
+        "Region 05, Baltimore, Maryland"
+      ]
+    },
+    {
+      "city": "TAKOMA PARK",
+      "state": "MD",
+      "operating_by": "2019-07-19",
+      "latest_filed": "2020-08-20",
+      "n_cases": 2,
+      "n_unfair_labour": 2,
+      "n_petition": 0,
+      "n_with_employees": 2,
+      "n_employees_over_cutoff": 0,
+      "employees_max": 1000,
+      "employees_median": 1000.0,
+      "first_case_number": "05-CA-245205",
+      "n_employer_spellings": 1,
+      "regions": [
+        "Region 05, Baltimore, Maryland"
+      ]
+    },
+    {
+      "city": "UPPER MARLBORO",
+      "state": "MD",
+      "operating_by": "2022-06-14",
+      "latest_filed": "2022-08-23",
+      "n_cases": 6,
+      "n_unfair_labour": 6,
+      "n_petition": 0,
+      "n_with_employees": 6,
+      "n_employees_over_cutoff": 0,
+      "employees_max": 120,
+      "employees_median": 120.0,
+      "first_case_number": "05-CA-297762",
+      "n_employer_spellings": 3,
+      "regions": [
+        "Region 05, Baltimore, Maryland"
+      ]
+    },
+    {
+      "city": "GRAND RAPIDS",
+      "state": "MI",
+      "operating_by": "2025-03-24",
+      "latest_filed": "2025-03-24",
+      "n_cases": 1,
+      "n_unfair_labour": 1,
+      "n_petition": 0,
+      "n_with_employees": 1,
+      "n_employees_over_cutoff": 0,
+      "employees_max": 1,
+      "employees_median": 1,
+      "first_case_number": "07-CA-362547",
+      "n_employer_spellings": 1,
+      "regions": [
+        "Region 07, Detroit, Michigan"
+      ]
+    },
+    {
+      "city": "ROCHESTER HILLS",
+      "state": "MI",
+      "operating_by": "2021-04-20",
+      "latest_filed": "2021-04-20",
+      "n_cases": 1,
+      "n_unfair_labour": 1,
+      "n_petition": 0,
+      "n_with_employees": 1,
+      "n_employees_over_cutoff": 0,
+      "employees_max": 50,
+      "employees_median": 50,
+      "first_case_number": "07-CA-275895",
+      "n_employer_spellings": 1,
+      "regions": [
+        "Region 07, Detroit, Michigan"
+      ]
+    },
+    {
+      "city": "SAGINAW",
+      "state": "MI",
+      "operating_by": "2025-11-17",
+      "latest_filed": "2025-11-17",
+      "n_cases": 1,
+      "n_unfair_labour": 1,
+      "n_petition": 0,
+      "n_with_employees": 1,
+      "n_employees_over_cutoff": 0,
+      "employees_max": 125,
+      "employees_median": 125,
+      "first_case_number": "07-CA-375834",
+      "n_employer_spellings": 1,
+      "regions": [
+        "Region 07, Detroit, Michigan"
+      ]
+    },
+    {
+      "city": "WIXOM",
+      "state": "MI",
+      "operating_by": "2026-06-23",
+      "latest_filed": "2026-06-23",
+      "n_cases": 1,
+      "n_unfair_labour": 1,
+      "n_petition": 0,
+      "n_with_employees": 1,
+      "n_employees_over_cutoff": 0,
+      "employees_max": 100,
+      "employees_median": 100,
+      "first_case_number": "07-CA-389938",
+      "n_employer_spellings": 1,
+      "regions": [
+        "Region 07, Detroit, Michigan"
+      ]
+    },
+    {
+      "city": "SAINT CHARLES",
+      "state": "MO",
+      "operating_by": "2022-10-21",
+      "latest_filed": "2022-12-07",
+      "n_cases": 3,
+      "n_unfair_labour": 3,
+      "n_petition": 0,
+      "n_with_employees": 3,
+      "n_employees_over_cutoff": 0,
+      "employees_max": 3300,
+      "employees_median": 3300,
+      "first_case_number": "14-CA-305671",
+      "n_employer_spellings": 2,
+      "regions": [
+        "Region 14, Saint Louis, Missouri"
+      ]
+    },
+    {
+      "city": "CARY",
+      "state": "NC",
+      "operating_by": "2023-10-05",
+      "latest_filed": "2023-10-05",
+      "n_cases": 1,
+      "n_unfair_labour": 1,
+      "n_petition": 0,
+      "n_with_employees": 1,
+      "n_employees_over_cutoff": 0,
+      "employees_max": 1,
+      "employees_median": 1,
+      "first_case_number": "10-CA-327301",
+      "n_employer_spellings": 1,
+      "regions": [
+        "Region 10, Atlanta, Georgia"
+      ]
+    },
+    {
+      "city": "HUNTERSVILLE",
+      "state": "NC",
+      "operating_by": "2022-07-28",
+      "latest_filed": "2022-07-28",
+      "n_cases": 1,
+      "n_unfair_labour": 1,
+      "n_petition": 0,
+      "n_with_employees": 1,
+      "n_employees_over_cutoff": 0,
+      "employees_max": 200,
+      "employees_median": 200,
+      "first_case_number": "10-CA-300326",
+      "n_employer_spellings": 1,
+      "regions": [
+        "Region 10, Atlanta, Georgia"
+      ]
+    },
+    {
+      "city": "BELLMAWR",
+      "state": "NJ",
+      "operating_by": "2022-07-12",
+      "latest_filed": "2022-07-12",
+      "n_cases": 1,
+      "n_unfair_labour": 1,
+      "n_petition": 0,
+      "n_with_employees": 1,
+      "n_employees_over_cutoff": 0,
+      "employees_max": 93,
+      "employees_median": 93,
+      "first_case_number": "04-CA-299197",
+      "n_employer_spellings": 1,
+      "regions": [
+        "Region 04, Philadelphia, Pennsylvania"
+      ]
+    },
+    {
+      "city": "SWEDESBORO",
+      "state": "NJ",
+      "operating_by": "2022-06-14",
+      "latest_filed": "2022-09-28",
+      "n_cases": 2,
+      "n_unfair_labour": 2,
+      "n_petition": 0,
+      "n_with_employees": 1,
+      "n_employees_over_cutoff": 0,
+      "employees_max": 200,
+      "employees_median": 200,
+      "first_case_number": "04-CA-297653",
+      "n_employer_spellings": 2,
+      "regions": [
+        "Region 04, Philadelphia, Pennsylvania"
+      ]
+    },
+    {
+      "city": "TINTON FALLS",
+      "state": "NJ",
+      "operating_by": "2023-12-04",
+      "latest_filed": "2023-12-11",
+      "n_cases": 2,
+      "n_unfair_labour": 2,
+      "n_petition": 0,
+      "n_with_employees": 2,
+      "n_employees_over_cutoff": 0,
+      "employees_max": 8500,
+      "employees_median": 4350.0,
+      "first_case_number": "22-CA-331320",
+      "n_employer_spellings": 2,
+      "regions": [
+        "Region 22, Newark, New Jersey"
+      ]
+    },
+    {
+      "city": "WEST DEPTFORD",
+      "state": "NJ",
+      "operating_by": "2023-09-29",
+      "latest_filed": "2024-12-13",
+      "n_cases": 4,
+      "n_unfair_labour": 4,
+      "n_petition": 0,
+      "n_with_employees": 4,
+      "n_employees_over_cutoff": 0,
+      "employees_max": 3500,
+      "employees_median": 3500.0,
+      "first_case_number": "04-CA-326987",
+      "n_employer_spellings": 3,
+      "regions": [
+        "Region 04, Philadelphia, Pennsylvania"
+      ]
+    },
+    {
+      "city": "WOODLAND PARK",
+      "state": "NJ",
+      "operating_by": "2024-05-07",
+      "latest_filed": "2024-06-05",
+      "n_cases": 2,
+      "n_unfair_labour": 2,
+      "n_petition": 0,
+      "n_with_employees": 2,
+      "n_employees_over_cutoff": 0,
+      "employees_max": 800,
+      "employees_median": 800.0,
+      "first_case_number": "22-CA-341847",
+      "n_employer_spellings": 1,
+      "regions": [
+        "Region 22, Newark, New Jersey"
+      ]
+    },
+    {
+      "city": "ALBUQUERQUE",
+      "state": "NM",
+      "operating_by": "2022-06-17",
+      "latest_filed": "2025-05-01",
+      "n_cases": 2,
+      "n_unfair_labour": 2,
+      "n_petition": 0,
+      "n_with_employees": 2,
+      "n_employees_over_cutoff": 0,
+      "employees_max": 3000,
+      "employees_median": 1625.0,
+      "first_case_number": "28-CA-297896",
+      "n_employer_spellings": 2,
+      "regions": [
+        "Region 28, Phoenix, Arizona"
+      ]
+    },
+    {
+      "city": "BRONX",
+      "state": "NY",
+      "operating_by": "2025-10-10",
+      "latest_filed": "2025-10-10",
+      "n_cases": 1,
+      "n_unfair_labour": 1,
+      "n_petition": 0,
+      "n_with_employees": 1,
+      "n_employees_over_cutoff": 0,
+      "employees_max": 250,
+      "employees_median": 250,
+      "first_case_number": "02-CA-374897",
+      "n_employer_spellings": 1,
+      "regions": [
+        "Region 02, New York, New York"
+      ]
+    },
+    {
+      "city": "BROOKLYN",
+      "state": "NY",
+      "operating_by": "2023-05-10",
+      "latest_filed": "2023-05-17",
+      "n_cases": 2,
+      "n_unfair_labour": 2,
+      "n_petition": 0,
+      "n_with_employees": 2,
+      "n_employees_over_cutoff": 0,
+      "employees_max": 100,
+      "employees_median": 100.0,
+      "first_case_number": "29-CB-318245",
+      "n_employer_spellings": 2,
+      "regions": [
+        "Region 29, Brooklyn, New York"
+      ]
+    },
+    {
+      "city": "BUFFALO",
+      "state": "NY",
+      "operating_by": "2025-12-17",
+      "latest_filed": "2025-12-17",
+      "n_cases": 1,
+      "n_unfair_labour": 1,
+      "n_petition": 0,
+      "n_with_employees": 1,
+      "n_employees_over_cutoff": 0,
+      "employees_max": 100,
+      "employees_median": 100,
+      "first_case_number": "03-CA-377394",
+      "n_employer_spellings": 1,
+      "regions": [
+        "Region 03, Buffalo, New York"
+      ]
+    },
+    {
+      "city": "FRANKFORT",
+      "state": "NY",
+      "operating_by": "2025-03-05",
+      "latest_filed": "2025-03-05",
+      "n_cases": 1,
+      "n_unfair_labour": 1,
+      "n_petition": 0,
+      "n_with_employees": 1,
+      "n_employees_over_cutoff": 0,
+      "employees_max": 100,
+      "employees_median": 100,
+      "first_case_number": "03-CA-361392",
+      "n_employer_spellings": 1,
+      "regions": [
+        "Region 03, Buffalo, New York"
+      ]
+    },
+    {
+      "city": "HOPEWELL JUNCTION",
+      "state": "NY",
+      "operating_by": "2025-07-31",
+      "latest_filed": "2025-08-15",
+      "n_cases": 2,
+      "n_unfair_labour": 2,
+      "n_petition": 0,
+      "n_with_employees": 2,
+      "n_employees_over_cutoff": 0,
+      "employees_max": 1000,
+      "employees_median": 1000.0,
+      "first_case_number": "03-CA-370476",
+      "n_employer_spellings": 2,
+      "regions": [
+        "Region 03, Buffalo, New York"
+      ]
+    },
+    {
+      "city": "LIVERPOOL",
+      "state": "NY",
+      "operating_by": "2021-12-30",
+      "latest_filed": "2026-07-23",
+      "n_cases": 8,
+      "n_unfair_labour": 8,
+      "n_petition": 0,
+      "n_with_employees": 8,
+      "n_employees_over_cutoff": 0,
+      "employees_max": 5000,
+      "employees_median": 1500.0,
+      "first_case_number": "03-CA-288273",
+      "n_employer_spellings": 3,
+      "regions": [
+        "Region 03, Buffalo, New York"
+      ]
+    },
+    {
+      "city": "LONG ISLAND CITY",
+      "state": "NY",
+      "operating_by": "2022-03-24",
+      "latest_filed": "2022-04-14",
+      "n_cases": 4,
+      "n_unfair_labour": 4,
+      "n_petition": 0,
+      "n_with_employees": 4,
+      "n_employees_over_cutoff": 0,
+      "employees_max": 40,
+      "employees_median": 35.0,
+      "first_case_number": "29-CA-292872",
+      "n_employer_spellings": 1,
+      "regions": [
+        "Region 29, Brooklyn, New York"
+      ]
+    },
+    {
+      "city": "MASPETH",
+      "state": "NY",
+      "operating_by": "2023-12-15",
+      "latest_filed": "2026-07-22",
+      "n_cases": 27,
+      "n_unfair_labour": 27,
+      "n_petition": 0,
+      "n_with_employees": 27,
+      "n_employees_over_cutoff": 4,
+      "employees_max": 1000000,
+      "employees_median": 900,
+      "first_case_number": "29-CA-332279",
+      "n_employer_spellings": 21,
+      "regions": [
+        "Region 29, Brooklyn, New York"
+      ]
+    },
+    {
+      "city": "MELVILLE",
+      "state": "NY",
+      "operating_by": "2023-08-28",
+      "latest_filed": "2023-09-26",
+      "n_cases": 2,
+      "n_unfair_labour": 2,
+      "n_petition": 0,
+      "n_with_employees": 2,
+      "n_employees_over_cutoff": 0,
+      "employees_max": 900,
+      "employees_median": 890.0,
+      "first_case_number": "29-CA-324917",
+      "n_employer_spellings": 1,
+      "regions": [
+        "Region 29, Brooklyn, New York"
+      ]
+    },
+    {
+      "city": "NEW YORK",
+      "state": "NY",
+      "operating_by": "2020-12-08",
+      "latest_filed": "2024-01-18",
+      "n_cases": 2,
+      "n_unfair_labour": 2,
+      "n_petition": 0,
+      "n_with_employees": 2,
+      "n_employees_over_cutoff": 0,
+      "employees_max": 1200,
+      "employees_median": 605.5,
+      "first_case_number": "02-CA-270192",
+      "n_employer_spellings": 2,
+      "regions": [
+        "Region 02, New York, New York"
+      ]
+    },
+    {
+      "city": "QUEENS",
+      "state": "NY",
+      "operating_by": "2023-11-27",
+      "latest_filed": "2023-11-27",
+      "n_cases": 1,
+      "n_unfair_labour": 1,
+      "n_petition": 0,
+      "n_with_employees": 1,
+      "n_employees_over_cutoff": 0,
+      "employees_max": 300,
+      "employees_median": 300,
+      "first_case_number": "29-CA-330698",
+      "n_employer_spellings": 1,
+      "regions": [
+        "Region 29, Brooklyn, New York"
+      ]
+    },
+    {
+      "city": "ROCHESTER",
+      "state": "NY",
+      "operating_by": "2026-08-27",
+      "latest_filed": "2026-08-27",
+      "n_cases": 1,
+      "n_unfair_labour": 1,
+      "n_petition": 0,
+      "n_with_employees": 1,
+      "n_employees_over_cutoff": 0,
+      "employees_max": 2500,
+      "employees_median": 2500,
+      "first_case_number": "03-CA-393763",
+      "n_employer_spellings": 1,
+      "regions": [
+        "Region 03, Buffalo, New York"
+      ]
+    },
+    {
+      "city": "WOODSIDE",
+      "state": "NY",
+      "operating_by": "2020-05-06",
+      "latest_filed": "2026-06-09",
+      "n_cases": 7,
+      "n_unfair_labour": 7,
+      "n_petition": 0,
+      "n_with_employees": 7,
+      "n_employees_over_cutoff": 0,
+      "employees_max": 10000,
+      "employees_median": 58,
+      "first_case_number": "29-CA-260062",
+      "n_employer_spellings": 5,
+      "regions": [
+        "Region 29, Brooklyn, New York"
+      ]
+    },
+    {
+      "city": "CANTON",
+      "state": "OH",
+      "operating_by": "2023-10-16",
+      "latest_filed": "2023-10-16",
+      "n_cases": 1,
+      "n_unfair_labour": 1,
+      "n_petition": 0,
+      "n_with_employees": 1,
+      "n_employees_over_cutoff": 0,
+      "employees_max": 100,
+      "employees_median": 100,
+      "first_case_number": "08-CA-327951",
+      "n_employer_spellings": 1,
+      "regions": [
+        "Region 08, Cleveland, Ohio"
+      ]
+    },
+    {
+      "city": "CLEVELAND",
+      "state": "OH",
+      "operating_by": "2020-07-17",
+      "latest_filed": "2022-05-16",
+      "n_cases": 2,
+      "n_unfair_labour": 2,
+      "n_petition": 0,
+      "n_with_employees": 2,
+      "n_employees_over_cutoff": 0,
+      "employees_max": 3900,
+      "employees_median": 3200.0,
+      "first_case_number": "08-CA-263143",
+      "n_employer_spellings": 2,
+      "regions": [
+        "Region 08, Cleveland, Ohio"
+      ]
+    },
+    {
+      "city": "KETTERING",
+      "state": "OH",
+      "operating_by": "2026-08-24",
+      "latest_filed": "2026-08-24",
+      "n_cases": 1,
+      "n_unfair_labour": 1,
+      "n_petition": 0,
+      "n_with_employees": 1,
+      "n_employees_over_cutoff": 0,
+      "employees_max": 25,
+      "employees_median": 25,
+      "first_case_number": "09-CA-393630",
+      "n_employer_spellings": 1,
+      "regions": [
+        "Region 09, Cincinnati, Ohio"
+      ]
+    },
+    {
+      "city": "NORTH JACKSON",
+      "state": "OH",
+      "operating_by": "2020-06-23",
+      "latest_filed": "2020-06-23",
+      "n_cases": 1,
+      "n_unfair_labour": 1,
+      "n_petition": 0,
+      "n_with_employees": 1,
+      "n_employees_over_cutoff": 0,
+      "employees_max": 100,
+      "employees_median": 100,
+      "first_case_number": "08-CA-262075",
+      "n_employer_spellings": 1,
+      "regions": [
+        "Region 08, Cleveland, Ohio"
+      ]
+    },
+    {
+      "city": "TOLEDO",
+      "state": "OH",
+      "operating_by": "2026-02-10",
+      "latest_filed": "2026-05-18",
+      "n_cases": 3,
+      "n_unfair_labour": 3,
+      "n_petition": 0,
+      "n_with_employees": 3,
+      "n_employees_over_cutoff": 0,
+      "employees_max": 300,
+      "employees_median": 80,
+      "first_case_number": "08-CA-380887",
+      "n_employer_spellings": 2,
+      "regions": [
+        "Region 08, Cleveland, Ohio"
+      ]
+    },
+    {
+      "city": "TULSA",
+      "state": "OK",
+      "operating_by": "2023-07-18",
+      "latest_filed": "2023-07-18",
+      "n_cases": 1,
+      "n_unfair_labour": 1,
+      "n_petition": 0,
+      "n_with_employees": 1,
+      "n_employees_over_cutoff": 0,
+      "employees_max": 1000,
+      "employees_median": 1000,
+      "first_case_number": "14-CA-322018",
+      "n_employer_spellings": 1,
+      "regions": [
+        "Region 14, Saint Louis, Missouri"
+      ]
+    },
+    {
+      "city": "FOUR CORNERS",
+      "state": "OR",
+      "operating_by": "2026-02-02",
+      "latest_filed": "2026-02-02",
+      "n_cases": 1,
+      "n_unfair_labour": 1,
+      "n_petition": 0,
+      "n_with_employees": 1,
+      "n_employees_over_cutoff": 0,
+      "employees_max": 1000,
+      "employees_median": 1000,
+      "first_case_number": "19-CA-380328",
+      "n_employer_spellings": 1,
+      "regions": [
+        "Region 19, Seattle, Washington"
+      ]
+    },
+    {
+      "city": "CONSHOHOCKEN",
+      "state": "PA",
+      "operating_by": "2026-02-04",
+      "latest_filed": "2026-02-04",
+      "n_cases": 1,
+      "n_unfair_labour": 1,
+      "n_petition": 0,
+      "n_with_employees": 0,
+      "n_employees_over_cutoff": 0,
+      "employees_max": null,
+      "employees_median": null,
+      "first_case_number": "04-CA-380423",
+      "n_employer_spellings": 1,
+      "regions": [
+        "Region 04, Philadelphia, Pennsylvania"
+      ]
+    },
+    {
+      "city": "COVINGTON",
+      "state": "PA",
+      "operating_by": "2022-05-18",
+      "latest_filed": "2023-02-24",
+      "n_cases": 4,
+      "n_unfair_labour": 4,
+      "n_petition": 0,
+      "n_with_employees": 4,
+      "n_employees_over_cutoff": 1,
+      "employees_max": 500000,
+      "employees_median": 1000.0,
+      "first_case_number": "04-CA-296053",
+      "n_employer_spellings": 1,
+      "regions": [
+        "Region 04, Philadelphia, Pennsylvania"
+      ]
+    },
+    {
+      "city": "EPHRATA",
+      "state": "PA",
+      "operating_by": "2025-11-28",
+      "latest_filed": "2025-11-28",
+      "n_cases": 1,
+      "n_unfair_labour": 1,
+      "n_petition": 0,
+      "n_with_employees": 1,
+      "n_employees_over_cutoff": 0,
+      "employees_max": 1,
+      "employees_median": 1,
+      "first_case_number": "04-CA-375845",
+      "n_employer_spellings": 1,
+      "regions": [
+        "Region 04, Philadelphia, Pennsylvania"
+      ]
+    },
+    {
+      "city": "IMPERIAL",
+      "state": "PA",
+      "operating_by": "2024-12-19",
+      "latest_filed": "2024-12-19",
+      "n_cases": 3,
+      "n_unfair_labour": 3,
+      "n_petition": 0,
+      "n_with_employees": 3,
+      "n_employees_over_cutoff": 0,
+      "employees_max": 1,
+      "employees_median": 1,
+      "first_case_number": "06-CB-357045",
+      "n_employer_spellings": 3,
+      "regions": [
+        "Region 06, Pittsburgh, Pennsylvania"
+      ]
+    },
+    {
+      "city": "KING OF PRUSSIA",
+      "state": "PA",
+      "operating_by": "2020-03-25",
+      "latest_filed": "2020-06-05",
+      "n_cases": 2,
+      "n_unfair_labour": 2,
+      "n_petition": 0,
+      "n_with_employees": 2,
+      "n_employees_over_cutoff": 0,
+      "employees_max": 800,
+      "employees_median": 800.0,
+      "first_case_number": "04-CA-258383",
+      "n_employer_spellings": 2,
+      "regions": [
+        "Region 04, Philadelphia, Pennsylvania"
+      ]
+    },
+    {
+      "city": "LOUISVILLE",
+      "state": "TN",
+      "operating_by": "2026-05-26",
+      "latest_filed": "2026-05-26",
+      "n_cases": 1,
+      "n_unfair_labour": 1,
+      "n_petition": 0,
+      "n_with_employees": 1,
+      "n_employees_over_cutoff": 0,
+      "employees_max": 500,
+      "employees_median": 500,
+      "first_case_number": "10-CA-387554",
+      "n_employer_spellings": 1,
+      "regions": [
+        "Region 10, Atlanta, Georgia"
+      ]
+    },
+    {
+      "city": "ALVIN",
+      "state": "TX",
+      "operating_by": "2026-05-22",
+      "latest_filed": "2026-05-22",
+      "n_cases": 1,
+      "n_unfair_labour": 1,
+      "n_petition": 0,
+      "n_with_employees": 1,
+      "n_employees_over_cutoff": 0,
+      "employees_max": 15000,
+      "employees_median": 15000,
+      "first_case_number": "16-CA-387793",
+      "n_employer_spellings": 1,
+      "regions": [
+        "Region 16, Fort Worth, Texas"
+      ]
+    },
+    {
+      "city": "BROOKSHIRE",
+      "state": "TX",
+      "operating_by": "2024-12-19",
+      "latest_filed": "2024-12-19",
+      "n_cases": 1,
+      "n_unfair_labour": 1,
+      "n_petition": 0,
+      "n_with_employees": 1,
+      "n_employees_over_cutoff": 0,
+      "employees_max": 10,
+      "employees_median": 10,
+      "first_case_number": "16-CB-357097",
+      "n_employer_spellings": 1,
+      "regions": [
+        "Region 16, Fort Worth, Texas"
+      ]
+    },
+    {
+      "city": "COCKRELL HILL",
+      "state": "TX",
+      "operating_by": "2024-06-10",
+      "latest_filed": "2025-06-09",
+      "n_cases": 2,
+      "n_unfair_labour": 2,
+      "n_petition": 0,
+      "n_with_employees": 2,
+      "n_employees_over_cutoff": 0,
+      "employees_max": 200,
+      "employees_median": 200.0,
+      "first_case_number": "16-CA-344274",
+      "n_employer_spellings": 1,
+      "regions": [
+        "Region 16, Fort Worth, Texas"
+      ]
+    },
+    {
+      "city": "DALLAS",
+      "state": "TX",
+      "operating_by": "2021-11-23",
+      "latest_filed": "2024-10-15",
+      "n_cases": 5,
+      "n_unfair_labour": 5,
+      "n_petition": 0,
+      "n_with_employees": 5,
+      "n_employees_over_cutoff": 0,
+      "employees_max": 1000,
+      "employees_median": 200,
+      "first_case_number": "16-CA-286742",
+      "n_employer_spellings": 4,
+      "regions": [
+        "Region 16, Fort Worth, Texas"
+      ]
+    },
+    {
+      "city": "GRAPEVINE",
+      "state": "TX",
+      "operating_by": "2024-02-08",
+      "latest_filed": "2024-02-08",
+      "n_cases": 1,
+      "n_unfair_labour": 1,
+      "n_petition": 0,
+      "n_with_employees": 1,
+      "n_employees_over_cutoff": 0,
+      "employees_max": 1200,
+      "employees_median": 1200,
+      "first_case_number": "16-CA-335610",
+      "n_employer_spellings": 1,
+      "regions": [
+        "Region 16, Fort Worth, Texas"
+      ]
+    },
+    {
+      "city": "MCKINNEY",
+      "state": "TX",
+      "operating_by": "2024-07-02",
+      "latest_filed": "2024-07-02",
+      "n_cases": 1,
+      "n_unfair_labour": 1,
+      "n_petition": 0,
+      "n_with_employees": 1,
+      "n_employees_over_cutoff": 0,
+      "employees_max": 1000,
+      "employees_median": 1000,
+      "first_case_number": "16-CA-346085",
+      "n_employer_spellings": 1,
+      "regions": [
+        "Region 16, Fort Worth, Texas"
+      ]
+    },
+    {
+      "city": "ROUND ROCK",
+      "state": "TX",
+      "operating_by": "2023-11-27",
+      "latest_filed": "2023-11-27",
+      "n_cases": 1,
+      "n_unfair_labour": 1,
+      "n_petition": 0,
+      "n_with_employees": 1,
+      "n_employees_over_cutoff": 0,
+      "employees_max": 450,
+      "employees_median": 450,
+      "first_case_number": "16-CA-331071",
+      "n_employer_spellings": 1,
+      "regions": [
+        "Region 16, Fort Worth, Texas"
+      ]
+    },
+    {
+      "city": "SPRING",
+      "state": "TX",
+      "operating_by": "2021-12-21",
+      "latest_filed": "2021-12-21",
+      "n_cases": 1,
+      "n_unfair_labour": 1,
+      "n_petition": 0,
+      "n_with_employees": 1,
+      "n_employees_over_cutoff": 0,
+      "employees_max": 100,
+      "employees_median": 100,
+      "first_case_number": "16-CA-287973",
+      "n_employer_spellings": 1,
+      "regions": [
+        "Region 16, Fort Worth, Texas"
+      ]
+    },
+    {
+      "city": "WACO",
+      "state": "TX",
+      "operating_by": "2024-09-04",
+      "latest_filed": "2024-09-04",
+      "n_cases": 1,
+      "n_unfair_labour": 1,
+      "n_petition": 0,
+      "n_with_employees": 1,
+      "n_employees_over_cutoff": 0,
+      "employees_max": 1000,
+      "employees_median": 1000,
+      "first_case_number": "16-CA-349726",
+      "n_employer_spellings": 1,
+      "regions": [
+        "Region 16, Fort Worth, Texas"
+      ]
+    },
+    {
+      "city": "PORTSMOUTH",
+      "state": "VA",
+      "operating_by": "2026-06-29",
+      "latest_filed": "2026-06-29",
+      "n_cases": 1,
+      "n_unfair_labour": 1,
+      "n_petition": 0,
+      "n_with_employees": 1,
+      "n_employees_over_cutoff": 0,
+      "employees_max": 2000,
+      "employees_median": 2000,
+      "first_case_number": "05-CA-389666",
+      "n_employer_spellings": 1,
+      "regions": [
+        "Region 05, Baltimore, Maryland"
+      ]
+    },
+    {
+      "city": "REDMOND",
+      "state": "WA",
+      "operating_by": "2024-12-27",
+      "latest_filed": "2024-12-27",
+      "n_cases": 1,
+      "n_unfair_labour": 1,
+      "n_petition": 0,
+      "n_with_employees": 1,
+      "n_employees_over_cutoff": 0,
+      "employees_max": 200,
+      "employees_median": 200,
+      "first_case_number": "19-CA-357447",
+      "n_employer_spellings": 1,
+      "regions": [
+        "Region 19, Seattle, Washington"
+      ]
+    },
+    {
+      "city": "OAK CREEK",
+      "state": "WI",
+      "operating_by": "2023-07-13",
+      "latest_filed": "2023-07-13",
+      "n_cases": 1,
+      "n_unfair_labour": 1,
+      "n_petition": 0,
+      "n_with_employees": 1,
+      "n_employees_over_cutoff": 0,
+      "employees_max": 1500,
+      "employees_median": 1500,
+      "first_case_number": "18-CA-321758",
+      "n_employer_spellings": 1,
+      "regions": [
+        "Region 18, Minneapolis, Minnesota"
+      ]
+    }
+  ]
+}
