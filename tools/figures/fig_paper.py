@@ -20,6 +20,7 @@ import sys
 
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 
+import costmetros as cm  # noqa: E402
 import figbase as fb  # noqa: E402
 
 ROOT = os.path.abspath(os.path.join(os.path.dirname(__file__), "..", ".."))
@@ -171,53 +172,68 @@ def cost_by_metro() -> tuple[str, str]:
     """A column-width cost figure for the paper.
 
     docs/figures/hero_cost_per_parcel.png says the same thing but is drawn
-    8.97in wide for a README, where it is read on a screen. Dropped into a
-    3.4in IEEE column it would be shown at 37% and its labels would reach the
+    9.6in wide for a README, where it is read on a screen. Dropped into a
+    3.4in IEEE column it would be shown at 35% and its labels would reach the
     page at about 3pt. Same data, different medium, different figure.
-    """
-    import pandas as pd
-    d = pd.read_parquet(os.path.join(
-        ROOT, "outputs/tables/cost_to_serve_2023q4_baseline.parquet"))
-    g = (d.groupby("metro_label")["cost_per_parcel"]
-         .agg(median="median", lo=lambda s: s.quantile(.25),
-              hi=lambda s: s.quantile(.75))
-         .sort_values("median"))
-    national = float(d["cost_per_parcel"].median())
 
-    fig, ax = fb.figure(fb.COL_W, 2.55)
+    **Why fewer metros here than in the hero.** The station-based cost model
+    covers 174 metros. The hero draws the 25 with five or more costed
+    stations; a column is 3.4in wide and cannot carry 25 named rows at a
+    legible size, so the threshold rises to eight stations and the count of
+    metros that clears it is read from the artefact, not chosen. The
+    alternative form -- a distribution of all 481 station medians, which fits
+    a narrow column better because it needs no row labels -- was rejected
+    because Table~\\ref{tab:cost} beside it already publishes the median, the
+    p10 and the p90 of exactly that distribution, and a figure that redraws
+    the table next to it earns nothing. Named places are what the table
+    cannot give.
+
+    The bar is the interquartile range of the metro's *station* medians, so
+    the unit of the row and the unit of the spread agree.
+    """
+    j, sc = cm.report()
+    st = cm.stations()
+    metros = cm.by_metro(st)
+    g = cm.largest(metros, cm.MIN_COLUMN)
+    national = float(st["cost_per_parcel_median"].median())
+    shown = int(g["stations"].sum())
+
+    fig, ax = fb.figure(fb.COL_W, 3.05)
     low = fb.titles(
         fig,
         "About a dollar to a doorstep",
-        f"Median and interquartile cost per parcel, {len(d):,} ZIP-code\n"
-        f"areas. Computed from road geometry and density, not disclosure.")
-    fig.subplots_adjust(top=low - 0.10, bottom=0.17, left=0.34, right=0.90)
+        f"Median and interquartile cost per parcel across each metro's\n"
+        f"delivery stations, {cm.period_label()} baseline. The {len(g)} "
+        f"metros with {cm.MIN_COLUMN} or\nmore costed stations: {shown} of "
+        f"{len(st)} stations, {len(metros)} metros and\n{sc['zctas']:,} "
+        f"ZIP-code areas in all. Road geometry, not disclosure.")
+    fig.subplots_adjust(top=low - 0.075, bottom=0.115, left=0.29, right=0.88)
 
     ax.axvline(national, color=fb.MUTED, lw=0.7, ls=(0, (3, 3)), zorder=1)
-    for i, (_, r) in enumerate(g.iterrows()):
-        ax.plot([r.lo, r.hi], [i, i], color=fb.FAINT, lw=3.0, zorder=2,
+    for i, r in g.iterrows():
+        ax.plot([r.q1, r.q3], [i, i], color=fb.FAINT, lw=3.0, zorder=2,
                 solid_capstyle="round")
         ax.plot([r["median"]], [i], "o", color=fb.HUE, ms=4.0, zorder=3,
                 markeredgecolor="white", markeredgewidth=0.7)
-    xmax = float(g["hi"].max()) + 0.06
-    for i, (_, r) in enumerate(g.iterrows()):
-        ax.text(xmax + 0.01, i, f"${r['median']:.2f}", va="center",
+    xmax = float(g["q3"].max()) + 0.015
+    for i, r in g.iterrows():
+        ax.text(xmax + 0.008, i, f"${r['median']:.2f}", va="center",
                 ha="left", fontsize=fb.PT_ANNOT, color=fb.INK)
 
-    # "San Francisco Bay Area" runs off the left edge at column width. The
-    # geometry gate caught it; this is the fix rather than a wider margin,
-    # which would squeeze the plotting area for one label's sake.
-    short = {"San Francisco Bay Area": "SF Bay Area"}
+    # The anchor city only. Full CBSA titles run to 44 characters and would
+    # take a third of the column; the rule is in costmetros.short().
     ax.set_yticks(range(len(g)))
-    ax.set_yticklabels([short.get(m, m) for m in g.index],
+    ax.set_yticklabels([cm.short(m) for m in g["metro"]],
                        fontsize=fb.PT_TICK, color=fb.INK)
-    ax.set_xlim(0.85, xmax)
+    ax.set_xlim(float(g["q1"].min()) - 0.02, xmax)
     ax.set_ylim(-0.8, len(g) - 0.2)
-    ax.set_xlabel("USD per parcel, 2023 Q4", fontsize=fb.PT_LABEL,
-                  color=fb.MUTED, labelpad=2)
+    ax.invert_yaxis()
+    ax.set_xlabel(f"USD per parcel, {cm.period_label()}",
+                  fontsize=fb.PT_LABEL, color=fb.MUTED, labelpad=2)
     fb.frame(ax, xgrid=True)
     p = os.path.join(OUT, "fig_cost_by_metro.png")
     fb.save(fig, p, placed_width=fb.COL_W)
-    return p, "cost_to_serve_2023q4_baseline.parquet"
+    return p, j["run_id"]
 
 
 def main() -> int:

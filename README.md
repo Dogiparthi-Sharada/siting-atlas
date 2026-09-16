@@ -4,7 +4,7 @@
      four are static and work as-is. Add the Zenodo badge once you have a DOI;
      zenodo.org mints one from a GitHub release in two clicks. -->
 
-[![CI](https://github.com/Dogipathi-Sharada/siting-atlas/actions/workflows/ci.yml/badge.svg)](https://github.com/Dogiparthi-Sharada/siting-atlas/actions/workflows/ci.yml)
+[![CI](https://github.com/Dogiparthi-Sharada/siting-atlas/actions/workflows/ci.yml/badge.svg)](https://github.com/Dogiparthi-Sharada/siting-atlas/actions/workflows/ci.yml)
 ![tests](https://img.shields.io/badge/tests-663%20passing-brightgreen)
 ![reproducible](https://img.shields.io/badge/reproducible-offline%2C%20no%20API%20keys-1f4e79)
 ![pre-registered](https://img.shields.io/badge/pre--registered-hash%20verified%20in%20CI-6f42c1)

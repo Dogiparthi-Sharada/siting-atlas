@@ -1,124 +1,186 @@
 """The repository's hero figure: what it costs to deliver one parcel.
 
 Answers the second of the project's two questions on sight, for a reader who
-will not open anything else. Everything plotted is read from
-``outputs/tables/cost_to_serve_2023q4_baseline.parquet``; nothing is typed by
+will not open anything else. Every value is read from
+``outputs/tables/cost_by_station_2023q4_baseline.parquet`` and
+``outputs/metrics/cost_by_station.json`` at build time; nothing is typed by
 hand. That constraint is not decorative -- this project previously shipped a
 figure with nine hand-entered values and a fabricated confidence band, and the
 rule since is that a figure either reads its numbers from an artefact or it
-does not get built.
+carries none.
 
-Design notes, and why the obvious chart was rejected:
+What changed, and the decision it forced
+----------------------------------------
+The cost model used to run on a p-median solve over ten metros. It now runs
+on the operator's 501 real delivery stations, which put a cost on 8,037 ZCTAs
+in 174 metros. **A 174-row dot plot is not a hero figure**, so something had
+to be dropped. The two honest forms were:
 
-* A choropleth was the first instinct and is the wrong form. Cost is a
-  property of *density*, so a geographic map mostly redraws the population
-  map, and ZCTA polygons at national scale render the dense metros -- the
-  interesting ones -- as invisible specks.
-* Min-max ranges were rejected for p10-p90. Boise's maximum is $6.42, four
-  times its own median, and plotting it compresses every other metro into a
-  smear. The outliers are real but they are single rural ZCTAs, and the
-  subtitle says which interval is drawn.
-* One series, so no legend: the title names the quantity. One hue, because
-  this is magnitude on a single measure.
+* the distribution of all 481 station medians, extremes annotated -- complete,
+  but it names no place, and the first question a reader brings to this chart
+  is "what about here?";
+* a subset of metros, named, with their spread.
+
+The subset wins for a README, and the price of winning is stated on the
+figure: the subtitle gives how many metros are drawn of 174 and what share of
+the 481 stations they carry, and the footnote gives the full-network extremes
+so the reader knows what the crop hides. ``fig_paper.py`` takes the other
+branch at IEEE column width, where names do not fit.
+
+**Which metros, and why not "the top 20".** Selection is by a threshold on
+station count, not by a rank -- see ``costmetros``. Eight metros are tied at
+five stations, so any "top 20" or "top 25" decides between them on sort order.
+``>= 5`` stations lands on a clean 25.
+
+**Spread is across stations, not ZCTAs.** The row is a metro whose weight is
+its station count, so the bar is the interquartile range of that metro's
+station medians. Min-max was rejected: single rural ZCTAs run to several
+times their own metro's median and compress everything else into a smear.
+
+* One series, so no legend: the title names the quantity.
+* One hue, because this is magnitude on a single measure.
 """
 
 from __future__ import annotations
 
-import matplotlib
+import contextlib
+import os
+import sys
 
-matplotlib.use("Agg")
-import matplotlib.pyplot as plt  # noqa: E402
-import pandas as pd  # noqa: E402
+sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 
-SRC = "outputs/tables/cost_to_serve_2023q4_baseline.parquet"
+import costmetros as cm  # noqa: E402
+import figbase as fb  # noqa: E402
+
 OUT = "docs/figures/hero_cost_per_parcel.png"
 
-INK = "#1a1a1a"
-MUTED = "#6b6b6b"
-HUE = "#1f4e79"
-FAINT = "#c8d6e3"
+WIDTH = 9.6
+HEIGHT = 7.0
 
 
-def load() -> tuple[pd.DataFrame, float, int, int]:
-    d = pd.read_parquet(SRC)
-    # Interquartile, not p10-p90. Boise's 90th percentile is $3.57 against its
-    # own median of $1.43 -- a handful of rural ZCTAs -- and drawing it forces
-    # an x-axis on which the other nine metros are an indistinguishable smear.
-    # The IQR still shows that within-metro spread exceeds the between-metro
-    # gap, which is the point of the chart.
-    g = (
-        d.groupby("metro_label")["cost_per_parcel"]
-        .agg(median="median", lo=lambda s: s.quantile(0.25),
-             hi=lambda s: s.quantile(0.75), n="count")
-        .sort_values("median")
-    )
-    return (g, float(d["cost_per_parcel"].median()), len(d),
-            d["metro_label"].nunique())
+@contextlib.contextmanager
+def _type_scale(title, sub):
+    """figbase's point sizes are set for an IEEE column; this is a README."""
+    old = (fb.PT_TITLE, fb.PT_SUB)
+    fb.PT_TITLE, fb.PT_SUB = title, sub
+    try:
+        yield
+    finally:
+        fb.PT_TITLE, fb.PT_SUB = old
 
 
-def draw(g: pd.DataFrame, national: float, n_zcta: int, n_metro: int) -> None:
-    fig, ax = plt.subplots(figsize=(9.6, 5.4), dpi=200)
-    fig.subplots_adjust(top=0.78, bottom=0.17, left=0.22, right=0.90)
-    y = range(len(g))
-    xmax = float(g["hi"].max()) + 0.10
+def load():
+    """Metro rows to draw, plus every count the figure states."""
+    _, sc = cm.report()
+    st = cm.stations()
+    metros = cm.by_metro(st)
+    sel = cm.largest(metros, cm.MIN_WIDE)
 
-    ax.axvline(national, color=MUTED, lw=1.0, ls=(0, (4, 3)), zorder=1)
+    lo = st.loc[st["cost_per_parcel_median"].idxmin()]
+    hi = st.loc[st["cost_per_parcel_median"].idxmax()]
+    facts = {
+        "national": float(st["cost_per_parcel_median"].median()),
+        "stations": len(st),
+        "metros": len(metros),
+        "shown_stations": int(sel["stations"].sum()),
+        "zctas": sc["zctas"],
+        "households": sc["median_cost_per_parcel"],
+        "share": float(sel["stations"].sum()) / len(st),
+        "cheap": (cm.short_state(lo["metro"]),
+                  float(lo["cost_per_parcel_median"])),
+        "dear": (cm.short_state(hi["metro"]),
+                 float(hi["cost_per_parcel_median"])),
+    }
+    return sel, facts, sc
 
-    for i, (_, r) in enumerate(g.iterrows()):
-        ax.plot([r.lo, r.hi], [i, i], color=FAINT, lw=6.0,
+
+def draw(sel, facts, sc):
+    fig, ax = fb.figure(WIDTH, HEIGHT)
+
+    n_hidden = facts["metros"] - len(sel)
+    with _type_scale(16.5, 10.0):
+        low = fb.titles(
+            fig,
+            "It costs about a dollar to put a parcel on a doorstep",
+            f"Median cost to deliver one parcel, by metro. The dot is the "
+            f"median of the metro's delivery stations and the bar is their\n"
+            f"interquartile range; the count beside each name is how many "
+            f"stations it has. Drawn are the {len(sel)} metros with "
+            f"{cm.MIN_WIDE} or more\ncosted stations — "
+            f"{facts['shown_stations']} of {facts['stations']} stations, "
+            f"{facts['share']:.0%} of the network, out of "
+            f"{facts['metros']} metros in all.", pad=0.026)
+    fig.subplots_adjust(top=low - 0.050, bottom=0.185, left=0.180,
+                        right=0.930)
+
+    xhi = float(sel["q3"].max()) + 0.022
+    xlo = float(sel["q1"].min()) - 0.030
+    ax.axvline(facts["national"], color=fb.MUTED, lw=1.0, ls=(0, (4, 3)),
+               zorder=1)
+
+    for i, r in sel.iterrows():
+        ax.plot([r.q1, r.q3], [i, i], color=fb.FAINT, lw=5.5,
                 solid_capstyle="round", zorder=2)
-        ax.plot([r["median"]], [i], "o", color=HUE, ms=9.0,
-                markeredgecolor="white", markeredgewidth=1.8, zorder=3)
-        # Fixed label column, so the numbers read as a column rather than
+        ax.plot([r["median"]], [i], "o", color=fb.HUE, ms=7.5,
+                markeredgecolor="white", markeredgewidth=1.6, zorder=3)
+        # A fixed label column, so the numbers read as a column rather than
         # stepping raggedly with each bar's right-hand end.
-        ax.text(xmax + 0.02, i, f"${r['median']:.2f}", color=INK,
-                fontsize=9.5, va="center", ha="left")
+        ax.text(xhi + 0.012, i, f"${r['median']:.2f}", color=fb.INK,
+                fontsize=9.0, va="center", ha="left")
 
-    ax.set_yticks(list(y))
-    ax.set_yticklabels(g.index, fontsize=10.5, color=INK)
-    ax.set_xlabel("cost to deliver one parcel   (USD, 2023 Q4)",
-                  fontsize=9.5, color=MUTED, labelpad=10)
-    ax.set_xlim(0.85, xmax)
-    ax.set_ylim(-0.7, len(g) - 0.3)
+    ax.set_yticks(range(len(sel)))
+    ax.set_yticklabels(
+        [f"{cm.short_state(m)}  ({n})"
+         for m, n in zip(sel["metro"], sel["stations"], strict=True)],
+        fontsize=9.0, color=fb.INK)
+    ax.set_xlabel(f"cost to deliver one parcel   (USD, {cm.period_label()})",
+                  fontsize=9.5, color=fb.MUTED, labelpad=9)
+    ax.set_xlim(xlo, xhi)
+    ax.set_ylim(-0.9, len(sel) - 0.25)
+    ax.invert_yaxis()
 
-    ax.annotate(f"national median  ${national:.2f}",
-                xy=(national, -0.55), xytext=(national + 0.012, -0.55),
-                color=MUTED, fontsize=8.5, va="center", ha="left")
+    ax.text(facts["national"] + 0.006, -0.62,
+            f"median of all {facts['stations']} stations  "
+            f"${facts['national']:.2f}",
+            color=fb.MUTED, fontsize=8.5, va="center", ha="left")
 
-    fig.text(0.035, 0.945,
-             "It costs about a dollar to put a parcel on a doorstep",
-             fontsize=15, color=INK, va="top", ha="left", weight="bold")
-    fig.text(0.035, 0.885,
-             f"Median and interquartile range across {n_zcta:,} ZIP code\n"
-             f"areas in {n_metro} metros. Computed from road geometry and\n"
-             f"population density, not from any Amazon disclosure.",
-             fontsize=9.0, color=MUTED, va="top", ha="left", linespacing=1.5)
-
-    ax.grid(axis="x", color="#ececec", lw=0.8, zorder=0)
-    ax.set_axisbelow(True)
-    for s in ("top", "right", "left"):
-        ax.spines[s].set_visible(False)
-    ax.spines["bottom"].set_color("#d4d4d4")
-    ax.tick_params(axis="x", colors=MUTED, labelsize=9, length=0)
+    fb.frame(ax, xgrid=True)
     ax.tick_params(axis="y", length=0)
 
-    fig.text(0.035, 0.045,
-             "Dense metros are cheapest to serve — and are exactly where a "
-             "warehouse cannot be built. Feasibility binds before economics.",
-             fontsize=8.8, color=MUTED, va="bottom", ha="left")
-
-    fig.savefig(OUT, bbox_inches="tight", facecolor="white")
-    plt.close(fig)
+    fig.text(
+        0.0, 0.006,
+        f"Costs are {cm.period_label()} baseline, computed from road "
+        f"geometry, wages and population density over {sc['zctas']:,} ZIP "
+        f"code areas, not from\nany Amazon disclosure. Across all "
+        f"{facts['stations']} stations the median runs "
+        f"\\${facts['cheap'][1]:.2f} ({facts['cheap'][0]}) to "
+        f"\\${facts['dear'][1]:.2f} ({facts['dear'][0]}); the {n_hidden} "
+        f"metros with\nfewer than {cm.MIN_WIDE} stations are not drawn. "
+        f"Dense metros are cheapest to serve — and are exactly where a "
+        f"warehouse cannot be\nbuilt. Feasibility binds before economics.",
+        fontsize=8.2, color=fb.MUTED, va="bottom", ha="left",
+        linespacing=1.6)
+    return fig
 
 
 def main() -> int:
-    g, national, n_zcta, n_metro = load()
-    draw(g, national, n_zcta, n_metro)
-    print(f"  wrote {OUT}")
-    print(f"  {n_metro} metros, {n_zcta:,} ZCTAs, "
-          f"national median ${national:.4f}")
-    print(f"  cheapest {g.index[0]} ${g['median'].iloc[0]:.3f}  "
-          f"dearest {g.index[-1]} ${g['median'].iloc[-1]:.3f}")
+    sel, facts, sc = load()
+    fig = draw(sel, facts, sc)
+    path = os.path.join(cm.ROOT, OUT)
+    problems = fb.save(fig, path, placed_width=WIDTH)
+
+    print(f"  wrote {OUT}  ({os.path.getsize(path) / 1e6:.2f} MB)")
+    print(f"  {len(sel)} metros drawn of {facts['metros']}, "
+          f"{facts['shown_stations']} of {facts['stations']} stations "
+          f"({facts['share']:.1%}), {sc['zctas']:,} ZCTAs")
+    print(f"  station median of medians ${facts['national']:.4f}; "
+          f"cheapest {facts['cheap'][0]} ${facts['cheap'][1]:.4f}, "
+          f"dearest {facts['dear'][0]} ${facts['dear'][1]:.4f}")
+    print(f"  cheapest metro {cm.short_state(sel['metro'].iloc[0])} "
+          f"${sel['median'].iloc[0]:.3f}  dearest "
+          f"{cm.short_state(sel['metro'].iloc[-1])} "
+          f"${sel['median'].iloc[-1]:.3f}")
+    print(f"  geometry gate: {problems or 'clean'}")
     return 0
 
 
