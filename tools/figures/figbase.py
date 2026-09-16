@@ -79,6 +79,48 @@ COST_TRACK = "#efdcd6"
 COST_DEEP = "#8c1d0c"
 
 
+# ----------------------------------------------- the house categorical set
+#
+# Assigned in FIXED ORDER and never cycled. A figure needing a fifth identity
+# folds it into "other", facets, or encodes it some other way -- a generated
+# hue is always worse than admitting the chart has too many series.
+#
+# Chosen as a blue/amber/teal/violet set because the first two carry the
+# largest perceptual separation available under red-green colour deficiency
+# (they differ in warmth AND in lightness, so neither channel is load-bearing
+# alone), and the second two extend that without entering the red family.
+#
+# RED IS RESERVED. It means money, everywhere, via COST_STOPS above. Nothing
+# else may take it -- a red "baseline" line beside a red cost ramp reads as a
+# cost, and the reader is not wrong to think so.
+BLUE = "#1a4f8a"     # 1st: the thing this project built
+AMBER = "#cf7a10"    # 2nd: what it is measured against
+TEAL = "#0f766e"     # 3rd
+VIOLET = "#6d5bb5"   # 4th
+
+#: Pale companions, for filled regions behind the marks above. Tinted, not
+#: grey: a neutral fill under a coloured line looks like an absence of
+#: decision, and these regions all mean something.
+BLUE_TINT = "#dde7f2"
+AMBER_TINT = "#fbeada"
+VIOLET_TINT = "#f1eefa"
+
+#: Ink for text sitting ON a tint, dark enough to keep contrast.
+AMBER_INK = "#8a5000"
+VIOLET_INK = "#544294"
+
+
+def amber_ramp():
+    """Pale-to-deep amber, for magnitude that is NOT money.
+
+    The gap between a model and its baseline is a magnitude and deserves a
+    ramp, but it is not a cost and must not borrow the cost ramp's red.
+    """
+    from matplotlib.colors import LinearSegmentedColormap
+    return LinearSegmentedColormap.from_list(
+        "amber", ["#fdf0df", "#f7d199", "#e79a2e", "#b06805"])
+
+
 def cost_cmap():
     """The shared red ramp. Built on demand to keep import side effects out."""
     from matplotlib.colors import LinearSegmentedColormap

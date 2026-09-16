@@ -194,8 +194,8 @@ def visibility_gap() -> tuple[str, str]:
 def cost_by_metro() -> tuple[str, str]:
     """A column-width cost figure for the paper.
 
-    docs/figures/fig_cost_per_parcel_by_metro.png says the same thing but is drawn
-    9.6in wide for a README, where it is read on a screen. Dropped into a
+    docs/figures/fig_cost_per_parcel_by_metro.png says the same thing but
+    is drawn 9.6in wide for a README, read on a screen. Dropped into a
     3.4in IEEE column it would be shown at 35% and its labels would reach the
     page at about 3pt. Same data, different medium, different figure.
 
