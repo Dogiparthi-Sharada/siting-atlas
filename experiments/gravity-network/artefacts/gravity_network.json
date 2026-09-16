@@ -1,0 +1,3372 @@
+{
+  "run_id": "20260915-210603-b780",
+  "written_at": "2026-09-15T21:46:53+00:00",
+  "seed": 20260914,
+  "repeats": 50,
+  "facility_arm": "combined",
+  "alphas": [
+    1.0,
+    2.0,
+    3.0
+  ],
+  "mass_modes": [
+    "count",
+    "sqft",
+    "count_sqft_subset"
+  ],
+  "baseline_arm": "proximity_published",
+  "floor_arm": "no_network",
+  "checks": {
+    "n_decisions": 483,
+    "n_alternatives": 86682,
+    "decision_sets_identical": true,
+    "warehousing_identical": true,
+    "sliced_arm_equals_rebuilt_arm": true
+  },
+  "reference_mix": {
+    "small_le25": 0.13457556935817805,
+    "mid_26_100": 0.33126293995859213,
+    "large_gt100": 0.5341614906832298
+  },
+  "terms": {
+    "placement": {
+      "non_ds_us_rows": 811,
+      "excluded_no_numeric_open_year": 243,
+      "excluded_postcode_not_a_panel_zcta": 17,
+      "excluded_either": 255,
+      "kept": 556,
+      "by_table": {
+        "01_us_fulfillment_center": 259,
+        "02_us_fresh_dc": 18,
+        "03_us_whole_foods_dc": 0,
+        "04_us_fresh_hub": 49,
+        "05_us_inbound_cross_dock": 50,
+        "06_us_sortation_center": 92,
+        "07_us_air_gateway_hub": 15,
+        "09_us_delivery_heavy_bulky": 73
+      },
+      "open_year_after_ceiling": 2
+    },
+    "dispersion": {
+      "vintage": 2030,
+      "large_metro_min_candidates": 101,
+      "large_metros": 41,
+      "candidate_zctas_in_large_metros": 8271,
+      "mean_within_metro_cv": {
+        "sortation_proximity": 1.3993342714261832,
+        "fulfilment_proximity": 1.4418365251078262,
+        "network_within_50mi": 0.5917753417876825,
+        "sortation_gravity_count_a1": 0.4426741052974012,
+        "sortation_gravity_sqft_a1": 0.42665580125319924,
+        "sortation_gravity_count_sqft_subset_a1": 0.4329251983517836,
+        "fulfilment_gravity_count_a1": 0.297508914099262,
+        "fulfilment_gravity_sqft_a1": 0.33280573696047483,
+        "fulfilment_gravity_count_sqft_subset_a1": 0.3069968238846677,
+        "sortation_gravity_count_a2": 5.491731555651391,
+        "sortation_gravity_sqft_a2": 5.306256435348307,
+        "sortation_gravity_count_sqft_subset_a2": 5.299939690591245,
+        "fulfilment_gravity_count_a2": 4.3630241586287015,
+        "fulfilment_gravity_sqft_a2": 4.842549362134161,
+        "fulfilment_gravity_count_sqft_subset_a2": 4.378241601755357,
+        "sortation_gravity_count_a3": 8.5045920260533,
+        "sortation_gravity_sqft_a3": 8.291959164867045,
+        "sortation_gravity_count_sqft_subset_a3": 8.228208816918876,
+        "fulfilment_gravity_count_a3": 6.8194098753497725,
+        "fulfilment_gravity_sqft_a3": 7.737092721816818,
+        "fulfilment_gravity_count_sqft_subset_a3": 6.823160123977311
+      }
+    },
+    "placeable_facilities": 556,
+    "square_feet_stated": 435,
+    "square_feet_stated_share": 0.7823741007194245,
+    "sqft_scale_divisor": 1000000.0,
+    "by_type": {
+      "sortation": {
+        "placeable": 92,
+        "square_feet_stated": 80,
+        "median_square_feet": 314350.0
+      },
+      "fulfilment": {
+        "placeable": 259,
+        "square_feet_stated": 233,
+        "median_square_feet": 700000.0
+      }
+    },
+    "mean_by_vintage": {
+      "sortation_gravity_count_a1": {
+        "2017": 0.049957732386056615,
+        "2020": 0.07821200879016908,
+        "2030": 0.151637059344087
+      },
+      "sortation_gravity_sqft_a1": {
+        "2017": 0.014973115916778341,
+        "2020": 0.02514763068473914,
+        "2030": 0.05235784271702643
+      },
+      "sortation_gravity_count_sqft_subset_a1": {
+        "2017": 0.04296135419343078,
+        "2020": 0.07121563063485645,
+        "2030": 0.1334931585655163
+      },
+      "fulfilment_gravity_count_a1": {
+        "2017": 0.12039921636699953,
+        "2020": 0.2274819031077423,
+        "2030": 0.42686152490274687
+      },
+      "fulfilment_gravity_sqft_a1": {
+        "2017": 0.11596859322495931,
+        "2020": 0.18578036527521805,
+        "2030": 0.31777259517940754
+      },
+      "fulfilment_gravity_count_sqft_subset_a1": {
+        "2017": 0.10405630774825934,
+        "2020": 0.2018536814201801,
+        "2030": 0.38694354598050507
+      },
+      "sortation_gravity_count_a2": {
+        "2017": 0.0018873786343572168,
+        "2020": 0.0028692476437109948,
+        "2030": 0.0056903464119107475
+      },
+      "sortation_gravity_sqft_a2": {
+        "2017": 0.000548554540472386,
+        "2020": 0.0009063210925440665,
+        "2030": 0.0019073649979836297
+      },
+      "sortation_gravity_count_sqft_subset_a2": {
+        "2017": 0.0016106384849591691,
+        "2020": 0.0025925074737878934,
+        "2030": 0.0049500293794869695
+      },
+      "fulfilment_gravity_count_a2": {
+        "2017": 0.004303197410183094,
+        "2020": 0.008358649153830174,
+        "2030": 0.01637622792130853
+      },
+      "fulfilment_gravity_sqft_a2": {
+        "2017": 0.004220892677449804,
+        "2020": 0.006854032057323424,
+        "2030": 0.011685318127550305
+      },
+      "fulfilment_gravity_count_sqft_subset_a2": {
+        "2017": 0.0036719739503146137,
+        "2020": 0.007381617635403843,
+        "2030": 0.014832180733954857
+      },
+      "sortation_gravity_count_a3": {
+        "2017": 0.001224571969918063,
+        "2020": 0.0018514712383455403,
+        "2030": 0.0038455955859385115
+      },
+      "sortation_gravity_sqft_a3": {
+        "2017": 0.00036355593009233404,
+        "2020": 0.0005971852658918944,
+        "2030": 0.0013048924019401064
+      },
+      "sortation_gravity_count_sqft_subset_a3": {
+        "2017": 0.001053836517102866,
+        "2020": 0.0016807357959987012,
+        "2030": 0.0033434522848641165
+      },
+      "fulfilment_gravity_count_a3": {
+        "2017": 0.0027761128679632116,
+        "2020": 0.005563960044610195,
+        "2030": 0.010822036868162244
+      },
+      "fulfilment_gravity_sqft_a3": {
+        "2017": 0.002612408737879446,
+        "2020": 0.004444803543058643,
+        "2030": 0.007769907037695942
+      },
+      "fulfilment_gravity_count_sqft_subset_a3": {
+        "2017": 0.002356673619370308,
+        "2020": 0.0048971563873486425,
+        "2030": 0.009740190628203105
+      }
+    },
+    "vintages": 14,
+    "candidate_zctas": 25022
+  },
+  "spread_is_not_a_standard_error": "Every [2.5, 97.5] bracket in this file is a PERCENTILE OVER THE RE-SPLITS recorded in the `repeats` field, all of them drawn from the same fixed set of decisions. It is NOT a standard error and not an estimate of one: the re-splits are not independent draws, so the spread understates sampling variability by an amount nothing here measures, and each re-split fit uses 60% of the decisions, so it is not an interval on the same estimator as a full-sample point estimate would be. It is reported because it is the quantity the published proximity claim was made on, so the comparison against that claim is like-for-like. At a repeat count below about 40 the 2.5th percentile is effectively the minimum of the draws and the bracket should be read as a range, not as a quantile.",
+  "aggregation_invariance_cost": "A gravity term is NOT EXTENSIVE: merging two ZCTAs does not add their attractions, so the zone-merger invariance MODEL_SPEC.md \u00a71 buys from Train \u00a73.4 Example 2 -- the entire justification for the ln(beta'a) form -- does not hold for any arm in this file except no_network. This is the same cost the existing proximities already incur and accessibility.py switched itself off over. Gravity adds one wrinkle: its level grows as the network grows, and in a share model P_j = beta'a_j / sum_k beta'a_k an additive shift common to a choice set does not cancel, it flattens the distribution towards uniform. See terms.mean_by_vintage for the size of that drift.",
+  "best_gravity": {
+    "rule": "Among the gravity arms whose BOTH columns are INTERIOR by the percentile rule, the highest top-10 lift in the LARGE stratum (>100 candidate ZCTAs) -- the stratum with the most decisions, the least structural cap on lift, and the only one where a siting decision is genuinely contested. If no gravity arm has both columns interior, that is itself the finding and the highest large-stratum lift is reported with the boundary flag attached.",
+    "any_gravity_arm_fully_interior": true,
+    "arm": "gravity_count_a3",
+    "both_columns_interior": true,
+    "large_stratum_top10_lift": 6.21868854728493,
+    "ranking": [
+      {
+        "arm": "gravity_sqft_a1",
+        "fully_interior": false,
+        "large_lift": 6.258475422187583
+      },
+      {
+        "arm": "gravity_count_a1",
+        "fully_interior": false,
+        "large_lift": 6.254496734697319
+      },
+      {
+        "arm": "gravity_count_sqft_subset_a1",
+        "fully_interior": false,
+        "large_lift": 6.250518047207053
+      },
+      {
+        "arm": "gravity_count_a3",
+        "fully_interior": true,
+        "large_lift": 6.21868854728493
+      },
+      {
+        "arm": "gravity_count_a2",
+        "fully_interior": true,
+        "large_lift": 6.18288035987254
+      },
+      {
+        "arm": "gravity_sqft_a2",
+        "fully_interior": false,
+        "large_lift": 6.159008234930948
+      },
+      {
+        "arm": "gravity_sqft_a3",
+        "fully_interior": false,
+        "large_lift": 6.151050859950416
+      },
+      {
+        "arm": "gravity_count_sqft_subset_a3",
+        "fully_interior": false,
+        "large_lift": 6.10330661006723
+      },
+      {
+        "arm": "gravity_count_sqft_subset_a2",
+        "fully_interior": false,
+        "large_lift": 6.095349235086699
+      }
+    ]
+  },
+  "boundary_census": {
+    "proximity_published": {
+      "columns": {
+        "land_area_sqmi": {
+          "resplits": 50,
+          "resplits_at_boundary": 50,
+          "interior_in_all_resplits": false,
+          "min_beta": 7.115260548107467e-36,
+          "max_beta": 3.0233085602579256e-15,
+          "p025": 5.911918171688621e-25,
+          "p975": 2.0944834278916227e-15
+        },
+        "establishments": {
+          "resplits": 50,
+          "resplits_at_boundary": 2,
+          "interior_in_all_resplits": false,
+          "min_beta": 3.19302631773371e-14,
+          "max_beta": 1.1678501361210594,
+          "p025": 0.000837623775985853,
+          "p975": 0.9411026772469382
+        },
+        "warehousing_establishments": {
+          "resplits": 50,
+          "resplits_at_boundary": 0,
+          "interior_in_all_resplits": true,
+          "min_beta": 0.9851861923160646,
+          "max_beta": 2.0988867827212396,
+          "p025": 1.1341842971293756,
+          "p975": 2.047386900195846
+        },
+        "sortation_proximity": {
+          "resplits": 50,
+          "resplits_at_boundary": 4,
+          "interior_in_all_resplits": false,
+          "min_beta": 1.601665482135257e-21,
+          "max_beta": 0.3332141841613388,
+          "p025": 2.6150651038159535e-15,
+          "p975": 0.2102436594468058
+        },
+        "fulfilment_proximity": {
+          "resplits": 50,
+          "resplits_at_boundary": 0,
+          "interior_in_all_resplits": true,
+          "min_beta": 0.03967987809071187,
+          "max_beta": 0.5552121546553559,
+          "p025": 0.058530168895492826,
+          "p975": 0.32625300503351495
+        },
+        "network_within_50mi": {
+          "resplits": 50,
+          "resplits_at_boundary": 42,
+          "interior_in_all_resplits": false,
+          "min_beta": 1.5841455933533398e-21,
+          "max_beta": 0.06697784325697409,
+          "p025": 3.00221681450454e-18,
+          "p975": 0.040117106248653465
+        }
+      },
+      "reproduces_harness_percentiles": true
+    },
+    "proximity_only": {
+      "columns": {
+        "land_area_sqmi": {
+          "resplits": 50,
+          "resplits_at_boundary": 50,
+          "interior_in_all_resplits": false,
+          "min_beta": 4.035750997019869e-26,
+          "max_beta": 2.3309624666905947e-15,
+          "p025": 1.879328217663329e-21,
+          "p975": 2.1985380166737806e-15
+        },
+        "establishments": {
+          "resplits": 50,
+          "resplits_at_boundary": 2,
+          "interior_in_all_resplits": false,
+          "min_beta": 7.549161350534219e-16,
+          "max_beta": 1.1678498849557606,
+          "p025": 0.0008376397459518154,
+          "p975": 0.9411030307058019
+        },
+        "warehousing_establishments": {
+          "resplits": 50,
+          "resplits_at_boundary": 0,
+          "interior_in_all_resplits": true,
+          "min_beta": 0.9773380018405674,
+          "max_beta": 2.0898541370379493,
+          "p025": 1.134184414905542,
+          "p975": 2.047387278020598
+        },
+        "sortation_proximity": {
+          "resplits": 50,
+          "resplits_at_boundary": 4,
+          "interior_in_all_resplits": false,
+          "min_beta": 6.025898256327228e-17,
+          "max_beta": 0.3332143101659047,
+          "p025": 7.988607717531354e-15,
+          "p975": 0.21100239989244382
+        },
+        "fulfilment_proximity": {
+          "resplits": 50,
+          "resplits_at_boundary": 0,
+          "interior_in_all_resplits": true,
+          "min_beta": 0.046219594171884544,
+          "max_beta": 0.5552123153145292,
+          "p025": 0.05909082976324978,
+          "p975": 0.32634626426394403
+        }
+      },
+      "reproduces_harness_percentiles": true
+    },
+    "gravity_count_a3": {
+      "columns": {
+        "land_area_sqmi": {
+          "resplits": 50,
+          "resplits_at_boundary": 50,
+          "interior_in_all_resplits": false,
+          "min_beta": 3.2415521474830323e-16,
+          "max_beta": 2.141278109799324e-15,
+          "p025": 3.619021727586968e-16,
+          "p975": 2.094005382470578e-15
+        },
+        "establishments": {
+          "resplits": 50,
+          "resplits_at_boundary": 0,
+          "interior_in_all_resplits": true,
+          "min_beta": 0.007096679136712223,
+          "max_beta": 0.9386013970526796,
+          "p025": 0.02779665511874779,
+          "p975": 0.7517752748989978
+        },
+        "warehousing_establishments": {
+          "resplits": 50,
+          "resplits_at_boundary": 0,
+          "interior_in_all_resplits": true,
+          "min_beta": 0.8640524427944021,
+          "max_beta": 1.5985390884835706,
+          "p025": 0.8715655047831792,
+          "p975": 1.4025158346369087
+        },
+        "sortation_gravity_count_a3": {
+          "resplits": 50,
+          "resplits_at_boundary": 0,
+          "interior_in_all_resplits": true,
+          "min_beta": 0.0035308179128865015,
+          "max_beta": 0.11043339719366789,
+          "p025": 0.011100662182800813,
+          "p975": 0.08942769368886663
+        },
+        "fulfilment_gravity_count_a3": {
+          "resplits": 50,
+          "resplits_at_boundary": 0,
+          "interior_in_all_resplits": true,
+          "min_beta": 0.029365779142278038,
+          "max_beta": 0.20901941068834864,
+          "p025": 0.051295020057283924,
+          "p975": 0.18109905131841897
+        }
+      },
+      "reproduces_harness_percentiles": true
+    },
+    "gravity_best_plus_proximity": {
+      "columns": {
+        "land_area_sqmi": {
+          "resplits": 50,
+          "resplits_at_boundary": 50,
+          "interior_in_all_resplits": false,
+          "min_beta": 8.486199460787891e-90,
+          "max_beta": 3.235886772696756e-15,
+          "p025": 4.048396047773781e-30,
+          "p975": 2.5715538555644353e-15
+        },
+        "establishments": {
+          "resplits": 50,
+          "resplits_at_boundary": 0,
+          "interior_in_all_resplits": true,
+          "min_beta": 0.006038927833110592,
+          "max_beta": 1.0087151558303384,
+          "p025": 0.01719469767620831,
+          "p975": 0.8218435639318297
+        },
+        "warehousing_establishments": {
+          "resplits": 50,
+          "resplits_at_boundary": 0,
+          "interior_in_all_resplits": true,
+          "min_beta": 0.8826660701895318,
+          "max_beta": 1.7426536471903764,
+          "p025": 0.9207267979824789,
+          "p975": 1.4988977362573335
+        },
+        "sortation_gravity_count_a3": {
+          "resplits": 50,
+          "resplits_at_boundary": 0,
+          "interior_in_all_resplits": true,
+          "min_beta": 0.003530815544671244,
+          "max_beta": 0.1232934596564795,
+          "p025": 0.01107370665634759,
+          "p975": 0.0902932945752593
+        },
+        "fulfilment_gravity_count_a3": {
+          "resplits": 50,
+          "resplits_at_boundary": 0,
+          "interior_in_all_resplits": true,
+          "min_beta": 0.02826023502399293,
+          "max_beta": 0.21745014277384894,
+          "p025": 0.0513683174919606,
+          "p975": 0.18579108405914072
+        },
+        "sortation_proximity": {
+          "resplits": 50,
+          "resplits_at_boundary": 28,
+          "interior_in_all_resplits": false,
+          "min_beta": 3.613024332234644e-70,
+          "max_beta": 0.14431015532087993,
+          "p025": 1.0980134926695407e-22,
+          "p975": 0.11062179637671506
+        },
+        "fulfilment_proximity": {
+          "resplits": 50,
+          "resplits_at_boundary": 22,
+          "interior_in_all_resplits": false,
+          "min_beta": 2.1792021467022013e-30,
+          "max_beta": 0.1473641236736974,
+          "p025": 1.1083601891456456e-28,
+          "p975": 0.10727768260889348
+        }
+      },
+      "reproduces_harness_percentiles": true
+    }
+  },
+  "arms": {
+    "no_network": {
+      "covariates": [
+        "households",
+        "land_area_sqmi",
+        "establishments",
+        "warehousing_establishments"
+      ],
+      "n_decisions": 483,
+      "n_test": 193,
+      "n_alternatives": 86682,
+      "beta_mean": {
+        "land_area_sqmi": 4.025582295958208e-16,
+        "establishments": 0.29910494061188864,
+        "warehousing_establishments": 1.1912267162151375
+      },
+      "beta_p025": {
+        "land_area_sqmi": 4.316953776211866e-18,
+        "establishments": 0.022314234129774083,
+        "warehousing_establishments": 0.9558081885530566
+      },
+      "beta_p975": {
+        "land_area_sqmi": 9.625976052830206e-16,
+        "establishments": 0.7116659960337632,
+        "warehousing_establishments": 1.4901095087417995
+      },
+      "strata": {
+        "top1": {
+          "small_le25": {
+            "decisions": 65,
+            "decision_evaluations": 1266,
+            "model_rate": 0.4470774091627172,
+            "chance_rate": 0.07393003956070737,
+            "lift": 6.047303799906684,
+            "informative": true
+          },
+          "mid_26_100": {
+            "decisions": 160,
+            "decision_evaluations": 3197,
+            "model_rate": 0.21457616515483266,
+            "chance_rate": 0.022690947771941878,
+            "lift": 9.456465517062417,
+            "informative": true
+          },
+          "large_gt100": {
+            "decisions": 258,
+            "decision_evaluations": 5187,
+            "model_rate": 0.05205320994794679,
+            "chance_rate": 0.004845559419923516,
+            "lift": 10.742456223716767,
+            "informative": true
+          }
+        },
+        "top5": {
+          "small_le25": {
+            "decisions": 65,
+            "decision_evaluations": 1266,
+            "model_rate": 0.8522906793048973,
+            "chance_rate": 0.36668811249548,
+            "lift": 2.324293180666998,
+            "informative": true
+          },
+          "mid_26_100": {
+            "decisions": 160,
+            "decision_evaluations": 3197,
+            "model_rate": 0.5157960588051298,
+            "chance_rate": 0.11345473885970944,
+            "lift": 4.546271614471113,
+            "informative": true
+          },
+          "large_gt100": {
+            "decisions": 258,
+            "decision_evaluations": 5187,
+            "model_rate": 0.17813765182186234,
+            "chance_rate": 0.02422779709961758,
+            "lift": 7.352614482010588,
+            "informative": true
+          }
+        },
+        "top10": {
+          "small_le25": {
+            "decisions": 65,
+            "decision_evaluations": 1266,
+            "model_rate": 0.9676145339652449,
+            "chance_rate": 0.6643110528452189,
+            "lift": 1.4565684701782227,
+            "informative": true
+          },
+          "mid_26_100": {
+            "decisions": 160,
+            "decision_evaluations": 3197,
+            "model_rate": 0.6931498279637159,
+            "chance_rate": 0.22690947771941888,
+            "lift": 3.0547416305845925,
+            "informative": true
+          },
+          "large_gt100": {
+            "decisions": 258,
+            "decision_evaluations": 5187,
+            "model_rate": 0.3032581453634085,
+            "chance_rate": 0.04845559419923516,
+            "lift": 6.258475422187583,
+            "informative": true
+          }
+        }
+      },
+      "raw_pooled": {
+        "top1": 0.157720207253886,
+        "top5": 0.3784455958549223,
+        "top10": 0.5195854922279792,
+        "brier": 0.005036322750640323
+      },
+      "raw_pooled_sd": {
+        "top1": 0.024261155498384094,
+        "top5": 0.02785248885376186,
+        "top10": 0.027317814962402584,
+        "brier": 0.00035707061121051695
+      },
+      "standardised_top10": {
+        "model_rate": 0.5218209496598237,
+        "chance_rate": 0.1904498512907845,
+        "lift": 2.739938866442547
+      },
+      "verdicts": {
+        "land_area_sqmi": {
+          "beta_mean": 4.025582295958208e-16,
+          "p025": 4.316953776211866e-18,
+          "p975": 9.625976052830206e-16,
+          "state": "AT THE BOUNDARY",
+          "excludes_one": true
+        },
+        "establishments": {
+          "beta_mean": 0.29910494061188864,
+          "p025": 0.022314234129774083,
+          "p975": 0.7116659960337632,
+          "state": "INTERIOR",
+          "excludes_one": true
+        },
+        "warehousing_establishments": {
+          "beta_mean": 1.1912267162151375,
+          "p025": 0.9558081885530566,
+          "p975": 1.4901095087417995,
+          "state": "INTERIOR",
+          "excludes_one": false
+        }
+      },
+      "paired_vs_baseline": {
+        "top1": {
+          "higher_is_better": true,
+          "paired_mean_difference": 0.0006217616580310892,
+          "paired_sd": 0.006993937415850609,
+          "repeats_improved": 15,
+          "repeats_worsened": 15
+        },
+        "top5": {
+          "higher_is_better": true,
+          "paired_mean_difference": -0.010673575129533677,
+          "paired_sd": 0.0097867886339548,
+          "repeats_improved": 3,
+          "repeats_worsened": 39
+        },
+        "top10": {
+          "higher_is_better": true,
+          "paired_mean_difference": -0.0053886010362694334,
+          "paired_sd": 0.009928516735518703,
+          "repeats_improved": 8,
+          "repeats_worsened": 30
+        },
+        "brier": {
+          "higher_is_better": false,
+          "paired_mean_difference": 6.012219137287531e-06,
+          "paired_sd": 5.602466374136506e-06,
+          "repeats_improved": 7,
+          "repeats_worsened": 43
+        }
+      },
+      "top10_lift_vs_baseline": {
+        "small_le25": {
+          "decisions": 65,
+          "informative": true,
+          "chance_rate": 0.6643110528452189,
+          "baseline_lift": 1.4565684701782227,
+          "lift": 1.4565684701782227,
+          "lift_delta": 0.0
+        },
+        "mid_26_100": {
+          "decisions": 160,
+          "informative": true,
+          "chance_rate": 0.22690947771941888,
+          "baseline_lift": 3.1153953452712906,
+          "lift": 3.0547416305845925,
+          "lift_delta": -0.06065371468669811
+        },
+        "large_gt100": {
+          "decisions": 258,
+          "informative": true,
+          "chance_rate": 0.04845559419923516,
+          "baseline_lift": 6.2903049221097085,
+          "lift": 6.258475422187583,
+          "lift_delta": -0.03182949992212514
+        }
+      }
+    },
+    "proximity_published": {
+      "covariates": [
+        "households",
+        "land_area_sqmi",
+        "establishments",
+        "warehousing_establishments",
+        "sortation_proximity",
+        "fulfilment_proximity",
+        "network_within_50mi"
+      ],
+      "n_decisions": 483,
+      "n_test": 193,
+      "n_alternatives": 86682,
+      "beta_mean": {
+        "land_area_sqmi": 5.862296148252716e-16,
+        "establishments": 0.3440996458235172,
+        "warehousing_establishments": 1.4188612934800005,
+        "sortation_proximity": 0.10393056296705706,
+        "fulfilment_proximity": 0.18677212676424834,
+        "network_within_50mi": 0.004092526685705189
+      },
+      "beta_p025": {
+        "land_area_sqmi": 5.911918171688621e-25,
+        "establishments": 0.000837623775985853,
+        "warehousing_establishments": 1.1341842971293756,
+        "sortation_proximity": 2.6150651038159535e-15,
+        "fulfilment_proximity": 0.058530168895492826,
+        "network_within_50mi": 3.00221681450454e-18
+      },
+      "beta_p975": {
+        "land_area_sqmi": 2.0944834278916227e-15,
+        "establishments": 0.9411026772469382,
+        "warehousing_establishments": 2.047386900195846,
+        "sortation_proximity": 0.2102436594468058,
+        "fulfilment_proximity": 0.32625300503351495,
+        "network_within_50mi": 0.040117106248653465
+      },
+      "strata": {
+        "top1": {
+          "small_le25": {
+            "decisions": 65,
+            "decision_evaluations": 1266,
+            "model_rate": 0.4304897314375987,
+            "chance_rate": 0.07393003956070737,
+            "lift": 5.8229338709348815,
+            "informative": true
+          },
+          "mid_26_100": {
+            "decisions": 160,
+            "decision_evaluations": 3197,
+            "model_rate": 0.21770409759149204,
+            "chance_rate": 0.022690947771941878,
+            "lift": 9.594314868623094,
+            "informative": true
+          },
+          "large_gt100": {
+            "decisions": 258,
+            "decision_evaluations": 5187,
+            "model_rate": 0.053017158280316175,
+            "chance_rate": 0.004845559419923516,
+            "lift": 10.941390598230042,
+            "informative": true
+          }
+        },
+        "top5": {
+          "small_le25": {
+            "decisions": 65,
+            "decision_evaluations": 1266,
+            "model_rate": 0.8451816745655608,
+            "chance_rate": 0.36668811249548,
+            "lift": 2.3049061198458647,
+            "informative": true
+          },
+          "mid_26_100": {
+            "decisions": 160,
+            "decision_evaluations": 3197,
+            "model_rate": 0.5364404128870817,
+            "chance_rate": 0.11345473885970944,
+            "lift": 4.728232758531207,
+            "informative": true
+          },
+          "large_gt100": {
+            "decisions": 258,
+            "decision_evaluations": 5187,
+            "model_rate": 0.1870059764796607,
+            "chance_rate": 0.02422779709961758,
+            "lift": 7.718653731115012,
+            "informative": true
+          }
+        },
+        "top10": {
+          "small_le25": {
+            "decisions": 65,
+            "decision_evaluations": 1266,
+            "model_rate": 0.9676145339652449,
+            "chance_rate": 0.6643110528452189,
+            "lift": 1.4565684701782227,
+            "informative": true
+          },
+          "mid_26_100": {
+            "decisions": 160,
+            "decision_evaluations": 3197,
+            "model_rate": 0.7069127306850173,
+            "chance_rate": 0.22690947771941888,
+            "lift": 3.1153953452712906,
+            "informative": true
+          },
+          "large_gt100": {
+            "decisions": 258,
+            "decision_evaluations": 5187,
+            "model_rate": 0.30480046269519956,
+            "chance_rate": 0.04845559419923516,
+            "lift": 6.2903049221097085,
+            "informative": true
+          }
+        }
+      },
+      "raw_pooled": {
+        "top1": 0.15709844559585492,
+        "top5": 0.3891191709844561,
+        "top10": 0.5249740932642486,
+        "brier": 0.005030310531503036
+      },
+      "raw_pooled_sd": {
+        "top1": 0.02480340611828364,
+        "top5": 0.029649304592701303,
+        "top10": 0.0278815866575717,
+        "brier": 0.00035584332329300044
+      },
+      "standardised_top10": {
+        "model_rate": 0.5272039358027022,
+        "chance_rate": 0.1904498512907845,
+        "lift": 2.768203452140015
+      },
+      "verdicts": {
+        "land_area_sqmi": {
+          "beta_mean": 5.862296148252716e-16,
+          "p025": 5.911918171688621e-25,
+          "p975": 2.0944834278916227e-15,
+          "state": "AT THE BOUNDARY",
+          "excludes_one": true
+        },
+        "establishments": {
+          "beta_mean": 0.3440996458235172,
+          "p025": 0.000837623775985853,
+          "p975": 0.9411026772469382,
+          "state": "INTERIOR",
+          "excludes_one": true
+        },
+        "warehousing_establishments": {
+          "beta_mean": 1.4188612934800005,
+          "p025": 1.1341842971293756,
+          "p975": 2.047386900195846,
+          "state": "INTERIOR",
+          "excludes_one": true
+        },
+        "sortation_proximity": {
+          "beta_mean": 0.10393056296705706,
+          "p025": 2.6150651038159535e-15,
+          "p975": 0.2102436594468058,
+          "state": "boundary inside the interval",
+          "excludes_one": true
+        },
+        "fulfilment_proximity": {
+          "beta_mean": 0.18677212676424834,
+          "p025": 0.058530168895492826,
+          "p975": 0.32625300503351495,
+          "state": "INTERIOR",
+          "excludes_one": true
+        },
+        "network_within_50mi": {
+          "beta_mean": 0.004092526685705189,
+          "p025": 3.00221681450454e-18,
+          "p975": 0.040117106248653465,
+          "state": "boundary inside the interval",
+          "excludes_one": true
+        }
+      },
+      "paired_vs_baseline": null,
+      "top10_lift_vs_baseline": {
+        "small_le25": {
+          "decisions": 65,
+          "informative": true,
+          "chance_rate": 0.6643110528452189,
+          "baseline_lift": 1.4565684701782227,
+          "lift": 1.4565684701782227,
+          "lift_delta": 0.0
+        },
+        "mid_26_100": {
+          "decisions": 160,
+          "informative": true,
+          "chance_rate": 0.22690947771941888,
+          "baseline_lift": 3.1153953452712906,
+          "lift": 3.1153953452712906,
+          "lift_delta": 0.0
+        },
+        "large_gt100": {
+          "decisions": 258,
+          "informative": true,
+          "chance_rate": 0.04845559419923516,
+          "baseline_lift": 6.2903049221097085,
+          "lift": 6.2903049221097085,
+          "lift_delta": 0.0
+        }
+      }
+    },
+    "proximity_only": {
+      "covariates": [
+        "households",
+        "land_area_sqmi",
+        "establishments",
+        "warehousing_establishments",
+        "sortation_proximity",
+        "fulfilment_proximity"
+      ],
+      "n_decisions": 483,
+      "n_test": 193,
+      "n_alternatives": 86682,
+      "beta_mean": {
+        "land_area_sqmi": 8.867153305090507e-16,
+        "establishments": 0.34464907291092417,
+        "warehousing_establishments": 1.4176671252316198,
+        "sortation_proximity": 0.10476516624423382,
+        "fulfilment_proximity": 0.18791118767794926
+      },
+      "beta_p025": {
+        "land_area_sqmi": 1.879328217663329e-21,
+        "establishments": 0.0008376397459518154,
+        "warehousing_establishments": 1.134184414905542,
+        "sortation_proximity": 7.988607717531354e-15,
+        "fulfilment_proximity": 0.05909082976324978
+      },
+      "beta_p975": {
+        "land_area_sqmi": 2.1985380166737806e-15,
+        "establishments": 0.9411030307058019,
+        "warehousing_establishments": 2.047387278020598,
+        "sortation_proximity": 0.21100239989244382,
+        "fulfilment_proximity": 0.32634626426394403
+      },
+      "strata": {
+        "top1": {
+          "small_le25": {
+            "decisions": 65,
+            "decision_evaluations": 1266,
+            "model_rate": 0.4312796208530806,
+            "chance_rate": 0.07393003956070737,
+            "lift": 5.8336181532668725,
+            "informative": true
+          },
+          "mid_26_100": {
+            "decisions": 160,
+            "decision_evaluations": 3197,
+            "model_rate": 0.2183296840788239,
+            "chance_rate": 0.022690947771941878,
+            "lift": 9.621884738935229,
+            "informative": true
+          },
+          "large_gt100": {
+            "decisions": 258,
+            "decision_evaluations": 5187,
+            "model_rate": 0.053017158280316175,
+            "chance_rate": 0.004845559419923516,
+            "lift": 10.941390598230042,
+            "informative": true
+          }
+        },
+        "top5": {
+          "small_le25": {
+            "decisions": 65,
+            "decision_evaluations": 1266,
+            "model_rate": 0.8451816745655608,
+            "chance_rate": 0.36668811249548,
+            "lift": 2.3049061198458647,
+            "informative": true
+          },
+          "mid_26_100": {
+            "decisions": 160,
+            "decision_evaluations": 3197,
+            "model_rate": 0.5367532061307476,
+            "chance_rate": 0.11345473885970944,
+            "lift": 4.73098974556242,
+            "informative": true
+          },
+          "large_gt100": {
+            "decisions": 258,
+            "decision_evaluations": 5187,
+            "model_rate": 0.1870059764796607,
+            "chance_rate": 0.02422779709961758,
+            "lift": 7.718653731115012,
+            "informative": true
+          }
+        },
+        "top10": {
+          "small_le25": {
+            "decisions": 65,
+            "decision_evaluations": 1266,
+            "model_rate": 0.9676145339652449,
+            "chance_rate": 0.6643110528452189,
+            "lift": 1.4565684701782227,
+            "informative": true
+          },
+          "mid_26_100": {
+            "decisions": 160,
+            "decision_evaluations": 3197,
+            "model_rate": 0.7069127306850173,
+            "chance_rate": 0.22690947771941888,
+            "lift": 3.1153953452712906,
+            "informative": true
+          },
+          "large_gt100": {
+            "decisions": 258,
+            "decision_evaluations": 5187,
+            "model_rate": 0.3044148833622518,
+            "chance_rate": 0.04845559419923516,
+            "lift": 6.282347547129177,
+            "informative": true
+          }
+        }
+      },
+      "raw_pooled": {
+        "top1": 0.15740932642487046,
+        "top5": 0.3892227979274612,
+        "top10": 0.5247668393782383,
+        "brier": 0.00503025695376836
+      },
+      "raw_pooled_sd": {
+        "top1": 0.025272776177047665,
+        "top5": 0.029730316041521064,
+        "top10": 0.027716031621495496,
+        "brier": 0.0003558683930489962
+      },
+      "standardised_top10": {
+        "model_rate": 0.5269979741714381,
+        "chance_rate": 0.1904498512907845,
+        "lift": 2.7671220040324522
+      },
+      "verdicts": {
+        "land_area_sqmi": {
+          "beta_mean": 8.867153305090507e-16,
+          "p025": 1.879328217663329e-21,
+          "p975": 2.1985380166737806e-15,
+          "state": "AT THE BOUNDARY",
+          "excludes_one": true
+        },
+        "establishments": {
+          "beta_mean": 0.34464907291092417,
+          "p025": 0.0008376397459518154,
+          "p975": 0.9411030307058019,
+          "state": "INTERIOR",
+          "excludes_one": true
+        },
+        "warehousing_establishments": {
+          "beta_mean": 1.4176671252316198,
+          "p025": 1.134184414905542,
+          "p975": 2.047387278020598,
+          "state": "INTERIOR",
+          "excludes_one": true
+        },
+        "sortation_proximity": {
+          "beta_mean": 0.10476516624423382,
+          "p025": 7.988607717531354e-15,
+          "p975": 0.21100239989244382,
+          "state": "boundary inside the interval",
+          "excludes_one": true
+        },
+        "fulfilment_proximity": {
+          "beta_mean": 0.18791118767794926,
+          "p025": 0.05909082976324978,
+          "p975": 0.32634626426394403,
+          "state": "INTERIOR",
+          "excludes_one": true
+        }
+      },
+      "paired_vs_baseline": {
+        "top1": {
+          "higher_is_better": true,
+          "paired_mean_difference": 0.000310880829015544,
+          "paired_sd": 0.0016250553960103725,
+          "repeats_improved": 2,
+          "repeats_worsened": 0
+        },
+        "top5": {
+          "higher_is_better": true,
+          "paired_mean_difference": 0.0001036269430051806,
+          "paired_sd": 0.0007327531411259507,
+          "repeats_improved": 1,
+          "repeats_worsened": 0
+        },
+        "top10": {
+          "higher_is_better": true,
+          "paired_mean_difference": -0.00020725388601035898,
+          "paired_sd": 0.0010256407446743723,
+          "repeats_improved": 0,
+          "repeats_worsened": 2
+        },
+        "brier": {
+          "higher_is_better": false,
+          "paired_mean_difference": -5.3577734676086425e-08,
+          "paired_sd": 2.593532756198536e-07,
+          "repeats_improved": 22,
+          "repeats_worsened": 28
+        }
+      },
+      "top10_lift_vs_baseline": {
+        "small_le25": {
+          "decisions": 65,
+          "informative": true,
+          "chance_rate": 0.6643110528452189,
+          "baseline_lift": 1.4565684701782227,
+          "lift": 1.4565684701782227,
+          "lift_delta": 0.0
+        },
+        "mid_26_100": {
+          "decisions": 160,
+          "informative": true,
+          "chance_rate": 0.22690947771941888,
+          "baseline_lift": 3.1153953452712906,
+          "lift": 3.1153953452712906,
+          "lift_delta": 0.0
+        },
+        "large_gt100": {
+          "decisions": 258,
+          "informative": true,
+          "chance_rate": 0.04845559419923516,
+          "baseline_lift": 6.2903049221097085,
+          "lift": 6.282347547129177,
+          "lift_delta": -0.007957374980531284
+        }
+      }
+    },
+    "gravity_count_a1": {
+      "covariates": [
+        "households",
+        "land_area_sqmi",
+        "establishments",
+        "warehousing_establishments",
+        "sortation_gravity_count_a1",
+        "fulfilment_gravity_count_a1"
+      ],
+      "n_decisions": 483,
+      "n_test": 193,
+      "n_alternatives": 86682,
+      "beta_mean": {
+        "land_area_sqmi": 2.76574695920327e-16,
+        "establishments": 0.2985641632812308,
+        "warehousing_establishments": 1.2062111143004912,
+        "sortation_gravity_count_a1": 0.010694006455453854,
+        "fulfilment_gravity_count_a1": 0.00032936241382844914
+      },
+      "beta_p025": {
+        "land_area_sqmi": 9.88895030137273e-63,
+        "establishments": 0.014066734745323758,
+        "warehousing_establishments": 0.958404729009712,
+        "sortation_gravity_count_a1": 4.357422841277696e-24,
+        "fulfilment_gravity_count_a1": 1.3657459810649857e-28
+      },
+      "beta_p975": {
+        "land_area_sqmi": 1.2240531522426095e-15,
+        "establishments": 0.7126212488351308,
+        "warehousing_establishments": 1.500400843619051,
+        "sortation_gravity_count_a1": 0.04786552537048957,
+        "fulfilment_gravity_count_a1": 0.00047981521242671443
+      },
+      "strata": {
+        "top1": {
+          "small_le25": {
+            "decisions": 65,
+            "decision_evaluations": 1266,
+            "model_rate": 0.4462875197472354,
+            "chance_rate": 0.07393003956070737,
+            "lift": 6.036619517574694,
+            "informative": true
+          },
+          "mid_26_100": {
+            "decisions": 160,
+            "decision_evaluations": 3197,
+            "model_rate": 0.2148889583984986,
+            "chance_rate": 0.022690947771941878,
+            "lift": 9.470250452218485,
+            "informative": true
+          },
+          "large_gt100": {
+            "decisions": 258,
+            "decision_evaluations": 5187,
+            "model_rate": 0.05205320994794679,
+            "chance_rate": 0.004845559419923516,
+            "lift": 10.742456223716767,
+            "informative": true
+          }
+        },
+        "top5": {
+          "small_le25": {
+            "decisions": 65,
+            "decision_evaluations": 1266,
+            "model_rate": 0.8507109004739336,
+            "chance_rate": 0.36668811249548,
+            "lift": 2.3199849449289687,
+            "informative": true
+          },
+          "mid_26_100": {
+            "decisions": 160,
+            "decision_evaluations": 3197,
+            "model_rate": 0.5157960588051298,
+            "chance_rate": 0.11345473885970944,
+            "lift": 4.546271614471113,
+            "informative": true
+          },
+          "large_gt100": {
+            "decisions": 258,
+            "decision_evaluations": 5187,
+            "model_rate": 0.17794486215538846,
+            "chance_rate": 0.02422779709961758,
+            "lift": 7.344657107030057,
+            "informative": true
+          }
+        },
+        "top10": {
+          "small_le25": {
+            "decisions": 65,
+            "decision_evaluations": 1266,
+            "model_rate": 0.9684044233807267,
+            "chance_rate": 0.6643110528452189,
+            "lift": 1.4577575056640826,
+            "informative": true
+          },
+          "mid_26_100": {
+            "decisions": 160,
+            "decision_evaluations": 3197,
+            "model_rate": 0.6947137941820457,
+            "chance_rate": 0.22690947771941888,
+            "lift": 3.0616340981626267,
+            "informative": true
+          },
+          "large_gt100": {
+            "decisions": 258,
+            "decision_evaluations": 5187,
+            "model_rate": 0.30306535569693466,
+            "chance_rate": 0.04845559419923516,
+            "lift": 6.254496734697319,
+            "informative": true
+          }
+        }
+      },
+      "raw_pooled": {
+        "top1": 0.157720207253886,
+        "top5": 0.3781347150259068,
+        "top10": 0.5201036269430052,
+        "brier": 0.005037076879277604
+      },
+      "raw_pooled_sd": {
+        "top1": 0.024079815371121603,
+        "top5": 0.028039326326419794,
+        "top10": 0.027414913778672674,
+        "brier": 0.00035695499415718023
+      },
+      "standardised_top10": {
+        "model_rate": 0.52234235270949,
+        "chance_rate": 0.1904498512907845,
+        "lift": 2.742676611030597
+      },
+      "verdicts": {
+        "land_area_sqmi": {
+          "beta_mean": 2.76574695920327e-16,
+          "p025": 9.88895030137273e-63,
+          "p975": 1.2240531522426095e-15,
+          "state": "AT THE BOUNDARY",
+          "excludes_one": true
+        },
+        "establishments": {
+          "beta_mean": 0.2985641632812308,
+          "p025": 0.014066734745323758,
+          "p975": 0.7126212488351308,
+          "state": "INTERIOR",
+          "excludes_one": true
+        },
+        "warehousing_establishments": {
+          "beta_mean": 1.2062111143004912,
+          "p025": 0.958404729009712,
+          "p975": 1.500400843619051,
+          "state": "INTERIOR",
+          "excludes_one": false
+        },
+        "sortation_gravity_count_a1": {
+          "beta_mean": 0.010694006455453854,
+          "p025": 4.357422841277696e-24,
+          "p975": 0.04786552537048957,
+          "state": "boundary inside the interval",
+          "excludes_one": true
+        },
+        "fulfilment_gravity_count_a1": {
+          "beta_mean": 0.00032936241382844914,
+          "p025": 1.3657459810649857e-28,
+          "p975": 0.00047981521242671443,
+          "state": "boundary inside the interval",
+          "excludes_one": true
+        }
+      },
+      "paired_vs_baseline": {
+        "top1": {
+          "higher_is_better": true,
+          "paired_mean_difference": 0.0006217616580310889,
+          "paired_sd": 0.00699393741585061,
+          "repeats_improved": 15,
+          "repeats_worsened": 15
+        },
+        "top5": {
+          "higher_is_better": true,
+          "paired_mean_difference": -0.010984455958549218,
+          "paired_sd": 0.009630469854798276,
+          "repeats_improved": 2,
+          "repeats_worsened": 39
+        },
+        "top10": {
+          "higher_is_better": true,
+          "paired_mean_difference": -0.004870466321243525,
+          "paired_sd": 0.009617376075996826,
+          "repeats_improved": 9,
+          "repeats_worsened": 30
+        },
+        "brier": {
+          "higher_is_better": false,
+          "paired_mean_difference": 6.76634777456794e-06,
+          "paired_sd": 5.534308428055399e-06,
+          "repeats_improved": 6,
+          "repeats_worsened": 44
+        }
+      },
+      "top10_lift_vs_baseline": {
+        "small_le25": {
+          "decisions": 65,
+          "informative": true,
+          "chance_rate": 0.6643110528452189,
+          "baseline_lift": 1.4565684701782227,
+          "lift": 1.4577575056640826,
+          "lift_delta": 0.0011890354858599128
+        },
+        "mid_26_100": {
+          "decisions": 160,
+          "informative": true,
+          "chance_rate": 0.22690947771941888,
+          "baseline_lift": 3.1153953452712906,
+          "lift": 3.0616340981626267,
+          "lift_delta": -0.05376124710866392
+        },
+        "large_gt100": {
+          "decisions": 258,
+          "informative": true,
+          "chance_rate": 0.04845559419923516,
+          "baseline_lift": 6.2903049221097085,
+          "lift": 6.254496734697319,
+          "lift_delta": -0.03580818741238989
+        }
+      }
+    },
+    "gravity_sqft_a1": {
+      "covariates": [
+        "households",
+        "land_area_sqmi",
+        "establishments",
+        "warehousing_establishments",
+        "sortation_gravity_sqft_a1",
+        "fulfilment_gravity_sqft_a1"
+      ],
+      "n_decisions": 483,
+      "n_test": 193,
+      "n_alternatives": 86682,
+      "beta_mean": {
+        "land_area_sqmi": 2.598712188676594e-16,
+        "establishments": 0.2990001514838408,
+        "warehousing_establishments": 1.1932297114042845,
+        "sortation_gravity_sqft_a1": 5.828146173583797e-15,
+        "fulfilment_gravity_sqft_a1": 0.0016615465270922746
+      },
+      "beta_p025": {
+        "land_area_sqmi": 5.516502025652963e-25,
+        "establishments": 0.022314274176948305,
+        "warehousing_establishments": 0.9558082588129004,
+        "sortation_gravity_sqft_a1": 1.5755251122682205e-40,
+        "fulfilment_gravity_sqft_a1": 3.067571710968654e-26
+      },
+      "beta_p975": {
+        "land_area_sqmi": 1.1678600932576685e-15,
+        "establishments": 0.7116658241696826,
+        "warehousing_establishments": 1.4901095590736244,
+        "sortation_gravity_sqft_a1": 4.610369959139862e-14,
+        "fulfilment_gravity_sqft_a1": 0.014614629618423951
+      },
+      "strata": {
+        "top1": {
+          "small_le25": {
+            "decisions": 65,
+            "decision_evaluations": 1266,
+            "model_rate": 0.4470774091627172,
+            "chance_rate": 0.07393003956070737,
+            "lift": 6.047303799906684,
+            "informative": true
+          },
+          "mid_26_100": {
+            "decisions": 160,
+            "decision_evaluations": 3197,
+            "model_rate": 0.21457616515483266,
+            "chance_rate": 0.022690947771941878,
+            "lift": 9.456465517062417,
+            "informative": true
+          },
+          "large_gt100": {
+            "decisions": 258,
+            "decision_evaluations": 5187,
+            "model_rate": 0.05205320994794679,
+            "chance_rate": 0.004845559419923516,
+            "lift": 10.742456223716767,
+            "informative": true
+          }
+        },
+        "top5": {
+          "small_le25": {
+            "decisions": 65,
+            "decision_evaluations": 1266,
+            "model_rate": 0.8515007898894155,
+            "chance_rate": 0.36668811249548,
+            "lift": 2.3221390627979837,
+            "informative": true
+          },
+          "mid_26_100": {
+            "decisions": 160,
+            "decision_evaluations": 3197,
+            "model_rate": 0.5157960588051298,
+            "chance_rate": 0.11345473885970944,
+            "lift": 4.546271614471113,
+            "informative": true
+          },
+          "large_gt100": {
+            "decisions": 258,
+            "decision_evaluations": 5187,
+            "model_rate": 0.17794486215538846,
+            "chance_rate": 0.02422779709961758,
+            "lift": 7.344657107030057,
+            "informative": true
+          }
+        },
+        "top10": {
+          "small_le25": {
+            "decisions": 65,
+            "decision_evaluations": 1266,
+            "model_rate": 0.9676145339652449,
+            "chance_rate": 0.6643110528452189,
+            "lift": 1.4565684701782227,
+            "informative": true
+          },
+          "mid_26_100": {
+            "decisions": 160,
+            "decision_evaluations": 3197,
+            "model_rate": 0.6931498279637159,
+            "chance_rate": 0.22690947771941888,
+            "lift": 3.0547416305845925,
+            "informative": true
+          },
+          "large_gt100": {
+            "decisions": 258,
+            "decision_evaluations": 5187,
+            "model_rate": 0.3032581453634085,
+            "chance_rate": 0.04845559419923516,
+            "lift": 6.258475422187583,
+            "informative": true
+          }
+        }
+      },
+      "raw_pooled": {
+        "top1": 0.157720207253886,
+        "top5": 0.378238341968912,
+        "top10": 0.5195854922279792,
+        "brier": 0.005036494772559973
+      },
+      "raw_pooled_sd": {
+        "top1": 0.024261155498384094,
+        "top5": 0.027971049041733805,
+        "top10": 0.027317814962402584,
+        "brier": 0.0003570360205677199
+      },
+      "standardised_top10": {
+        "model_rate": 0.5218209496598237,
+        "chance_rate": 0.1904498512907845,
+        "lift": 2.739938866442547
+      },
+      "verdicts": {
+        "land_area_sqmi": {
+          "beta_mean": 2.598712188676594e-16,
+          "p025": 5.516502025652963e-25,
+          "p975": 1.1678600932576685e-15,
+          "state": "AT THE BOUNDARY",
+          "excludes_one": true
+        },
+        "establishments": {
+          "beta_mean": 0.2990001514838408,
+          "p025": 0.022314274176948305,
+          "p975": 0.7116658241696826,
+          "state": "INTERIOR",
+          "excludes_one": true
+        },
+        "warehousing_establishments": {
+          "beta_mean": 1.1932297114042845,
+          "p025": 0.9558082588129004,
+          "p975": 1.4901095590736244,
+          "state": "INTERIOR",
+          "excludes_one": false
+        },
+        "sortation_gravity_sqft_a1": {
+          "beta_mean": 5.828146173583797e-15,
+          "p025": 1.5755251122682205e-40,
+          "p975": 4.610369959139862e-14,
+          "state": "AT THE BOUNDARY",
+          "excludes_one": true
+        },
+        "fulfilment_gravity_sqft_a1": {
+          "beta_mean": 0.0016615465270922746,
+          "p025": 3.067571710968654e-26,
+          "p975": 0.014614629618423951,
+          "state": "boundary inside the interval",
+          "excludes_one": true
+        }
+      },
+      "paired_vs_baseline": {
+        "top1": {
+          "higher_is_better": true,
+          "paired_mean_difference": 0.0006217616580310892,
+          "paired_sd": 0.006993937415850609,
+          "repeats_improved": 15,
+          "repeats_worsened": 15
+        },
+        "top5": {
+          "higher_is_better": true,
+          "paired_mean_difference": -0.010880829015544036,
+          "paired_sd": 0.009777827397204222,
+          "repeats_improved": 3,
+          "repeats_worsened": 39
+        },
+        "top10": {
+          "higher_is_better": true,
+          "paired_mean_difference": -0.0053886010362694334,
+          "paired_sd": 0.009928516735518703,
+          "repeats_improved": 8,
+          "repeats_worsened": 30
+        },
+        "brier": {
+          "higher_is_better": false,
+          "paired_mean_difference": 6.184241056936008e-06,
+          "paired_sd": 5.575569557529629e-06,
+          "repeats_improved": 7,
+          "repeats_worsened": 43
+        }
+      },
+      "top10_lift_vs_baseline": {
+        "small_le25": {
+          "decisions": 65,
+          "informative": true,
+          "chance_rate": 0.6643110528452189,
+          "baseline_lift": 1.4565684701782227,
+          "lift": 1.4565684701782227,
+          "lift_delta": 0.0
+        },
+        "mid_26_100": {
+          "decisions": 160,
+          "informative": true,
+          "chance_rate": 0.22690947771941888,
+          "baseline_lift": 3.1153953452712906,
+          "lift": 3.0547416305845925,
+          "lift_delta": -0.06065371468669811
+        },
+        "large_gt100": {
+          "decisions": 258,
+          "informative": true,
+          "chance_rate": 0.04845559419923516,
+          "baseline_lift": 6.2903049221097085,
+          "lift": 6.258475422187583,
+          "lift_delta": -0.03182949992212514
+        }
+      }
+    },
+    "gravity_count_sqft_subset_a1": {
+      "covariates": [
+        "households",
+        "land_area_sqmi",
+        "establishments",
+        "warehousing_establishments",
+        "sortation_gravity_count_sqft_subset_a1",
+        "fulfilment_gravity_count_sqft_subset_a1"
+      ],
+      "n_decisions": 483,
+      "n_test": 193,
+      "n_alternatives": 86682,
+      "beta_mean": {
+        "land_area_sqmi": 2.2512965067732907e-16,
+        "establishments": 0.30020000318703927,
+        "warehousing_establishments": 1.1980064095146827,
+        "sortation_gravity_count_sqft_subset_a1": 8.29134669519198e-15,
+        "fulfilment_gravity_count_sqft_subset_a1": 0.004432876932296033
+      },
+      "beta_p025": {
+        "land_area_sqmi": 2.6041312225404966e-31,
+        "establishments": 0.022314230455276918,
+        "warehousing_establishments": 0.9598132477491764,
+        "sortation_gravity_count_sqft_subset_a1": 5.116957759435974e-38,
+        "fulfilment_gravity_count_sqft_subset_a1": 7.192331169825364e-22
+      },
+      "beta_p975": {
+        "land_area_sqmi": 1.2915375260993559e-15,
+        "establishments": 0.7179534197303832,
+        "warehousing_establishments": 1.5002295945062818,
+        "sortation_gravity_count_sqft_subset_a1": 4.1383264499989687e-14,
+        "fulfilment_gravity_count_sqft_subset_a1": 0.036068457616921824
+      },
+      "strata": {
+        "top1": {
+          "small_le25": {
+            "decisions": 65,
+            "decision_evaluations": 1266,
+            "model_rate": 0.4470774091627172,
+            "chance_rate": 0.07393003956070737,
+            "lift": 6.047303799906684,
+            "informative": true
+          },
+          "mid_26_100": {
+            "decisions": 160,
+            "decision_evaluations": 3197,
+            "model_rate": 0.21457616515483266,
+            "chance_rate": 0.022690947771941878,
+            "lift": 9.456465517062417,
+            "informative": true
+          },
+          "large_gt100": {
+            "decisions": 258,
+            "decision_evaluations": 5187,
+            "model_rate": 0.05205320994794679,
+            "chance_rate": 0.004845559419923516,
+            "lift": 10.742456223716767,
+            "informative": true
+          }
+        },
+        "top5": {
+          "small_le25": {
+            "decisions": 65,
+            "decision_evaluations": 1266,
+            "model_rate": 0.8515007898894155,
+            "chance_rate": 0.36668811249548,
+            "lift": 2.3221390627979837,
+            "informative": true
+          },
+          "mid_26_100": {
+            "decisions": 160,
+            "decision_evaluations": 3197,
+            "model_rate": 0.5157960588051298,
+            "chance_rate": 0.11345473885970944,
+            "lift": 4.546271614471113,
+            "informative": true
+          },
+          "large_gt100": {
+            "decisions": 258,
+            "decision_evaluations": 5187,
+            "model_rate": 0.1777520724889146,
+            "chance_rate": 0.02422779709961758,
+            "lift": 7.336699732049526,
+            "informative": true
+          }
+        },
+        "top10": {
+          "small_le25": {
+            "decisions": 65,
+            "decision_evaluations": 1266,
+            "model_rate": 0.9676145339652449,
+            "chance_rate": 0.6643110528452189,
+            "lift": 1.4565684701782227,
+            "informative": true
+          },
+          "mid_26_100": {
+            "decisions": 160,
+            "decision_evaluations": 3197,
+            "model_rate": 0.6931498279637159,
+            "chance_rate": 0.22690947771941888,
+            "lift": 3.0547416305845925,
+            "informative": true
+          },
+          "large_gt100": {
+            "decisions": 258,
+            "decision_evaluations": 5187,
+            "model_rate": 0.30287256603046075,
+            "chance_rate": 0.04845559419923516,
+            "lift": 6.250518047207053,
+            "informative": true
+          }
+        }
+      },
+      "raw_pooled": {
+        "top1": 0.157720207253886,
+        "top5": 0.3781347150259068,
+        "top10": 0.5193782383419688,
+        "brier": 0.005036634763480518
+      },
+      "raw_pooled_sd": {
+        "top1": 0.024261155498384094,
+        "top5": 0.027961057596856454,
+        "top10": 0.027488160585734913,
+        "brier": 0.0003568246155939726
+      },
+      "standardised_top10": {
+        "model_rate": 0.5216149880285597,
+        "chance_rate": 0.1904498512907845,
+        "lift": 2.738857418334984
+      },
+      "verdicts": {
+        "land_area_sqmi": {
+          "beta_mean": 2.2512965067732907e-16,
+          "p025": 2.6041312225404966e-31,
+          "p975": 1.2915375260993559e-15,
+          "state": "AT THE BOUNDARY",
+          "excludes_one": true
+        },
+        "establishments": {
+          "beta_mean": 0.30020000318703927,
+          "p025": 0.022314230455276918,
+          "p975": 0.7179534197303832,
+          "state": "INTERIOR",
+          "excludes_one": true
+        },
+        "warehousing_establishments": {
+          "beta_mean": 1.1980064095146827,
+          "p025": 0.9598132477491764,
+          "p975": 1.5002295945062818,
+          "state": "INTERIOR",
+          "excludes_one": false
+        },
+        "sortation_gravity_count_sqft_subset_a1": {
+          "beta_mean": 8.29134669519198e-15,
+          "p025": 5.116957759435974e-38,
+          "p975": 4.1383264499989687e-14,
+          "state": "AT THE BOUNDARY",
+          "excludes_one": true
+        },
+        "fulfilment_gravity_count_sqft_subset_a1": {
+          "beta_mean": 0.004432876932296033,
+          "p025": 7.192331169825364e-22,
+          "p975": 0.036068457616921824,
+          "state": "boundary inside the interval",
+          "excludes_one": true
+        }
+      },
+      "paired_vs_baseline": {
+        "top1": {
+          "higher_is_better": true,
+          "paired_mean_difference": 0.0006217616580310892,
+          "paired_sd": 0.006993937415850609,
+          "repeats_improved": 15,
+          "repeats_worsened": 15
+        },
+        "top5": {
+          "higher_is_better": true,
+          "paired_mean_difference": -0.010984455958549218,
+          "paired_sd": 0.00979965605532812,
+          "repeats_improved": 3,
+          "repeats_worsened": 39
+        },
+        "top10": {
+          "higher_is_better": true,
+          "paired_mean_difference": -0.005595854922279796,
+          "paired_sd": 0.010140366418678728,
+          "repeats_improved": 8,
+          "repeats_worsened": 30
+        },
+        "brier": {
+          "higher_is_better": false,
+          "paired_mean_difference": 6.32423197748172e-06,
+          "paired_sd": 5.470778993605501e-06,
+          "repeats_improved": 6,
+          "repeats_worsened": 44
+        }
+      },
+      "top10_lift_vs_baseline": {
+        "small_le25": {
+          "decisions": 65,
+          "informative": true,
+          "chance_rate": 0.6643110528452189,
+          "baseline_lift": 1.4565684701782227,
+          "lift": 1.4565684701782227,
+          "lift_delta": 0.0
+        },
+        "mid_26_100": {
+          "decisions": 160,
+          "informative": true,
+          "chance_rate": 0.22690947771941888,
+          "baseline_lift": 3.1153953452712906,
+          "lift": 3.0547416305845925,
+          "lift_delta": -0.06065371468669811
+        },
+        "large_gt100": {
+          "decisions": 258,
+          "informative": true,
+          "chance_rate": 0.04845559419923516,
+          "baseline_lift": 6.2903049221097085,
+          "lift": 6.250518047207053,
+          "lift_delta": -0.039786874902655534
+        }
+      }
+    },
+    "gravity_count_a2": {
+      "covariates": [
+        "households",
+        "land_area_sqmi",
+        "establishments",
+        "warehousing_establishments",
+        "sortation_gravity_count_a2",
+        "fulfilment_gravity_count_a2"
+      ],
+      "n_decisions": 483,
+      "n_test": 193,
+      "n_alternatives": 86682,
+      "beta_mean": {
+        "land_area_sqmi": 1.138404475507989e-15,
+        "establishments": 0.34319821367320363,
+        "warehousing_establishments": 1.2077835283019145,
+        "sortation_gravity_count_a2": 0.08363427827753898,
+        "fulfilment_gravity_count_a2": 0.18191063966730414
+      },
+      "beta_p025": {
+        "land_area_sqmi": 3.908763376310057e-16,
+        "establishments": 0.01689629451522182,
+        "warehousing_establishments": 0.9337129393275001,
+        "sortation_gravity_count_a2": 0.019257534553084904,
+        "fulfilment_gravity_count_a2": 0.08019157755340459
+      },
+      "beta_p975": {
+        "land_area_sqmi": 2.4182695551625793e-15,
+        "establishments": 0.77724161553436,
+        "warehousing_establishments": 1.520382888532999,
+        "sortation_gravity_count_a2": 0.15392011640357128,
+        "fulfilment_gravity_count_a2": 0.3260580999054913
+      },
+      "strata": {
+        "top1": {
+          "small_le25": {
+            "decisions": 65,
+            "decision_evaluations": 1266,
+            "model_rate": 0.4391785150078989,
+            "chance_rate": 0.07393003956070737,
+            "lift": 5.940460976586778,
+            "informative": true
+          },
+          "mid_26_100": {
+            "decisions": 160,
+            "decision_evaluations": 3197,
+            "model_rate": 0.22865186111979982,
+            "chance_rate": 0.022690947771941878,
+            "lift": 10.076787599085462,
+            "informative": true
+          },
+          "large_gt100": {
+            "decisions": 258,
+            "decision_evaluations": 5187,
+            "model_rate": 0.06554848660111819,
+            "chance_rate": 0.004845559419923516,
+            "lift": 13.527537466902599,
+            "informative": true
+          }
+        },
+        "top5": {
+          "small_le25": {
+            "decisions": 65,
+            "decision_evaluations": 1266,
+            "model_rate": 0.8507109004739336,
+            "chance_rate": 0.36668811249548,
+            "lift": 2.3199849449289687,
+            "informative": true
+          },
+          "mid_26_100": {
+            "decisions": 160,
+            "decision_evaluations": 3197,
+            "model_rate": 0.5483265561463873,
+            "chance_rate": 0.11345473885970944,
+            "lift": 4.832998265717321,
+            "informative": true
+          },
+          "large_gt100": {
+            "decisions": 258,
+            "decision_evaluations": 5187,
+            "model_rate": 0.20474262579525737,
+            "chance_rate": 0.02422779709961758,
+            "lift": 8.450732229323858,
+            "informative": true
+          }
+        },
+        "top10": {
+          "small_le25": {
+            "decisions": 65,
+            "decision_evaluations": 1266,
+            "model_rate": 0.9699842022116903,
+            "chance_rate": 0.6643110528452189,
+            "lift": 1.460135576635802,
+            "informative": true
+          },
+          "mid_26_100": {
+            "decisions": 160,
+            "decision_evaluations": 3197,
+            "model_rate": 0.71285580231467,
+            "chance_rate": 0.22690947771941888,
+            "lift": 3.1415867220678195,
+            "informative": true
+          },
+          "large_gt100": {
+            "decisions": 258,
+            "decision_evaluations": 5187,
+            "model_rate": 0.29959514170040485,
+            "chance_rate": 0.04845559419923516,
+            "lift": 6.18288035987254,
+            "informative": true
+          }
+        }
+      },
+      "raw_pooled": {
+        "top1": 0.16860103626943007,
+        "top5": 0.40331606217616583,
+        "top10": 0.5244559585492228,
+        "brier": 0.005012355107849432
+      },
+      "raw_pooled_sd": {
+        "top1": 0.02359832902016069,
+        "top5": 0.0283863563326884,
+        "top10": 0.027937534219456512,
+        "brier": 0.00036018194785367906
+      },
+      "standardised_top10": {
+        "model_rate": 0.5267110726145167,
+        "chance_rate": 0.1904498512907845,
+        "lift": 2.765615562546796
+      },
+      "verdicts": {
+        "land_area_sqmi": {
+          "beta_mean": 1.138404475507989e-15,
+          "p025": 3.908763376310057e-16,
+          "p975": 2.4182695551625793e-15,
+          "state": "AT THE BOUNDARY",
+          "excludes_one": true
+        },
+        "establishments": {
+          "beta_mean": 0.34319821367320363,
+          "p025": 0.01689629451522182,
+          "p975": 0.77724161553436,
+          "state": "INTERIOR",
+          "excludes_one": true
+        },
+        "warehousing_establishments": {
+          "beta_mean": 1.2077835283019145,
+          "p025": 0.9337129393275001,
+          "p975": 1.520382888532999,
+          "state": "INTERIOR",
+          "excludes_one": false
+        },
+        "sortation_gravity_count_a2": {
+          "beta_mean": 0.08363427827753898,
+          "p025": 0.019257534553084904,
+          "p975": 0.15392011640357128,
+          "state": "INTERIOR",
+          "excludes_one": true
+        },
+        "fulfilment_gravity_count_a2": {
+          "beta_mean": 0.18191063966730414,
+          "p025": 0.08019157755340459,
+          "p975": 0.3260580999054913,
+          "state": "INTERIOR",
+          "excludes_one": true
+        }
+      },
+      "paired_vs_baseline": {
+        "top1": {
+          "higher_is_better": true,
+          "paired_mean_difference": 0.01150259067357513,
+          "paired_sd": 0.010325087731365805,
+          "repeats_improved": 41,
+          "repeats_worsened": 3
+        },
+        "top5": {
+          "higher_is_better": true,
+          "paired_mean_difference": 0.014196891191709846,
+          "paired_sd": 0.010138745386549656,
+          "repeats_improved": 45,
+          "repeats_worsened": 1
+        },
+        "top10": {
+          "higher_is_better": true,
+          "paired_mean_difference": -0.0005181347150259075,
+          "paired_sd": 0.011854639065911882,
+          "repeats_improved": 19,
+          "repeats_worsened": 22
+        },
+        "brier": {
+          "higher_is_better": false,
+          "paired_mean_difference": -1.7955423653603918e-05,
+          "paired_sd": 1.7658132102049713e-05,
+          "repeats_improved": 44,
+          "repeats_worsened": 6
+        }
+      },
+      "top10_lift_vs_baseline": {
+        "small_le25": {
+          "decisions": 65,
+          "informative": true,
+          "chance_rate": 0.6643110528452189,
+          "baseline_lift": 1.4565684701782227,
+          "lift": 1.460135576635802,
+          "lift_delta": 0.0035671064575792943
+        },
+        "mid_26_100": {
+          "decisions": 160,
+          "informative": true,
+          "chance_rate": 0.22690947771941888,
+          "baseline_lift": 3.1153953452712906,
+          "lift": 3.1415867220678195,
+          "lift_delta": 0.026191376796528942
+        },
+        "large_gt100": {
+          "decisions": 258,
+          "informative": true,
+          "chance_rate": 0.04845559419923516,
+          "baseline_lift": 6.2903049221097085,
+          "lift": 6.18288035987254,
+          "lift_delta": -0.10742456223716879
+        }
+      }
+    },
+    "gravity_sqft_a2": {
+      "covariates": [
+        "households",
+        "land_area_sqmi",
+        "establishments",
+        "warehousing_establishments",
+        "sortation_gravity_sqft_a2",
+        "fulfilment_gravity_sqft_a2"
+      ],
+      "n_decisions": 483,
+      "n_test": 193,
+      "n_alternatives": 86682,
+      "beta_mean": {
+        "land_area_sqmi": 1.0234115146053833e-15,
+        "establishments": 0.3432817969061708,
+        "warehousing_establishments": 1.212736382104628,
+        "sortation_gravity_sqft_a2": 0.03340405197506849,
+        "fulfilment_gravity_sqft_a2": 0.15267850854711382
+      },
+      "beta_p025": {
+        "land_area_sqmi": 2.253135345921922e-18,
+        "establishments": 0.0425834835470128,
+        "warehousing_establishments": 0.9631854420640248,
+        "sortation_gravity_sqft_a2": 5.831151907032462e-15,
+        "fulfilment_gravity_sqft_a2": 0.044810305253072516
+      },
+      "beta_p975": {
+        "land_area_sqmi": 2.5153276918201342e-15,
+        "establishments": 0.7901512257490433,
+        "warehousing_establishments": 1.560616583048671,
+        "sortation_gravity_sqft_a2": 0.08890704562407024,
+        "fulfilment_gravity_sqft_a2": 0.24458605101751366
+      },
+      "strata": {
+        "top1": {
+          "small_le25": {
+            "decisions": 65,
+            "decision_evaluations": 1266,
+            "model_rate": 0.42496050552922593,
+            "chance_rate": 0.07393003956070737,
+            "lift": 5.748143894610948,
+            "informative": true
+          },
+          "mid_26_100": {
+            "decisions": 160,
+            "decision_evaluations": 3197,
+            "model_rate": 0.21457616515483266,
+            "chance_rate": 0.022690947771941878,
+            "lift": 9.456465517062417,
+            "informative": true
+          },
+          "large_gt100": {
+            "decisions": 258,
+            "decision_evaluations": 5187,
+            "model_rate": 0.054945054945054944,
+            "chance_rate": 0.004845559419923516,
+            "lift": 11.339259347256588,
+            "informative": true
+          }
+        },
+        "top5": {
+          "small_le25": {
+            "decisions": 65,
+            "decision_evaluations": 1266,
+            "model_rate": 0.8530805687203792,
+            "chance_rate": 0.36668811249548,
+            "lift": 2.326447298536013,
+            "informative": true
+          },
+          "mid_26_100": {
+            "decisions": 160,
+            "decision_evaluations": 3197,
+            "model_rate": 0.5204879574601189,
+            "chance_rate": 0.11345473885970944,
+            "lift": 4.587626419939316,
+            "informative": true
+          },
+          "large_gt100": {
+            "decisions": 258,
+            "decision_evaluations": 5187,
+            "model_rate": 0.1887410834779256,
+            "chance_rate": 0.02422779709961758,
+            "lift": 7.79027010593979,
+            "informative": true
+          }
+        },
+        "top10": {
+          "small_le25": {
+            "decisions": 65,
+            "decision_evaluations": 1266,
+            "model_rate": 0.9684044233807267,
+            "chance_rate": 0.6643110528452189,
+            "lift": 1.4577575056640826,
+            "informative": true
+          },
+          "mid_26_100": {
+            "decisions": 160,
+            "decision_evaluations": 3197,
+            "model_rate": 0.6925242414763841,
+            "chance_rate": 0.22690947771941888,
+            "lift": 3.0519846435533795,
+            "informative": true
+          },
+          "large_gt100": {
+            "decisions": 258,
+            "decision_evaluations": 5187,
+            "model_rate": 0.2984384037015616,
+            "chance_rate": 0.04845559419923516,
+            "lift": 6.159008234930948,
+            "informative": true
+          }
+        }
+      },
+      "raw_pooled": {
+        "top1": 0.15637305699481863,
+        "top5": 0.38580310880829016,
+        "top10": 0.5168911917098445,
+        "brier": 0.005029483935247398
+      },
+      "raw_pooled_sd": {
+        "top1": 0.023211613831597436,
+        "top5": 0.028633299963989788,
+        "top10": 0.027627329955506662,
+        "brier": 0.00035865419824498545
+      },
+      "standardised_top10": {
+        "model_rate": 0.51914549546785,
+        "chance_rate": 0.1904498512907845,
+        "lift": 2.7258907893564235
+      },
+      "verdicts": {
+        "land_area_sqmi": {
+          "beta_mean": 1.0234115146053833e-15,
+          "p025": 2.253135345921922e-18,
+          "p975": 2.5153276918201342e-15,
+          "state": "AT THE BOUNDARY",
+          "excludes_one": true
+        },
+        "establishments": {
+          "beta_mean": 0.3432817969061708,
+          "p025": 0.0425834835470128,
+          "p975": 0.7901512257490433,
+          "state": "INTERIOR",
+          "excludes_one": true
+        },
+        "warehousing_establishments": {
+          "beta_mean": 1.212736382104628,
+          "p025": 0.9631854420640248,
+          "p975": 1.560616583048671,
+          "state": "INTERIOR",
+          "excludes_one": false
+        },
+        "sortation_gravity_sqft_a2": {
+          "beta_mean": 0.03340405197506849,
+          "p025": 5.831151907032462e-15,
+          "p975": 0.08890704562407024,
+          "state": "boundary inside the interval",
+          "excludes_one": true
+        },
+        "fulfilment_gravity_sqft_a2": {
+          "beta_mean": 0.15267850854711382,
+          "p025": 0.044810305253072516,
+          "p975": 0.24458605101751366,
+          "state": "INTERIOR",
+          "excludes_one": true
+        }
+      },
+      "paired_vs_baseline": {
+        "top1": {
+          "higher_is_better": true,
+          "paired_mean_difference": -0.0007253886010362673,
+          "paired_sd": 0.007402664655814213,
+          "repeats_improved": 17,
+          "repeats_worsened": 21
+        },
+        "top5": {
+          "higher_is_better": true,
+          "paired_mean_difference": -0.003316062176165804,
+          "paired_sd": 0.010662882667872157,
+          "repeats_improved": 12,
+          "repeats_worsened": 21
+        },
+        "top10": {
+          "higher_is_better": true,
+          "paired_mean_difference": -0.008082901554404142,
+          "paired_sd": 0.009660007757853702,
+          "repeats_improved": 8,
+          "repeats_worsened": 38
+        },
+        "brier": {
+          "higher_is_better": false,
+          "paired_mean_difference": -8.265962556382525e-07,
+          "paired_sd": 1.1274269196702843e-05,
+          "repeats_improved": 29,
+          "repeats_worsened": 21
+        }
+      },
+      "top10_lift_vs_baseline": {
+        "small_le25": {
+          "decisions": 65,
+          "informative": true,
+          "chance_rate": 0.6643110528452189,
+          "baseline_lift": 1.4565684701782227,
+          "lift": 1.4577575056640826,
+          "lift_delta": 0.0011890354858599128
+        },
+        "mid_26_100": {
+          "decisions": 160,
+          "informative": true,
+          "chance_rate": 0.22690947771941888,
+          "baseline_lift": 3.1153953452712906,
+          "lift": 3.0519846435533795,
+          "lift_delta": -0.06341070171791108
+        },
+        "large_gt100": {
+          "decisions": 258,
+          "informative": true,
+          "chance_rate": 0.04845559419923516,
+          "baseline_lift": 6.2903049221097085,
+          "lift": 6.159008234930948,
+          "lift_delta": -0.13129668717876086
+        }
+      }
+    },
+    "gravity_count_sqft_subset_a2": {
+      "covariates": [
+        "households",
+        "land_area_sqmi",
+        "establishments",
+        "warehousing_establishments",
+        "sortation_gravity_count_sqft_subset_a2",
+        "fulfilment_gravity_count_sqft_subset_a2"
+      ],
+      "n_decisions": 483,
+      "n_test": 193,
+      "n_alternatives": 86682,
+      "beta_mean": {
+        "land_area_sqmi": 1.08189778722559e-15,
+        "establishments": 0.3488062457069848,
+        "warehousing_establishments": 1.21011376237331,
+        "sortation_gravity_count_sqft_subset_a2": 0.037464049652425835,
+        "fulfilment_gravity_count_sqft_subset_a2": 0.1744689432821789
+      },
+      "beta_p025": {
+        "land_area_sqmi": 5.080232284451648e-17,
+        "establishments": 0.041357103663876474,
+        "warehousing_establishments": 0.9527655535012087,
+        "sortation_gravity_count_sqft_subset_a2": 1.2386560673480515e-14,
+        "fulfilment_gravity_count_sqft_subset_a2": 0.06482617305601578
+      },
+      "beta_p975": {
+        "land_area_sqmi": 2.027227119921018e-15,
+        "establishments": 0.8201006798779927,
+        "warehousing_establishments": 1.560742798067858,
+        "sortation_gravity_count_sqft_subset_a2": 0.10488986750736888,
+        "fulfilment_gravity_count_sqft_subset_a2": 0.2935243373992119
+      },
+      "strata": {
+        "top1": {
+          "small_le25": {
+            "decisions": 65,
+            "decision_evaluations": 1266,
+            "model_rate": 0.42417061611374407,
+            "chance_rate": 0.07393003956070737,
+            "lift": 5.737459612278957,
+            "informative": true
+          },
+          "mid_26_100": {
+            "decisions": 160,
+            "decision_evaluations": 3197,
+            "model_rate": 0.21989365029715358,
+            "chance_rate": 0.022690947771941878,
+            "lift": 9.690809414715567,
+            "informative": true
+          },
+          "large_gt100": {
+            "decisions": 258,
+            "decision_evaluations": 5187,
+            "model_rate": 0.05880084827453248,
+            "chance_rate": 0.004845559419923516,
+            "lift": 12.134996845309683,
+            "informative": true
+          }
+        },
+        "top5": {
+          "small_le25": {
+            "decisions": 65,
+            "decision_evaluations": 1266,
+            "model_rate": 0.8538704581358609,
+            "chance_rate": 0.36668811249548,
+            "lift": 2.3286014164050277,
+            "informative": true
+          },
+          "mid_26_100": {
+            "decisions": 160,
+            "decision_evaluations": 3197,
+            "model_rate": 0.5270566155771035,
+            "chance_rate": 0.11345473885970944,
+            "lift": 4.6455231475948,
+            "informative": true
+          },
+          "large_gt100": {
+            "decisions": 258,
+            "decision_evaluations": 5187,
+            "model_rate": 0.2003084634663582,
+            "chance_rate": 0.02422779709961758,
+            "lift": 8.267712604771646,
+            "informative": true
+          }
+        },
+        "top10": {
+          "small_le25": {
+            "decisions": 65,
+            "decision_evaluations": 1266,
+            "model_rate": 0.9691943127962085,
+            "chance_rate": 0.6643110528452189,
+            "lift": 1.4589465411499423,
+            "informative": true
+          },
+          "mid_26_100": {
+            "decisions": 160,
+            "decision_evaluations": 3197,
+            "model_rate": 0.697841726618705,
+            "chance_rate": 0.22690947771941888,
+            "lift": 3.075419033318694,
+            "informative": true
+          },
+          "large_gt100": {
+            "decisions": 258,
+            "decision_evaluations": 5187,
+            "model_rate": 0.29535376903797955,
+            "chance_rate": 0.04845559419923516,
+            "lift": 6.095349235086699,
+            "informative": true
+          }
+        }
+      },
+      "raw_pooled": {
+        "top1": 0.16010362694300517,
+        "top5": 0.39430051813471506,
+        "top10": 0.5170984455958549,
+        "brier": 0.005025941339059076
+      },
+      "raw_pooled_sd": {
+        "top1": 0.022505989334582935,
+        "top5": 0.028422811800186937,
+        "top10": 0.02887699363898025,
+        "brier": 0.00035813331634504994
+      },
+      "standardised_top10": {
+        "model_rate": 0.5193655879969877,
+        "chance_rate": 0.1904498512907845,
+        "lift": 2.727046434937903
+      },
+      "verdicts": {
+        "land_area_sqmi": {
+          "beta_mean": 1.08189778722559e-15,
+          "p025": 5.080232284451648e-17,
+          "p975": 2.027227119921018e-15,
+          "state": "AT THE BOUNDARY",
+          "excludes_one": true
+        },
+        "establishments": {
+          "beta_mean": 0.3488062457069848,
+          "p025": 0.041357103663876474,
+          "p975": 0.8201006798779927,
+          "state": "INTERIOR",
+          "excludes_one": true
+        },
+        "warehousing_establishments": {
+          "beta_mean": 1.21011376237331,
+          "p025": 0.9527655535012087,
+          "p975": 1.560742798067858,
+          "state": "INTERIOR",
+          "excludes_one": false
+        },
+        "sortation_gravity_count_sqft_subset_a2": {
+          "beta_mean": 0.037464049652425835,
+          "p025": 1.2386560673480515e-14,
+          "p975": 0.10488986750736888,
+          "state": "boundary inside the interval",
+          "excludes_one": true
+        },
+        "fulfilment_gravity_count_sqft_subset_a2": {
+          "beta_mean": 0.1744689432821789,
+          "p025": 0.06482617305601578,
+          "p975": 0.2935243373992119,
+          "state": "INTERIOR",
+          "excludes_one": true
+        }
+      },
+      "paired_vs_baseline": {
+        "top1": {
+          "higher_is_better": true,
+          "paired_mean_difference": 0.0030051813471502612,
+          "paired_sd": 0.008700961463081176,
+          "repeats_improved": 24,
+          "repeats_worsened": 15
+        },
+        "top5": {
+          "higher_is_better": true,
+          "paired_mean_difference": 0.005181347150259069,
+          "paired_sd": 0.010415430998867718,
+          "repeats_improved": 30,
+          "repeats_worsened": 10
+        },
+        "top10": {
+          "higher_is_better": true,
+          "paired_mean_difference": -0.007875647668393777,
+          "paired_sd": 0.0123521243789804,
+          "repeats_improved": 11,
+          "repeats_worsened": 33
+        },
+        "brier": {
+          "higher_is_better": false,
+          "paired_mean_difference": -4.369192443961934e-06,
+          "paired_sd": 1.2540652907453175e-05,
+          "repeats_improved": 36,
+          "repeats_worsened": 14
+        }
+      },
+      "top10_lift_vs_baseline": {
+        "small_le25": {
+          "decisions": 65,
+          "informative": true,
+          "chance_rate": 0.6643110528452189,
+          "baseline_lift": 1.4565684701782227,
+          "lift": 1.4589465411499423,
+          "lift_delta": 0.0023780709717196036
+        },
+        "mid_26_100": {
+          "decisions": 160,
+          "informative": true,
+          "chance_rate": 0.22690947771941888,
+          "baseline_lift": 3.1153953452712906,
+          "lift": 3.075419033318694,
+          "lift_delta": -0.03997631195259643
+        },
+        "large_gt100": {
+          "decisions": 258,
+          "informative": true,
+          "chance_rate": 0.04845559419923516,
+          "baseline_lift": 6.2903049221097085,
+          "lift": 6.095349235086699,
+          "lift_delta": -0.19495568702300936
+        }
+      }
+    },
+    "gravity_count_a3": {
+      "covariates": [
+        "households",
+        "land_area_sqmi",
+        "establishments",
+        "warehousing_establishments",
+        "sortation_gravity_count_a3",
+        "fulfilment_gravity_count_a3"
+      ],
+      "n_decisions": 483,
+      "n_test": 193,
+      "n_alternatives": 86682,
+      "beta_mean": {
+        "land_area_sqmi": 1.109065459287963e-15,
+        "establishments": 0.34000955263262206,
+        "warehousing_establishments": 1.132409852153386,
+        "sortation_gravity_count_a3": 0.04684864593976297,
+        "fulfilment_gravity_count_a3": 0.10967396442748396
+      },
+      "beta_p025": {
+        "land_area_sqmi": 3.619021727586968e-16,
+        "establishments": 0.02779665511874779,
+        "warehousing_establishments": 0.8715655047831792,
+        "sortation_gravity_count_a3": 0.011100662182800813,
+        "fulfilment_gravity_count_a3": 0.051295020057283924
+      },
+      "beta_p975": {
+        "land_area_sqmi": 2.094005382470578e-15,
+        "establishments": 0.7517752748989978,
+        "warehousing_establishments": 1.4025158346369087,
+        "sortation_gravity_count_a3": 0.08942769368886663,
+        "fulfilment_gravity_count_a3": 0.18109905131841897
+      },
+      "strata": {
+        "top1": {
+          "small_le25": {
+            "decisions": 65,
+            "decision_evaluations": 1266,
+            "model_rate": 0.43838862559241704,
+            "chance_rate": 0.07393003956070737,
+            "lift": 5.929776694254787,
+            "informative": true
+          },
+          "mid_26_100": {
+            "decisions": 160,
+            "decision_evaluations": 3197,
+            "model_rate": 0.22833906787613387,
+            "chance_rate": 0.022690947771941878,
+            "lift": 10.063002663929394,
+            "informative": true
+          },
+          "large_gt100": {
+            "decisions": 258,
+            "decision_evaluations": 5187,
+            "model_rate": 0.06612685560053981,
+            "chance_rate": 0.004845559419923516,
+            "lift": 13.646898091610561,
+            "informative": true
+          }
+        },
+        "top5": {
+          "small_le25": {
+            "decisions": 65,
+            "decision_evaluations": 1266,
+            "model_rate": 0.8538704581358609,
+            "chance_rate": 0.36668811249548,
+            "lift": 2.3286014164050277,
+            "informative": true
+          },
+          "mid_26_100": {
+            "decisions": 160,
+            "decision_evaluations": 3197,
+            "model_rate": 0.5480137629027213,
+            "chance_rate": 0.11345473885970944,
+            "lift": 4.830241278686107,
+            "informative": true
+          },
+          "large_gt100": {
+            "decisions": 258,
+            "decision_evaluations": 5187,
+            "model_rate": 0.2012724117987276,
+            "chance_rate": 0.02422779709961758,
+            "lift": 8.307499479674302,
+            "informative": true
+          }
+        },
+        "top10": {
+          "small_le25": {
+            "decisions": 65,
+            "decision_evaluations": 1266,
+            "model_rate": 0.9652448657187994,
+            "chance_rate": 0.6643110528452189,
+            "lift": 1.4530013637206434,
+            "informative": true
+          },
+          "mid_26_100": {
+            "decisions": 160,
+            "decision_evaluations": 3197,
+            "model_rate": 0.71285580231467,
+            "chance_rate": 0.22690947771941888,
+            "lift": 3.1415867220678195,
+            "informative": true
+          },
+          "large_gt100": {
+            "decisions": 258,
+            "decision_evaluations": 5187,
+            "model_rate": 0.30133024869866976,
+            "chance_rate": 0.04845559419923516,
+            "lift": 6.21868854728493,
+            "informative": true
+          }
+        }
+      },
+      "raw_pooled": {
+        "top1": 0.16870466321243527,
+        "top5": 0.40176165803108815,
+        "top10": 0.5247668393782383,
+        "brier": 0.005016451267938182
+      },
+      "raw_pooled_sd": {
+        "top1": 0.0234106853006908,
+        "top5": 0.026692329116467652,
+        "top10": 0.027991412701225148,
+        "brier": 0.0003619336322655234
+      },
+      "standardised_top10": {
+        "model_rate": 0.5270001010482939,
+        "chance_rate": 0.1904498512907845,
+        "lift": 2.767133171680215
+      },
+      "verdicts": {
+        "land_area_sqmi": {
+          "beta_mean": 1.109065459287963e-15,
+          "p025": 3.619021727586968e-16,
+          "p975": 2.094005382470578e-15,
+          "state": "AT THE BOUNDARY",
+          "excludes_one": true
+        },
+        "establishments": {
+          "beta_mean": 0.34000955263262206,
+          "p025": 0.02779665511874779,
+          "p975": 0.7517752748989978,
+          "state": "INTERIOR",
+          "excludes_one": true
+        },
+        "warehousing_establishments": {
+          "beta_mean": 1.132409852153386,
+          "p025": 0.8715655047831792,
+          "p975": 1.4025158346369087,
+          "state": "INTERIOR",
+          "excludes_one": false
+        },
+        "sortation_gravity_count_a3": {
+          "beta_mean": 0.04684864593976297,
+          "p025": 0.011100662182800813,
+          "p975": 0.08942769368886663,
+          "state": "INTERIOR",
+          "excludes_one": true
+        },
+        "fulfilment_gravity_count_a3": {
+          "beta_mean": 0.10967396442748396,
+          "p025": 0.051295020057283924,
+          "p975": 0.18109905131841897,
+          "state": "INTERIOR",
+          "excludes_one": true
+        }
+      },
+      "paired_vs_baseline": {
+        "top1": {
+          "higher_is_better": true,
+          "paired_mean_difference": 0.011606217616580311,
+          "paired_sd": 0.010497171222049349,
+          "repeats_improved": 42,
+          "repeats_worsened": 4
+        },
+        "top5": {
+          "higher_is_better": true,
+          "paired_mean_difference": 0.01264248704663213,
+          "paired_sd": 0.009660007757853714,
+          "repeats_improved": 44,
+          "repeats_worsened": 2
+        },
+        "top10": {
+          "higher_is_better": true,
+          "paired_mean_difference": -0.00020725388601036343,
+          "paired_sd": 0.012339698584263327,
+          "repeats_improved": 18,
+          "repeats_worsened": 22
+        },
+        "brier": {
+          "higher_is_better": false,
+          "paired_mean_difference": -1.3859263564853179e-05,
+          "paired_sd": 2.151820823678774e-05,
+          "repeats_improved": 40,
+          "repeats_worsened": 10
+        }
+      },
+      "top10_lift_vs_baseline": {
+        "small_le25": {
+          "decisions": 65,
+          "informative": true,
+          "chance_rate": 0.6643110528452189,
+          "baseline_lift": 1.4565684701782227,
+          "lift": 1.4530013637206434,
+          "lift_delta": -0.0035671064575792943
+        },
+        "mid_26_100": {
+          "decisions": 160,
+          "informative": true,
+          "chance_rate": 0.22690947771941888,
+          "baseline_lift": 3.1153953452712906,
+          "lift": 3.1415867220678195,
+          "lift_delta": 0.026191376796528942
+        },
+        "large_gt100": {
+          "decisions": 258,
+          "informative": true,
+          "chance_rate": 0.04845559419923516,
+          "baseline_lift": 6.2903049221097085,
+          "lift": 6.21868854728493,
+          "lift_delta": -0.0716163748247789
+        }
+      }
+    },
+    "gravity_sqft_a3": {
+      "covariates": [
+        "households",
+        "land_area_sqmi",
+        "establishments",
+        "warehousing_establishments",
+        "sortation_gravity_sqft_a3",
+        "fulfilment_gravity_sqft_a3"
+      ],
+      "n_decisions": 483,
+      "n_test": 193,
+      "n_alternatives": 86682,
+      "beta_mean": {
+        "land_area_sqmi": 9.82236561405736e-16,
+        "establishments": 0.34276535289603804,
+        "warehousing_establishments": 1.16649233096021,
+        "sortation_gravity_sqft_a3": 0.019354464896062636,
+        "fulfilment_gravity_sqft_a3": 0.09281183466935473
+      },
+      "beta_p025": {
+        "land_area_sqmi": 5.358754728015564e-26,
+        "establishments": 0.045828146233322986,
+        "warehousing_establishments": 0.922297816063394,
+        "sortation_gravity_sqft_a3": 5.4580242838847435e-15,
+        "fulfilment_gravity_sqft_a3": 0.031910004061855395
+      },
+      "beta_p975": {
+        "land_area_sqmi": 2.4859978228309944e-15,
+        "establishments": 0.7760833290321211,
+        "warehousing_establishments": 1.4915097791043177,
+        "sortation_gravity_sqft_a3": 0.05241478409226208,
+        "fulfilment_gravity_sqft_a3": 0.15313117266685775
+      },
+      "strata": {
+        "top1": {
+          "small_le25": {
+            "decisions": 65,
+            "decision_evaluations": 1266,
+            "model_rate": 0.42575039494470773,
+            "chance_rate": 0.07393003956070737,
+            "lift": 5.758828176942938,
+            "informative": true
+          },
+          "mid_26_100": {
+            "decisions": 160,
+            "decision_evaluations": 3197,
+            "model_rate": 0.21614013137316235,
+            "chance_rate": 0.022690947771941878,
+            "lift": 9.525390192842757,
+            "informative": true
+          },
+          "large_gt100": {
+            "decisions": 258,
+            "decision_evaluations": 5187,
+            "model_rate": 0.055523423944476576,
+            "chance_rate": 0.004845559419923516,
+            "lift": 11.458619971964552,
+            "informative": true
+          }
+        },
+        "top5": {
+          "small_le25": {
+            "decisions": 65,
+            "decision_evaluations": 1266,
+            "model_rate": 0.8530805687203792,
+            "chance_rate": 0.36668811249548,
+            "lift": 2.326447298536013,
+            "informative": true
+          },
+          "mid_26_100": {
+            "decisions": 160,
+            "decision_evaluations": 3197,
+            "model_rate": 0.5204879574601189,
+            "chance_rate": 0.11345473885970944,
+            "lift": 4.587626419939316,
+            "informative": true
+          },
+          "large_gt100": {
+            "decisions": 258,
+            "decision_evaluations": 5187,
+            "model_rate": 0.18546365914786966,
+            "chance_rate": 0.02422779709961758,
+            "lift": 7.654994731270763,
+            "informative": true
+          }
+        },
+        "top10": {
+          "small_le25": {
+            "decisions": 65,
+            "decision_evaluations": 1266,
+            "model_rate": 0.966824644549763,
+            "chance_rate": 0.6643110528452189,
+            "lift": 1.455379434692363,
+            "informative": true
+          },
+          "mid_26_100": {
+            "decisions": 160,
+            "decision_evaluations": 3197,
+            "model_rate": 0.6912730685017203,
+            "chance_rate": 0.22690947771941888,
+            "lift": 3.0464706694909522,
+            "informative": true
+          },
+          "large_gt100": {
+            "decisions": 258,
+            "decision_evaluations": 5187,
+            "model_rate": 0.29805282436861386,
+            "chance_rate": 0.04845559419923516,
+            "lift": 6.151050859950416,
+            "informative": true
+          }
+        }
+      },
+      "raw_pooled": {
+        "top1": 0.15730569948186526,
+        "top5": 0.38404145077720214,
+        "top10": 0.5160621761658031,
+        "brier": 0.005031501139026398
+      },
+      "raw_pooled_sd": {
+        "top1": 0.023071218047405664,
+        "top5": 0.028945973181584584,
+        "top10": 0.027095492550293303,
+        "brier": 0.00035945859755909867
+      },
+      "standardised_top10": {
+        "model_rate": 0.5183124669629653,
+        "chance_rate": 0.1904498512907845,
+        "lift": 2.7215167848652735
+      },
+      "verdicts": {
+        "land_area_sqmi": {
+          "beta_mean": 9.82236561405736e-16,
+          "p025": 5.358754728015564e-26,
+          "p975": 2.4859978228309944e-15,
+          "state": "AT THE BOUNDARY",
+          "excludes_one": true
+        },
+        "establishments": {
+          "beta_mean": 0.34276535289603804,
+          "p025": 0.045828146233322986,
+          "p975": 0.7760833290321211,
+          "state": "INTERIOR",
+          "excludes_one": true
+        },
+        "warehousing_establishments": {
+          "beta_mean": 1.16649233096021,
+          "p025": 0.922297816063394,
+          "p975": 1.4915097791043177,
+          "state": "INTERIOR",
+          "excludes_one": false
+        },
+        "sortation_gravity_sqft_a3": {
+          "beta_mean": 0.019354464896062636,
+          "p025": 5.4580242838847435e-15,
+          "p975": 0.05241478409226208,
+          "state": "boundary inside the interval",
+          "excludes_one": true
+        },
+        "fulfilment_gravity_sqft_a3": {
+          "beta_mean": 0.09281183466935473,
+          "p025": 0.031910004061855395,
+          "p975": 0.15313117266685775,
+          "state": "INTERIOR",
+          "excludes_one": true
+        }
+      },
+      "paired_vs_baseline": {
+        "top1": {
+          "higher_is_better": true,
+          "paired_mean_difference": 0.00020725388601036205,
+          "paired_sd": 0.007472645130495316,
+          "repeats_improved": 21,
+          "repeats_worsened": 20
+        },
+        "top5": {
+          "higher_is_better": true,
+          "paired_mean_difference": -0.005077720207253884,
+          "paired_sd": 0.011346452535013271,
+          "repeats_improved": 13,
+          "repeats_worsened": 29
+        },
+        "top10": {
+          "higher_is_better": true,
+          "paired_mean_difference": -0.008911917098445594,
+          "paired_sd": 0.010677260056406778,
+          "repeats_improved": 6,
+          "repeats_worsened": 38
+        },
+        "brier": {
+          "higher_is_better": false,
+          "paired_mean_difference": 1.1906075233612292e-06,
+          "paired_sd": 1.3281978976405094e-05,
+          "repeats_improved": 29,
+          "repeats_worsened": 21
+        }
+      },
+      "top10_lift_vs_baseline": {
+        "small_le25": {
+          "decisions": 65,
+          "informative": true,
+          "chance_rate": 0.6643110528452189,
+          "baseline_lift": 1.4565684701782227,
+          "lift": 1.455379434692363,
+          "lift_delta": -0.0011890354858596908
+        },
+        "mid_26_100": {
+          "decisions": 160,
+          "informative": true,
+          "chance_rate": 0.22690947771941888,
+          "baseline_lift": 3.1153953452712906,
+          "lift": 3.0464706694909522,
+          "lift_delta": -0.06892467578033834
+        },
+        "large_gt100": {
+          "decisions": 258,
+          "informative": true,
+          "chance_rate": 0.04845559419923516,
+          "baseline_lift": 6.2903049221097085,
+          "lift": 6.151050859950416,
+          "lift_delta": -0.13925406215929215
+        }
+      }
+    },
+    "gravity_count_sqft_subset_a3": {
+      "covariates": [
+        "households",
+        "land_area_sqmi",
+        "establishments",
+        "warehousing_establishments",
+        "sortation_gravity_count_sqft_subset_a3",
+        "fulfilment_gravity_count_sqft_subset_a3"
+      ],
+      "n_decisions": 483,
+      "n_test": 193,
+      "n_alternatives": 86682,
+      "beta_mean": {
+        "land_area_sqmi": 1.083346629147789e-15,
+        "establishments": 0.34506277095341686,
+        "warehousing_establishments": 1.148025903231322,
+        "sortation_gravity_count_sqft_subset_a3": 0.019126172338978724,
+        "fulfilment_gravity_count_sqft_subset_a3": 0.1030350886760265
+      },
+      "beta_p025": {
+        "land_area_sqmi": 3.968624037949586e-16,
+        "establishments": 0.04655153909350567,
+        "warehousing_establishments": 0.8967373219182276,
+        "sortation_gravity_count_sqft_subset_a3": 9.717309953884767e-16,
+        "fulfilment_gravity_count_sqft_subset_a3": 0.040313485064952026
+      },
+      "beta_p975": {
+        "land_area_sqmi": 2.5403228473313235e-15,
+        "establishments": 0.7910188975018928,
+        "warehousing_establishments": 1.4564473834469693,
+        "sortation_gravity_count_sqft_subset_a3": 0.04995784246162392,
+        "fulfilment_gravity_count_sqft_subset_a3": 0.16323432730470572
+      },
+      "strata": {
+        "top1": {
+          "small_le25": {
+            "decisions": 65,
+            "decision_evaluations": 1266,
+            "model_rate": 0.42338072669826227,
+            "chance_rate": 0.07393003956070737,
+            "lift": 5.726775329946967,
+            "informative": true
+          },
+          "mid_26_100": {
+            "decisions": 160,
+            "decision_evaluations": 3197,
+            "model_rate": 0.22020644354081953,
+            "chance_rate": 0.022690947771941878,
+            "lift": 9.704594349871636,
+            "informative": true
+          },
+          "large_gt100": {
+            "decisions": 258,
+            "decision_evaluations": 5187,
+            "model_rate": 0.05822247927511085,
+            "chance_rate": 0.004845559419923516,
+            "lift": 12.015636220601717,
+            "informative": true
+          }
+        },
+        "top5": {
+          "small_le25": {
+            "decisions": 65,
+            "decision_evaluations": 1266,
+            "model_rate": 0.8538704581358609,
+            "chance_rate": 0.36668811249548,
+            "lift": 2.3286014164050277,
+            "informative": true
+          },
+          "mid_26_100": {
+            "decisions": 160,
+            "decision_evaluations": 3197,
+            "model_rate": 0.5264310290897717,
+            "chance_rate": 0.11345473885970944,
+            "lift": 4.640009173532373,
+            "informative": true
+          },
+          "large_gt100": {
+            "decisions": 258,
+            "decision_evaluations": 5187,
+            "model_rate": 0.19722382880277617,
+            "chance_rate": 0.02422779709961758,
+            "lift": 8.14039460508315,
+            "informative": true
+          }
+        },
+        "top10": {
+          "small_le25": {
+            "decisions": 65,
+            "decision_evaluations": 1266,
+            "model_rate": 0.9660347551342812,
+            "chance_rate": 0.6643110528452189,
+            "lift": 1.454190399206503,
+            "informative": true
+          },
+          "mid_26_100": {
+            "decisions": 160,
+            "decision_evaluations": 3197,
+            "model_rate": 0.6969033468877073,
+            "chance_rate": 0.22690947771941888,
+            "lift": 3.0712835527718743,
+            "informative": true
+          },
+          "large_gt100": {
+            "decisions": 258,
+            "decision_evaluations": 5187,
+            "model_rate": 0.2957393483709273,
+            "chance_rate": 0.04845559419923516,
+            "lift": 6.10330661006723,
+            "informative": true
+          }
+        }
+      },
+      "raw_pooled": {
+        "top1": 0.15979274611398964,
+        "top5": 0.3924352331606218,
+        "top10": 0.516580310880829,
+        "brier": 0.005028559617356582
+      },
+      "raw_pooled_sd": {
+        "top1": 0.0223621437308935,
+        "top5": 0.027632287326639863,
+        "top10": 0.028824770508690974,
+        "brier": 0.00035905236538219434
+      },
+      "standardised_top10": {
+        "model_rate": 0.5188354999284901,
+        "chance_rate": 0.1904498512907845,
+        "lift": 2.7242630876950207
+      },
+      "verdicts": {
+        "land_area_sqmi": {
+          "beta_mean": 1.083346629147789e-15,
+          "p025": 3.968624037949586e-16,
+          "p975": 2.5403228473313235e-15,
+          "state": "AT THE BOUNDARY",
+          "excludes_one": true
+        },
+        "establishments": {
+          "beta_mean": 0.34506277095341686,
+          "p025": 0.04655153909350567,
+          "p975": 0.7910188975018928,
+          "state": "INTERIOR",
+          "excludes_one": true
+        },
+        "warehousing_establishments": {
+          "beta_mean": 1.148025903231322,
+          "p025": 0.8967373219182276,
+          "p975": 1.4564473834469693,
+          "state": "INTERIOR",
+          "excludes_one": false
+        },
+        "sortation_gravity_count_sqft_subset_a3": {
+          "beta_mean": 0.019126172338978724,
+          "p025": 9.717309953884767e-16,
+          "p975": 0.04995784246162392,
+          "state": "boundary inside the interval",
+          "excludes_one": true
+        },
+        "fulfilment_gravity_count_sqft_subset_a3": {
+          "beta_mean": 0.1030350886760265,
+          "p025": 0.040313485064952026,
+          "p975": 0.16323432730470572,
+          "state": "INTERIOR",
+          "excludes_one": true
+        }
+      },
+      "paired_vs_baseline": {
+        "top1": {
+          "higher_is_better": true,
+          "paired_mean_difference": 0.0026943005181347163,
+          "paired_sd": 0.00925921289185012,
+          "repeats_improved": 24,
+          "repeats_worsened": 16
+        },
+        "top5": {
+          "higher_is_better": true,
+          "paired_mean_difference": 0.0033160621761658027,
+          "paired_sd": 0.010243578914585461,
+          "repeats_improved": 26,
+          "repeats_worsened": 15
+        },
+        "top10": {
+          "higher_is_better": true,
+          "paired_mean_difference": -0.00839378238341968,
+          "paired_sd": 0.012112498034621914,
+          "repeats_improved": 11,
+          "repeats_worsened": 34
+        },
+        "brier": {
+          "higher_is_better": false,
+          "paired_mean_difference": -1.7509141464543306e-06,
+          "paired_sd": 1.4437301808802746e-05,
+          "repeats_improved": 35,
+          "repeats_worsened": 15
+        }
+      },
+      "top10_lift_vs_baseline": {
+        "small_le25": {
+          "decisions": 65,
+          "informative": true,
+          "chance_rate": 0.6643110528452189,
+          "baseline_lift": 1.4565684701782227,
+          "lift": 1.454190399206503,
+          "lift_delta": -0.0023780709717196036
+        },
+        "mid_26_100": {
+          "decisions": 160,
+          "informative": true,
+          "chance_rate": 0.22690947771941888,
+          "baseline_lift": 3.1153953452712906,
+          "lift": 3.0712835527718743,
+          "lift_delta": -0.044111792499416325
+        },
+        "large_gt100": {
+          "decisions": 258,
+          "informative": true,
+          "chance_rate": 0.04845559419923516,
+          "baseline_lift": 6.2903049221097085,
+          "lift": 6.10330661006723,
+          "lift_delta": -0.18699831204247808
+        }
+      }
+    },
+    "gravity_best_plus_proximity": {
+      "covariates": [
+        "households",
+        "land_area_sqmi",
+        "establishments",
+        "warehousing_establishments",
+        "sortation_gravity_count_a3",
+        "fulfilment_gravity_count_a3",
+        "sortation_proximity",
+        "fulfilment_proximity"
+      ],
+      "n_decisions": 483,
+      "n_test": 193,
+      "n_alternatives": 86682,
+      "beta_mean": {
+        "land_area_sqmi": 8.252494705359336e-16,
+        "establishments": 0.3443654060070166,
+        "warehousing_establishments": 1.172836126472065,
+        "sortation_gravity_count_a3": 0.047315314031907245,
+        "fulfilment_gravity_count_a3": 0.10940415963058461,
+        "sortation_proximity": 0.017108149191707986,
+        "fulfilment_proximity": 0.02956397447835118
+      },
+      "beta_p025": {
+        "land_area_sqmi": 4.048396047773781e-30,
+        "establishments": 0.01719469767620831,
+        "warehousing_establishments": 0.9207267979824789,
+        "sortation_gravity_count_a3": 0.01107370665634759,
+        "fulfilment_gravity_count_a3": 0.0513683174919606,
+        "sortation_proximity": 1.0980134926695407e-22,
+        "fulfilment_proximity": 1.1083601891456456e-28
+      },
+      "beta_p975": {
+        "land_area_sqmi": 2.5715538555644353e-15,
+        "establishments": 0.8218435639318297,
+        "warehousing_establishments": 1.4988977362573335,
+        "sortation_gravity_count_a3": 0.0902932945752593,
+        "fulfilment_gravity_count_a3": 0.18579108405914072,
+        "sortation_proximity": 0.11062179637671506,
+        "fulfilment_proximity": 0.10727768260889348
+      },
+      "strata": {
+        "top1": {
+          "small_le25": {
+            "decisions": 65,
+            "decision_evaluations": 1266,
+            "model_rate": 0.43838862559241704,
+            "chance_rate": 0.07393003956070737,
+            "lift": 5.929776694254787,
+            "informative": true
+          },
+          "mid_26_100": {
+            "decisions": 160,
+            "decision_evaluations": 3197,
+            "model_rate": 0.22896465436346575,
+            "chance_rate": 0.022690947771941878,
+            "lift": 10.09057253424153,
+            "informative": true
+          },
+          "large_gt100": {
+            "decisions": 258,
+            "decision_evaluations": 5187,
+            "model_rate": 0.06593406593406594,
+            "chance_rate": 0.004845559419923516,
+            "lift": 13.607111216707906,
+            "informative": true
+          }
+        },
+        "top5": {
+          "small_le25": {
+            "decisions": 65,
+            "decision_evaluations": 1266,
+            "model_rate": 0.8538704581358609,
+            "chance_rate": 0.36668811249548,
+            "lift": 2.3286014164050277,
+            "informative": true
+          },
+          "mid_26_100": {
+            "decisions": 160,
+            "decision_evaluations": 3197,
+            "model_rate": 0.5477009696590553,
+            "chance_rate": 0.11345473885970944,
+            "lift": 4.827484291654893,
+            "informative": true
+          },
+          "large_gt100": {
+            "decisions": 258,
+            "decision_evaluations": 5187,
+            "model_rate": 0.2020435704646231,
+            "chance_rate": 0.02422779709961758,
+            "lift": 8.339328979596425,
+            "informative": true
+          }
+        },
+        "top10": {
+          "small_le25": {
+            "decisions": 65,
+            "decision_evaluations": 1266,
+            "model_rate": 0.9644549763033176,
+            "chance_rate": 0.6643110528452189,
+            "lift": 1.4518123282347837,
+            "informative": true
+          },
+          "mid_26_100": {
+            "decisions": 160,
+            "decision_evaluations": 3197,
+            "model_rate": 0.7137941820456678,
+            "chance_rate": 0.22690947771941888,
+            "lift": 3.1457222026146394,
+            "informative": true
+          },
+          "large_gt100": {
+            "decisions": 258,
+            "decision_evaluations": 5187,
+            "model_rate": 0.30036630036630035,
+            "chance_rate": 0.04845559419923516,
+            "lift": 6.198795109833601,
+            "informative": true
+          }
+        }
+      },
+      "raw_pooled": {
+        "top1": 0.16880829015544044,
+        "top5": 0.40207253886010363,
+        "top10": 0.5244559585492228,
+        "brier": 0.005016295054010696
+      },
+      "raw_pooled_sd": {
+        "top1": 0.022936174219853576,
+        "top5": 0.02606486582036863,
+        "top10": 0.02834637512122421,
+        "brier": 0.0003613847049881999
+      },
+      "standardised_top10": {
+        "model_rate": 0.5266897475808032,
+        "chance_rate": 0.1904498512907845,
+        "lift": 2.7655035906362437
+      },
+      "verdicts": {
+        "land_area_sqmi": {
+          "beta_mean": 8.252494705359336e-16,
+          "p025": 4.048396047773781e-30,
+          "p975": 2.5715538555644353e-15,
+          "state": "AT THE BOUNDARY",
+          "excludes_one": true
+        },
+        "establishments": {
+          "beta_mean": 0.3443654060070166,
+          "p025": 0.01719469767620831,
+          "p975": 0.8218435639318297,
+          "state": "INTERIOR",
+          "excludes_one": true
+        },
+        "warehousing_establishments": {
+          "beta_mean": 1.172836126472065,
+          "p025": 0.9207267979824789,
+          "p975": 1.4988977362573335,
+          "state": "INTERIOR",
+          "excludes_one": false
+        },
+        "sortation_gravity_count_a3": {
+          "beta_mean": 0.047315314031907245,
+          "p025": 0.01107370665634759,
+          "p975": 0.0902932945752593,
+          "state": "INTERIOR",
+          "excludes_one": true
+        },
+        "fulfilment_gravity_count_a3": {
+          "beta_mean": 0.10940415963058461,
+          "p025": 0.0513683174919606,
+          "p975": 0.18579108405914072,
+          "state": "INTERIOR",
+          "excludes_one": true
+        },
+        "sortation_proximity": {
+          "beta_mean": 0.017108149191707986,
+          "p025": 1.0980134926695407e-22,
+          "p975": 0.11062179637671506,
+          "state": "boundary inside the interval",
+          "excludes_one": true
+        },
+        "fulfilment_proximity": {
+          "beta_mean": 0.02956397447835118,
+          "p025": 1.1083601891456456e-28,
+          "p975": 0.10727768260889348,
+          "state": "boundary inside the interval",
+          "excludes_one": true
+        }
+      },
+      "paired_vs_baseline": {
+        "top1": {
+          "higher_is_better": true,
+          "paired_mean_difference": 0.011709844559585493,
+          "paired_sd": 0.010919281290727681,
+          "repeats_improved": 41,
+          "repeats_worsened": 4
+        },
+        "top5": {
+          "higher_is_better": true,
+          "paired_mean_difference": 0.01295336787564767,
+          "paired_sd": 0.00949352726749124,
+          "repeats_improved": 46,
+          "repeats_worsened": 2
+        },
+        "top10": {
+          "higher_is_better": true,
+          "paired_mean_difference": -0.0005181347150259052,
+          "paired_sd": 0.012484920646508503,
+          "repeats_improved": 18,
+          "repeats_worsened": 22
+        },
+        "brier": {
+          "higher_is_better": false,
+          "paired_mean_difference": -1.4015477492340042e-05,
+          "paired_sd": 2.0501754307600877e-05,
+          "repeats_improved": 41,
+          "repeats_worsened": 9
+        }
+      },
+      "top10_lift_vs_baseline": {
+        "small_le25": {
+          "decisions": 65,
+          "informative": true,
+          "chance_rate": 0.6643110528452189,
+          "baseline_lift": 1.4565684701782227,
+          "lift": 1.4518123282347837,
+          "lift_delta": -0.004756141943438985
+        },
+        "mid_26_100": {
+          "decisions": 160,
+          "informative": true,
+          "chance_rate": 0.22690947771941888,
+          "baseline_lift": 3.1153953452712906,
+          "lift": 3.1457222026146394,
+          "lift_delta": 0.030326857343348834
+        },
+        "large_gt100": {
+          "decisions": 258,
+          "informative": true,
+          "chance_rate": 0.04845559419923516,
+          "baseline_lift": 6.2903049221097085,
+          "lift": 6.198795109833601,
+          "lift_delta": -0.0915098122761071
+        }
+      }
+    }
+  },
+  "reporting_rule": "Lift is stratified by choice-set size with DISTINCT-decision n and a stratum under 20 distinct decisions is marked THIN and not compared. Brier is a raw pair, never a skill score (Gneiting & Raftery 2007 \u00a72.3 p.362). All arms hold the same decisions and the same splits, so chance rates are identical across arms and a lift difference is a model difference."
+}

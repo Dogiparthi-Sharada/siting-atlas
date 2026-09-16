@@ -1,0 +1,1929 @@
+{
+  "seed": 20260914,
+  "repeats": 50,
+  "test_fraction": 0.4,
+  "n_test_decisions": 192,
+  "coverage": {
+    "columns": [
+      "households",
+      "land_area_sqmi",
+      "establishments",
+      "warehousing_establishments",
+      "traffic_proximity",
+      "diesel_pm",
+      "employment",
+      "annual_payroll",
+      "median_home_value",
+      "vehicle_availability_total",
+      "in_labor_force",
+      "bachelors_degree",
+      "median_age",
+      "owner_occupied",
+      "renter_occupied",
+      "low_income_pct",
+      "people_of_colour_pct",
+      "inv_median_home_value",
+      "inv_diesel_pm"
+    ],
+    "panel_zctas": 33791,
+    "frame_zctas": 21768,
+    "zcta_retention": 0.6441951999053003,
+    "decisions": 479,
+    "alternatives": 82926,
+    "median_choice_set": 104,
+    "facilities_offered": 694,
+    "dropped": {
+      "no_panel_zcta": 20,
+      "no_open_year": 144,
+      "no_cbp_vintage": 51,
+      "no_panel_vintage": 0,
+      "chosen_zcta_filtered_out": 0
+    }
+  },
+  "reference_arm": "baseline",
+  "distinct_decisions": {
+    "small_le25": 71,
+    "mid_26_100": 162,
+    "large_gt100": 246
+  },
+  "arms_declared": [
+    "baseline",
+    "no_warehousing",
+    "warehousing_establishments_per_hh INSTEAD of the count",
+    "+ employment_per_hh",
+    "+ warehousing_establishments_per_hh",
+    "+ owner_occupied_per_hh",
+    "+ in_labor_force_per_hh",
+    "+ annual_payroll_per_hh",
+    "+ establishments_per_hh",
+    "+ bachelors_degree_per_hh",
+    "+ renter_occupied_per_hh"
+  ],
+  "arms_complete": [
+    "baseline",
+    "no_warehousing",
+    "warehousing_establishments_per_hh INSTEAD of the count",
+    "+ employment_per_hh",
+    "+ warehousing_establishments_per_hh",
+    "+ owner_occupied_per_hh",
+    "+ in_labor_force_per_hh",
+    "+ annual_payroll_per_hh",
+    "+ establishments_per_hh",
+    "+ bachelors_degree_per_hh",
+    "+ renter_occupied_per_hh"
+  ],
+  "arms_unfinished": [],
+  "arms_unfinished_note": "arm-major order, declared in percapita_search.PRIORITY before the run. An arm is reported only at the FULL repeat count; a part-finished arm is dropped rather than summarised over fewer re-splits than the baseline it is paired against.",
+  "collinearity": {
+    "blocks": 36,
+    "min_alternatives": 100,
+    "statistic": "mean over distinct metro blocks of the within-block Pearson correlation with households",
+    "correlation": {
+      "employment": {
+        "level": 0.5460615158499602,
+        "per_household": 0.007949200094693208
+      },
+      "establishments": {
+        "level": 0.7518084924491422,
+        "per_household": -0.05334674225009098
+      },
+      "annual_payroll": {
+        "level": 0.41018913877367,
+        "per_household": -0.0045175612191897625
+      },
+      "in_labor_force": {
+        "level": 0.9815194092777558,
+        "per_household": 0.11218610688752409
+      },
+      "owner_occupied": {
+        "level": 0.9090927089867632,
+        "per_household": -0.36830991164973936
+      },
+      "renter_occupied": {
+        "level": 0.8485916951103704,
+        "per_household": 0.36830991164973925
+      },
+      "vehicle_availability_total": {
+        "level": 1.0,
+        "per_household": null
+      },
+      "bachelors_degree": {
+        "level": 0.8803248529901233,
+        "per_household": 0.1581686725159272
+      },
+      "warehousing_establishments": {
+        "level": 0.21524463018558523,
+        "per_household": 0.0362252101455276
+      }
+    }
+  },
+  "collinearity_zcta_frame": {
+    "metros": 38,
+    "correlation": {
+      "employment": {
+        "level": 0.5523323173556874,
+        "per_household": 0.01134725671852808
+      },
+      "establishments": {
+        "level": 0.757028779722644,
+        "per_household": -0.05293033763900614
+      },
+      "annual_payroll": {
+        "level": 0.41773974984881196,
+        "per_household": 0.002817462115576066
+      },
+      "in_labor_force": {
+        "level": 0.9818917382223278,
+        "per_household": 0.11049977446862065
+      },
+      "owner_occupied": {
+        "level": 0.9116169799704712,
+        "per_household": -0.37373433010612545
+      },
+      "renter_occupied": {
+        "level": 0.8513150773036798,
+        "per_household": 0.37373433010612545
+      },
+      "vehicle_availability_total": {
+        "level": 1.0,
+        "per_household": null
+      },
+      "bachelors_degree": {
+        "level": 0.8807849195676459,
+        "per_household": 0.15265541529234358
+      }
+    }
+  },
+  "baseline_reproduction": {
+    "baseline": {
+      "published": 6.388945150223279,
+      "reproduced": 6.388945150223279,
+      "difference": 0.0,
+      "matches": true
+    },
+    "no_warehousing": {
+      "published": 2.735190253657848,
+      "reproduced": 2.735190253657848,
+      "difference": 0.0,
+      "matches": true
+    }
+  },
+  "arms": {
+    "baseline": {
+      "top1": {
+        "small_le25": {
+          "decision_evaluations": 1391,
+          "model_rate": 0.40330697340043137,
+          "chance_rate": 0.07714429839550475,
+          "lift": 5.227955685496679,
+          "informative": true,
+          "decisions": 71
+        },
+        "mid_26_100": {
+          "decision_evaluations": 3211,
+          "model_rate": 0.19744627841793833,
+          "chance_rate": 0.022197034888940762,
+          "lift": 8.895164575170897,
+          "informative": true,
+          "decisions": 162
+        },
+        "large_gt100": {
+          "decision_evaluations": 4998,
+          "model_rate": 0.053621448579431776,
+          "chance_rate": 0.00487912609274876,
+          "lift": 10.989969834787152,
+          "informative": true,
+          "decisions": 246
+        },
+        "pooled": {
+          "decision_evaluations": 9600,
+          "model_rate": 0.15239583333333334,
+          "chance_rate": 0.021142528157093148,
+          "lift": 7.208023193867937,
+          "informative": true,
+          "decisions": 479,
+          "note": "pooled across heterogeneous choice sets; a Simpson's-paradox trap. Read the strata."
+        }
+      },
+      "top5": {
+        "small_le25": {
+          "decision_evaluations": 1391,
+          "model_rate": 0.8058950395398994,
+          "chance_rate": 0.3794310534440946,
+          "lift": 2.123956466464177,
+          "informative": true,
+          "decisions": 71
+        },
+        "mid_26_100": {
+          "decision_evaluations": 3211,
+          "model_rate": 0.5175957645593273,
+          "chance_rate": 0.11098517444470385,
+          "lift": 4.663647799348273,
+          "informative": true,
+          "decisions": 162
+        },
+        "large_gt100": {
+          "decision_evaluations": 4998,
+          "model_rate": 0.1726690676270508,
+          "chance_rate": 0.02439563046374379,
+          "lift": 7.077868632403966,
+          "informative": true,
+          "decisions": 246
+        },
+        "pooled": {
+          "decision_evaluations": 9600,
+          "model_rate": 0.3797916666666667,
+          "chance_rate": 0.1048011824521324,
+          "lift": 3.62392539645376,
+          "informative": true,
+          "decisions": 479,
+          "note": "pooled across heterogeneous choice sets; a Simpson's-paradox trap. Read the strata."
+        }
+      },
+      "top10": {
+        "small_le25": {
+          "decision_evaluations": 1391,
+          "model_rate": 0.9525521207764198,
+          "chance_rate": 0.6705648900862997,
+          "lift": 1.420521913477798,
+          "informative": true,
+          "decisions": 71
+        },
+        "mid_26_100": {
+          "decision_evaluations": 3211,
+          "model_rate": 0.6863905325443787,
+          "chance_rate": 0.2219703488894077,
+          "lift": 3.092262259254992,
+          "informative": true,
+          "decisions": 162
+        },
+        "large_gt100": {
+          "decision_evaluations": 4998,
+          "model_rate": 0.31172468987595037,
+          "chance_rate": 0.04879126092748758,
+          "lift": 6.388945150223279,
+          "informative": true,
+          "decisions": 246
+        },
+        "pooled": {
+          "decision_evaluations": 9600,
+          "model_rate": 0.5298958333333333,
+          "chance_rate": 0.19680846609474104,
+          "lift": 2.692444303073062,
+          "informative": true,
+          "decisions": 479,
+          "note": "pooled across heterogeneous choice sets; a Simpson's-paradox trap. Read the strata."
+        }
+      },
+      "brier": 0.005227318324871242,
+      "brier_uniform_null": 0.005540929293083324,
+      "columns": [
+        "households",
+        "land_area_sqmi",
+        "establishments",
+        "warehousing_establishments"
+      ],
+      "beta": {
+        "land_area_sqmi": {
+          "median": 5.985124432114902e-16,
+          "mean": 7.928508794415284e-16,
+          "p025": 6.098823369731834e-17,
+          "p975": 2.4323771844612617e-15,
+          "at_lower_boundary_share": 1.0,
+          "at_upper_boundary_share": 0.0
+        },
+        "establishments": {
+          "median": 0.26103026418404784,
+          "mean": 0.26061992974052695,
+          "p025": 6.524910916394719e-15,
+          "p975": 0.5043081930110138,
+          "at_lower_boundary_share": 0.06,
+          "at_upper_boundary_share": 0.0
+        },
+        "warehousing_establishments": {
+          "median": 1.09257146791224,
+          "mean": 1.1086179598286008,
+          "p025": 0.8450011244986619,
+          "p975": 1.4425646826139888,
+          "at_lower_boundary_share": 0.0,
+          "at_upper_boundary_share": 0.0
+        }
+      }
+    },
+    "no_warehousing": {
+      "top1": {
+        "small_le25": {
+          "decision_evaluations": 1391,
+          "model_rate": 0.295470884255931,
+          "chance_rate": 0.07714429839550475,
+          "lift": 3.830106571727513,
+          "informative": true,
+          "decisions": 71
+        },
+        "mid_26_100": {
+          "decision_evaluations": 3211,
+          "model_rate": 0.054500155714730616,
+          "chance_rate": 0.022197034888940762,
+          "lift": 2.4552899063957523,
+          "informative": true,
+          "decisions": 162
+        },
+        "large_gt100": {
+          "decision_evaluations": 4998,
+          "model_rate": 0.021208483393357343,
+          "chance_rate": 0.00487912609274876,
+          "lift": 4.346779113759097,
+          "informative": true,
+          "decisions": 246
+        },
+        "pooled": {
+          "decision_evaluations": 9600,
+          "model_rate": 0.07208333333333333,
+          "chance_rate": 0.021142528157093148,
+          "lift": 3.4093998975779987,
+          "informative": true,
+          "decisions": 479,
+          "note": "pooled across heterogeneous choice sets; a Simpson's-paradox trap. Read the strata."
+        }
+      },
+      "top5": {
+        "small_le25": {
+          "decision_evaluations": 1391,
+          "model_rate": 0.7548526240115025,
+          "chance_rate": 0.3794310534440946,
+          "lift": 1.989432907928087,
+          "informative": true,
+          "decisions": 71
+        },
+        "mid_26_100": {
+          "decision_evaluations": 3211,
+          "model_rate": 0.31236374961071317,
+          "chance_rate": 0.11098517444470385,
+          "lift": 2.8144637441313587,
+          "informative": true,
+          "decisions": 162
+        },
+        "large_gt100": {
+          "decision_evaluations": 4998,
+          "model_rate": 0.09123649459783914,
+          "chance_rate": 0.02439563046374379,
+          "lift": 3.7398703318380173,
+          "informative": true,
+          "decisions": 246
+        },
+        "pooled": {
+          "decision_evaluations": 9600,
+          "model_rate": 0.26135416666666667,
+          "chance_rate": 0.1048011824521324,
+          "lift": 2.493809330691849,
+          "informative": true,
+          "decisions": 479,
+          "note": "pooled across heterogeneous choice sets; a Simpson's-paradox trap. Read the strata."
+        }
+      },
+      "top10": {
+        "small_le25": {
+          "decision_evaluations": 1391,
+          "model_rate": 0.8900071890726097,
+          "chance_rate": 0.6705648900862997,
+          "lift": 1.3272499085928409,
+          "informative": true,
+          "decisions": 71
+        },
+        "mid_26_100": {
+          "decision_evaluations": 3211,
+          "model_rate": 0.5375272500778574,
+          "chance_rate": 0.2219703488894077,
+          "lift": 2.4216173591080383,
+          "informative": true,
+          "decisions": 162
+        },
+        "large_gt100": {
+          "decision_evaluations": 4998,
+          "model_rate": 0.133453381352541,
+          "chance_rate": 0.04879126092748758,
+          "lift": 2.735190253657848,
+          "informative": true,
+          "decisions": 246
+        },
+        "pooled": {
+          "decision_evaluations": 9600,
+          "model_rate": 0.37822916666666667,
+          "chance_rate": 0.19680846609474104,
+          "lift": 1.921813498026005,
+          "informative": true,
+          "decisions": 479,
+          "note": "pooled across heterogeneous choice sets; a Simpson's-paradox trap. Read the strata."
+        }
+      },
+      "brier": 0.005371394649710609,
+      "brier_uniform_null": 0.005540929293083324,
+      "columns": [
+        "households",
+        "land_area_sqmi",
+        "establishments"
+      ],
+      "beta": {
+        "land_area_sqmi": {
+          "median": 9.012560146993567e-16,
+          "mean": 0.1517992091072225,
+          "p025": 1.1196323611850962e-16,
+          "p975": 1.6790410099659143,
+          "at_lower_boundary_share": 0.96,
+          "at_upper_boundary_share": 0.0
+        },
+        "establishments": {
+          "median": 2.202107234541118,
+          "mean": 8734608133854495.0,
+          "p025": 1.3924761663206229,
+          "p975": 2.5291084761491244e+16,
+          "at_lower_boundary_share": 0.0,
+          "at_upper_boundary_share": 0.04
+        }
+      },
+      "vs_baseline_large_top10": {
+        "mean_rate_difference": -0.17885877425380742,
+        "sd_over_resplits": 0.04455873319118099,
+        "wins": 0,
+        "ties": 0,
+        "losses": 50
+      },
+      "vs_baseline_large_top1": {
+        "mean_rate_difference": -0.03268723512746047,
+        "sd_over_resplits": 0.02124684981764732,
+        "wins": 1,
+        "ties": 1,
+        "losses": 48
+      }
+    },
+    "warehousing_establishments_per_hh INSTEAD of the count": {
+      "top1": {
+        "small_le25": {
+          "decision_evaluations": 1391,
+          "model_rate": 0.39539899352983465,
+          "chance_rate": 0.07714429839550475,
+          "lift": 5.125446750486939,
+          "informative": true,
+          "decisions": 71
+        },
+        "mid_26_100": {
+          "decision_evaluations": 3211,
+          "model_rate": 0.15446901276860792,
+          "chance_rate": 0.022197034888940762,
+          "lift": 6.95899310612739,
+          "informative": true,
+          "decisions": 162
+        },
+        "large_gt100": {
+          "decision_evaluations": 4998,
+          "model_rate": 0.04081632653061224,
+          "chance_rate": 0.00487912609274876,
+          "lift": 8.365499426479772,
+          "informative": true,
+          "decisions": 246
+        },
+        "pooled": {
+          "decision_evaluations": 9600,
+          "model_rate": 0.13020833333333334,
+          "chance_rate": 0.021142528157093148,
+          "lift": 6.158598080885113,
+          "informative": true,
+          "decisions": 479,
+          "note": "pooled across heterogeneous choice sets; a Simpson's-paradox trap. Read the strata."
+        }
+      },
+      "top5": {
+        "small_le25": {
+          "decision_evaluations": 1391,
+          "model_rate": 0.8123652048885693,
+          "chance_rate": 0.3794310534440946,
+          "lift": 2.1410087485321316,
+          "informative": true,
+          "decisions": 71
+        },
+        "mid_26_100": {
+          "decision_evaluations": 3211,
+          "model_rate": 0.5038928682653379,
+          "chance_rate": 0.11098517444470385,
+          "lift": 4.540181792626658,
+          "informative": true,
+          "decisions": 162
+        },
+        "large_gt100": {
+          "decision_evaluations": 4998,
+          "model_rate": 0.1480592236894758,
+          "chance_rate": 0.02439563046374379,
+          "lift": 6.069087819210818,
+          "informative": true,
+          "decisions": 246
+        },
+        "pooled": {
+          "decision_evaluations": 9600,
+          "model_rate": 0.36333333333333334,
+          "chance_rate": 0.1048011824521324,
+          "lift": 3.466882002970574,
+          "informative": true,
+          "decisions": 479,
+          "note": "pooled across heterogeneous choice sets; a Simpson's-paradox trap. Read the strata."
+        }
+      },
+      "top10": {
+        "small_le25": {
+          "decision_evaluations": 1391,
+          "model_rate": 0.9453630481667865,
+          "chance_rate": 0.6705648900862997,
+          "lift": 1.409800993376079,
+          "informative": true,
+          "decisions": 71
+        },
+        "mid_26_100": {
+          "decision_evaluations": 3211,
+          "model_rate": 0.6770476487075677,
+          "chance_rate": 0.2219703488894077,
+          "lift": 3.0501715751453506,
+          "informative": true,
+          "decisions": 162
+        },
+        "large_gt100": {
+          "decision_evaluations": 4998,
+          "model_rate": 0.2789115646258503,
+          "chance_rate": 0.04879126092748758,
+          "lift": 5.7164246080945125,
+          "informative": true,
+          "decisions": 246
+        },
+        "pooled": {
+          "decision_evaluations": 9600,
+          "model_rate": 0.5086458333333334,
+          "chance_rate": 0.19680846609474104,
+          "lift": 2.5844713056626225,
+          "informative": true,
+          "decisions": 479,
+          "note": "pooled across heterogeneous choice sets; a Simpson's-paradox trap. Read the strata."
+        }
+      },
+      "brier": 0.00540709615232129,
+      "brier_uniform_null": 0.005540929293083324,
+      "columns": [
+        "households",
+        "land_area_sqmi",
+        "establishments",
+        "warehousing_establishments_per_hh"
+      ],
+      "beta": {
+        "land_area_sqmi": {
+          "median": 6.600718438976741e-16,
+          "mean": 7.39473673382511e-16,
+          "p025": 0.0,
+          "p975": 2.3758515134443697e-15,
+          "at_lower_boundary_share": 1.0,
+          "at_upper_boundary_share": 0.0
+        },
+        "establishments": {
+          "median": 0.460746980554782,
+          "mean": 0.4821064534931704,
+          "p025": 0.0768567394334864,
+          "p975": 0.8710256709381228,
+          "at_lower_boundary_share": 0.02,
+          "at_upper_boundary_share": 0.0
+        },
+        "warehousing_establishments_per_hh": {
+          "median": 0.8997020809352172,
+          "mean": 0.9257566498270104,
+          "p025": 0.6356329898455845,
+          "p975": 1.3670314388509968,
+          "at_lower_boundary_share": 0.0,
+          "at_upper_boundary_share": 0.0
+        }
+      },
+      "vs_baseline_large_top10": {
+        "mean_rate_difference": -0.03276730584704249,
+        "sd_over_resplits": 0.026223798013084602,
+        "wins": 4,
+        "ties": 5,
+        "losses": 41
+      },
+      "vs_baseline_large_top1": {
+        "mean_rate_difference": -0.012954951317344065,
+        "sd_over_resplits": 0.016716338614961766,
+        "wins": 7,
+        "ties": 8,
+        "losses": 35
+      }
+    },
+    "+ employment_per_hh": {
+      "top1": {
+        "small_le25": {
+          "decision_evaluations": 1391,
+          "model_rate": 0.40186915887850466,
+          "chance_rate": 0.07714429839550475,
+          "lift": 5.2093176973130895,
+          "informative": true,
+          "decisions": 71
+        },
+        "mid_26_100": {
+          "decision_evaluations": 3211,
+          "model_rate": 0.19744627841793833,
+          "chance_rate": 0.022197034888940762,
+          "lift": 8.895164575170897,
+          "informative": true,
+          "decisions": 162
+        },
+        "large_gt100": {
+          "decision_evaluations": 4998,
+          "model_rate": 0.05342136854741897,
+          "chance_rate": 0.00487912609274876,
+          "lift": 10.948962484657349,
+          "informative": true,
+          "decisions": 246
+        },
+        "pooled": {
+          "decision_evaluations": 9600,
+          "model_rate": 0.15208333333333332,
+          "chance_rate": 0.021142528157093148,
+          "lift": 7.193242558473812,
+          "informative": true,
+          "decisions": 479,
+          "note": "pooled across heterogeneous choice sets; a Simpson's-paradox trap. Read the strata."
+        }
+      },
+      "top5": {
+        "small_le25": {
+          "decision_evaluations": 1391,
+          "model_rate": 0.8037383177570093,
+          "chance_rate": 0.3794310534440946,
+          "lift": 2.118272372441525,
+          "informative": true,
+          "decisions": 71
+        },
+        "mid_26_100": {
+          "decision_evaluations": 3211,
+          "model_rate": 0.5172843350981002,
+          "chance_rate": 0.11098517444470385,
+          "lift": 4.660841753740963,
+          "informative": true,
+          "decisions": 162
+        },
+        "large_gt100": {
+          "decision_evaluations": 4998,
+          "model_rate": 0.1720688275310124,
+          "chance_rate": 0.02439563046374379,
+          "lift": 7.053264222326085,
+          "informative": true,
+          "decisions": 246
+        },
+        "pooled": {
+          "decision_evaluations": 9600,
+          "model_rate": 0.3790625,
+          "chance_rate": 0.1048011824521324,
+          "lift": 3.6169677777551374,
+          "informative": true,
+          "decisions": 479,
+          "note": "pooled across heterogeneous choice sets; a Simpson's-paradox trap. Read the strata."
+        }
+      },
+      "top10": {
+        "small_le25": {
+          "decision_evaluations": 1391,
+          "model_rate": 0.9482386772106398,
+          "chance_rate": 0.6705648900862997,
+          "lift": 1.4140893614167664,
+          "informative": true,
+          "decisions": 71
+        },
+        "mid_26_100": {
+          "decision_evaluations": 3211,
+          "model_rate": 0.6867019620056057,
+          "chance_rate": 0.2219703488894077,
+          "lift": 3.0936652820586468,
+          "informative": true,
+          "decisions": 162
+        },
+        "large_gt100": {
+          "decision_evaluations": 4998,
+          "model_rate": 0.3115246098439376,
+          "chance_rate": 0.04879126092748758,
+          "lift": 6.384844415210299,
+          "informative": true,
+          "decisions": 246
+        },
+        "pooled": {
+          "decision_evaluations": 9600,
+          "model_rate": 0.5292708333333334,
+          "chance_rate": 0.19680846609474104,
+          "lift": 2.689268626678637,
+          "informative": true,
+          "decisions": 479,
+          "note": "pooled across heterogeneous choice sets; a Simpson's-paradox trap. Read the strata."
+        }
+      },
+      "brier": 0.00523065707777669,
+      "brier_uniform_null": 0.005540929293083324,
+      "columns": [
+        "households",
+        "land_area_sqmi",
+        "establishments",
+        "warehousing_establishments",
+        "employment_per_hh"
+      ],
+      "beta": {
+        "land_area_sqmi": {
+          "median": 7.16294726973106e-17,
+          "mean": 3.2713703431959605e-16,
+          "p025": 1.0143976346468446e-136,
+          "p975": 1.3063381303665203e-15,
+          "at_lower_boundary_share": 1.0,
+          "at_upper_boundary_share": 0.0
+        },
+        "establishments": {
+          "median": 0.21250784285957441,
+          "mean": 0.23200605225890986,
+          "p025": 5.522904397526132e-16,
+          "p975": 0.5043082627427101,
+          "at_lower_boundary_share": 0.1,
+          "at_upper_boundary_share": 0.0
+        },
+        "warehousing_establishments": {
+          "median": 1.0843049051383016,
+          "mean": 1.1003586588230434,
+          "p025": 0.8443452542797625,
+          "p975": 1.4379091906141197,
+          "at_lower_boundary_share": 0.0,
+          "at_upper_boundary_share": 0.0
+        },
+        "employment_per_hh": {
+          "median": 1.2489611823621837e-14,
+          "mean": 0.01357265332068832,
+          "p025": 3.69064476895884e-20,
+          "p975": 0.10598310740050375,
+          "at_lower_boundary_share": 0.68,
+          "at_upper_boundary_share": 0.0
+        }
+      },
+      "vs_baseline_large_top10": {
+        "mean_rate_difference": -0.00019230769230769217,
+        "sd_over_resplits": 0.0013598207330510518,
+        "wins": 0,
+        "ties": 49,
+        "losses": 1
+      },
+      "vs_baseline_large_top1": {
+        "mean_rate_difference": -0.00019607843137254915,
+        "sd_over_resplits": 0.0013864838846795059,
+        "wins": 0,
+        "ties": 49,
+        "losses": 1
+      }
+    },
+    "+ warehousing_establishments_per_hh": {
+      "top1": {
+        "small_le25": {
+          "decision_evaluations": 1391,
+          "model_rate": 0.40330697340043137,
+          "chance_rate": 0.07714429839550475,
+          "lift": 5.227955685496679,
+          "informative": true,
+          "decisions": 71
+        },
+        "mid_26_100": {
+          "decision_evaluations": 3211,
+          "model_rate": 0.19744627841793833,
+          "chance_rate": 0.022197034888940762,
+          "lift": 8.895164575170897,
+          "informative": true,
+          "decisions": 162
+        },
+        "large_gt100": {
+          "decision_evaluations": 4998,
+          "model_rate": 0.053621448579431776,
+          "chance_rate": 0.00487912609274876,
+          "lift": 10.989969834787152,
+          "informative": true,
+          "decisions": 246
+        },
+        "pooled": {
+          "decision_evaluations": 9600,
+          "model_rate": 0.15239583333333334,
+          "chance_rate": 0.021142528157093148,
+          "lift": 7.208023193867937,
+          "informative": true,
+          "decisions": 479,
+          "note": "pooled across heterogeneous choice sets; a Simpson's-paradox trap. Read the strata."
+        }
+      },
+      "top5": {
+        "small_le25": {
+          "decision_evaluations": 1391,
+          "model_rate": 0.8058950395398994,
+          "chance_rate": 0.3794310534440946,
+          "lift": 2.123956466464177,
+          "informative": true,
+          "decisions": 71
+        },
+        "mid_26_100": {
+          "decision_evaluations": 3211,
+          "model_rate": 0.5175957645593273,
+          "chance_rate": 0.11098517444470385,
+          "lift": 4.663647799348273,
+          "informative": true,
+          "decisions": 162
+        },
+        "large_gt100": {
+          "decision_evaluations": 4998,
+          "model_rate": 0.1726690676270508,
+          "chance_rate": 0.02439563046374379,
+          "lift": 7.077868632403966,
+          "informative": true,
+          "decisions": 246
+        },
+        "pooled": {
+          "decision_evaluations": 9600,
+          "model_rate": 0.3797916666666667,
+          "chance_rate": 0.1048011824521324,
+          "lift": 3.62392539645376,
+          "informative": true,
+          "decisions": 479,
+          "note": "pooled across heterogeneous choice sets; a Simpson's-paradox trap. Read the strata."
+        }
+      },
+      "top10": {
+        "small_le25": {
+          "decision_evaluations": 1391,
+          "model_rate": 0.9525521207764198,
+          "chance_rate": 0.6705648900862997,
+          "lift": 1.420521913477798,
+          "informative": true,
+          "decisions": 71
+        },
+        "mid_26_100": {
+          "decision_evaluations": 3211,
+          "model_rate": 0.6863905325443787,
+          "chance_rate": 0.2219703488894077,
+          "lift": 3.092262259254992,
+          "informative": true,
+          "decisions": 162
+        },
+        "large_gt100": {
+          "decision_evaluations": 4998,
+          "model_rate": 0.31172468987595037,
+          "chance_rate": 0.04879126092748758,
+          "lift": 6.388945150223279,
+          "informative": true,
+          "decisions": 246
+        },
+        "pooled": {
+          "decision_evaluations": 9600,
+          "model_rate": 0.5298958333333333,
+          "chance_rate": 0.19680846609474104,
+          "lift": 2.692444303073062,
+          "informative": true,
+          "decisions": 479,
+          "note": "pooled across heterogeneous choice sets; a Simpson's-paradox trap. Read the strata."
+        }
+      },
+      "brier": 0.005227318324847832,
+      "brier_uniform_null": 0.005540929293083324,
+      "columns": [
+        "households",
+        "land_area_sqmi",
+        "establishments",
+        "warehousing_establishments",
+        "warehousing_establishments_per_hh"
+      ],
+      "beta": {
+        "land_area_sqmi": {
+          "median": 1.4594635072339757e-20,
+          "mean": 1.7954448528882203e-16,
+          "p025": 0.0,
+          "p975": 1.3792758047133652e-15,
+          "at_lower_boundary_share": 1.0,
+          "at_upper_boundary_share": 0.0
+        },
+        "establishments": {
+          "median": 0.2610302218235809,
+          "mean": 0.26061992067282047,
+          "p025": 3.0492573968347564e-14,
+          "p975": 0.5043082967233282,
+          "at_lower_boundary_share": 0.06,
+          "at_upper_boundary_share": 0.0
+        },
+        "warehousing_establishments": {
+          "median": 1.0925714164645182,
+          "mean": 1.1086179574467023,
+          "p025": 0.8450011738309398,
+          "p975": 1.4425648248631981,
+          "at_lower_boundary_share": 0.0,
+          "at_upper_boundary_share": 0.0
+        },
+        "warehousing_establishments_per_hh": {
+          "median": 5.773159229221237e-17,
+          "mean": 1.872842209486852e-15,
+          "p025": 0.0,
+          "p975": 1.1730280658030464e-14,
+          "at_lower_boundary_share": 1.0,
+          "at_upper_boundary_share": 0.0
+        }
+      },
+      "vs_baseline_large_top10": {
+        "mean_rate_difference": 0.0,
+        "sd_over_resplits": 0.0,
+        "wins": 0,
+        "ties": 50,
+        "losses": 0
+      },
+      "vs_baseline_large_top1": {
+        "mean_rate_difference": 0.0,
+        "sd_over_resplits": 0.0,
+        "wins": 0,
+        "ties": 50,
+        "losses": 0
+      }
+    },
+    "+ owner_occupied_per_hh": {
+      "top1": {
+        "small_le25": {
+          "decision_evaluations": 1391,
+          "model_rate": 0.40330697340043137,
+          "chance_rate": 0.07714429839550475,
+          "lift": 5.227955685496679,
+          "informative": true,
+          "decisions": 71
+        },
+        "mid_26_100": {
+          "decision_evaluations": 3211,
+          "model_rate": 0.19744627841793833,
+          "chance_rate": 0.022197034888940762,
+          "lift": 8.895164575170897,
+          "informative": true,
+          "decisions": 162
+        },
+        "large_gt100": {
+          "decision_evaluations": 4998,
+          "model_rate": 0.053621448579431776,
+          "chance_rate": 0.00487912609274876,
+          "lift": 10.989969834787152,
+          "informative": true,
+          "decisions": 246
+        },
+        "pooled": {
+          "decision_evaluations": 9600,
+          "model_rate": 0.15239583333333334,
+          "chance_rate": 0.021142528157093148,
+          "lift": 7.208023193867937,
+          "informative": true,
+          "decisions": 479,
+          "note": "pooled across heterogeneous choice sets; a Simpson's-paradox trap. Read the strata."
+        }
+      },
+      "top5": {
+        "small_le25": {
+          "decision_evaluations": 1391,
+          "model_rate": 0.8066139468008627,
+          "chance_rate": 0.3794310534440946,
+          "lift": 2.1258511644717273,
+          "informative": true,
+          "decisions": 71
+        },
+        "mid_26_100": {
+          "decision_evaluations": 3211,
+          "model_rate": 0.5175957645593273,
+          "chance_rate": 0.11098517444470385,
+          "lift": 4.663647799348273,
+          "informative": true,
+          "decisions": 162
+        },
+        "large_gt100": {
+          "decision_evaluations": 4998,
+          "model_rate": 0.1726690676270508,
+          "chance_rate": 0.02439563046374379,
+          "lift": 7.077868632403966,
+          "informative": true,
+          "decisions": 246
+        },
+        "pooled": {
+          "decision_evaluations": 9600,
+          "model_rate": 0.3798958333333333,
+          "chance_rate": 0.1048011824521324,
+          "lift": 3.624919341982134,
+          "informative": true,
+          "decisions": 479,
+          "note": "pooled across heterogeneous choice sets; a Simpson's-paradox trap. Read the strata."
+        }
+      },
+      "top10": {
+        "small_le25": {
+          "decision_evaluations": 1391,
+          "model_rate": 0.9518332135154565,
+          "chance_rate": 0.6705648900862997,
+          "lift": 1.419449821467626,
+          "informative": true,
+          "decisions": 71
+        },
+        "mid_26_100": {
+          "decision_evaluations": 3211,
+          "model_rate": 0.6870133914668327,
+          "chance_rate": 0.2219703488894077,
+          "lift": 3.0950683048623016,
+          "informative": true,
+          "decisions": 162
+        },
+        "large_gt100": {
+          "decision_evaluations": 4998,
+          "model_rate": 0.31172468987595037,
+          "chance_rate": 0.04879126092748758,
+          "lift": 6.388945150223279,
+          "informative": true,
+          "decisions": 246
+        },
+        "pooled": {
+          "decision_evaluations": 9600,
+          "model_rate": 0.53,
+          "chance_rate": 0.19680846609474104,
+          "lift": 2.6929735824721326,
+          "informative": true,
+          "decisions": 479,
+          "note": "pooled across heterogeneous choice sets; a Simpson's-paradox trap. Read the strata."
+        }
+      },
+      "brier": 0.00522745363251806,
+      "brier_uniform_null": 0.005540929293083324,
+      "columns": [
+        "households",
+        "land_area_sqmi",
+        "establishments",
+        "warehousing_establishments",
+        "owner_occupied_per_hh"
+      ],
+      "beta": {
+        "land_area_sqmi": {
+          "median": 1.0404558367810522e-16,
+          "mean": 4.373911093146502e-16,
+          "p025": 1.3835453422835618e-67,
+          "p975": 1.9858327399410426e-15,
+          "at_lower_boundary_share": 1.0,
+          "at_upper_boundary_share": 0.0
+        },
+        "establishments": {
+          "median": 0.26103022534045245,
+          "mean": 0.2628048610748756,
+          "p025": 6.081542805128684e-14,
+          "p975": 0.5043805043895884,
+          "at_lower_boundary_share": 0.06,
+          "at_upper_boundary_share": 0.0
+        },
+        "warehousing_establishments": {
+          "median": 1.099632400904876,
+          "mean": 1.1122969910013,
+          "p025": 0.8450011491934469,
+          "p975": 1.4432690029499435,
+          "at_lower_boundary_share": 0.0,
+          "at_upper_boundary_share": 0.0
+        },
+        "owner_occupied_per_hh": {
+          "median": 3.0127843723786413e-15,
+          "mean": 0.0011544661252349086,
+          "p025": 9.934731067801863e-22,
+          "p975": 0.00862706681076133,
+          "at_lower_boundary_share": 0.72,
+          "at_upper_boundary_share": 0.0
+        }
+      },
+      "vs_baseline_large_top10": {
+        "mean_rate_difference": 0.0,
+        "sd_over_resplits": 0.0,
+        "wins": 0,
+        "ties": 50,
+        "losses": 0
+      },
+      "vs_baseline_large_top1": {
+        "mean_rate_difference": 0.0,
+        "sd_over_resplits": 0.0,
+        "wins": 0,
+        "ties": 50,
+        "losses": 0
+      }
+    },
+    "+ in_labor_force_per_hh": {
+      "top1": {
+        "small_le25": {
+          "decision_evaluations": 1391,
+          "model_rate": 0.40330697340043137,
+          "chance_rate": 0.07714429839550475,
+          "lift": 5.227955685496679,
+          "informative": true,
+          "decisions": 71
+        },
+        "mid_26_100": {
+          "decision_evaluations": 3211,
+          "model_rate": 0.19744627841793833,
+          "chance_rate": 0.022197034888940762,
+          "lift": 8.895164575170897,
+          "informative": true,
+          "decisions": 162
+        },
+        "large_gt100": {
+          "decision_evaluations": 4998,
+          "model_rate": 0.053621448579431776,
+          "chance_rate": 0.00487912609274876,
+          "lift": 10.989969834787152,
+          "informative": true,
+          "decisions": 246
+        },
+        "pooled": {
+          "decision_evaluations": 9600,
+          "model_rate": 0.15239583333333334,
+          "chance_rate": 0.021142528157093148,
+          "lift": 7.208023193867937,
+          "informative": true,
+          "decisions": 479,
+          "note": "pooled across heterogeneous choice sets; a Simpson's-paradox trap. Read the strata."
+        }
+      },
+      "top5": {
+        "small_le25": {
+          "decision_evaluations": 1391,
+          "model_rate": 0.8058950395398994,
+          "chance_rate": 0.3794310534440946,
+          "lift": 2.123956466464177,
+          "informative": true,
+          "decisions": 71
+        },
+        "mid_26_100": {
+          "decision_evaluations": 3211,
+          "model_rate": 0.5179071940205543,
+          "chance_rate": 0.11098517444470385,
+          "lift": 4.666453844955583,
+          "informative": true,
+          "decisions": 162
+        },
+        "large_gt100": {
+          "decision_evaluations": 4998,
+          "model_rate": 0.1726690676270508,
+          "chance_rate": 0.02439563046374379,
+          "lift": 7.077868632403966,
+          "informative": true,
+          "decisions": 246
+        },
+        "pooled": {
+          "decision_evaluations": 9600,
+          "model_rate": 0.3798958333333333,
+          "chance_rate": 0.1048011824521324,
+          "lift": 3.624919341982134,
+          "informative": true,
+          "decisions": 479,
+          "note": "pooled across heterogeneous choice sets; a Simpson's-paradox trap. Read the strata."
+        }
+      },
+      "top10": {
+        "small_le25": {
+          "decision_evaluations": 1391,
+          "model_rate": 0.9525521207764198,
+          "chance_rate": 0.6705648900862997,
+          "lift": 1.420521913477798,
+          "informative": true,
+          "decisions": 71
+        },
+        "mid_26_100": {
+          "decision_evaluations": 3211,
+          "model_rate": 0.6863905325443787,
+          "chance_rate": 0.2219703488894077,
+          "lift": 3.092262259254992,
+          "informative": true,
+          "decisions": 162
+        },
+        "large_gt100": {
+          "decision_evaluations": 4998,
+          "model_rate": 0.31172468987595037,
+          "chance_rate": 0.04879126092748758,
+          "lift": 6.388945150223279,
+          "informative": true,
+          "decisions": 246
+        },
+        "pooled": {
+          "decision_evaluations": 9600,
+          "model_rate": 0.5298958333333333,
+          "chance_rate": 0.19680846609474104,
+          "lift": 2.692444303073062,
+          "informative": true,
+          "decisions": 479,
+          "note": "pooled across heterogeneous choice sets; a Simpson's-paradox trap. Read the strata."
+        }
+      },
+      "brier": 0.005227413047325794,
+      "brier_uniform_null": 0.005540929293083324,
+      "columns": [
+        "households",
+        "land_area_sqmi",
+        "establishments",
+        "warehousing_establishments",
+        "in_labor_force_per_hh"
+      ],
+      "beta": {
+        "land_area_sqmi": {
+          "median": 1.4237884648542052e-16,
+          "mean": 4.3505462454878245e-16,
+          "p025": 2.0089838367278377e-36,
+          "p975": 2.138036958264657e-15,
+          "at_lower_boundary_share": 1.0,
+          "at_upper_boundary_share": 0.0
+        },
+        "establishments": {
+          "median": 0.26103024063459024,
+          "mean": 0.261944079987837,
+          "p025": 1.3345459925647922e-15,
+          "p975": 0.5043082748802477,
+          "at_lower_boundary_share": 0.06,
+          "at_upper_boundary_share": 0.0
+        },
+        "warehousing_establishments": {
+          "median": 1.0996325003053042,
+          "mean": 1.1114575293167634,
+          "p025": 0.8450011836276501,
+          "p975": 1.4425647119470244,
+          "at_lower_boundary_share": 0.0,
+          "at_upper_boundary_share": 0.0
+        },
+        "in_labor_force_per_hh": {
+          "median": 2.3459150674168392e-15,
+          "mean": 0.001194392156015723,
+          "p025": 4.2967509469302615e-29,
+          "p975": 0.010554239624824862,
+          "at_lower_boundary_share": 0.82,
+          "at_upper_boundary_share": 0.0
+        }
+      },
+      "vs_baseline_large_top10": {
+        "mean_rate_difference": 0.0,
+        "sd_over_resplits": 0.0,
+        "wins": 0,
+        "ties": 50,
+        "losses": 0
+      },
+      "vs_baseline_large_top1": {
+        "mean_rate_difference": 0.0,
+        "sd_over_resplits": 0.0,
+        "wins": 0,
+        "ties": 50,
+        "losses": 0
+      }
+    },
+    "+ annual_payroll_per_hh": {
+      "top1": {
+        "small_le25": {
+          "decision_evaluations": 1391,
+          "model_rate": 0.40115025161754136,
+          "chance_rate": 0.07714429839550475,
+          "lift": 5.199998703221295,
+          "informative": true,
+          "decisions": 71
+        },
+        "mid_26_100": {
+          "decision_evaluations": 3211,
+          "model_rate": 0.19744627841793833,
+          "chance_rate": 0.022197034888940762,
+          "lift": 8.895164575170897,
+          "informative": true,
+          "decisions": 162
+        },
+        "large_gt100": {
+          "decision_evaluations": 4998,
+          "model_rate": 0.053821528611444576,
+          "chance_rate": 0.00487912609274876,
+          "lift": 11.030977184916955,
+          "informative": true,
+          "decisions": 246
+        },
+        "pooled": {
+          "decision_evaluations": 9600,
+          "model_rate": 0.1521875,
+          "chance_rate": 0.021142528157093148,
+          "lift": 7.198169436938521,
+          "informative": true,
+          "decisions": 479,
+          "note": "pooled across heterogeneous choice sets; a Simpson's-paradox trap. Read the strata."
+        }
+      },
+      "top5": {
+        "small_le25": {
+          "decision_evaluations": 1391,
+          "model_rate": 0.8044572250179727,
+          "chance_rate": 0.3794310534440946,
+          "lift": 2.1201670704490754,
+          "informative": true,
+          "decisions": 71
+        },
+        "mid_26_100": {
+          "decision_evaluations": 3211,
+          "model_rate": 0.5175957645593273,
+          "chance_rate": 0.11098517444470385,
+          "lift": 4.663647799348273,
+          "informative": true,
+          "decisions": 162
+        },
+        "large_gt100": {
+          "decision_evaluations": 4998,
+          "model_rate": 0.1718687474989996,
+          "chance_rate": 0.02439563046374379,
+          "lift": 7.045062752300125,
+          "informative": true,
+          "decisions": 246
+        },
+        "pooled": {
+          "decision_evaluations": 9600,
+          "model_rate": 0.37916666666666665,
+          "chance_rate": 0.1048011824521324,
+          "lift": 3.617961723283512,
+          "informative": true,
+          "decisions": 479,
+          "note": "pooled across heterogeneous choice sets; a Simpson's-paradox trap. Read the strata."
+        }
+      },
+      "top10": {
+        "small_le25": {
+          "decision_evaluations": 1391,
+          "model_rate": 0.9518332135154565,
+          "chance_rate": 0.6705648900862997,
+          "lift": 1.419449821467626,
+          "informative": true,
+          "decisions": 71
+        },
+        "mid_26_100": {
+          "decision_evaluations": 3211,
+          "model_rate": 0.6863905325443787,
+          "chance_rate": 0.2219703488894077,
+          "lift": 3.092262259254992,
+          "informative": true,
+          "decisions": 162
+        },
+        "large_gt100": {
+          "decision_evaluations": 4998,
+          "model_rate": 0.3115246098439376,
+          "chance_rate": 0.04879126092748758,
+          "lift": 6.384844415210299,
+          "informative": true,
+          "decisions": 246
+        },
+        "pooled": {
+          "decision_evaluations": 9600,
+          "model_rate": 0.5296875,
+          "chance_rate": 0.19680846609474104,
+          "lift": 2.6913857442749203,
+          "informative": true,
+          "decisions": 479,
+          "note": "pooled across heterogeneous choice sets; a Simpson's-paradox trap. Read the strata."
+        }
+      },
+      "brier": 0.005227847923864167,
+      "brier_uniform_null": 0.005540929293083324,
+      "columns": [
+        "households",
+        "land_area_sqmi",
+        "establishments",
+        "warehousing_establishments",
+        "annual_payroll_per_hh"
+      ],
+      "beta": {
+        "land_area_sqmi": {
+          "median": 2.4388905933311906e-16,
+          "mean": 5.516272271176688e-16,
+          "p025": 2.6594780458324875e-34,
+          "p975": 2.130536861383498e-15,
+          "at_lower_boundary_share": 1.0,
+          "at_upper_boundary_share": 0.0
+        },
+        "establishments": {
+          "median": 0.23636910148971985,
+          "mean": 0.24557390100353602,
+          "p025": 1.3460427535922587e-13,
+          "p975": 0.5043082329569262,
+          "at_lower_boundary_share": 0.06,
+          "at_upper_boundary_share": 0.0
+        },
+        "warehousing_establishments": {
+          "median": 1.0812303370250498,
+          "mean": 1.1022667198403626,
+          "p025": 0.8450011790387663,
+          "p975": 1.4385119492526661,
+          "at_lower_boundary_share": 0.0,
+          "at_upper_boundary_share": 0.0
+        },
+        "annual_payroll_per_hh": {
+          "median": 8.241665815675207e-15,
+          "mean": 0.005491553415240428,
+          "p025": 1.2316001111572462e-26,
+          "p975": 0.043400071784535185,
+          "at_lower_boundary_share": 0.74,
+          "at_upper_boundary_share": 0.0
+        }
+      },
+      "vs_baseline_large_top10": {
+        "mean_rate_difference": -0.00019230769230769217,
+        "sd_over_resplits": 0.0013598207330510518,
+        "wins": 0,
+        "ties": 49,
+        "losses": 1
+      },
+      "vs_baseline_large_top1": {
+        "mean_rate_difference": 0.00020202020202020194,
+        "sd_over_resplits": 0.0014284985478516107,
+        "wins": 1,
+        "ties": 49,
+        "losses": 0
+      }
+    },
+    "+ establishments_per_hh": {
+      "top1": {
+        "small_le25": {
+          "decision_evaluations": 1391,
+          "model_rate": 0.40330697340043137,
+          "chance_rate": 0.07714429839550475,
+          "lift": 5.227955685496679,
+          "informative": true,
+          "decisions": 71
+        },
+        "mid_26_100": {
+          "decision_evaluations": 3211,
+          "model_rate": 0.19744627841793833,
+          "chance_rate": 0.022197034888940762,
+          "lift": 8.895164575170897,
+          "informative": true,
+          "decisions": 162
+        },
+        "large_gt100": {
+          "decision_evaluations": 4998,
+          "model_rate": 0.053621448579431776,
+          "chance_rate": 0.00487912609274876,
+          "lift": 10.989969834787152,
+          "informative": true,
+          "decisions": 246
+        },
+        "pooled": {
+          "decision_evaluations": 9600,
+          "model_rate": 0.15239583333333334,
+          "chance_rate": 0.021142528157093148,
+          "lift": 7.208023193867937,
+          "informative": true,
+          "decisions": 479,
+          "note": "pooled across heterogeneous choice sets; a Simpson's-paradox trap. Read the strata."
+        }
+      },
+      "top5": {
+        "small_le25": {
+          "decision_evaluations": 1391,
+          "model_rate": 0.8058950395398994,
+          "chance_rate": 0.3794310534440946,
+          "lift": 2.123956466464177,
+          "informative": true,
+          "decisions": 71
+        },
+        "mid_26_100": {
+          "decision_evaluations": 3211,
+          "model_rate": 0.5175957645593273,
+          "chance_rate": 0.11098517444470385,
+          "lift": 4.663647799348273,
+          "informative": true,
+          "decisions": 162
+        },
+        "large_gt100": {
+          "decision_evaluations": 4998,
+          "model_rate": 0.1726690676270508,
+          "chance_rate": 0.02439563046374379,
+          "lift": 7.077868632403966,
+          "informative": true,
+          "decisions": 246
+        },
+        "pooled": {
+          "decision_evaluations": 9600,
+          "model_rate": 0.3797916666666667,
+          "chance_rate": 0.1048011824521324,
+          "lift": 3.62392539645376,
+          "informative": true,
+          "decisions": 479,
+          "note": "pooled across heterogeneous choice sets; a Simpson's-paradox trap. Read the strata."
+        }
+      },
+      "top10": {
+        "small_le25": {
+          "decision_evaluations": 1391,
+          "model_rate": 0.9525521207764198,
+          "chance_rate": 0.6705648900862997,
+          "lift": 1.420521913477798,
+          "informative": true,
+          "decisions": 71
+        },
+        "mid_26_100": {
+          "decision_evaluations": 3211,
+          "model_rate": 0.6863905325443787,
+          "chance_rate": 0.2219703488894077,
+          "lift": 3.092262259254992,
+          "informative": true,
+          "decisions": 162
+        },
+        "large_gt100": {
+          "decision_evaluations": 4998,
+          "model_rate": 0.31172468987595037,
+          "chance_rate": 0.04879126092748758,
+          "lift": 6.388945150223279,
+          "informative": true,
+          "decisions": 246
+        },
+        "pooled": {
+          "decision_evaluations": 9600,
+          "model_rate": 0.5298958333333333,
+          "chance_rate": 0.19680846609474104,
+          "lift": 2.692444303073062,
+          "informative": true,
+          "decisions": 479,
+          "note": "pooled across heterogeneous choice sets; a Simpson's-paradox trap. Read the strata."
+        }
+      },
+      "brier": 0.005227318324641501,
+      "brier_uniform_null": 0.005540929293083324,
+      "columns": [
+        "households",
+        "land_area_sqmi",
+        "establishments",
+        "warehousing_establishments",
+        "establishments_per_hh"
+      ],
+      "beta": {
+        "land_area_sqmi": {
+          "median": 3.112196695561794e-16,
+          "mean": 4.751523069111418e-16,
+          "p025": 7.251048850612752e-30,
+          "p975": 2.2199820317486832e-15,
+          "at_lower_boundary_share": 1.0,
+          "at_upper_boundary_share": 0.0
+        },
+        "establishments": {
+          "median": 0.26103016610379215,
+          "mean": 0.260619932078882,
+          "p025": 7.943808607954084e-14,
+          "p975": 0.5043083224329354,
+          "at_lower_boundary_share": 0.06,
+          "at_upper_boundary_share": 0.0
+        },
+        "warehousing_establishments": {
+          "median": 1.0925714412048724,
+          "mean": 1.1086179665202254,
+          "p025": 0.845001169940558,
+          "p975": 1.4425647469160232,
+          "at_lower_boundary_share": 0.0,
+          "at_upper_boundary_share": 0.0
+        },
+        "establishments_per_hh": {
+          "median": 5.255909104020608e-16,
+          "mean": 2.593064603549752e-15,
+          "p025": 1.470426775852481e-35,
+          "p975": 1.0237896302962151e-14,
+          "at_lower_boundary_share": 1.0,
+          "at_upper_boundary_share": 0.0
+        }
+      },
+      "vs_baseline_large_top10": {
+        "mean_rate_difference": 0.0,
+        "sd_over_resplits": 0.0,
+        "wins": 0,
+        "ties": 50,
+        "losses": 0
+      },
+      "vs_baseline_large_top1": {
+        "mean_rate_difference": 0.0,
+        "sd_over_resplits": 0.0,
+        "wins": 0,
+        "ties": 50,
+        "losses": 0
+      }
+    },
+    "+ bachelors_degree_per_hh": {
+      "top1": {
+        "small_le25": {
+          "decision_evaluations": 1391,
+          "model_rate": 0.40330697340043137,
+          "chance_rate": 0.07714429839550475,
+          "lift": 5.227955685496679,
+          "informative": true,
+          "decisions": 71
+        },
+        "mid_26_100": {
+          "decision_evaluations": 3211,
+          "model_rate": 0.19744627841793833,
+          "chance_rate": 0.022197034888940762,
+          "lift": 8.895164575170897,
+          "informative": true,
+          "decisions": 162
+        },
+        "large_gt100": {
+          "decision_evaluations": 4998,
+          "model_rate": 0.053621448579431776,
+          "chance_rate": 0.00487912609274876,
+          "lift": 10.989969834787152,
+          "informative": true,
+          "decisions": 246
+        },
+        "pooled": {
+          "decision_evaluations": 9600,
+          "model_rate": 0.15239583333333334,
+          "chance_rate": 0.021142528157093148,
+          "lift": 7.208023193867937,
+          "informative": true,
+          "decisions": 479,
+          "note": "pooled across heterogeneous choice sets; a Simpson's-paradox trap. Read the strata."
+        }
+      },
+      "top5": {
+        "small_le25": {
+          "decision_evaluations": 1391,
+          "model_rate": 0.8058950395398994,
+          "chance_rate": 0.3794310534440946,
+          "lift": 2.123956466464177,
+          "informative": true,
+          "decisions": 71
+        },
+        "mid_26_100": {
+          "decision_evaluations": 3211,
+          "model_rate": 0.5175957645593273,
+          "chance_rate": 0.11098517444470385,
+          "lift": 4.663647799348273,
+          "informative": true,
+          "decisions": 162
+        },
+        "large_gt100": {
+          "decision_evaluations": 4998,
+          "model_rate": 0.1726690676270508,
+          "chance_rate": 0.02439563046374379,
+          "lift": 7.077868632403966,
+          "informative": true,
+          "decisions": 246
+        },
+        "pooled": {
+          "decision_evaluations": 9600,
+          "model_rate": 0.3797916666666667,
+          "chance_rate": 0.1048011824521324,
+          "lift": 3.62392539645376,
+          "informative": true,
+          "decisions": 479,
+          "note": "pooled across heterogeneous choice sets; a Simpson's-paradox trap. Read the strata."
+        }
+      },
+      "top10": {
+        "small_le25": {
+          "decision_evaluations": 1391,
+          "model_rate": 0.9525521207764198,
+          "chance_rate": 0.6705648900862997,
+          "lift": 1.420521913477798,
+          "informative": true,
+          "decisions": 71
+        },
+        "mid_26_100": {
+          "decision_evaluations": 3211,
+          "model_rate": 0.6863905325443787,
+          "chance_rate": 0.2219703488894077,
+          "lift": 3.092262259254992,
+          "informative": true,
+          "decisions": 162
+        },
+        "large_gt100": {
+          "decision_evaluations": 4998,
+          "model_rate": 0.31172468987595037,
+          "chance_rate": 0.04879126092748758,
+          "lift": 6.388945150223279,
+          "informative": true,
+          "decisions": 246
+        },
+        "pooled": {
+          "decision_evaluations": 9600,
+          "model_rate": 0.5298958333333333,
+          "chance_rate": 0.19680846609474104,
+          "lift": 2.692444303073062,
+          "informative": true,
+          "decisions": 479,
+          "note": "pooled across heterogeneous choice sets; a Simpson's-paradox trap. Read the strata."
+        }
+      },
+      "brier": 0.0052273183245011455,
+      "brier_uniform_null": 0.005540929293083324,
+      "columns": [
+        "households",
+        "land_area_sqmi",
+        "establishments",
+        "warehousing_establishments",
+        "bachelors_degree_per_hh"
+      ],
+      "beta": {
+        "land_area_sqmi": {
+          "median": 2.448559991029282e-16,
+          "mean": 4.598412189914164e-16,
+          "p025": 1.960153805099643e-26,
+          "p975": 1.970450085651742e-15,
+          "at_lower_boundary_share": 1.0,
+          "at_upper_boundary_share": 0.0
+        },
+        "establishments": {
+          "median": 0.26103021937097026,
+          "mean": 0.2606199306291235,
+          "p025": 3.0727096453352756e-15,
+          "p975": 0.5043082589170902,
+          "at_lower_boundary_share": 0.06,
+          "at_upper_boundary_share": 0.0
+        },
+        "warehousing_establishments": {
+          "median": 1.0925713969069277,
+          "mean": 1.1086179596762749,
+          "p025": 0.8450011868565134,
+          "p975": 1.442564708887564,
+          "at_lower_boundary_share": 0.0,
+          "at_upper_boundary_share": 0.0
+        },
+        "bachelors_degree_per_hh": {
+          "median": 2.3728346921139676e-15,
+          "mean": 8.337463302982462e-15,
+          "p025": 8.302531334415293e-23,
+          "p975": 2.886347716304189e-14,
+          "at_lower_boundary_share": 1.0,
+          "at_upper_boundary_share": 0.0
+        }
+      },
+      "vs_baseline_large_top10": {
+        "mean_rate_difference": 0.0,
+        "sd_over_resplits": 0.0,
+        "wins": 0,
+        "ties": 50,
+        "losses": 0
+      },
+      "vs_baseline_large_top1": {
+        "mean_rate_difference": 0.0,
+        "sd_over_resplits": 0.0,
+        "wins": 0,
+        "ties": 50,
+        "losses": 0
+      }
+    },
+    "+ renter_occupied_per_hh": {
+      "top1": {
+        "small_le25": {
+          "decision_evaluations": 1391,
+          "model_rate": 0.40330697340043137,
+          "chance_rate": 0.07714429839550475,
+          "lift": 5.227955685496679,
+          "informative": true,
+          "decisions": 71
+        },
+        "mid_26_100": {
+          "decision_evaluations": 3211,
+          "model_rate": 0.19744627841793833,
+          "chance_rate": 0.022197034888940762,
+          "lift": 8.895164575170897,
+          "informative": true,
+          "decisions": 162
+        },
+        "large_gt100": {
+          "decision_evaluations": 4998,
+          "model_rate": 0.053621448579431776,
+          "chance_rate": 0.00487912609274876,
+          "lift": 10.989969834787152,
+          "informative": true,
+          "decisions": 246
+        },
+        "pooled": {
+          "decision_evaluations": 9600,
+          "model_rate": 0.15239583333333334,
+          "chance_rate": 0.021142528157093148,
+          "lift": 7.208023193867937,
+          "informative": true,
+          "decisions": 479,
+          "note": "pooled across heterogeneous choice sets; a Simpson's-paradox trap. Read the strata."
+        }
+      },
+      "top5": {
+        "small_le25": {
+          "decision_evaluations": 1391,
+          "model_rate": 0.8058950395398994,
+          "chance_rate": 0.3794310534440946,
+          "lift": 2.123956466464177,
+          "informative": true,
+          "decisions": 71
+        },
+        "mid_26_100": {
+          "decision_evaluations": 3211,
+          "model_rate": 0.5175957645593273,
+          "chance_rate": 0.11098517444470385,
+          "lift": 4.663647799348273,
+          "informative": true,
+          "decisions": 162
+        },
+        "large_gt100": {
+          "decision_evaluations": 4998,
+          "model_rate": 0.1726690676270508,
+          "chance_rate": 0.02439563046374379,
+          "lift": 7.077868632403966,
+          "informative": true,
+          "decisions": 246
+        },
+        "pooled": {
+          "decision_evaluations": 9600,
+          "model_rate": 0.3797916666666667,
+          "chance_rate": 0.1048011824521324,
+          "lift": 3.62392539645376,
+          "informative": true,
+          "decisions": 479,
+          "note": "pooled across heterogeneous choice sets; a Simpson's-paradox trap. Read the strata."
+        }
+      },
+      "top10": {
+        "small_le25": {
+          "decision_evaluations": 1391,
+          "model_rate": 0.9525521207764198,
+          "chance_rate": 0.6705648900862997,
+          "lift": 1.420521913477798,
+          "informative": true,
+          "decisions": 71
+        },
+        "mid_26_100": {
+          "decision_evaluations": 3211,
+          "model_rate": 0.6860791030831517,
+          "chance_rate": 0.2219703488894077,
+          "lift": 3.0908592364513376,
+          "informative": true,
+          "decisions": 162
+        },
+        "large_gt100": {
+          "decision_evaluations": 4998,
+          "model_rate": 0.31172468987595037,
+          "chance_rate": 0.04879126092748758,
+          "lift": 6.388945150223279,
+          "informative": true,
+          "decisions": 246
+        },
+        "pooled": {
+          "decision_evaluations": 9600,
+          "model_rate": 0.5297916666666667,
+          "chance_rate": 0.19680846609474104,
+          "lift": 2.691915023673991,
+          "informative": true,
+          "decisions": 479,
+          "note": "pooled across heterogeneous choice sets; a Simpson's-paradox trap. Read the strata."
+        }
+      },
+      "brier": 0.0052273306448560606,
+      "brier_uniform_null": 0.005540929293083324,
+      "columns": [
+        "households",
+        "land_area_sqmi",
+        "establishments",
+        "warehousing_establishments",
+        "renter_occupied_per_hh"
+      ],
+      "beta": {
+        "land_area_sqmi": {
+          "median": 1.1546481687421994e-16,
+          "mean": 2.8486422543005924e-16,
+          "p025": 6.37148384494917e-27,
+          "p975": 1.119187611658818e-15,
+          "at_lower_boundary_share": 1.0,
+          "at_upper_boundary_share": 0.0
+        },
+        "establishments": {
+          "median": 0.26103021611791666,
+          "mean": 0.26080917191426567,
+          "p025": 7.515193947295103e-14,
+          "p975": 0.5043081842032062,
+          "at_lower_boundary_share": 0.06,
+          "at_upper_boundary_share": 0.0
+        },
+        "warehousing_establishments": {
+          "median": 1.0996324161812425,
+          "mean": 1.1092786389592473,
+          "p025": 0.8450012340117407,
+          "p975": 1.442564634417822,
+          "at_lower_boundary_share": 0.0,
+          "at_upper_boundary_share": 0.0
+        },
+        "renter_occupied_per_hh": {
+          "median": 4.64196440927382e-15,
+          "mean": 0.00046670379455375326,
+          "p025": 2.0974271934997243e-43,
+          "p975": 7.821236601970055e-14,
+          "at_lower_boundary_share": 0.98,
+          "at_upper_boundary_share": 0.0
+        }
+      },
+      "vs_baseline_large_top10": {
+        "mean_rate_difference": 0.0,
+        "sd_over_resplits": 0.0,
+        "wins": 0,
+        "ties": 50,
+        "losses": 0
+      },
+      "vs_baseline_large_top1": {
+        "mean_rate_difference": 0.0,
+        "sd_over_resplits": 0.0,
+        "wins": 0,
+        "ties": 50,
+        "losses": 0
+      }
+    }
+  },
+  "extensivity_note": "every _per_hh column is INTENSIVE. Train section 3.4 Example 2, cited by MODEL_SPEC.md section 1 as the reason for the ln(beta'a) form, requires attractions to ADD across a zone merger; a rate averages. These arms are therefore not zone-merger invariant and the specification stops being a destination-choice model in Train's strict sense. See NOTES_PERCAPITA.md section 2.",
+  "interval_note": "p025/p975 are PERCENTILES OVER RE-SPLITS of one fixed set of decisions. They are not standard errors and say nothing about drawing a different sample of facilities."
+}

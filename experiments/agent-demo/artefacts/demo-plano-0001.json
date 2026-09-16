@@ -1,0 +1,135 @@
+{
+  "run_id": "20260913-041452-1be5",
+  "written_at": "2026-09-13T04:15:15+00:00",
+  "mutation_id": "demo-plano-0001",
+  "summary": "Walmart SC in 75024 (2025, confidence 0.94)",
+  "outcome": "escalated to human",
+  "hitl_required": true,
+  "results": [
+    {
+      "gate": 1,
+      "name": "schema conformance",
+      "protects": "data integrity",
+      "severity": "pass",
+      "reason": "fields present and well-formed",
+      "evidence": {}
+    },
+    {
+      "gate": 2,
+      "name": "geocoding reachability",
+      "protects": "data integrity",
+      "severity": "pass",
+      "reason": "coordinates resolve inside the US",
+      "evidence": {
+        "latitude": 33.0198,
+        "longitude": -96.6989
+      }
+    },
+    {
+      "gate": 3,
+      "name": "confidence threshold",
+      "protects": "data integrity",
+      "severity": "pass",
+      "reason": "confidence 0.94",
+      "evidence": {
+        "confidence": 0.94
+      }
+    },
+    {
+      "gate": 4,
+      "name": "audit-log immutability",
+      "protects": "data integrity",
+      "severity": "pass",
+      "reason": "write is attributable and will be logged",
+      "evidence": {
+        "source_url": "https://example.com/newsroom/plano"
+      }
+    },
+    {
+      "gate": 5,
+      "name": "donor-pool integrity",
+      "protects": "inferential integrity",
+      "severity": "escalate",
+      "reason": "zcta 75024 is itself a donor; this write moves a control unit into treatment",
+      "evidence": {
+        "zcta": "75024",
+        "contaminated": [
+          "75001",
+          "75002",
+          "75006",
+          "75007",
+          "75010",
+          "75013",
+          "75023",
+          "75025",
+          "75033",
+          "75034",
+          "75035",
+          "75036",
+          "75044",
+          "75056",
+          "75057",
+          "75065",
+          "75067",
+          "75068",
+          "75070",
+          "75072",
+          "75074",
+          "75075",
+          "75078",
+          "75080",
+          "75081",
+          "75082",
+          "75093",
+          "75094",
+          "75230",
+          "75234",
+          "75240",
+          "75243",
+          "75244",
+          "75248",
+          "75251",
+          "75252",
+          "75254",
+          "75287"
+        ]
+      }
+    },
+    {
+      "gate": 6,
+      "name": "estimate stability",
+      "protects": "inferential integrity",
+      "severity": "escalate",
+      "reason": "estimate stability could not be evaluated (the facility panel has not arrived, so there is no outcome to re-estimate; the 'enabled' column contains no True values \u2014 the facility panel has not been ingested yet). The gate did not run, so it cannot report a pass; a human must decide whether to accept an unverified write",
+      "evidence": {
+        "evaluated": false,
+        "reason_detail": "the facility panel has not arrived, so there is no outcome to re-estimate; the 'enabled' column contains no True values \u2014 the facility panel has not been ingested yet"
+      }
+    }
+  ],
+  "mutation": {
+    "mutation_id": "demo-plano-0001",
+    "operator": "Walmart",
+    "facility_type": "SC",
+    "zcta": "75024",
+    "latitude": 33.0198,
+    "longitude": -96.6989,
+    "open_year": 2025,
+    "open_quarter": 1,
+    "confidence": 0.94,
+    "source_text": "Walmart opens a new sortation centre in Plano, Texas.",
+    "source_url": "https://example.com/newsroom/plano",
+    "proposed_at": "2026-09-13T04:14:52+00:00"
+  },
+  "warehouse_state": {
+    "warehouse": "data/processed/siting_atlas.duckdb",
+    "warehouse_exists": true,
+    "zctas": 33791,
+    "warehouse_error": null,
+    "donor_pool_size": 33791,
+    "donor_pool_basis": "undetermined-universe",
+    "audit_dir": "outputs/audit",
+    "audit_writable": true
+  },
+  "gate6_basis": "unavailable-target-unpopulated"
+}

@@ -1,0 +1,1077 @@
+{
+  "run_id": "20260915-210640-dbcd",
+  "written_at": "2026-09-15T21:21:38+00:00",
+  "seed": 20260914,
+  "replicate_cap": 500,
+  "repeats": 50,
+  "network_facilities": {
+    "non_ds_us_rows": 811,
+    "excluded_no_numeric_open_year": 243,
+    "excluded_postcode_not_a_panel_zcta": 17,
+    "excluded_either": 255,
+    "kept": 556,
+    "by_table": {
+      "01_us_fulfillment_center": 259,
+      "02_us_fresh_dc": 18,
+      "03_us_whole_foods_dc": 0,
+      "04_us_fresh_hub": 49,
+      "05_us_inbound_cross_dock": 50,
+      "06_us_sortation_center": 92,
+      "07_us_air_gateway_hub": 15,
+      "09_us_delivery_heavy_bulky": 73
+    },
+    "open_year_after_ceiling": 2,
+    "candidate_zctas": 25022,
+    "vintages": 14
+  },
+  "spread_is_not_a_standard_error": "A 2.5-97.5 percentile over 50 re-splits is NOT a standard error and is not an estimate of one. The re-splits draw from the same fixed set of decisions, so their spread understates sampling variability by an amount nothing here measures; and each re-split fit uses 60% of the decisions, so it is not even an interval on the same estimator as the full-sample point estimate beside it. It is reported only as the quantity the published claim was made on.",
+  "per_decision_bootstrap": {
+    "run": false,
+    "reason": "Not run, and the omission is declared rather than hidden. The question this module exists to answer is what happens when the metro clustering `choice_runner` warns about is respected, and the metro-clustered bootstrap answers it. The per-decision bootstrap is the comparison, and the SAME comparison is available analytically and for free from the two sandwiches, which differ only in whether the meat is summed over decisions or over metros -- see `sandwich_over_decisions` against `sandwich_over_metros` and the `se_ratio_vs_independent_decisions` field. It costs about 8 wall-seconds a replicate against the clustered bootstrap's 4.5, one attempt had a pool worker killed by the host part way through, and it would not change any verdict in this artefact. Pass with_decision_bootstraps=True to run it."
+  },
+  "arms": {
+    "combined_plus_network": {
+      "n_decisions": 483,
+      "n_alternatives": 86682,
+      "n_metros": 194,
+      "seed": 20260914,
+      "alpha": 0.05,
+      "replicate_cap": 500,
+      "fit": {
+        "beta": {
+          "households": 1.0,
+          "land_area_sqmi": 4.079975212527962e-18,
+          "establishments": 0.3146030137657076,
+          "warehousing_establishments": 1.3480974283434426,
+          "sortation_proximity": 0.09700576393796267,
+          "fulfilment_proximity": 0.17048987854853911,
+          "network_within_50mi": 5.2321326512435726e-14
+        },
+        "theta": [
+          -40.040440760856,
+          -1.1564437087289952,
+          0.2986942860974863,
+          -2.3329848802033215,
+          -1.7690793473723159,
+          -30.581372334252187
+        ],
+        "log_likelihood": -1809.5734040742057,
+        "log_likelihood_uniform": -2208.5223866417264,
+        "mcfadden_rho_squared": 0.1806406785734065,
+        "converged": true,
+        "n_decisions": 483
+      },
+      "replicates": {
+        "metros": {
+          "replicates": 500,
+          "settled": false,
+          "capped": true,
+          "n_units": 194,
+          "seconds": 263.63345980644226
+        }
+      },
+      "parameters": {
+        "land_area_sqmi": {
+          "beta_point": 4.079975212527962e-18,
+          "at_boundary": true,
+          "bootstrap_over_metros": {
+            "kind": "one-sided percentile",
+            "lower": 0.0,
+            "upper": 7.21851917378312e-15,
+            "mcse_upper": 3.925155850815024e-11,
+            "excludes_ratio_one": true,
+            "share_of_replicates_at_boundary": 0.996,
+            "note": "at the boundary the sampling distribution has an atom at zero, so a two-sided interval would be a fiction; all of alpha goes to the upper tail"
+          },
+          "metro_endpoint_mcse": {
+            "lower": 1.1259378395763063e-103,
+            "upper": 4.1343726674658265e-10,
+            "mcse_lower": 7.242034847880982e-37,
+            "mcse_upper": 1.6809275115661012e-08,
+            "near_endpoint_mcse_share_of_width": 40.65737771521283,
+            "near_endpoint_distance_from_one_in_mcse": 59490965.11930333
+          },
+          "share_of_metro_replicates_at_boundary": 0.996
+        },
+        "establishments": {
+          "beta_point": 0.3146030137657076,
+          "at_boundary": false,
+          "bootstrap_over_metros": {
+            "kind": "percentile",
+            "lower": 1.090481060181304e-12,
+            "upper": 1.0115028269585686,
+            "excludes_ratio_one": false,
+            "share_of_replicates_below_one": 0.974,
+            "bootstrap_median": 0.3114346439240889,
+            "bias_point_minus_median": 0.003168369841618668
+          },
+          "metro_endpoint_mcse": {
+            "lower": 1.090481060181304e-12,
+            "upper": 1.0115028269585686,
+            "mcse_lower": 0.010638339737703725,
+            "mcse_upper": 0.08694474611969608,
+            "near_endpoint_mcse_share_of_width": 0.08595600902196103,
+            "near_endpoint_distance_from_one_in_mcse": 0.13230042609742967
+          },
+          "share_of_metro_replicates_at_boundary": 0.03
+        },
+        "warehousing_establishments": {
+          "beta_point": 1.3480974283434426,
+          "at_boundary": false,
+          "bootstrap_over_metros": {
+            "kind": "percentile",
+            "lower": 0.9969710972785999,
+            "upper": 1.9582090791171236,
+            "excludes_ratio_one": false,
+            "share_of_replicates_below_one": 0.03,
+            "bootstrap_median": 1.3593463746598942,
+            "bias_point_minus_median": -0.011248946316451569
+          },
+          "metro_endpoint_mcse": {
+            "lower": 0.9969710972785999,
+            "upper": 1.9582090791171236,
+            "mcse_lower": 0.014031535284737464,
+            "mcse_upper": 0.04950456407097207,
+            "near_endpoint_mcse_share_of_width": 0.0145973583543795,
+            "near_endpoint_distance_from_one_in_mcse": 0.21586395643352996
+          },
+          "share_of_metro_replicates_at_boundary": 0.0
+        },
+        "sortation_proximity": {
+          "beta_point": 0.09700576393796267,
+          "at_boundary": false,
+          "bootstrap_over_metros": {
+            "kind": "percentile",
+            "lower": 3.046005567888125e-14,
+            "upper": 0.2472207045750394,
+            "excludes_ratio_one": true,
+            "share_of_replicates_below_one": 1.0,
+            "bootstrap_median": 0.09359261161766329,
+            "bias_point_minus_median": 0.003413152320299387
+          },
+          "metro_endpoint_mcse": {
+            "lower": 3.046005567888125e-14,
+            "upper": 0.2472207045750394,
+            "mcse_lower": 0.0016795959904034145,
+            "mcse_upper": 0.014411061939005921,
+            "near_endpoint_mcse_share_of_width": 0.0582922937776576,
+            "near_endpoint_distance_from_one_in_mcse": 52.23621261299551
+          },
+          "share_of_metro_replicates_at_boundary": 0.038
+        },
+        "fulfilment_proximity": {
+          "beta_point": 0.17048987854853911,
+          "at_boundary": false,
+          "bootstrap_over_metros": {
+            "kind": "percentile",
+            "lower": 0.024564990108546236,
+            "upper": 0.3997803028451213,
+            "excludes_ratio_one": true,
+            "share_of_replicates_below_one": 1.0,
+            "bootstrap_median": 0.16580083473626944,
+            "bias_point_minus_median": 0.004689043812269672
+          },
+          "metro_endpoint_mcse": {
+            "lower": 0.024564990108546236,
+            "upper": 0.3997803028451213,
+            "mcse_lower": 0.011489083276982573,
+            "mcse_upper": 0.01908437725931779,
+            "near_endpoint_mcse_share_of_width": 0.05086246912507068,
+            "near_endpoint_distance_from_one_in_mcse": 31.450840077154023
+          },
+          "share_of_metro_replicates_at_boundary": 0.016
+        },
+        "network_within_50mi": {
+          "beta_point": 5.2321326512435726e-14,
+          "at_boundary": true,
+          "bootstrap_over_metros": {
+            "kind": "one-sided percentile",
+            "lower": 0.0,
+            "upper": 0.06718933477031525,
+            "mcse_upper": 0.00947579366467118,
+            "excludes_ratio_one": true,
+            "share_of_replicates_at_boundary": 0.808,
+            "note": "at the boundary the sampling distribution has an atom at zero, so a two-sided interval would be a fiction; all of alpha goes to the upper tail"
+          },
+          "metro_endpoint_mcse": {
+            "lower": 1.041588182061363e-18,
+            "upper": 0.11492090794860198,
+            "mcse_lower": 2.2183047797663076e-16,
+            "mcse_upper": 0.015699585224684752,
+            "near_endpoint_mcse_share_of_width": 0.13661208830430005,
+            "near_endpoint_distance_from_one_in_mcse": 56.37595384747946
+          },
+          "share_of_metro_replicates_at_boundary": 0.808
+        }
+      },
+      "sandwich_over_decisions": {
+        "land_area_sqmi": {
+          "available": false,
+          "beta": 4.079975212527962e-18,
+          "reason": "beta is at the boundary (beta = exp(theta) = 0 requires theta -> -inf), so the maximum is not interior, the gradient does not vanish and the Hessian block is not the information matrix the sandwich asymptotics assume. A standard error here would be a number with no interpretation, so none is printed. The bootstrap is the estimator to read instead."
+        },
+        "network_within_50mi": {
+          "available": false,
+          "beta": 5.2321326512435726e-14,
+          "reason": "beta is at the boundary (beta = exp(theta) = 0 requires theta -> -inf), so the maximum is not interior, the gradient does not vanish and the Hessian block is not the information matrix the sandwich asymptotics assume. A standard error here would be a number with no interpretation, so none is printed. The bootstrap is the estimator to read instead."
+        },
+        "establishments": {
+          "available": true,
+          "beta": 0.3146030137657076,
+          "se_log_beta": 0.8326685765675044,
+          "se_beta_delta_method": 0.26196004365613873,
+          "lower": 0.06151685172843784,
+          "upper": 1.6089096481625063,
+          "z_against_ratio_one": -1.3888403396897522,
+          "p_two_sided_against_ratio_one": 0.16488130555074532,
+          "conditional_on_boundary_selection": true
+        },
+        "warehousing_establishments": {
+          "available": true,
+          "beta": 1.3480974283434426,
+          "se_log_beta": 0.21778060749334932,
+          "se_beta_delta_method": 0.29358947690485687,
+          "lower": 0.8797232926555275,
+          "upper": 2.0658389876438434,
+          "z_against_ratio_one": 1.3715375741460722,
+          "p_two_sided_against_ratio_one": 0.1702074387896393,
+          "conditional_on_boundary_selection": true
+        },
+        "sortation_proximity": {
+          "available": true,
+          "beta": 0.09700576393796267,
+          "se_log_beta": 0.6265687112548357,
+          "se_beta_delta_method": 0.06078077649490009,
+          "lower": 0.0284093492767878,
+          "upper": 0.3312331495349099,
+          "z_against_ratio_one": -3.723430229273703,
+          "p_two_sided_against_ratio_one": 0.00019653419134061216,
+          "conditional_on_boundary_selection": true
+        },
+        "fulfilment_proximity": {
+          "available": true,
+          "beta": 0.17048987854853911,
+          "se_log_beta": 0.5763372636316605,
+          "se_beta_delta_method": 0.09825967007955917,
+          "lower": 0.05509591921284969,
+          "upper": 0.5275671792533871,
+          "z_against_ratio_one": -3.0695210235494015,
+          "p_two_sided_against_ratio_one": 0.0021440231505600606,
+          "conditional_on_boundary_selection": true
+        }
+      },
+      "sandwich_over_metros": {
+        "land_area_sqmi": {
+          "available": false,
+          "beta": 4.079975212527962e-18,
+          "reason": "beta is at the boundary (beta = exp(theta) = 0 requires theta -> -inf), so the maximum is not interior, the gradient does not vanish and the Hessian block is not the information matrix the sandwich asymptotics assume. A standard error here would be a number with no interpretation, so none is printed. The bootstrap is the estimator to read instead."
+        },
+        "network_within_50mi": {
+          "available": false,
+          "beta": 5.2321326512435726e-14,
+          "reason": "beta is at the boundary (beta = exp(theta) = 0 requires theta -> -inf), so the maximum is not interior, the gradient does not vanish and the Hessian block is not the information matrix the sandwich asymptotics assume. A standard error here would be a number with no interpretation, so none is printed. The bootstrap is the estimator to read instead."
+        },
+        "establishments": {
+          "available": true,
+          "beta": 0.3146030137657076,
+          "se_log_beta": 0.7027056858026867,
+          "lower": 0.07936311663725816,
+          "upper": 1.2471165506622848,
+          "z_against_ratio_one": -1.6457013684299602,
+          "p_two_sided_against_ratio_one": 0.09982525716037617,
+          "excludes_ratio_one": false,
+          "se_ratio_vs_independent_decisions": 0.8439200248188042,
+          "within_metro_design_effect": 0.9450013759941667,
+          "conditional_on_boundary_selection": true
+        },
+        "warehousing_establishments": {
+          "available": true,
+          "beta": 1.3480974283434426,
+          "se_log_beta": 0.16210177873071951,
+          "lower": 0.9811603647881442,
+          "upper": 1.8522626285445354,
+          "z_against_ratio_one": 1.8426342291633437,
+          "p_two_sided_against_ratio_one": 0.06538243278115426,
+          "excludes_ratio_one": false,
+          "se_ratio_vs_independent_decisions": 0.7443352307467038,
+          "within_metro_design_effect": 0.8576118604539842,
+          "conditional_on_boundary_selection": true
+        },
+        "sortation_proximity": {
+          "available": true,
+          "beta": 0.09700576393796267,
+          "se_log_beta": 0.6140843229203401,
+          "lower": 0.029113070819444038,
+          "upper": 0.32322657735242777,
+          "z_against_ratio_one": -3.799127893557966,
+          "p_two_sided_against_ratio_one": 0.00014520615008250948,
+          "excludes_ratio_one": true,
+          "se_ratio_vs_independent_decisions": 0.9800749892067017,
+          "within_metro_design_effect": 1.0096237091160174,
+          "conditional_on_boundary_selection": true
+        },
+        "fulfilment_proximity": {
+          "available": true,
+          "beta": 0.17048987854853911,
+          "se_log_beta": 0.5055148849084988,
+          "lower": 0.06329997685689899,
+          "upper": 0.4591913003887246,
+          "z_against_ratio_one": -3.4995593605369892,
+          "p_two_sided_against_ratio_one": 0.00046602782826920484,
+          "excludes_ratio_one": true,
+          "se_ratio_vs_independent_decisions": 0.8771164330467021,
+          "within_metro_design_effect": 0.8653263288804296,
+          "conditional_on_boundary_selection": true
+        },
+        "_meta": {
+          "estimator": "Liang-Zeger CR0, clusters are metros",
+          "n_clusters": 194,
+          "n_decisions": 483,
+          "small_cluster_correction_not_applied": 1.0114768461929537
+        }
+      },
+      "train_precondition": "Train (2009) Sec. 8.6, p. 202, on the bootstrap: 'The sampling covariance of an estimator is, by definition, a measure of the amount by which the estimates change when different samples are taken from the population. Our original sample is one sample from the population. However, if this sample is large enough, then it is probably similar to the population, such that drawing from it is similar to drawing from the population itself.' At 56 decisions that italicised precondition is exactly what is in doubt. These intervals measure how much the estimate moves with WHICH OF OUR 56 decisions are included. That is a real and useful quantity. It is not a licence to read them as sampling variability over the population of siting decisions.",
+      "checks": {
+        "n_decisions": 483,
+        "n_decisions_baseline": 483,
+        "n_alternatives": 86682,
+        "decision_sets_identical": true,
+        "warehousing_identical": true
+      },
+      "provenance": {
+        "file": "data/external/facility_panel/national_facilities_expanded.csv",
+        "rows": 687,
+        "filter": "none; adds panel_network covariates"
+      },
+      "published_resplit_spread": {
+        "available": true,
+        "repeats": 50,
+        "n_fitted_decisions_per_repeat": 290,
+        "beta_mean": {
+          "land_area_sqmi": 5.862296148252716e-16,
+          "establishments": 0.3440996458235172,
+          "warehousing_establishments": 1.4188612934800005,
+          "sortation_proximity": 0.10393056296705706,
+          "fulfilment_proximity": 0.18677212676424834,
+          "network_within_50mi": 0.004092526685705189
+        },
+        "beta_p025": {
+          "land_area_sqmi": 5.911918171688621e-25,
+          "establishments": 0.000837623775985853,
+          "warehousing_establishments": 1.1341842971293756,
+          "sortation_proximity": 2.6150651038159535e-15,
+          "fulfilment_proximity": 0.058530168895492826,
+          "network_within_50mi": 3.00221681450454e-18
+        },
+        "beta_p975": {
+          "land_area_sqmi": 2.0944834278916227e-15,
+          "establishments": 0.9411026772469382,
+          "warehousing_establishments": 2.047386900195846,
+          "sortation_proximity": 0.2102436594468058,
+          "fulfilment_proximity": 0.32625300503351495,
+          "network_within_50mi": 0.040117106248653465
+        },
+        "warning": "A 2.5-97.5 percentile over 50 re-splits is NOT a standard error and is not an estimate of one. The re-splits draw from the same fixed set of decisions, so their spread understates sampling variability by an amount nothing here measures; and each re-split fit uses 60% of the decisions, so it is not even an interval on the same estimator as the full-sample point estimate beside it. It is reported only as the quantity the published claim was made on."
+      }
+    },
+    "mwpvl_clean_plus_network": {
+      "n_decisions": 360,
+      "n_alternatives": 69388,
+      "n_metros": 169,
+      "seed": 20260914,
+      "alpha": 0.05,
+      "replicate_cap": 500,
+      "fit": {
+        "beta": {
+          "households": 1.0,
+          "land_area_sqmi": 5.455864655779733e-16,
+          "establishments": 0.3732674904044252,
+          "warehousing_establishments": 1.2113658299829684,
+          "sortation_proximity": 0.03194375322881982,
+          "fulfilment_proximity": 0.0816661106794158,
+          "network_within_50mi": 7.769048971223825e-14
+        },
+        "theta": [
+          -35.14467037416324,
+          -0.9854599839033866,
+          0.19174850811963928,
+          -3.4437786343693935,
+          -2.505116165135848,
+          -30.186043542554163
+        ],
+        "log_likelihood": -1359.8566912915408,
+        "log_likelihood_uniform": -1654.104658862917,
+        "mcfadden_rho_squared": 0.17788957064763444,
+        "converged": true,
+        "n_decisions": 360
+      },
+      "replicates": {
+        "metros": {
+          "replicates": 500,
+          "settled": false,
+          "capped": true,
+          "n_units": 169,
+          "seconds": 256.01846289634705
+        }
+      },
+      "parameters": {
+        "land_area_sqmi": {
+          "beta_point": 5.455864655779733e-16,
+          "at_boundary": true,
+          "bootstrap_over_metros": {
+            "kind": "one-sided percentile",
+            "lower": 0.0,
+            "upper": 2.8341355982625015e-15,
+            "mcse_upper": 1.3431464523789331e-13,
+            "excludes_ratio_one": true,
+            "share_of_replicates_at_boundary": 1.0,
+            "note": "at the boundary the sampling distribution has an atom at zero, so a two-sided interval would be a fiction; all of alpha goes to the upper tail"
+          },
+          "metro_endpoint_mcse": {
+            "lower": 9.259323323950264e-100,
+            "upper": 4.286144758921238e-12,
+            "mcse_lower": 1.1632391297468321e-54,
+            "mcse_upper": 7.593785878607297e-11,
+            "near_endpoint_mcse_share_of_width": 17.717054149422957,
+            "near_endpoint_distance_from_one_in_mcse": 13168662061.07874
+          },
+          "share_of_metro_replicates_at_boundary": 1.0
+        },
+        "establishments": {
+          "beta_point": 0.3732674904044252,
+          "at_boundary": false,
+          "bootstrap_over_metros": {
+            "kind": "percentile",
+            "lower": 4.420561790778935e-15,
+            "upper": 1.4076708424132565,
+            "excludes_ratio_one": false,
+            "share_of_replicates_below_one": 0.936,
+            "bootstrap_median": 0.3517341919372713,
+            "bias_point_minus_median": 0.021533298467153905
+          },
+          "metro_endpoint_mcse": {
+            "lower": 4.420561790778935e-15,
+            "upper": 1.4076708424132565,
+            "mcse_lower": 1.4303441815098304e-12,
+            "mcse_upper": 0.14794947492364732,
+            "near_endpoint_mcse_share_of_width": 0.10510232255007068,
+            "near_endpoint_distance_from_one_in_mcse": 2.7554733980883963
+          },
+          "share_of_metro_replicates_at_boundary": 0.056
+        },
+        "warehousing_establishments": {
+          "beta_point": 1.2113658299829684,
+          "at_boundary": false,
+          "bootstrap_over_metros": {
+            "kind": "percentile",
+            "lower": 0.8445663079456239,
+            "upper": 1.9849688831997936,
+            "excludes_ratio_one": false,
+            "share_of_replicates_below_one": 0.146,
+            "bootstrap_median": 1.2398453834380025,
+            "bias_point_minus_median": -0.028479553455034168
+          },
+          "metro_endpoint_mcse": {
+            "lower": 0.8445663079456239,
+            "upper": 1.9849688831997936,
+            "mcse_lower": 0.025112284989685763,
+            "mcse_upper": 0.13889243703363463,
+            "near_endpoint_mcse_share_of_width": 0.022020543915457935,
+            "near_endpoint_distance_from_one_in_mcse": 6.1895479490702074
+          },
+          "share_of_metro_replicates_at_boundary": 0.0
+        },
+        "sortation_proximity": {
+          "beta_point": 0.03194375322881982,
+          "at_boundary": false,
+          "bootstrap_over_metros": {
+            "kind": "percentile",
+            "lower": 6.033637349346461e-34,
+            "upper": 0.19868222235193075,
+            "excludes_ratio_one": true,
+            "share_of_replicates_below_one": 1.0,
+            "bootstrap_median": 0.029051022320623454,
+            "bias_point_minus_median": 0.0028927309081963684
+          },
+          "metro_endpoint_mcse": {
+            "lower": 6.033637349346461e-34,
+            "upper": 0.19868222235193075,
+            "mcse_lower": 7.570462012807352e-21,
+            "mcse_upper": 0.009704438828023309,
+            "near_endpoint_mcse_share_of_width": 0.048844021941900746,
+            "near_endpoint_distance_from_one_in_mcse": 82.57229416853248
+          },
+          "share_of_metro_replicates_at_boundary": 0.304
+        },
+        "fulfilment_proximity": {
+          "beta_point": 0.0816661106794158,
+          "at_boundary": false,
+          "bootstrap_over_metros": {
+            "kind": "percentile",
+            "lower": 8.953077517039994e-24,
+            "upper": 0.25838313091356824,
+            "excludes_ratio_one": true,
+            "share_of_replicates_below_one": 1.0,
+            "bootstrap_median": 0.06408719121635188,
+            "bias_point_minus_median": 0.01757891946306392
+          },
+          "metro_endpoint_mcse": {
+            "lower": 8.953077517039994e-24,
+            "upper": 0.25838313091356824,
+            "mcse_lower": 3.4095842939933853e-19,
+            "mcse_upper": 0.01839648591064255,
+            "near_endpoint_mcse_share_of_width": 0.0711984789626083,
+            "near_endpoint_distance_from_one_in_mcse": 40.312963719739486
+          },
+          "share_of_metro_replicates_at_boundary": 0.198
+        },
+        "network_within_50mi": {
+          "beta_point": 7.769048971223825e-14,
+          "at_boundary": true,
+          "bootstrap_over_metros": {
+            "kind": "one-sided percentile",
+            "lower": 0.0,
+            "upper": 0.14152252178179495,
+            "mcse_upper": 0.007749281433770673,
+            "excludes_ratio_one": true,
+            "share_of_replicates_at_boundary": 0.674,
+            "note": "at the boundary the sampling distribution has an atom at zero, so a two-sided interval would be a fiction; all of alpha goes to the upper tail"
+          },
+          "metro_endpoint_mcse": {
+            "lower": 2.144943389063902e-35,
+            "upper": 0.18629716529486573,
+            "mcse_lower": 1.352110407256614e-23,
+            "mcse_upper": 0.021307758242965272,
+            "near_endpoint_mcse_share_of_width": 0.11437510715334812,
+            "near_endpoint_distance_from_one_in_mcse": 38.18810150869706
+          },
+          "share_of_metro_replicates_at_boundary": 0.674
+        }
+      },
+      "sandwich_over_decisions": {
+        "land_area_sqmi": {
+          "available": false,
+          "beta": 5.455864655779733e-16,
+          "reason": "beta is at the boundary (beta = exp(theta) = 0 requires theta -> -inf), so the maximum is not interior, the gradient does not vanish and the Hessian block is not the information matrix the sandwich asymptotics assume. A standard error here would be a number with no interpretation, so none is printed. The bootstrap is the estimator to read instead."
+        },
+        "network_within_50mi": {
+          "available": false,
+          "beta": 7.769048971223825e-14,
+          "reason": "beta is at the boundary (beta = exp(theta) = 0 requires theta -> -inf), so the maximum is not interior, the gradient does not vanish and the Hessian block is not the information matrix the sandwich asymptotics assume. A standard error here would be a number with no interpretation, so none is printed. The bootstrap is the estimator to read instead."
+        },
+        "establishments": {
+          "available": true,
+          "beta": 0.3732674904044252,
+          "se_log_beta": 0.7883658326068071,
+          "se_beta_delta_method": 0.29427133585773807,
+          "lower": 0.07960896057300824,
+          "upper": 1.7501625242932466,
+          "z_against_ratio_one": -1.2500034161106004,
+          "p_two_sided_against_ratio_one": 0.2112982994374213,
+          "conditional_on_boundary_selection": true
+        },
+        "warehousing_establishments": {
+          "available": true,
+          "beta": 1.2113658299829684,
+          "se_log_beta": 0.23700592453950917,
+          "se_beta_delta_method": 0.2871008784906833,
+          "lower": 0.7612643815624552,
+          "upper": 1.927592055520251,
+          "z_against_ratio_one": 0.8090452105456738,
+          "p_two_sided_against_ratio_one": 0.4184891414965698,
+          "conditional_on_boundary_selection": true
+        },
+        "sortation_proximity": {
+          "available": true,
+          "beta": 0.03194375322881982,
+          "se_log_beta": 1.7442959719902922,
+          "se_beta_delta_method": 0.05571936008728231,
+          "lower": 0.0010462573429346302,
+          "upper": 0.9752890885158554,
+          "z_against_ratio_one": -1.9743086549927318,
+          "p_two_sided_against_ratio_one": 0.04834665736798055,
+          "conditional_on_boundary_selection": true
+        },
+        "fulfilment_proximity": {
+          "available": true,
+          "beta": 0.0816661106794158,
+          "se_log_beta": 0.9116883475552118,
+          "se_beta_delta_method": 0.07445404149657762,
+          "lower": 0.013677645536998066,
+          "upper": 0.4876097728561523,
+          "z_against_ratio_one": -2.7477768821479187,
+          "p_two_sided_against_ratio_one": 0.006000082403561153,
+          "conditional_on_boundary_selection": true
+        }
+      },
+      "sandwich_over_metros": {
+        "land_area_sqmi": {
+          "available": false,
+          "beta": 5.455864655779733e-16,
+          "reason": "beta is at the boundary (beta = exp(theta) = 0 requires theta -> -inf), so the maximum is not interior, the gradient does not vanish and the Hessian block is not the information matrix the sandwich asymptotics assume. A standard error here would be a number with no interpretation, so none is printed. The bootstrap is the estimator to read instead."
+        },
+        "network_within_50mi": {
+          "available": false,
+          "beta": 7.769048971223825e-14,
+          "reason": "beta is at the boundary (beta = exp(theta) = 0 requires theta -> -inf), so the maximum is not interior, the gradient does not vanish and the Hessian block is not the information matrix the sandwich asymptotics assume. A standard error here would be a number with no interpretation, so none is printed. The bootstrap is the estimator to read instead."
+        },
+        "establishments": {
+          "available": true,
+          "beta": 0.3732674904044252,
+          "se_log_beta": 0.6825608315886963,
+          "lower": 0.0979542612621448,
+          "upper": 1.4223844639075676,
+          "z_against_ratio_one": -1.4437687284365213,
+          "p_two_sided_against_ratio_one": 0.14880404121697777,
+          "excludes_ratio_one": false,
+          "se_ratio_vs_independent_decisions": 0.8657920008173661,
+          "within_metro_design_effect": 1.134818283974877,
+          "conditional_on_boundary_selection": true
+        },
+        "warehousing_establishments": {
+          "available": true,
+          "beta": 1.2113658299829684,
+          "se_log_beta": 0.18648878885847167,
+          "lower": 0.8404962384095083,
+          "upper": 1.7458819052267698,
+          "z_against_ratio_one": 1.0282039434829473,
+          "p_two_sided_against_ratio_one": 0.3038539038329102,
+          "excludes_ratio_one": false,
+          "se_ratio_vs_independent_decisions": 0.786852857036423,
+          "within_metro_design_effect": 0.9759922989440378,
+          "conditional_on_boundary_selection": true
+        },
+        "sortation_proximity": {
+          "available": true,
+          "beta": 0.03194375322881982,
+          "se_log_beta": 1.6447919296914042,
+          "lower": 0.0012715589919439333,
+          "upper": 0.8024821316262843,
+          "z_against_ratio_one": -2.093747283290425,
+          "p_two_sided_against_ratio_one": 0.03628249846158886,
+          "excludes_ratio_one": true,
+          "se_ratio_vs_independent_decisions": 0.9429546109738756,
+          "within_metro_design_effect": 0.8862591895003478,
+          "conditional_on_boundary_selection": true
+        },
+        "fulfilment_proximity": {
+          "available": true,
+          "beta": 0.0816661106794158,
+          "se_log_beta": 0.8648263383692699,
+          "lower": 0.014993407998787078,
+          "upper": 0.44481905875182765,
+          "z_against_ratio_one": -2.896669601737077,
+          "p_two_sided_against_ratio_one": 0.0037714672182938462,
+          "excludes_ratio_one": true,
+          "se_ratio_vs_independent_decisions": 0.9485986529151028,
+          "within_metro_design_effect": 0.8777874179079943,
+          "conditional_on_boundary_selection": true
+        },
+        "_meta": {
+          "estimator": "Liang-Zeger CR0, clusters are metros",
+          "n_clusters": 169,
+          "n_decisions": 360,
+          "small_cluster_correction_not_applied": 1.0144295077581593
+        }
+      },
+      "train_precondition": "Train (2009) Sec. 8.6, p. 202, on the bootstrap: 'The sampling covariance of an estimator is, by definition, a measure of the amount by which the estimates change when different samples are taken from the population. Our original sample is one sample from the population. However, if this sample is large enough, then it is probably similar to the population, such that drawing from it is similar to drawing from the population itself.' At 56 decisions that italicised precondition is exactly what is in doubt. These intervals measure how much the estimate moves with WHICH OF OUR 56 decisions are included. That is a real and useful quantity. It is not a licence to read them as sampling variability over the population of siting decisions.",
+      "checks": {
+        "n_decisions": 360,
+        "n_decisions_baseline": 360,
+        "n_alternatives": 69388,
+        "decision_sets_identical": true,
+        "warehousing_identical": true
+      },
+      "provenance": {
+        "file": "data/external/facility_panel/national_facilities_expanded.csv",
+        "rows": 415,
+        "filter": "mwpvl_clean's filter; adds panel_network covariates"
+      },
+      "published_resplit_spread": {
+        "available": false,
+        "reason": "no arm 'mwpvl_clean_plus_network' in the artefact (expected for an arm this module adds)"
+      },
+      "three_measures": {
+        "distinct_decisions": {
+          "small_le25": 55,
+          "mid_26_100": 111,
+          "large_gt100": 194
+        },
+        "size_mix": {
+          "small_le25": 0.1527777777777778,
+          "mid_26_100": 0.30833333333333335,
+          "large_gt100": 0.5388888888888889
+        },
+        "methods": {
+          "conditional_logit": {
+            "strata": {
+              "small_le25": {
+                "decisions": 55,
+                "decision_evaluations": 1103,
+                "model_rate": 0.956482320942883,
+                "chance_rate": 0.6674699304188232,
+                "lift": 1.4329968697506879,
+                "informative": true
+              },
+              "mid_26_100": {
+                "decisions": 111,
+                "decision_evaluations": 2191,
+                "model_rate": 0.7179370150616157,
+                "chance_rate": 0.22239956301546795,
+                "lift": 3.228140403367982,
+                "informative": true
+              },
+              "large_gt100": {
+                "decisions": 194,
+                "decision_evaluations": 3906,
+                "model_rate": 0.3087557603686636,
+                "chance_rate": 0.046414067287120525,
+                "lift": 6.652202196775383,
+                "informative": true
+              }
+            },
+            "standardised_top10": {
+              "model_rate": 0.5314705164518864,
+              "chance_rate": 0.18829048637634674,
+              "lift": 2.822609504495126
+            },
+            "raw_pooled": {
+              "top1": 0.1586111111111111,
+              "top5": 0.38986111111111116,
+              "top10": 0.5325,
+              "brier": 0.0047145880570144665
+            }
+          },
+          "gbm stump/200  levels": {
+            "strata": {
+              "small_le25": {
+                "decisions": 55,
+                "decision_evaluations": 1103,
+                "model_rate": 0.9519492293744334,
+                "chance_rate": 0.6674699304188232,
+                "lift": 1.4262054153916799,
+                "informative": true
+              },
+              "mid_26_100": {
+                "decisions": 111,
+                "decision_evaluations": 2191,
+                "model_rate": 0.7001369237790963,
+                "chance_rate": 0.22239956301546795,
+                "lift": 3.148103864441503,
+                "informative": true
+              },
+              "large_gt100": {
+                "decisions": 194,
+                "decision_evaluations": 3906,
+                "model_rate": 0.30005120327700974,
+                "chance_rate": 0.046414067287120525,
+                "lift": 6.464660841310737,
+                "informative": true
+              }
+            },
+            "standardised_top10": {
+              "model_rate": 0.5203143233115157,
+              "chance_rate": 0.18829048637634674,
+              "lift": 2.7633596010344057
+            },
+            "raw_pooled": {
+              "top1": 0.14347222222222222,
+              "top5": 0.40097222222222223,
+              "top10": 0.5216666666666667,
+              "brier": 0.004735818702173437
+            }
+          },
+          "gbm deep/300   levels": {
+            "strata": {
+              "small_le25": {
+                "decisions": 55,
+                "decision_evaluations": 1103,
+                "model_rate": 0.927470534904805,
+                "chance_rate": 0.6674699304188232,
+                "lift": 1.3895315618530366,
+                "informative": true
+              },
+              "mid_26_100": {
+                "decisions": 111,
+                "decision_evaluations": 2191,
+                "model_rate": 0.654039251483341,
+                "chance_rate": 0.22239956301546795,
+                "lift": 2.940829750811391,
+                "informative": true
+              },
+              "large_gt100": {
+                "decisions": 194,
+                "decision_evaluations": 3906,
+                "model_rate": 0.24423963133640553,
+                "chance_rate": 0.046414067287120525,
+                "lift": 5.262189797449183,
+                "informative": true
+              }
+            },
+            "standardised_top10": {
+              "model_rate": 0.4719372461510134,
+              "chance_rate": 0.18829048637634674,
+              "lift": 2.506431712156322
+            },
+            "raw_pooled": {
+              "top1": 0.1315277777777778,
+              "top5": 0.35611111111111116,
+              "top10": 0.47361111111111115,
+              "brier": 0.005178227691531831
+            }
+          }
+        },
+        "reference_mix": {
+          "small_le25": 0.13457556935817805,
+          "mid_26_100": 0.33126293995859213,
+          "large_gt100": 0.5341614906832298
+        }
+      },
+      "resplit_spread": {
+        "beta_mean": {
+          "land_area_sqmi": 2.591048445547971e-16,
+          "establishments": 0.4102986831550439,
+          "warehousing_establishments": 1.2917509565344947,
+          "sortation_proximity": 0.046698498117062434,
+          "fulfilment_proximity": 0.0783578847073157,
+          "network_within_50mi": 0.013989414904151596
+        },
+        "beta_p025": {
+          "land_area_sqmi": 2.0773070735641703e-47,
+          "establishments": 0.07080239744247685,
+          "warehousing_establishments": 0.8900288925936135,
+          "sortation_proximity": 1.6406904896822734e-18,
+          "fulfilment_proximity": 5.883116775008787e-28,
+          "network_within_50mi": 2.277568111628049e-22
+        },
+        "beta_p975": {
+          "land_area_sqmi": 1.404864572514437e-15,
+          "establishments": 1.2510332624313916,
+          "warehousing_establishments": 1.8454776752539763,
+          "sortation_proximity": 0.13802363582851457,
+          "fulfilment_proximity": 0.1978175739637923,
+          "network_within_50mi": 0.11794217928757254
+        },
+        "warning": "A 2.5-97.5 percentile over 50 re-splits is NOT a standard error and is not an estimate of one. The re-splits draw from the same fixed set of decisions, so their spread understates sampling variability by an amount nothing here measures; and each re-split fit uses 60% of the decisions, so it is not even an interval on the same estimator as the full-sample point estimate beside it. It is reported only as the quantity the published claim was made on."
+      },
+      "baseline_resplit_spread": {
+        "available": true,
+        "repeats": 50,
+        "n_fitted_decisions_per_repeat": 216,
+        "beta_mean": {
+          "land_area_sqmi": 2.5140362312170773e-16,
+          "establishments": 0.39789590035064165,
+          "warehousing_establishments": 1.1917539122275485
+        },
+        "beta_p025": {
+          "land_area_sqmi": 2.820528655544981e-17,
+          "establishments": 0.07802007830005153,
+          "warehousing_establishments": 0.8821033929880177
+        },
+        "beta_p975": {
+          "land_area_sqmi": 6.130992002413079e-16,
+          "establishments": 1.1548637632565066,
+          "warehousing_establishments": 1.671351539463904
+        },
+        "warning": "A 2.5-97.5 percentile over 50 re-splits is NOT a standard error and is not an estimate of one. The re-splits draw from the same fixed set of decisions, so their spread understates sampling variability by an amount nothing here measures; and each re-split fit uses 60% of the decisions, so it is not even an interval on the same estimator as the full-sample point estimate beside it. It is reported only as the quantity the published claim was made on."
+      },
+      "paired_against_baseline": {
+        "conditional_logit": {
+          "top1": {
+            "paired_mean_difference": 0.003194444444444443,
+            "paired_sd": 0.006307214811608068,
+            "repeats_improved": 20,
+            "repeats_worsened": 5
+          },
+          "top5": {
+            "paired_mean_difference": 0.00402777777777778,
+            "paired_sd": 0.006741653574615882,
+            "repeats_improved": 25,
+            "repeats_worsened": 5
+          },
+          "top10": {
+            "paired_mean_difference": -0.001944444444444442,
+            "paired_sd": 0.007941466704837101,
+            "repeats_improved": 12,
+            "repeats_worsened": 20
+          },
+          "brier": {
+            "paired_mean_difference": 1.0655485313459598e-07,
+            "paired_sd": 3.689459734592946e-06,
+            "repeats_improved": 28,
+            "repeats_worsened": 22
+          }
+        },
+        "gbm stump/200  levels": {
+          "top1": {
+            "paired_mean_difference": 0.006111111111111108,
+            "paired_sd": 0.016519570076586228,
+            "repeats_improved": 33,
+            "repeats_worsened": 11
+          },
+          "top5": {
+            "paired_mean_difference": 0.008611111111111115,
+            "paired_sd": 0.02102425742690413,
+            "repeats_improved": 29,
+            "repeats_worsened": 11
+          },
+          "top10": {
+            "paired_mean_difference": 0.008055555555555552,
+            "paired_sd": 0.017146347381324055,
+            "repeats_improved": 29,
+            "repeats_worsened": 13
+          },
+          "brier": {
+            "paired_mean_difference": -5.40445781248209e-06,
+            "paired_sd": 1.2282585182026016e-05,
+            "repeats_improved": 36,
+            "repeats_worsened": 14
+          }
+        },
+        "gbm deep/300   levels": {
+          "top1": {
+            "paired_mean_difference": 0.003888888888888892,
+            "paired_sd": 0.01872662732380463,
+            "repeats_improved": 29,
+            "repeats_worsened": 16
+          },
+          "top5": {
+            "paired_mean_difference": 0.009583333333333338,
+            "paired_sd": 0.023134018741439014,
+            "repeats_improved": 31,
+            "repeats_worsened": 15
+          },
+          "top10": {
+            "paired_mean_difference": 0.003333333333333325,
+            "paired_sd": 0.029202413037036665,
+            "repeats_improved": 28,
+            "repeats_worsened": 18
+          },
+          "brier": {
+            "paired_mean_difference": 0.00011104329022507123,
+            "paired_sd": 9.51284578064052e-05,
+            "repeats_improved": 6,
+            "repeats_worsened": 44
+          }
+        }
+      }
+    }
+  },
+  "stages_completed": [
+    "fits_and_sandwiches",
+    "parallel_agreement",
+    "facility_set_sensitivity",
+    "combined_plus_network_metros",
+    "merger_invariance",
+    "mwpvl_clean_plus_network_metros",
+    "mwpvl_clean_plus_network_three_measures"
+  ],
+  "parallel_matches_sequential": {
+    "replicates_compared": 4,
+    "max_abs_difference_in_beta": 0.0
+  },
+  "facility_set_sensitivity": {
+    "draws": 5,
+    "facilities_placed": 556,
+    "facilities_per_draw": 554,
+    "dropped_per_draw": "one random 06_us_sortation_center and one random 01_us_fulfillment_center",
+    "beta": {
+      "households": {
+        "mean": 1.0,
+        "min": 1.0,
+        "max": 1.0,
+        "range": 0.0
+      },
+      "land_area_sqmi": {
+        "mean": 3.6021533805405164e-16,
+        "min": 2.418324674135301e-19,
+        "max": 7.654086024030029e-16,
+        "range": 7.651667699355895e-16
+      },
+      "establishments": {
+        "mean": 0.31433070090527815,
+        "min": 0.31184847754765055,
+        "max": 0.31594340343362765,
+        "range": 0.0040949258859770965
+      },
+      "warehousing_establishments": {
+        "mean": 1.344731243943626,
+        "min": 1.341523346733281,
+        "max": 1.348703419378923,
+        "range": 0.007180072645641911
+      },
+      "sortation_proximity": {
+        "mean": 0.09386861877993855,
+        "min": 0.07969911275656184,
+        "max": 0.0978922200931269,
+        "range": 0.018193107336565054
+      },
+      "fulfilment_proximity": {
+        "mean": 0.16817845655205915,
+        "min": 0.1608436649977766,
+        "max": 0.1717970560515151,
+        "range": 0.010953391053738493
+      },
+      "network_within_50mi": {
+        "mean": 1.9302863516972275e-14,
+        "min": 1.3847210888455665e-21,
+        "max": 7.098976222389064e-14,
+        "range": 7.098976083916956e-14
+      }
+    }
+  },
+  "merger_invariance": {
+    "network": {
+      "pairs_merged": 43224,
+      "abs_relative_probability_error": {
+        "median": 0.043556149318789816,
+        "p90": 0.13472098217842363,
+        "max": 0.4549262491364363
+      },
+      "attraction_lost_share": {
+        "median": 0.04376870662614219,
+        "p90": 0.1349943549912451,
+        "max": 0.45539107177643323
+      },
+      "note": "P_c vs P_j+P_k for one merged pair at a time, at the fitted beta. Zero for an extensive-only specification by Train \u00a73.4 Example 2; nonzero is the invariance being broken."
+    },
+    "extensive_only_control": {
+      "pairs_merged": 43224,
+      "abs_relative_probability_error": {
+        "median": 0.0,
+        "p90": 2.220446049250313e-16,
+        "max": 5.551115123125783e-16
+      },
+      "attraction_lost_share": {
+        "median": 0.0,
+        "p90": 1.4991040565129454e-16,
+        "max": 4.223552219357641e-16
+      },
+      "note": "P_c vs P_j+P_k for one merged pair at a time, at the fitted beta. Zero for an extensive-only specification by Train \u00a73.4 Example 2; nonzero is the invariance being broken."
+    },
+    "drift_under_a_redrawn_map": {
+      "combined_plus_network": {
+        "column": "warehousing_establishments",
+        "draws": 20,
+        "beta_unmerged": 1.3480974283434426,
+        "beta_merged_mean": 1.2968614608792186,
+        "beta_merged_min": 1.004992714864789,
+        "beta_merged_max": 1.6835997890303351,
+        "mean_absolute_shift": 0.14785795772542434,
+        "mean_absolute_shift_pct_of_point": 10.9678985076853,
+        "draws_crossing_one": 0
+      },
+      "combined_extensive_only": {
+        "column": "warehousing_establishments",
+        "draws": 20,
+        "beta_unmerged": 1.1589263354164616,
+        "beta_merged_mean": 1.0742295570726568,
+        "beta_merged_min": 0.8880834400232104,
+        "beta_merged_max": 1.261121306707605,
+        "mean_absolute_shift": 0.1022860817967007,
+        "mean_absolute_shift_pct_of_point": 8.825934718270432,
+        "draws_crossing_one": 5
+      }
+    }
+  }
+}

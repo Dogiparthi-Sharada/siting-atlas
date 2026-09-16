@@ -1,0 +1,2547 @@
+{
+  "seed": 20260914,
+  "test_fraction": 0.4,
+  "repeats": 41,
+  "coverage": {
+    "columns": [
+      "households",
+      "land_area_sqmi",
+      "establishments",
+      "warehousing_establishments",
+      "traffic_proximity",
+      "diesel_pm",
+      "employment",
+      "annual_payroll",
+      "median_home_value",
+      "vehicle_availability_total",
+      "in_labor_force",
+      "bachelors_degree",
+      "median_age",
+      "owner_occupied",
+      "renter_occupied",
+      "low_income_pct",
+      "people_of_colour_pct",
+      "inv_median_home_value",
+      "inv_diesel_pm"
+    ],
+    "panel_zctas": 33791,
+    "frame_zctas": 21768,
+    "zcta_retention": 0.6441951999053003,
+    "decisions": 479,
+    "alternatives": 82926,
+    "median_choice_set": 104,
+    "facilities_offered": 694,
+    "dropped": {
+      "no_panel_zcta": 20,
+      "no_open_year": 144,
+      "no_cbp_vintage": 51,
+      "no_panel_vintage": 0,
+      "chosen_zcta_filtered_out": 0
+    }
+  },
+  "transform": "ln(x / metro_median(x)); the choice set is the metro, so the group median IS the metro median",
+  "transform_diagnostics": {
+    "logrel_median_home_value": {
+      "zeros_winsorised": 0,
+      "zero_share": 0.0,
+      "min": -3.3077190397029224,
+      "max": 1.8729157961889387,
+      "p01": -1.068631456456174,
+      "p99": 1.1025730144238675,
+      "negative_share": 0.4984202783204303
+    },
+    "neglogrel_median_home_value": {
+      "zeros_winsorised": 0,
+      "zero_share": 0.0,
+      "min": -1.8729157961889387,
+      "max": 3.3077190397029224,
+      "p01": -1.1025730144238675,
+      "p99": 1.068631456456174,
+      "negative_share": 0.4984082193763114
+    },
+    "logrel_median_age": {
+      "zeros_winsorised": 0,
+      "zero_share": 0.0,
+      "min": -0.9562021322886916,
+      "max": 0.7348710239313453,
+      "p01": -0.4162372050900755,
+      "p99": 0.4523045933278852,
+      "negative_share": 0.49422376576706945
+    },
+    "neglogrel_median_age": {
+      "zeros_winsorised": 0,
+      "zero_share": 0.0,
+      "min": -0.7348710239313453,
+      "max": 0.9562021322886916,
+      "p01": -0.4523045933278852,
+      "p99": 0.4162372050900755,
+      "negative_share": 0.49360875961700795
+    },
+    "logrel_bachelors_degree": {
+      "zeros_winsorised": 311,
+      "zero_share": 0.0037503316209632686,
+      "min": -7.920264868596835,
+      "max": 4.290070751997642,
+      "p01": -4.8523195739172955,
+      "p99": 2.2121689514539145,
+      "negative_share": 0.4981790994380532
+    },
+    "neglogrel_bachelors_degree": {
+      "zeros_winsorised": 311,
+      "zero_share": 0.0037503316209632686,
+      "min": -4.290070751997642,
+      "max": 7.920264868596835,
+      "p01": -2.2121689514539145,
+      "p99": 4.8523195739172955,
+      "negative_share": 0.49811880471745895
+    },
+    "logrel_owner_occupied": {
+      "zeros_winsorised": 0,
+      "zero_share": 0.0,
+      "min": -6.359862177741695,
+      "max": 3.783641838779939,
+      "p01": -3.9809635879663547,
+      "p99": 1.809528523229344,
+      "negative_share": 0.4985649856498565
+    },
+    "neglogrel_owner_occupied": {
+      "zeros_winsorised": 0,
+      "zero_share": 0.0,
+      "min": -3.783641838779939,
+      "max": 6.359862177741695,
+      "p01": -1.809528523229344,
+      "p99": 3.9809635879663547,
+      "negative_share": 0.4985649856498565
+    },
+    "logrel_renter_occupied": {
+      "zeros_winsorised": 1009,
+      "zero_share": 0.01216747461592263,
+      "min": -6.814542897259958,
+      "max": 5.915983491334116,
+      "p01": -5.27556037942542,
+      "p99": 2.933492016328469,
+      "negative_share": 0.4984323372645491
+    },
+    "neglogrel_renter_occupied": {
+      "zeros_winsorised": 1009,
+      "zero_share": 0.01216747461592263,
+      "min": -5.915983491334116,
+      "max": 6.814542897259958,
+      "p01": -2.933492016328469,
+      "p99": 5.27556037942542,
+      "negative_share": 0.49851674987338107
+    }
+  },
+  "distinct_decisions": {
+    "small_le25": 71,
+    "mid_26_100": 162,
+    "large_gt100": 246,
+    "total": 479,
+    "thin_below": 20,
+    "note": "distinct decisions in the FULL frame. The tables report decision-evaluations, which are these times the ~40% test share times the repeat count."
+  },
+  "reproduction_gate": {
+    "baseline": 6.388945150223279,
+    "no_warehousing": 2.735190253657848
+  },
+  "interval_note": "percentile spreads over re-splits describe how the estimator moves across partitions of one fixed set of decisions. They are NOT standard errors.",
+  "diagnose": {
+    "baseline_beta": {
+      "households": 1.0,
+      "land_area_sqmi": 8.450972770894882e-16,
+      "establishments": 0.24032455461890662,
+      "warehousing_establishments": 1.0937094293006917
+    },
+    "baseline_log_likelihood": -1791.225511140684,
+    "note": "full-frame fits, no re-splitting. beta_max is the largest coefficient on the transformed column that keeps beta'a > 0 for every alternative; above it the probability model is undefined and choice.py's 1e-300 floor silently optimises something that is not a likelihood.",
+    "columns": {
+      "logrel_median_home_value": {
+        "feasibility": {
+          "beta_max": 0.0031538374129935574,
+          "numeraire": 1.0,
+          "as_share_of_numeraire": 0.0031538374129935574,
+          "min_baseline_attraction": 0.0018416431907807753,
+          "binding_alternative_row": 82918,
+          "binding_logrel": -2.2720866859640467,
+          "binding_baseline_attraction": 0.007165791995757954,
+          "n_alternatives_below_median": 41332
+        },
+        "beta": 1.4120499624210394e-14,
+        "fitted_beta": {
+          "households": 1.0,
+          "land_area_sqmi": 4.586036094099903e-22,
+          "establishments": 0.24032455042796258,
+          "warehousing_establishments": 1.0937094863937278,
+          "logrel_median_home_value": 1.4120499624210394e-14
+        },
+        "beta_over_beta_max": 4.477243996800554e-12,
+        "at_lower_boundary": true,
+        "log_likelihood": -1791.2255111406837,
+        "log_likelihood_gain": 2.2737367544323206e-13,
+        "fitted_model_feasible": {
+          "alternatives": 82926,
+          "negative_attraction": 0,
+          "negative_share": 0.0,
+          "negative_and_chosen": 0,
+          "negative_and_not_chosen": 0,
+          "min_attraction": 0.0018416431706802167,
+          "mean_prob_of_chosen": 0.07868459928467032,
+          "metros_with_nonpositive_total": 0
+        }
+      },
+      "logrel_median_age": {
+        "feasibility": {
+          "beta_max": 0.006537563916208555,
+          "numeraire": 1.0,
+          "as_share_of_numeraire": 0.006537563916208555,
+          "min_baseline_attraction": 0.0018416431907807753,
+          "binding_alternative_row": 7264,
+          "binding_logrel": -0.44580890065867873,
+          "binding_baseline_attraction": 0.0029145041824707825,
+          "n_alternatives_below_median": 40984
+        },
+        "beta": 2.6474753383689565e-15,
+        "fitted_beta": {
+          "households": 1.0,
+          "land_area_sqmi": 4.1792805393335304e-16,
+          "establishments": 0.24032453297850914,
+          "warehousing_establishments": 1.093709475509045,
+          "logrel_median_age": 2.6474753383689565e-15
+        },
+        "beta_over_beta_max": 4.049635877065893e-13,
+        "at_lower_boundary": true,
+        "log_likelihood": -1791.2255111406837,
+        "log_likelihood_gain": 2.2737367544323206e-13,
+        "fitted_model_feasible": {
+          "alternatives": 82926,
+          "negative_attraction": 0,
+          "negative_share": 0.0,
+          "negative_and_chosen": 0,
+          "negative_and_not_chosen": 0,
+          "min_attraction": 0.0018416430869425868,
+          "mean_prob_of_chosen": 0.07868459930388186,
+          "metros_with_nonpositive_total": 0
+        }
+      },
+      "logrel_bachelors_degree": {
+        "feasibility": {
+          "beta_max": 0.000301653294277763,
+          "numeraire": 1.0,
+          "as_share_of_numeraire": 0.000301653294277763,
+          "min_baseline_attraction": 0.0018416431907807753,
+          "binding_alternative_row": 75106,
+          "binding_logrel": -6.10516518704081,
+          "binding_baseline_attraction": 0.0018416431907807753,
+          "n_alternatives_below_median": 41312
+        },
+        "beta": 0.01660561736532006,
+        "fitted_beta": {
+          "households": 1.0,
+          "land_area_sqmi": 9.676504492624479e-176,
+          "establishments": 0.21837511097859316,
+          "warehousing_establishments": 1.0668270071387247,
+          "logrel_bachelors_degree": 0.01660561736532006
+        },
+        "beta_over_beta_max": 55.0486856279102,
+        "at_lower_boundary": false,
+        "log_likelihood": -1790.3805958601347,
+        "log_likelihood_gain": 0.8449152805492304,
+        "fitted_model_feasible": {
+          "alternatives": 82926,
+          "negative_attraction": 4221,
+          "negative_share": 0.050900803125678316,
+          "negative_and_chosen": 0,
+          "negative_and_not_chosen": 4221,
+          "min_attraction": -0.12496527761043537,
+          "mean_prob_of_chosen": 0.07933809381418118,
+          "metros_with_nonpositive_total": 0
+        }
+      },
+      "logrel_owner_occupied": {
+        "feasibility": {
+          "beta_max": 0.0002895728145220152,
+          "numeraire": 1.0,
+          "as_share_of_numeraire": 0.0002895728145220152,
+          "min_baseline_attraction": 0.0018416431907807753,
+          "binding_alternative_row": 75106,
+          "binding_logrel": -6.359862177741695,
+          "binding_baseline_attraction": 0.0018416431907807753,
+          "n_alternatives_below_median": 41344
+        },
+        "beta": 0.022352252953076787,
+        "fitted_beta": {
+          "households": 1.0,
+          "land_area_sqmi": 8.418187719410837e-42,
+          "establishments": 0.22129819783186946,
+          "warehousing_establishments": 1.0672019097455554,
+          "logrel_owner_occupied": 0.022352252953076787
+        },
+        "beta_over_beta_max": 77.19043995884988,
+        "at_lower_boundary": false,
+        "log_likelihood": -1790.0211675635899,
+        "log_likelihood_gain": 1.2043435770940505,
+        "fitted_model_feasible": {
+          "alternatives": 82926,
+          "negative_attraction": 4816,
+          "negative_share": 0.058075874876395824,
+          "negative_and_chosen": 0,
+          "negative_and_not_chosen": 4816,
+          "min_attraction": -0.1404069010197113,
+          "mean_prob_of_chosen": 0.07934558783292604,
+          "metros_with_nonpositive_total": 0
+        }
+      },
+      "logrel_renter_occupied": {
+        "feasibility": {
+          "beta_max": 0.0004030256827471697,
+          "numeraire": 1.0,
+          "as_share_of_numeraire": 0.0004030256827471697,
+          "min_baseline_attraction": 0.0018416431907807753,
+          "binding_alternative_row": 75106,
+          "binding_logrel": -4.56954300834494,
+          "binding_baseline_attraction": 0.0018416431907807753,
+          "n_alternatives_below_median": 41333
+        },
+        "beta": 0.0078805012534549,
+        "fitted_beta": {
+          "households": 1.0,
+          "land_area_sqmi": 0.0,
+          "establishments": 0.230081734678635,
+          "warehousing_establishments": 1.0804837847871624,
+          "logrel_renter_occupied": 0.0078805012534549
+        },
+        "beta_over_beta_max": 19.55334756767493,
+        "at_lower_boundary": false,
+        "log_likelihood": -1790.807857616242,
+        "log_likelihood_gain": 0.41765352444190285,
+        "fitted_model_feasible": {
+          "alternatives": 82926,
+          "negative_attraction": 2453,
+          "negative_share": 0.029580589923546296,
+          "negative_and_chosen": 0,
+          "negative_and_not_chosen": 2453,
+          "min_attraction": -0.04715742932505673,
+          "mean_prob_of_chosen": 0.07898919788782847,
+          "metros_with_nonpositive_total": 0
+        }
+      },
+      "neglogrel_median_home_value": {
+        "feasibility": {
+          "beta_max": 0.00280538183320409,
+          "numeraire": 1.0,
+          "as_share_of_numeraire": 0.00280538183320409,
+          "min_baseline_attraction": 0.0018416431907807753,
+          "binding_alternative_row": 75106,
+          "binding_logrel": -0.6564679249659905,
+          "binding_baseline_attraction": 0.0018416431907807753,
+          "n_alternatives_below_median": 41331
+        },
+        "beta": 0.05887403332442296,
+        "fitted_beta": {
+          "households": 1.0,
+          "land_area_sqmi": 3.686912428158994e-24,
+          "establishments": 0.26476423345028854,
+          "warehousing_establishments": 1.111563834491318,
+          "neglogrel_median_home_value": 0.05887403332442296
+        },
+        "beta_over_beta_max": 20.98610343433414,
+        "at_lower_boundary": false,
+        "log_likelihood": -1790.942829620423,
+        "log_likelihood_gain": 0.2826815202608941,
+        "fitted_model_feasible": {
+          "alternatives": 82926,
+          "negative_attraction": 765,
+          "negative_share": 0.00922509225092251,
+          "negative_and_chosen": 0,
+          "negative_and_not_chosen": 765,
+          "min_attraction": -0.09145044814196651,
+          "mean_prob_of_chosen": 0.07855744907824636,
+          "metros_with_nonpositive_total": 0
+        }
+      },
+      "neglogrel_median_age": {
+        "feasibility": {
+          "beta_max": 0.004462881629973047,
+          "numeraire": 1.0,
+          "as_share_of_numeraire": 0.004462881629973047,
+          "min_baseline_attraction": 0.0018416431907807753,
+          "binding_alternative_row": 75106,
+          "binding_logrel": -0.4126578617752624,
+          "binding_baseline_attraction": 0.0018416431907807753,
+          "n_alternatives_below_median": 40933
+        },
+        "beta": 0.17066763504745994,
+        "fitted_beta": {
+          "households": 1.0,
+          "land_area_sqmi": 4.689203393161456e-16,
+          "establishments": 0.2231108387995046,
+          "warehousing_establishments": 1.0764332127336005,
+          "neglogrel_median_age": 0.17066763504745994
+        },
+        "beta_over_beta_max": 38.24157779611346,
+        "at_lower_boundary": false,
+        "log_likelihood": -1790.0527490473723,
+        "log_likelihood_gain": 1.1727620933115759,
+        "fitted_model_feasible": {
+          "alternatives": 82926,
+          "negative_attraction": 2187,
+          "negative_share": 0.026372910787931407,
+          "negative_and_chosen": 0,
+          "negative_and_not_chosen": 2187,
+          "min_attraction": -0.1176762125910277,
+          "mean_prob_of_chosen": 0.07896902651392179,
+          "metros_with_nonpositive_total": 0
+        }
+      },
+      "neglogrel_bachelors_degree": {
+        "feasibility": {
+          "beta_max": 0.05492211652751722,
+          "numeraire": 1.0,
+          "as_share_of_numeraire": 0.05492211652751722,
+          "min_baseline_attraction": 0.0018416431907807753,
+          "binding_alternative_row": 67257,
+          "binding_logrel": -0.4910734683822025,
+          "binding_baseline_attraction": 0.026970794254059367,
+          "n_alternatives_below_median": 41307
+        },
+        "beta": 8.92094168320208e-16,
+        "fitted_beta": {
+          "households": 1.0,
+          "land_area_sqmi": 7.96260263698107e-16,
+          "establishments": 0.24032452363529777,
+          "warehousing_establishments": 1.0937095294083463,
+          "neglogrel_bachelors_degree": 8.92094168320208e-16
+        },
+        "beta_over_beta_max": 1.6242894934197387e-14,
+        "at_lower_boundary": true,
+        "log_likelihood": -1791.225511140684,
+        "log_likelihood_gain": 0.0,
+        "fitted_model_feasible": {
+          "alternatives": 82926,
+          "negative_attraction": 0,
+          "negative_share": 0.0,
+          "negative_and_chosen": 0,
+          "negative_and_not_chosen": 0,
+          "min_attraction": 0.0018416430421144786,
+          "mean_prob_of_chosen": 0.07868460011028827,
+          "metros_with_nonpositive_total": 0
+        }
+      },
+      "neglogrel_owner_occupied": {
+        "feasibility": {
+          "beta_max": 0.08391074398074913,
+          "numeraire": 1.0,
+          "as_share_of_numeraire": 0.08391074398074913,
+          "min_baseline_attraction": 0.0018416431907807753,
+          "binding_alternative_row": 31137,
+          "binding_logrel": -1.3394300521436728,
+          "binding_baseline_attraction": 0.11239257218554918,
+          "n_alternatives_below_median": 41344
+        },
+        "beta": 6.695296040214053e-19,
+        "fitted_beta": {
+          "households": 1.0,
+          "land_area_sqmi": 1.2322911166263376e-16,
+          "establishments": 0.24032452065019863,
+          "warehousing_establishments": 1.0937094922138495,
+          "neglogrel_owner_occupied": 6.695296040214053e-19
+        },
+        "beta_over_beta_max": 7.979068856486474e-18,
+        "at_lower_boundary": true,
+        "log_likelihood": -1791.2255111406835,
+        "log_likelihood_gain": 4.547473508864641e-13,
+        "fitted_model_feasible": {
+          "alternatives": 82926,
+          "negative_attraction": 0,
+          "negative_share": 0.0,
+          "negative_and_chosen": 0,
+          "negative_and_not_chosen": 0,
+          "min_attraction": 0.0018416430277853346,
+          "mean_prob_of_chosen": 0.07868459964262148,
+          "metros_with_nonpositive_total": 0
+        }
+      },
+      "neglogrel_renter_occupied": {
+        "feasibility": {
+          "beta_max": 0.06406092386555358,
+          "numeraire": 1.0,
+          "as_share_of_numeraire": 0.06406092386555358,
+          "min_baseline_attraction": 0.0018416431907807753,
+          "binding_alternative_row": 69491,
+          "binding_logrel": -1.423632031557535,
+          "binding_baseline_attraction": 0.09119918318617062,
+          "n_alternatives_below_median": 41340
+        },
+        "beta": 7.507855402067118e-16,
+        "fitted_beta": {
+          "households": 1.0,
+          "land_area_sqmi": 5.1897895677368135e-24,
+          "establishments": 0.24032450789827314,
+          "warehousing_establishments": 1.0937094898941977,
+          "neglogrel_renter_occupied": 7.507855402067118e-16
+        },
+        "beta_over_beta_max": 1.171986750897327e-14,
+        "at_lower_boundary": true,
+        "log_likelihood": -1791.2255111406837,
+        "log_likelihood_gain": 2.2737367544323206e-13,
+        "fitted_model_feasible": {
+          "alternatives": 82926,
+          "negative_attraction": 0,
+          "negative_share": 0.0,
+          "negative_and_chosen": 0,
+          "negative_and_not_chosen": 0,
+          "min_attraction": 0.001841642966599924,
+          "mean_prob_of_chosen": 0.07868459973176854,
+          "metros_with_nonpositive_total": 0
+        }
+      }
+    }
+  },
+  "resplits": {
+    "reference_arm": "baseline",
+    "repeats": 41,
+    "n_test_decisions": 192,
+    "distinct_decisions": {
+      "small_le25": 71,
+      "mid_26_100": 162,
+      "large_gt100": 246,
+      "total": 479,
+      "thin_below": 20,
+      "note": "distinct decisions in the FULL frame. The tables report decision-evaluations, which are these times the ~40% test share times the repeat count."
+    },
+    "arms": {
+      "baseline": {
+        "top1": {
+          "small_le25": {
+            "decision_evaluations": 1136,
+            "model_rate": 0.3961267605633803,
+            "chance_rate": 0.07623208318880785,
+            "lift": 5.196326061066351,
+            "informative": true
+          },
+          "mid_26_100": {
+            "decision_evaluations": 2632,
+            "model_rate": 0.19832826747720364,
+            "chance_rate": 0.02225537670930402,
+            "lift": 8.911476541949124,
+            "informative": true
+          },
+          "large_gt100": {
+            "decision_evaluations": 4104,
+            "model_rate": 0.05360623781676413,
+            "chance_rate": 0.0048733454447874,
+            "lift": 10.999884663235218,
+            "informative": true
+          },
+          "pooled": {
+            "decision_evaluations": 7872,
+            "model_rate": 0.15142276422764228,
+            "chance_rate": 0.020982724556247636,
+            "lift": 7.216544439771333,
+            "informative": true
+          }
+        },
+        "top5": {
+          "small_le25": {
+            "decision_evaluations": 1136,
+            "model_rate": 0.8063380281690141,
+            "chance_rate": 0.3754385849581237,
+            "lift": 2.1477228512859243,
+            "informative": true
+          },
+          "mid_26_100": {
+            "decision_evaluations": 2632,
+            "model_rate": 0.5163373860182371,
+            "chance_rate": 0.11127688354652011,
+            "lift": 4.640113647704543,
+            "informative": true
+          },
+          "large_gt100": {
+            "decision_evaluations": 4104,
+            "model_rate": 0.1703216374269006,
+            "chance_rate": 0.024366727223936988,
+            "lift": 6.989926708728565,
+            "informative": true
+          },
+          "pooled": {
+            "decision_evaluations": 7872,
+            "model_rate": 0.3777947154471545,
+            "chance_rate": 0.10408791139912436,
+            "lift": 3.62957340933188,
+            "informative": true
+          }
+        },
+        "top10": {
+          "small_le25": {
+            "decision_evaluations": 1136,
+            "model_rate": 0.9533450704225352,
+            "chance_rate": 0.6685393932562879,
+            "lift": 1.4260118102824582,
+            "informative": true
+          },
+          "mid_26_100": {
+            "decision_evaluations": 2632,
+            "model_rate": 0.6907294832826748,
+            "chance_rate": 0.22255376709304023,
+            "lift": 3.1036521749546946,
+            "informative": true
+          },
+          "large_gt100": {
+            "decision_evaluations": 4104,
+            "model_rate": 0.3092105263157895,
+            "chance_rate": 0.048733454447873976,
+            "lift": 6.344933471657045,
+            "informative": true
+          },
+          "pooled": {
+            "decision_evaluations": 7872,
+            "model_rate": 0.5297256097560976,
+            "chance_rate": 0.19629374527211632,
+            "lift": 2.698637233813815,
+            "informative": true
+          }
+        },
+        "brier": 0.0052104896699132945,
+        "brier_uniform_null": 0.005521600286937445,
+        "columns": [
+          "households",
+          "land_area_sqmi",
+          "establishments",
+          "warehousing_establishments"
+        ],
+        "beta": {
+          "land_area_sqmi": {
+            "median": 5.856713897844935e-16,
+            "mean": 8.104975428460007e-16,
+            "p025": 5.917509612616652e-17,
+            "p975": 2.533021547743537e-15,
+            "at_lower_boundary_share": 1.0,
+            "at_upper_boundary_share": 0.0
+          },
+          "establishments": {
+            "median": 0.24289129692860414,
+            "mean": 0.2453128535613454,
+            "p025": 2.943647924432651e-15,
+            "p975": 0.4646927542419826,
+            "at_lower_boundary_share": 0.07317073170731707,
+            "at_upper_boundary_share": 0.0
+          },
+          "warehousing_establishments": {
+            "median": 1.0978747967650246,
+            "mean": 1.1082440528861135,
+            "p025": 0.8413031818319017,
+            "p975": 1.4449771895531116,
+            "at_lower_boundary_share": 0.0,
+            "at_upper_boundary_share": 0.0
+          }
+        }
+      },
+      "no_warehousing": {
+        "top1": {
+          "small_le25": {
+            "decision_evaluations": 1136,
+            "model_rate": 0.29313380281690143,
+            "chance_rate": 0.07623208318880785,
+            "lift": 3.8452812851891,
+            "informative": true
+          },
+          "mid_26_100": {
+            "decision_evaluations": 2632,
+            "model_rate": 0.05319148936170213,
+            "chance_rate": 0.02225537670930402,
+            "lift": 2.3900511798330983,
+            "informative": true
+          },
+          "large_gt100": {
+            "decision_evaluations": 4104,
+            "model_rate": 0.02168615984405458,
+            "chance_rate": 0.0048733454447874,
+            "lift": 4.449953341036065,
+            "informative": true
+          },
+          "pooled": {
+            "decision_evaluations": 7872,
+            "model_rate": 0.07139227642276423,
+            "chance_rate": 0.020982724556247636,
+            "lift": 3.402431187207625,
+            "informative": true
+          }
+        },
+        "top5": {
+          "small_le25": {
+            "decision_evaluations": 1136,
+            "model_rate": 0.7561619718309859,
+            "chance_rate": 0.3754385849581237,
+            "lift": 2.014076341981014,
+            "informative": true
+          },
+          "mid_26_100": {
+            "decision_evaluations": 2632,
+            "model_rate": 0.3130699088145897,
+            "chance_rate": 0.11127688354652011,
+            "lift": 2.81343167454639,
+            "informative": true
+          },
+          "large_gt100": {
+            "decision_evaluations": 4104,
+            "model_rate": 0.0935672514619883,
+            "chance_rate": 0.024366727223936988,
+            "lift": 3.8399597369839324,
+            "informative": true
+          },
+          "pooled": {
+            "decision_evaluations": 7872,
+            "model_rate": 0.2625762195121951,
+            "chance_rate": 0.10408791139912436,
+            "lift": 2.5226389499290502,
+            "informative": true
+          }
+        },
+        "top10": {
+          "small_le25": {
+            "decision_evaluations": 1136,
+            "model_rate": 0.8890845070422535,
+            "chance_rate": 0.6685393932562879,
+            "lift": 1.3298909772717291,
+            "informative": true
+          },
+          "mid_26_100": {
+            "decision_evaluations": 2632,
+            "model_rate": 0.5421732522796353,
+            "chance_rate": 0.22255376709304023,
+            "lift": 2.4361450240155937,
+            "informative": true
+          },
+          "large_gt100": {
+            "decision_evaluations": 4104,
+            "model_rate": 0.13425925925925927,
+            "chance_rate": 0.048733454447873976,
+            "lift": 2.7549711133830037,
+            "informative": true
+          },
+          "pooled": {
+            "decision_evaluations": 7872,
+            "model_rate": 0.3795731707317073,
+            "chance_rate": 0.19629374527211632,
+            "lift": 1.9336997732939276,
+            "informative": true
+          }
+        },
+        "brier": 0.005353032502237995,
+        "brier_uniform_null": 0.005521600286937445,
+        "columns": [
+          "households",
+          "land_area_sqmi",
+          "establishments"
+        ],
+        "beta": {
+          "land_area_sqmi": {
+            "median": 9.58372916318542e-16,
+            "mean": 0.13227941283836195,
+            "p025": 9.786992644417787e-17,
+            "p975": 5.060327797165939e-15,
+            "at_lower_boundary_share": 0.975609756097561,
+            "at_upper_boundary_share": 0.0
+          },
+          "establishments": {
+            "median": 2.0709875646758986,
+            "mean": 795942872116172.0,
+            "p025": 1.3802968267618625,
+            "p975": 5.759118293068577,
+            "at_lower_boundary_share": 0.0,
+            "at_upper_boundary_share": 0.024390243902439025
+          }
+        },
+        "vs_baseline_large_top10": {
+          "mean_rate_difference": -0.1753857420838704,
+          "sd_over_resplits": 0.045107523087133485,
+          "wins": 0,
+          "ties": 0,
+          "losses": 41
+        },
+        "vs_baseline_large_top1": {
+          "mean_rate_difference": -0.032109711052317594,
+          "sd_over_resplits": 0.020100047494300863,
+          "wins": 0,
+          "ties": 1,
+          "losses": 40
+        }
+      },
+      "+ logrel_median_home_value": {
+        "top1": {
+          "small_le25": {
+            "decision_evaluations": 1136,
+            "model_rate": 0.3961267605633803,
+            "chance_rate": 0.07623208318880785,
+            "lift": 5.196326061066351,
+            "informative": true
+          },
+          "mid_26_100": {
+            "decision_evaluations": 2632,
+            "model_rate": 0.19832826747720364,
+            "chance_rate": 0.02225537670930402,
+            "lift": 8.911476541949124,
+            "informative": true
+          },
+          "large_gt100": {
+            "decision_evaluations": 4104,
+            "model_rate": 0.05360623781676413,
+            "chance_rate": 0.0048733454447874,
+            "lift": 10.999884663235218,
+            "informative": true
+          },
+          "pooled": {
+            "decision_evaluations": 7872,
+            "model_rate": 0.15142276422764228,
+            "chance_rate": 0.020982724556247636,
+            "lift": 7.216544439771333,
+            "informative": true
+          }
+        },
+        "top5": {
+          "small_le25": {
+            "decision_evaluations": 1136,
+            "model_rate": 0.8063380281690141,
+            "chance_rate": 0.3754385849581237,
+            "lift": 2.1477228512859243,
+            "informative": true
+          },
+          "mid_26_100": {
+            "decision_evaluations": 2632,
+            "model_rate": 0.5163373860182371,
+            "chance_rate": 0.11127688354652011,
+            "lift": 4.640113647704543,
+            "informative": true
+          },
+          "large_gt100": {
+            "decision_evaluations": 4104,
+            "model_rate": 0.1703216374269006,
+            "chance_rate": 0.024366727223936988,
+            "lift": 6.989926708728565,
+            "informative": true
+          },
+          "pooled": {
+            "decision_evaluations": 7872,
+            "model_rate": 0.3777947154471545,
+            "chance_rate": 0.10408791139912436,
+            "lift": 3.62957340933188,
+            "informative": true
+          }
+        },
+        "top10": {
+          "small_le25": {
+            "decision_evaluations": 1136,
+            "model_rate": 0.9436619718309859,
+            "chance_rate": 0.6685393932562879,
+            "lift": 1.411527849143855,
+            "informative": true
+          },
+          "mid_26_100": {
+            "decision_evaluations": 2632,
+            "model_rate": 0.6880699088145896,
+            "chance_rate": 0.22255376709304023,
+            "lift": 3.0917019190555286,
+            "informative": true
+          },
+          "large_gt100": {
+            "decision_evaluations": 4104,
+            "model_rate": 0.3092105263157895,
+            "chance_rate": 0.048733454447873976,
+            "lift": 6.344933471657045,
+            "informative": true
+          },
+          "pooled": {
+            "decision_evaluations": 7872,
+            "model_rate": 0.5274390243902439,
+            "chance_rate": 0.19629374527211632,
+            "lift": 2.686988439998791,
+            "informative": true
+          }
+        },
+        "brier": 0.005211015822392554,
+        "brier_uniform_null": 0.005521600286937445,
+        "columns": [
+          "households",
+          "land_area_sqmi",
+          "establishments",
+          "warehousing_establishments",
+          "logrel_median_home_value"
+        ],
+        "beta": {
+          "land_area_sqmi": {
+            "median": 2.48332901561335e-16,
+            "mean": 4.154921895562471e-16,
+            "p025": 0.0,
+            "p975": 1.5613047368846886e-15,
+            "at_lower_boundary_share": 1.0,
+            "at_upper_boundary_share": 0.0
+          },
+          "establishments": {
+            "median": 0.2350824434389559,
+            "mean": 0.23354661625754122,
+            "p025": 9.35615235645151e-22,
+            "p975": 0.4646924990544517,
+            "at_lower_boundary_share": 0.07317073170731707,
+            "at_upper_boundary_share": 0.0
+          },
+          "warehousing_establishments": {
+            "median": 1.0811188896831327,
+            "mean": 1.099676572114848,
+            "p025": 0.8413031249548881,
+            "p975": 1.4342550250254136,
+            "at_lower_boundary_share": 0.0,
+            "at_upper_boundary_share": 0.0
+          },
+          "logrel_median_home_value": {
+            "median": 6.330400708983273e-15,
+            "mean": 0.03352234338195045,
+            "p025": 0.0,
+            "p975": 0.29659197527271736,
+            "at_lower_boundary_share": 0.7317073170731707,
+            "at_upper_boundary_share": 0.0
+          }
+        },
+        "vs_baseline_large_top10": {
+          "mean_rate_difference": -5.079713402571409e-06,
+          "sd_over_resplits": 0.002282052624426615,
+          "wins": 1,
+          "ties": 39,
+          "losses": 1
+        },
+        "vs_baseline_large_top1": {
+          "mean_rate_difference": 0.0,
+          "sd_over_resplits": 0.0,
+          "wins": 0,
+          "ties": 41,
+          "losses": 0
+        }
+      },
+      "+ logrel_median_age": {
+        "top1": {
+          "small_le25": {
+            "decision_evaluations": 1136,
+            "model_rate": 0.3961267605633803,
+            "chance_rate": 0.07623208318880785,
+            "lift": 5.196326061066351,
+            "informative": true
+          },
+          "mid_26_100": {
+            "decision_evaluations": 2632,
+            "model_rate": 0.1987082066869301,
+            "chance_rate": 0.02225537670930402,
+            "lift": 8.928548336090788,
+            "informative": true
+          },
+          "large_gt100": {
+            "decision_evaluations": 4104,
+            "model_rate": 0.05360623781676413,
+            "chance_rate": 0.0048733454447874,
+            "lift": 10.999884663235218,
+            "informative": true
+          },
+          "pooled": {
+            "decision_evaluations": 7872,
+            "model_rate": 0.15154979674796748,
+            "chance_rate": 0.020982724556247636,
+            "lift": 7.222598587791275,
+            "informative": true
+          }
+        },
+        "top5": {
+          "small_le25": {
+            "decision_evaluations": 1136,
+            "model_rate": 0.8063380281690141,
+            "chance_rate": 0.3754385849581237,
+            "lift": 2.1477228512859243,
+            "informative": true
+          },
+          "mid_26_100": {
+            "decision_evaluations": 2632,
+            "model_rate": 0.5163373860182371,
+            "chance_rate": 0.11127688354652011,
+            "lift": 4.640113647704543,
+            "informative": true
+          },
+          "large_gt100": {
+            "decision_evaluations": 4104,
+            "model_rate": 0.1703216374269006,
+            "chance_rate": 0.024366727223936988,
+            "lift": 6.989926708728565,
+            "informative": true
+          },
+          "pooled": {
+            "decision_evaluations": 7872,
+            "model_rate": 0.3777947154471545,
+            "chance_rate": 0.10408791139912436,
+            "lift": 3.62957340933188,
+            "informative": true
+          }
+        },
+        "top10": {
+          "small_le25": {
+            "decision_evaluations": 1136,
+            "model_rate": 0.9498239436619719,
+            "chance_rate": 0.6685393932562879,
+            "lift": 1.420744915322966,
+            "informative": true
+          },
+          "mid_26_100": {
+            "decision_evaluations": 2632,
+            "model_rate": 0.6903495440729484,
+            "chance_rate": 0.22255376709304023,
+            "lift": 3.101944995540528,
+            "informative": true
+          },
+          "large_gt100": {
+            "decision_evaluations": 4104,
+            "model_rate": 0.3092105263157895,
+            "chance_rate": 0.048733454447873976,
+            "lift": 6.344933471657045,
+            "informative": true
+          },
+          "pooled": {
+            "decision_evaluations": 7872,
+            "model_rate": 0.5290904471544715,
+            "chance_rate": 0.19629374527211632,
+            "lift": 2.6954014577540857,
+            "informative": true
+          }
+        },
+        "brier": 0.005210564262172329,
+        "brier_uniform_null": 0.005521600286937445,
+        "columns": [
+          "households",
+          "land_area_sqmi",
+          "establishments",
+          "warehousing_establishments",
+          "logrel_median_age"
+        ],
+        "beta": {
+          "land_area_sqmi": {
+            "median": 3.2069281510534486e-16,
+            "mean": 3.612455894366805e-16,
+            "p025": 2.377549660330782e-37,
+            "p975": 1.396290867589655e-15,
+            "at_lower_boundary_share": 1.0,
+            "at_upper_boundary_share": 0.0
+          },
+          "establishments": {
+            "median": 0.24289127053346635,
+            "mean": 0.24624386641770213,
+            "p025": 1.5576246982419132e-16,
+            "p975": 0.4646927758155917,
+            "at_lower_boundary_share": 0.07317073170731707,
+            "at_upper_boundary_share": 0.0
+          },
+          "warehousing_establishments": {
+            "median": 1.0978747450446305,
+            "mean": 1.1092129246521847,
+            "p025": 0.841303252296636,
+            "p975": 1.476317370674872,
+            "at_lower_boundary_share": 0.0,
+            "at_upper_boundary_share": 0.0
+          },
+          "logrel_median_age": {
+            "median": 3.756809104529862e-15,
+            "mean": 0.008505148848649129,
+            "p025": 2.020807470467485e-30,
+            "p975": 0.08815012366275454,
+            "at_lower_boundary_share": 0.926829268292683,
+            "at_upper_boundary_share": 0.0
+          }
+        },
+        "vs_baseline_large_top10": {
+          "mean_rate_difference": 0.0,
+          "sd_over_resplits": 0.0,
+          "wins": 0,
+          "ties": 41,
+          "losses": 0
+        },
+        "vs_baseline_large_top1": {
+          "mean_rate_difference": 0.0,
+          "sd_over_resplits": 0.0,
+          "wins": 0,
+          "ties": 41,
+          "losses": 0
+        }
+      },
+      "+ logrel_bachelors_degree": {
+        "top1": {
+          "small_le25": {
+            "decision_evaluations": 1136,
+            "model_rate": 0.39524647887323944,
+            "chance_rate": 0.07623208318880785,
+            "lift": 5.184778669819536,
+            "informative": true
+          },
+          "mid_26_100": {
+            "decision_evaluations": 2632,
+            "model_rate": 0.1987082066869301,
+            "chance_rate": 0.02225537670930402,
+            "lift": 8.928548336090788,
+            "informative": true
+          },
+          "large_gt100": {
+            "decision_evaluations": 4104,
+            "model_rate": 0.05360623781676413,
+            "chance_rate": 0.0048733454447874,
+            "lift": 10.999884663235218,
+            "informative": true
+          },
+          "pooled": {
+            "decision_evaluations": 7872,
+            "model_rate": 0.15142276422764228,
+            "chance_rate": 0.020982724556247636,
+            "lift": 7.216544439771333,
+            "informative": true
+          }
+        },
+        "top5": {
+          "small_le25": {
+            "decision_evaluations": 1136,
+            "model_rate": 0.8080985915492958,
+            "chance_rate": 0.3754385849581237,
+            "lift": 2.152412202489605,
+            "informative": true
+          },
+          "mid_26_100": {
+            "decision_evaluations": 2632,
+            "model_rate": 0.5155775075987842,
+            "chance_rate": 0.11127688354652011,
+            "lift": 4.633284930047877,
+            "informative": true
+          },
+          "large_gt100": {
+            "decision_evaluations": 4104,
+            "model_rate": 0.1703216374269006,
+            "chance_rate": 0.024366727223936988,
+            "lift": 6.989926708728565,
+            "informative": true
+          },
+          "pooled": {
+            "decision_evaluations": 7872,
+            "model_rate": 0.3777947154471545,
+            "chance_rate": 0.10408791139912436,
+            "lift": 3.62957340933188,
+            "informative": true
+          }
+        },
+        "top10": {
+          "small_le25": {
+            "decision_evaluations": 1136,
+            "model_rate": 0.9401408450704225,
+            "chance_rate": 0.6685393932562879,
+            "lift": 1.4062609541843631,
+            "informative": true
+          },
+          "mid_26_100": {
+            "decision_evaluations": 2632,
+            "model_rate": 0.6842705167173252,
+            "chance_rate": 0.22255376709304023,
+            "lift": 3.0746301249138637,
+            "informative": true
+          },
+          "large_gt100": {
+            "decision_evaluations": 4104,
+            "model_rate": 0.3096978557504873,
+            "chance_rate": 0.048733454447873976,
+            "lift": 6.35493336680544,
+            "informative": true
+          },
+          "pooled": {
+            "decision_evaluations": 7872,
+            "model_rate": 0.5259146341463414,
+            "chance_rate": 0.19629374527211632,
+            "lift": 2.679222577455442,
+            "informative": true
+          }
+        },
+        "brier": 0.005211696592828658,
+        "brier_uniform_null": 0.005521600286937445,
+        "columns": [
+          "households",
+          "land_area_sqmi",
+          "establishments",
+          "warehousing_establishments",
+          "logrel_bachelors_degree"
+        ],
+        "beta": {
+          "land_area_sqmi": {
+            "median": 5.512776317992991e-16,
+            "mean": 5.265706587230893e-15,
+            "p025": 0.0,
+            "p975": 1.3866745296741027e-14,
+            "at_lower_boundary_share": 1.0,
+            "at_upper_boundary_share": 0.0
+          },
+          "establishments": {
+            "median": 0.26086576385822446,
+            "mean": 0.24240237989367097,
+            "p025": 1.868229360557399e-14,
+            "p975": 0.45986338784573333,
+            "at_lower_boundary_share": 0.04878048780487805,
+            "at_upper_boundary_share": 0.0
+          },
+          "warehousing_establishments": {
+            "median": 1.0660774670299984,
+            "mean": 1.0879113485175156,
+            "p025": 0.8252223999545231,
+            "p975": 1.4122847519895954,
+            "at_lower_boundary_share": 0.0,
+            "at_upper_boundary_share": 0.0
+          },
+          "logrel_bachelors_degree": {
+            "median": 0.017622809225805544,
+            "mean": 0.028650608185355194,
+            "p025": 0.005573943111957247,
+            "p975": 0.18396531121612336,
+            "at_lower_boundary_share": 0.0,
+            "at_upper_boundary_share": 0.0
+          }
+        },
+        "vs_baseline_large_top10": {
+          "mean_rate_difference": 0.0004788302657449645,
+          "sd_over_resplits": 0.003065029024199825,
+          "wins": 3,
+          "ties": 37,
+          "losses": 1
+        },
+        "vs_baseline_large_top1": {
+          "mean_rate_difference": -1.9157776261120592e-05,
+          "sd_over_resplits": 0.0022190601620853453,
+          "wins": 1,
+          "ties": 39,
+          "losses": 1
+        }
+      },
+      "+ logrel_owner_occupied": {
+        "top1": {
+          "small_le25": {
+            "decision_evaluations": 1136,
+            "model_rate": 0.39524647887323944,
+            "chance_rate": 0.07623208318880785,
+            "lift": 5.184778669819536,
+            "informative": true
+          },
+          "mid_26_100": {
+            "decision_evaluations": 2632,
+            "model_rate": 0.1987082066869301,
+            "chance_rate": 0.02225537670930402,
+            "lift": 8.928548336090788,
+            "informative": true
+          },
+          "large_gt100": {
+            "decision_evaluations": 4104,
+            "model_rate": 0.0533625730994152,
+            "chance_rate": 0.0048733454447874,
+            "lift": 10.949885187493239,
+            "informative": true
+          },
+          "pooled": {
+            "decision_evaluations": 7872,
+            "model_rate": 0.15129573170731708,
+            "chance_rate": 0.020982724556247636,
+            "lift": 7.21049029175139,
+            "informative": true
+          }
+        },
+        "top5": {
+          "small_le25": {
+            "decision_evaluations": 1136,
+            "model_rate": 0.8080985915492958,
+            "chance_rate": 0.3754385849581237,
+            "lift": 2.152412202489605,
+            "informative": true
+          },
+          "mid_26_100": {
+            "decision_evaluations": 2632,
+            "model_rate": 0.5151975683890577,
+            "chance_rate": 0.11127688354652011,
+            "lift": 4.629870571219544,
+            "informative": true
+          },
+          "large_gt100": {
+            "decision_evaluations": 4104,
+            "model_rate": 0.17007797270955166,
+            "chance_rate": 0.024366727223936988,
+            "lift": 6.979926813580169,
+            "informative": true
+          },
+          "pooled": {
+            "decision_evaluations": 7872,
+            "model_rate": 0.3775406504065041,
+            "chance_rate": 0.10408791139912436,
+            "lift": 3.627132539520628,
+            "informative": true
+          }
+        },
+        "top10": {
+          "small_le25": {
+            "decision_evaluations": 1136,
+            "model_rate": 0.948943661971831,
+            "chance_rate": 0.6685393932562879,
+            "lift": 1.419428191583093,
+            "informative": true
+          },
+          "mid_26_100": {
+            "decision_evaluations": 2632,
+            "model_rate": 0.6941489361702128,
+            "chance_rate": 0.22255376709304023,
+            "lift": 3.1190167896821928,
+            "informative": true
+          },
+          "large_gt100": {
+            "decision_evaluations": 4104,
+            "model_rate": 0.3094541910331384,
+            "chance_rate": 0.048733454447873976,
+            "lift": 6.349933419231243,
+            "informative": true
+          },
+          "pooled": {
+            "decision_evaluations": 7872,
+            "model_rate": 0.5303607723577236,
+            "chance_rate": 0.19629374527211632,
+            "lift": 2.7018730098735437,
+            "informative": true
+          }
+        },
+        "brier": 0.005210976569539623,
+        "brier_uniform_null": 0.005521600286937445,
+        "columns": [
+          "households",
+          "land_area_sqmi",
+          "establishments",
+          "warehousing_establishments",
+          "logrel_owner_occupied"
+        ],
+        "beta": {
+          "land_area_sqmi": {
+            "median": 1.5138701722300363e-15,
+            "mean": 1.8253193274091697e-15,
+            "p025": 0.0,
+            "p975": 6.194032775906787e-15,
+            "at_lower_boundary_share": 1.0,
+            "at_upper_boundary_share": 0.0
+          },
+          "establishments": {
+            "median": 0.2635457557347455,
+            "mean": 0.2525481176624174,
+            "p025": 4.879800215498529e-19,
+            "p975": 0.5191012360020096,
+            "at_lower_boundary_share": 0.04878048780487805,
+            "at_upper_boundary_share": 0.0
+          },
+          "warehousing_establishments": {
+            "median": 1.067518653983889,
+            "mean": 1.0928817681405323,
+            "p025": 0.8309914051105036,
+            "p975": 1.415657032620508,
+            "at_lower_boundary_share": 0.0,
+            "at_upper_boundary_share": 0.0
+          },
+          "logrel_owner_occupied": {
+            "median": 0.02074320848698239,
+            "mean": 0.0375485603791608,
+            "p025": 0.010557566085494663,
+            "p975": 0.17773524949013678,
+            "at_lower_boundary_share": 0.0,
+            "at_upper_boundary_share": 0.0
+          }
+        },
+        "vs_baseline_large_top10": {
+          "mean_rate_difference": 0.00024654222857887803,
+          "sd_over_resplits": 0.0034401576057030057,
+          "wins": 3,
+          "ties": 36,
+          "losses": 2
+        },
+        "vs_baseline_large_top1": {
+          "mean_rate_difference": -0.00024925441685016796,
+          "sd_over_resplits": 0.0026619380797576024,
+          "wins": 1,
+          "ties": 38,
+          "losses": 2
+        }
+      },
+      "+ logrel_renter_occupied": {
+        "top1": {
+          "small_le25": {
+            "decision_evaluations": 1136,
+            "model_rate": 0.39436619718309857,
+            "chance_rate": 0.07623208318880785,
+            "lift": 5.173231278572723,
+            "informative": true
+          },
+          "mid_26_100": {
+            "decision_evaluations": 2632,
+            "model_rate": 0.19908814589665655,
+            "chance_rate": 0.02225537670930402,
+            "lift": 8.945620130232454,
+            "informative": true
+          },
+          "large_gt100": {
+            "decision_evaluations": 4104,
+            "model_rate": 0.053118908382066274,
+            "chance_rate": 0.0048733454447874,
+            "lift": 10.899885711751262,
+            "informative": true
+          },
+          "pooled": {
+            "decision_evaluations": 7872,
+            "model_rate": 0.15116869918699186,
+            "chance_rate": 0.020982724556247636,
+            "lift": 7.204436143731447,
+            "informative": true
+          }
+        },
+        "top5": {
+          "small_le25": {
+            "decision_evaluations": 1136,
+            "model_rate": 0.8116197183098591,
+            "chance_rate": 0.3754385849581237,
+            "lift": 2.161790904896967,
+            "informative": true
+          },
+          "mid_26_100": {
+            "decision_evaluations": 2632,
+            "model_rate": 0.5167173252279635,
+            "chance_rate": 0.11127688354652011,
+            "lift": 4.643528006532876,
+            "informative": true
+          },
+          "large_gt100": {
+            "decision_evaluations": 4104,
+            "model_rate": 0.1712962962962963,
+            "chance_rate": 0.024366727223936988,
+            "lift": 7.029926289322147,
+            "informative": true
+          },
+          "pooled": {
+            "decision_evaluations": 7872,
+            "model_rate": 0.3791920731707317,
+            "chance_rate": 0.10408791139912436,
+            "lift": 3.6429981932937667,
+            "informative": true
+          }
+        },
+        "top10": {
+          "small_le25": {
+            "decision_evaluations": 1136,
+            "model_rate": 0.9410211267605634,
+            "chance_rate": 0.6685393932562879,
+            "lift": 1.4075776779242362,
+            "informative": true
+          },
+          "mid_26_100": {
+            "decision_evaluations": 2632,
+            "model_rate": 0.6865501519756839,
+            "chance_rate": 0.22255376709304023,
+            "lift": 3.084873201398863,
+            "informative": true
+          },
+          "large_gt100": {
+            "decision_evaluations": 4104,
+            "model_rate": 0.30994152046783624,
+            "chance_rate": 0.048733454447873976,
+            "lift": 6.359933314379638,
+            "informative": true
+          },
+          "pooled": {
+            "decision_evaluations": 7872,
+            "model_rate": 0.5269308943089431,
+            "chance_rate": 0.19629374527211632,
+            "lift": 2.6843998191510083,
+            "informative": true
+          }
+        },
+        "brier": 0.005210778997101768,
+        "brier_uniform_null": 0.005521600286937445,
+        "columns": [
+          "households",
+          "land_area_sqmi",
+          "establishments",
+          "warehousing_establishments",
+          "logrel_renter_occupied"
+        ],
+        "beta": {
+          "land_area_sqmi": {
+            "median": 7.425169775705448e-16,
+            "mean": 1.3884947754304253e-15,
+            "p025": 0.0,
+            "p975": 5.528055073294321e-15,
+            "at_lower_boundary_share": 1.0,
+            "at_upper_boundary_share": 0.0
+          },
+          "establishments": {
+            "median": 0.27279105579079266,
+            "mean": 0.28715270766902823,
+            "p025": 5.06031121772896e-14,
+            "p975": 0.6866302782797433,
+            "at_lower_boundary_share": 0.04878048780487805,
+            "at_upper_boundary_share": 0.0
+          },
+          "warehousing_establishments": {
+            "median": 1.109775146676072,
+            "mean": 1.1257911525515505,
+            "p025": 0.8367894459498265,
+            "p975": 1.4589057982472375,
+            "at_lower_boundary_share": 0.0,
+            "at_upper_boundary_share": 0.0
+          },
+          "logrel_renter_occupied": {
+            "median": 0.006129940911422495,
+            "mean": 0.020303012840664467,
+            "p025": 0.0006570023769477117,
+            "p975": 0.1090061209441782,
+            "at_lower_boundary_share": 0.024390243902439025,
+            "at_upper_boundary_share": 0.0
+          }
+        },
+        "vs_baseline_large_top10": {
+          "mean_rate_difference": 0.0007179503040041685,
+          "sd_over_resplits": 0.0025880789004733636,
+          "wins": 3,
+          "ties": 38,
+          "losses": 0
+        },
+        "vs_baseline_large_top1": {
+          "mean_rate_difference": -0.0005033194575005744,
+          "sd_over_resplits": 0.003098807056238878,
+          "wins": 1,
+          "ties": 37,
+          "losses": 3
+        }
+      },
+      "+ neglogrel_median_home_value": {
+        "top1": {
+          "small_le25": {
+            "decision_evaluations": 1136,
+            "model_rate": 0.39524647887323944,
+            "chance_rate": 0.07623208318880785,
+            "lift": 5.184778669819536,
+            "informative": true
+          },
+          "mid_26_100": {
+            "decision_evaluations": 2632,
+            "model_rate": 0.19908814589665655,
+            "chance_rate": 0.02225537670930402,
+            "lift": 8.945620130232454,
+            "informative": true
+          },
+          "large_gt100": {
+            "decision_evaluations": 4104,
+            "model_rate": 0.05384990253411306,
+            "chance_rate": 0.0048733454447874,
+            "lift": 11.049884138977196,
+            "informative": true
+          },
+          "pooled": {
+            "decision_evaluations": 7872,
+            "model_rate": 0.15167682926829268,
+            "chance_rate": 0.020982724556247636,
+            "lift": 7.228652735811217,
+            "informative": true
+          }
+        },
+        "top5": {
+          "small_le25": {
+            "decision_evaluations": 1136,
+            "model_rate": 0.8072183098591549,
+            "chance_rate": 0.3754385849581237,
+            "lift": 2.1500675268877645,
+            "informative": true
+          },
+          "mid_26_100": {
+            "decision_evaluations": 2632,
+            "model_rate": 0.5197568389057751,
+            "chance_rate": 0.11127688354652011,
+            "lift": 4.67084287715954,
+            "informative": true
+          },
+          "large_gt100": {
+            "decision_evaluations": 4104,
+            "model_rate": 0.17080896686159844,
+            "chance_rate": 0.024366727223936988,
+            "lift": 7.009926499025355,
+            "informative": true
+          },
+          "pooled": {
+            "decision_evaluations": 7872,
+            "model_rate": 0.3793191056910569,
+            "chance_rate": 0.10408791139912436,
+            "lift": 3.644218628199393,
+            "informative": true
+          }
+        },
+        "top10": {
+          "small_le25": {
+            "decision_evaluations": 1136,
+            "model_rate": 0.9330985915492958,
+            "chance_rate": 0.6685393932562879,
+            "lift": 1.395727164265379,
+            "informative": true
+          },
+          "mid_26_100": {
+            "decision_evaluations": 2632,
+            "model_rate": 0.6979483282674772,
+            "chance_rate": 0.22255376709304023,
+            "lift": 3.1360885838238577,
+            "informative": true
+          },
+          "large_gt100": {
+            "decision_evaluations": 4104,
+            "model_rate": 0.3092105263157895,
+            "chance_rate": 0.048733454447873976,
+            "lift": 6.344933471657045,
+            "informative": true
+          },
+          "pooled": {
+            "decision_evaluations": 7872,
+            "model_rate": 0.5292174796747967,
+            "chance_rate": 0.19629374527211632,
+            "lift": 2.6960486129660315,
+            "informative": true
+          }
+        },
+        "brier": 0.00521176973314814,
+        "brier_uniform_null": 0.005521600286937445,
+        "columns": [
+          "households",
+          "land_area_sqmi",
+          "establishments",
+          "warehousing_establishments",
+          "neglogrel_median_home_value"
+        ],
+        "beta": {
+          "land_area_sqmi": {
+            "median": 3.567578790940273e-16,
+            "mean": 8.058711876082502e-16,
+            "p025": 2.7571464213377065e-141,
+            "p975": 2.8710572441771974e-15,
+            "at_lower_boundary_share": 1.0,
+            "at_upper_boundary_share": 0.0
+          },
+          "establishments": {
+            "median": 0.27885244314430513,
+            "mean": 0.2842200870581556,
+            "p025": 2.279156423992273e-17,
+            "p975": 0.6478338897295675,
+            "at_lower_boundary_share": 0.07317073170731707,
+            "at_upper_boundary_share": 0.0
+          },
+          "warehousing_establishments": {
+            "median": 1.1013900442344262,
+            "mean": 1.1366298441439182,
+            "p025": 0.8657375738255477,
+            "p975": 1.5528158230714642,
+            "at_lower_boundary_share": 0.0,
+            "at_upper_boundary_share": 0.0
+          },
+          "neglogrel_median_home_value": {
+            "median": 0.06929851946294889,
+            "mean": 0.08746388657424528,
+            "p025": 1.303301821328195e-17,
+            "p975": 0.30076583253269623,
+            "at_lower_boundary_share": 0.2682926829268293,
+            "at_upper_boundary_share": 0.0
+          }
+        },
+        "vs_baseline_large_top10": {
+          "mean_rate_difference": 2.1504358933561836e-06,
+          "sd_over_resplits": 0.0038947108384066544,
+          "wins": 3,
+          "ties": 35,
+          "losses": 3
+        },
+        "vs_baseline_large_top1": {
+          "mean_rate_difference": 0.0002463661000246365,
+          "sd_over_resplits": 0.0015775127463495556,
+          "wins": 1,
+          "ties": 40,
+          "losses": 0
+        }
+      },
+      "+ neglogrel_median_age": {
+        "top1": {
+          "small_le25": {
+            "decision_evaluations": 1136,
+            "model_rate": 0.3899647887323944,
+            "chance_rate": 0.07623208318880785,
+            "lift": 5.115494322338652,
+            "informative": true
+          },
+          "mid_26_100": {
+            "decision_evaluations": 2632,
+            "model_rate": 0.19832826747720364,
+            "chance_rate": 0.02225537670930402,
+            "lift": 8.911476541949124,
+            "informative": true
+          },
+          "large_gt100": {
+            "decision_evaluations": 4104,
+            "model_rate": 0.053118908382066274,
+            "chance_rate": 0.0048733454447874,
+            "lift": 10.899885711751262,
+            "informative": true
+          },
+          "pooled": {
+            "decision_evaluations": 7872,
+            "model_rate": 0.15027947154471544,
+            "chance_rate": 0.020982724556247636,
+            "lift": 7.162057107591851,
+            "informative": true
+          }
+        },
+        "top5": {
+          "small_le25": {
+            "decision_evaluations": 1136,
+            "model_rate": 0.8125,
+            "chance_rate": 0.3754385849581237,
+            "lift": 2.1641355804988076,
+            "informative": true
+          },
+          "mid_26_100": {
+            "decision_evaluations": 2632,
+            "model_rate": 0.5182370820668692,
+            "chance_rate": 0.11127688354652011,
+            "lift": 4.657185441846208,
+            "informative": true
+          },
+          "large_gt100": {
+            "decision_evaluations": 4104,
+            "model_rate": 0.17105263157894737,
+            "chance_rate": 0.024366727223936988,
+            "lift": 7.019926394173751,
+            "informative": true
+          },
+          "pooled": {
+            "decision_evaluations": 7872,
+            "model_rate": 0.3797002032520325,
+            "chance_rate": 0.10408791139912436,
+            "lift": 3.6478799329162706,
+            "informative": true
+          }
+        },
+        "top10": {
+          "small_le25": {
+            "decision_evaluations": 1136,
+            "model_rate": 0.9330985915492958,
+            "chance_rate": 0.6685393932562879,
+            "lift": 1.395727164265379,
+            "informative": true
+          },
+          "mid_26_100": {
+            "decision_evaluations": 2632,
+            "model_rate": 0.6835106382978723,
+            "chance_rate": 0.22255376709304023,
+            "lift": 3.0712157660855306,
+            "informative": true
+          },
+          "large_gt100": {
+            "decision_evaluations": 4104,
+            "model_rate": 0.3104288499025341,
+            "chance_rate": 0.048733454447873976,
+            "lift": 6.369933209528034,
+            "informative": true
+          },
+          "pooled": {
+            "decision_evaluations": 7872,
+            "model_rate": 0.525025406504065,
+            "chance_rate": 0.19629374527211632,
+            "lift": 2.6746924909718217,
+            "informative": true
+          }
+        },
+        "brier": 0.0052133517771741885,
+        "brier_uniform_null": 0.005521600286937445,
+        "columns": [
+          "households",
+          "land_area_sqmi",
+          "establishments",
+          "warehousing_establishments",
+          "neglogrel_median_age"
+        ],
+        "beta": {
+          "land_area_sqmi": {
+            "median": 7.903886065742822e-16,
+            "mean": 1.0525264596903727e-15,
+            "p025": 7.511776753153798e-35,
+            "p975": 3.2292601296527118e-15,
+            "at_lower_boundary_share": 1.0,
+            "at_upper_boundary_share": 0.0
+          },
+          "establishments": {
+            "median": 0.2480362317381402,
+            "mean": 0.2513636010372459,
+            "p025": 1.712198032572587e-14,
+            "p975": 0.6049241813745233,
+            "at_lower_boundary_share": 0.04878048780487805,
+            "at_upper_boundary_share": 0.0
+          },
+          "warehousing_establishments": {
+            "median": 1.0896429801622902,
+            "mean": 1.1044829012389232,
+            "p025": 0.8336597691772633,
+            "p975": 1.444977118872067,
+            "at_lower_boundary_share": 0.0,
+            "at_upper_boundary_share": 0.0
+          },
+          "neglogrel_median_age": {
+            "median": 0.20033788717336581,
+            "mean": 0.3515818225376017,
+            "p025": 6.513308962897168e-14,
+            "p975": 1.2924306583479115,
+            "at_lower_boundary_share": 0.07317073170731707,
+            "at_upper_boundary_share": 0.0
+          }
+        },
+        "vs_baseline_large_top10": {
+          "mean_rate_difference": 0.0012237870838419861,
+          "sd_over_resplits": 0.0033273848319455663,
+          "wins": 5,
+          "ties": 36,
+          "losses": 0
+        },
+        "vs_baseline_large_top1": {
+          "mean_rate_difference": -0.0004882442979169057,
+          "sd_over_resplits": 0.0021838448247837976,
+          "wins": 0,
+          "ties": 39,
+          "losses": 2
+        }
+      },
+      "+ neglogrel_bachelors_degree": {
+        "top1": {
+          "small_le25": {
+            "decision_evaluations": 1136,
+            "model_rate": 0.3961267605633803,
+            "chance_rate": 0.07623208318880785,
+            "lift": 5.196326061066351,
+            "informative": true
+          },
+          "mid_26_100": {
+            "decision_evaluations": 2632,
+            "model_rate": 0.19832826747720364,
+            "chance_rate": 0.02225537670930402,
+            "lift": 8.911476541949124,
+            "informative": true
+          },
+          "large_gt100": {
+            "decision_evaluations": 4104,
+            "model_rate": 0.05360623781676413,
+            "chance_rate": 0.0048733454447874,
+            "lift": 10.999884663235218,
+            "informative": true
+          },
+          "pooled": {
+            "decision_evaluations": 7872,
+            "model_rate": 0.15142276422764228,
+            "chance_rate": 0.020982724556247636,
+            "lift": 7.216544439771333,
+            "informative": true
+          }
+        },
+        "top5": {
+          "small_le25": {
+            "decision_evaluations": 1136,
+            "model_rate": 0.8063380281690141,
+            "chance_rate": 0.3754385849581237,
+            "lift": 2.1477228512859243,
+            "informative": true
+          },
+          "mid_26_100": {
+            "decision_evaluations": 2632,
+            "model_rate": 0.5163373860182371,
+            "chance_rate": 0.11127688354652011,
+            "lift": 4.640113647704543,
+            "informative": true
+          },
+          "large_gt100": {
+            "decision_evaluations": 4104,
+            "model_rate": 0.1703216374269006,
+            "chance_rate": 0.024366727223936988,
+            "lift": 6.989926708728565,
+            "informative": true
+          },
+          "pooled": {
+            "decision_evaluations": 7872,
+            "model_rate": 0.3777947154471545,
+            "chance_rate": 0.10408791139912436,
+            "lift": 3.62957340933188,
+            "informative": true
+          }
+        },
+        "top10": {
+          "small_le25": {
+            "decision_evaluations": 1136,
+            "model_rate": 0.9533450704225352,
+            "chance_rate": 0.6685393932562879,
+            "lift": 1.4260118102824582,
+            "informative": true
+          },
+          "mid_26_100": {
+            "decision_evaluations": 2632,
+            "model_rate": 0.6907294832826748,
+            "chance_rate": 0.22255376709304023,
+            "lift": 3.1036521749546946,
+            "informative": true
+          },
+          "large_gt100": {
+            "decision_evaluations": 4104,
+            "model_rate": 0.3092105263157895,
+            "chance_rate": 0.048733454447873976,
+            "lift": 6.344933471657045,
+            "informative": true
+          },
+          "pooled": {
+            "decision_evaluations": 7872,
+            "model_rate": 0.5297256097560976,
+            "chance_rate": 0.19629374527211632,
+            "lift": 2.698637233813815,
+            "informative": true
+          }
+        },
+        "brier": 0.005210489669689105,
+        "brier_uniform_null": 0.005521600286937445,
+        "columns": [
+          "households",
+          "land_area_sqmi",
+          "establishments",
+          "warehousing_establishments",
+          "neglogrel_bachelors_degree"
+        ],
+        "beta": {
+          "land_area_sqmi": {
+            "median": 1.3282183502160103e-16,
+            "mean": 4.176513832529935e-16,
+            "p025": 4.803782541585158e-242,
+            "p975": 1.9498015070663474e-15,
+            "at_lower_boundary_share": 1.0,
+            "at_upper_boundary_share": 0.0
+          },
+          "establishments": {
+            "median": 0.24289123769715829,
+            "mean": 0.24531284103137968,
+            "p025": 6.315007670833919e-15,
+            "p975": 0.464692714255783,
+            "at_lower_boundary_share": 0.07317073170731707,
+            "at_upper_boundary_share": 0.0
+          },
+          "warehousing_establishments": {
+            "median": 1.097874793752947,
+            "mean": 1.1082440486633636,
+            "p025": 0.8413032816996653,
+            "p975": 1.444977310341507,
+            "at_lower_boundary_share": 0.0,
+            "at_upper_boundary_share": 0.0
+          },
+          "neglogrel_bachelors_degree": {
+            "median": 4.799216199121501e-16,
+            "mean": 2.0067290540382207e-15,
+            "p025": 1.314741725466608e-178,
+            "p975": 8.328367613195508e-15,
+            "at_lower_boundary_share": 1.0,
+            "at_upper_boundary_share": 0.0
+          }
+        },
+        "vs_baseline_large_top10": {
+          "mean_rate_difference": 0.0,
+          "sd_over_resplits": 0.0,
+          "wins": 0,
+          "ties": 41,
+          "losses": 0
+        },
+        "vs_baseline_large_top1": {
+          "mean_rate_difference": 0.0,
+          "sd_over_resplits": 0.0,
+          "wins": 0,
+          "ties": 41,
+          "losses": 0
+        }
+      },
+      "+ neglogrel_owner_occupied": {
+        "top1": {
+          "small_le25": {
+            "decision_evaluations": 1136,
+            "model_rate": 0.3961267605633803,
+            "chance_rate": 0.07623208318880785,
+            "lift": 5.196326061066351,
+            "informative": true
+          },
+          "mid_26_100": {
+            "decision_evaluations": 2632,
+            "model_rate": 0.19832826747720364,
+            "chance_rate": 0.02225537670930402,
+            "lift": 8.911476541949124,
+            "informative": true
+          },
+          "large_gt100": {
+            "decision_evaluations": 4104,
+            "model_rate": 0.05360623781676413,
+            "chance_rate": 0.0048733454447874,
+            "lift": 10.999884663235218,
+            "informative": true
+          },
+          "pooled": {
+            "decision_evaluations": 7872,
+            "model_rate": 0.15142276422764228,
+            "chance_rate": 0.020982724556247636,
+            "lift": 7.216544439771333,
+            "informative": true
+          }
+        },
+        "top5": {
+          "small_le25": {
+            "decision_evaluations": 1136,
+            "model_rate": 0.8063380281690141,
+            "chance_rate": 0.3754385849581237,
+            "lift": 2.1477228512859243,
+            "informative": true
+          },
+          "mid_26_100": {
+            "decision_evaluations": 2632,
+            "model_rate": 0.5163373860182371,
+            "chance_rate": 0.11127688354652011,
+            "lift": 4.640113647704543,
+            "informative": true
+          },
+          "large_gt100": {
+            "decision_evaluations": 4104,
+            "model_rate": 0.1703216374269006,
+            "chance_rate": 0.024366727223936988,
+            "lift": 6.989926708728565,
+            "informative": true
+          },
+          "pooled": {
+            "decision_evaluations": 7872,
+            "model_rate": 0.3777947154471545,
+            "chance_rate": 0.10408791139912436,
+            "lift": 3.62957340933188,
+            "informative": true
+          }
+        },
+        "top10": {
+          "small_le25": {
+            "decision_evaluations": 1136,
+            "model_rate": 0.9533450704225352,
+            "chance_rate": 0.6685393932562879,
+            "lift": 1.4260118102824582,
+            "informative": true
+          },
+          "mid_26_100": {
+            "decision_evaluations": 2632,
+            "model_rate": 0.6907294832826748,
+            "chance_rate": 0.22255376709304023,
+            "lift": 3.1036521749546946,
+            "informative": true
+          },
+          "large_gt100": {
+            "decision_evaluations": 4104,
+            "model_rate": 0.3092105263157895,
+            "chance_rate": 0.048733454447873976,
+            "lift": 6.344933471657045,
+            "informative": true
+          },
+          "pooled": {
+            "decision_evaluations": 7872,
+            "model_rate": 0.5297256097560976,
+            "chance_rate": 0.19629374527211632,
+            "lift": 2.698637233813815,
+            "informative": true
+          }
+        },
+        "brier": 0.005210489669966312,
+        "brier_uniform_null": 0.005521600286937445,
+        "columns": [
+          "households",
+          "land_area_sqmi",
+          "establishments",
+          "warehousing_establishments",
+          "neglogrel_owner_occupied"
+        ],
+        "beta": {
+          "land_area_sqmi": {
+            "median": 1.281493642937659e-16,
+            "mean": 2.7731233943131154e-16,
+            "p025": 0.0,
+            "p975": 9.30796236271468e-16,
+            "at_lower_boundary_share": 1.0,
+            "at_upper_boundary_share": 0.0
+          },
+          "establishments": {
+            "median": 0.2428912150624022,
+            "mean": 0.24531282648647032,
+            "p025": 8.71226921270486e-16,
+            "p975": 0.46469271670873724,
+            "at_lower_boundary_share": 0.07317073170731707,
+            "at_upper_boundary_share": 0.0
+          },
+          "warehousing_establishments": {
+            "median": 1.0978747820199892,
+            "mean": 1.108244035249391,
+            "p025": 0.8413031985665801,
+            "p975": 1.4449771373868268,
+            "at_lower_boundary_share": 0.0,
+            "at_upper_boundary_share": 0.0
+          },
+          "neglogrel_owner_occupied": {
+            "median": 1.6179064476799684e-16,
+            "mean": 1.320398605523439e-15,
+            "p025": 0.0,
+            "p975": 6.844476664621558e-15,
+            "at_lower_boundary_share": 1.0,
+            "at_upper_boundary_share": 0.0
+          }
+        },
+        "vs_baseline_large_top10": {
+          "mean_rate_difference": 0.0,
+          "sd_over_resplits": 0.0,
+          "wins": 0,
+          "ties": 41,
+          "losses": 0
+        },
+        "vs_baseline_large_top1": {
+          "mean_rate_difference": 0.0,
+          "sd_over_resplits": 0.0,
+          "wins": 0,
+          "ties": 41,
+          "losses": 0
+        }
+      },
+      "+ neglogrel_renter_occupied": {
+        "top1": {
+          "small_le25": {
+            "decision_evaluations": 1136,
+            "model_rate": 0.3961267605633803,
+            "chance_rate": 0.07623208318880785,
+            "lift": 5.196326061066351,
+            "informative": true
+          },
+          "mid_26_100": {
+            "decision_evaluations": 2632,
+            "model_rate": 0.19832826747720364,
+            "chance_rate": 0.02225537670930402,
+            "lift": 8.911476541949124,
+            "informative": true
+          },
+          "large_gt100": {
+            "decision_evaluations": 4104,
+            "model_rate": 0.05360623781676413,
+            "chance_rate": 0.0048733454447874,
+            "lift": 10.999884663235218,
+            "informative": true
+          },
+          "pooled": {
+            "decision_evaluations": 7872,
+            "model_rate": 0.15142276422764228,
+            "chance_rate": 0.020982724556247636,
+            "lift": 7.216544439771333,
+            "informative": true
+          }
+        },
+        "top5": {
+          "small_le25": {
+            "decision_evaluations": 1136,
+            "model_rate": 0.8063380281690141,
+            "chance_rate": 0.3754385849581237,
+            "lift": 2.1477228512859243,
+            "informative": true
+          },
+          "mid_26_100": {
+            "decision_evaluations": 2632,
+            "model_rate": 0.5163373860182371,
+            "chance_rate": 0.11127688354652011,
+            "lift": 4.640113647704543,
+            "informative": true
+          },
+          "large_gt100": {
+            "decision_evaluations": 4104,
+            "model_rate": 0.1703216374269006,
+            "chance_rate": 0.024366727223936988,
+            "lift": 6.989926708728565,
+            "informative": true
+          },
+          "pooled": {
+            "decision_evaluations": 7872,
+            "model_rate": 0.3777947154471545,
+            "chance_rate": 0.10408791139912436,
+            "lift": 3.62957340933188,
+            "informative": true
+          }
+        },
+        "top10": {
+          "small_le25": {
+            "decision_evaluations": 1136,
+            "model_rate": 0.9533450704225352,
+            "chance_rate": 0.6685393932562879,
+            "lift": 1.4260118102824582,
+            "informative": true
+          },
+          "mid_26_100": {
+            "decision_evaluations": 2632,
+            "model_rate": 0.6907294832826748,
+            "chance_rate": 0.22255376709304023,
+            "lift": 3.1036521749546946,
+            "informative": true
+          },
+          "large_gt100": {
+            "decision_evaluations": 4104,
+            "model_rate": 0.3092105263157895,
+            "chance_rate": 0.048733454447873976,
+            "lift": 6.344933471657045,
+            "informative": true
+          },
+          "pooled": {
+            "decision_evaluations": 7872,
+            "model_rate": 0.5297256097560976,
+            "chance_rate": 0.19629374527211632,
+            "lift": 2.698637233813815,
+            "informative": true
+          }
+        },
+        "brier": 0.005210492990452652,
+        "brier_uniform_null": 0.005521600286937445,
+        "columns": [
+          "households",
+          "land_area_sqmi",
+          "establishments",
+          "warehousing_establishments",
+          "neglogrel_renter_occupied"
+        ],
+        "beta": {
+          "land_area_sqmi": {
+            "median": 1.719000405372533e-17,
+            "mean": 4.724730038643035e-16,
+            "p025": 0.0,
+            "p975": 3.077949634617756e-15,
+            "at_lower_boundary_share": 1.0,
+            "at_upper_boundary_share": 0.0
+          },
+          "establishments": {
+            "median": 0.24289131898920457,
+            "mean": 0.24532880687677258,
+            "p025": 4.2423535023379494e-14,
+            "p975": 0.46469272305001685,
+            "at_lower_boundary_share": 0.07317073170731707,
+            "at_upper_boundary_share": 0.0
+          },
+          "warehousing_establishments": {
+            "median": 1.097874866186211,
+            "mean": 1.1082753078720977,
+            "p025": 0.8413033040821899,
+            "p975": 1.4449773016626997,
+            "at_lower_boundary_share": 0.0,
+            "at_upper_boundary_share": 0.0
+          },
+          "neglogrel_renter_occupied": {
+            "median": 3.655504157579527e-16,
+            "mean": 2.2291193154840105e-05,
+            "p025": 0.0,
+            "p975": 2.2422403566087053e-14,
+            "at_lower_boundary_share": 0.975609756097561,
+            "at_upper_boundary_share": 0.0
+          }
+        },
+        "vs_baseline_large_top10": {
+          "mean_rate_difference": 0.0,
+          "sd_over_resplits": 0.0,
+          "wins": 0,
+          "ties": 41,
+          "losses": 0
+        },
+        "vs_baseline_large_top1": {
+          "mean_rate_difference": 0.0,
+          "sd_over_resplits": 0.0,
+          "wins": 0,
+          "ties": 41,
+          "losses": 0
+        }
+      }
+    },
+    "repeat_count_note": "41 re-splits at seeds 20260914..20260954, the same seeds and the same frame as the 'gate' block and as covariate_search.json. Every arm here is paired against the baseline refitted on the identical splits. NOTE: 41 is fewer than the 50 the published baseline uses, so this block is not directly comparable with covariate_search.json."
+  },
+  "gate": {
+    "reference_arm": "baseline",
+    "repeats": 50,
+    "n_test_decisions": 192,
+    "distinct_decisions": {
+      "small_le25": 71,
+      "mid_26_100": 162,
+      "large_gt100": 246,
+      "total": 479,
+      "thin_below": 20,
+      "note": "distinct decisions in the FULL frame. The tables report decision-evaluations, which are these times the ~40% test share times the repeat count."
+    },
+    "arms": {
+      "baseline": {
+        "top1": {
+          "small_le25": {
+            "decision_evaluations": 1391,
+            "model_rate": 0.40330697340043137,
+            "chance_rate": 0.07714429839550475,
+            "lift": 5.227955685496679,
+            "informative": true
+          },
+          "mid_26_100": {
+            "decision_evaluations": 3211,
+            "model_rate": 0.19744627841793833,
+            "chance_rate": 0.022197034888940762,
+            "lift": 8.895164575170897,
+            "informative": true
+          },
+          "large_gt100": {
+            "decision_evaluations": 4998,
+            "model_rate": 0.053621448579431776,
+            "chance_rate": 0.00487912609274876,
+            "lift": 10.989969834787152,
+            "informative": true
+          },
+          "pooled": {
+            "decision_evaluations": 9600,
+            "model_rate": 0.15239583333333334,
+            "chance_rate": 0.021142528157093148,
+            "lift": 7.208023193867937,
+            "informative": true
+          }
+        },
+        "top5": {
+          "small_le25": {
+            "decision_evaluations": 1391,
+            "model_rate": 0.8058950395398994,
+            "chance_rate": 0.3794310534440946,
+            "lift": 2.123956466464177,
+            "informative": true
+          },
+          "mid_26_100": {
+            "decision_evaluations": 3211,
+            "model_rate": 0.5175957645593273,
+            "chance_rate": 0.11098517444470385,
+            "lift": 4.663647799348273,
+            "informative": true
+          },
+          "large_gt100": {
+            "decision_evaluations": 4998,
+            "model_rate": 0.1726690676270508,
+            "chance_rate": 0.02439563046374379,
+            "lift": 7.077868632403966,
+            "informative": true
+          },
+          "pooled": {
+            "decision_evaluations": 9600,
+            "model_rate": 0.3797916666666667,
+            "chance_rate": 0.1048011824521324,
+            "lift": 3.62392539645376,
+            "informative": true
+          }
+        },
+        "top10": {
+          "small_le25": {
+            "decision_evaluations": 1391,
+            "model_rate": 0.9525521207764198,
+            "chance_rate": 0.6705648900862997,
+            "lift": 1.420521913477798,
+            "informative": true
+          },
+          "mid_26_100": {
+            "decision_evaluations": 3211,
+            "model_rate": 0.6863905325443787,
+            "chance_rate": 0.2219703488894077,
+            "lift": 3.092262259254992,
+            "informative": true
+          },
+          "large_gt100": {
+            "decision_evaluations": 4998,
+            "model_rate": 0.31172468987595037,
+            "chance_rate": 0.04879126092748758,
+            "lift": 6.388945150223279,
+            "informative": true
+          },
+          "pooled": {
+            "decision_evaluations": 9600,
+            "model_rate": 0.5298958333333333,
+            "chance_rate": 0.19680846609474104,
+            "lift": 2.692444303073062,
+            "informative": true
+          }
+        },
+        "brier": 0.005227318324871242,
+        "brier_uniform_null": 0.005540929293083324,
+        "columns": [
+          "households",
+          "land_area_sqmi",
+          "establishments",
+          "warehousing_establishments"
+        ],
+        "beta": {
+          "land_area_sqmi": {
+            "median": 5.985124432114902e-16,
+            "mean": 7.928508794415284e-16,
+            "p025": 6.098823369731834e-17,
+            "p975": 2.4323771844612617e-15,
+            "at_lower_boundary_share": 1.0,
+            "at_upper_boundary_share": 0.0
+          },
+          "establishments": {
+            "median": 0.26103026418404784,
+            "mean": 0.26061992974052695,
+            "p025": 6.524910916394719e-15,
+            "p975": 0.5043081930110138,
+            "at_lower_boundary_share": 0.06,
+            "at_upper_boundary_share": 0.0
+          },
+          "warehousing_establishments": {
+            "median": 1.09257146791224,
+            "mean": 1.1086179598286008,
+            "p025": 0.8450011244986619,
+            "p975": 1.4425646826139888,
+            "at_lower_boundary_share": 0.0,
+            "at_upper_boundary_share": 0.0
+          }
+        }
+      },
+      "no_warehousing": {
+        "top1": {
+          "small_le25": {
+            "decision_evaluations": 1391,
+            "model_rate": 0.295470884255931,
+            "chance_rate": 0.07714429839550475,
+            "lift": 3.830106571727513,
+            "informative": true
+          },
+          "mid_26_100": {
+            "decision_evaluations": 3211,
+            "model_rate": 0.054500155714730616,
+            "chance_rate": 0.022197034888940762,
+            "lift": 2.4552899063957523,
+            "informative": true
+          },
+          "large_gt100": {
+            "decision_evaluations": 4998,
+            "model_rate": 0.021208483393357343,
+            "chance_rate": 0.00487912609274876,
+            "lift": 4.346779113759097,
+            "informative": true
+          },
+          "pooled": {
+            "decision_evaluations": 9600,
+            "model_rate": 0.07208333333333333,
+            "chance_rate": 0.021142528157093148,
+            "lift": 3.4093998975779987,
+            "informative": true
+          }
+        },
+        "top5": {
+          "small_le25": {
+            "decision_evaluations": 1391,
+            "model_rate": 0.7548526240115025,
+            "chance_rate": 0.3794310534440946,
+            "lift": 1.989432907928087,
+            "informative": true
+          },
+          "mid_26_100": {
+            "decision_evaluations": 3211,
+            "model_rate": 0.31236374961071317,
+            "chance_rate": 0.11098517444470385,
+            "lift": 2.8144637441313587,
+            "informative": true
+          },
+          "large_gt100": {
+            "decision_evaluations": 4998,
+            "model_rate": 0.09123649459783914,
+            "chance_rate": 0.02439563046374379,
+            "lift": 3.7398703318380173,
+            "informative": true
+          },
+          "pooled": {
+            "decision_evaluations": 9600,
+            "model_rate": 0.26135416666666667,
+            "chance_rate": 0.1048011824521324,
+            "lift": 2.493809330691849,
+            "informative": true
+          }
+        },
+        "top10": {
+          "small_le25": {
+            "decision_evaluations": 1391,
+            "model_rate": 0.8900071890726097,
+            "chance_rate": 0.6705648900862997,
+            "lift": 1.3272499085928409,
+            "informative": true
+          },
+          "mid_26_100": {
+            "decision_evaluations": 3211,
+            "model_rate": 0.5375272500778574,
+            "chance_rate": 0.2219703488894077,
+            "lift": 2.4216173591080383,
+            "informative": true
+          },
+          "large_gt100": {
+            "decision_evaluations": 4998,
+            "model_rate": 0.133453381352541,
+            "chance_rate": 0.04879126092748758,
+            "lift": 2.735190253657848,
+            "informative": true
+          },
+          "pooled": {
+            "decision_evaluations": 9600,
+            "model_rate": 0.37822916666666667,
+            "chance_rate": 0.19680846609474104,
+            "lift": 1.921813498026005,
+            "informative": true
+          }
+        },
+        "brier": 0.005371394649710609,
+        "brier_uniform_null": 0.005540929293083324,
+        "columns": [
+          "households",
+          "land_area_sqmi",
+          "establishments"
+        ],
+        "beta": {
+          "land_area_sqmi": {
+            "median": 9.012560146993567e-16,
+            "mean": 0.1517992091072225,
+            "p025": 1.1196323611850962e-16,
+            "p975": 1.6790410099659143,
+            "at_lower_boundary_share": 0.96,
+            "at_upper_boundary_share": 0.0
+          },
+          "establishments": {
+            "median": 2.202107234541118,
+            "mean": 8734608133854495.0,
+            "p025": 1.3924761663206229,
+            "p975": 2.5291084761491244e+16,
+            "at_lower_boundary_share": 0.0,
+            "at_upper_boundary_share": 0.04
+          }
+        },
+        "vs_baseline_large_top10": {
+          "mean_rate_difference": -0.17885877425380742,
+          "sd_over_resplits": 0.04455873319118099,
+          "wins": 0,
+          "ties": 0,
+          "losses": 50
+        },
+        "vs_baseline_large_top1": {
+          "mean_rate_difference": -0.03268723512746047,
+          "sd_over_resplits": 0.02124684981764732,
+          "wins": 1,
+          "ties": 1,
+          "losses": 48
+        }
+      }
+    }
+  },
+  "gate_check": {
+    "baseline": {
+      "expected": 6.388945150223279,
+      "observed": 6.388945150223279,
+      "exact": true
+    },
+    "no_warehousing": {
+      "expected": 2.735190253657848,
+      "observed": 2.735190253657848,
+      "exact": true
+    }
+  }
+}

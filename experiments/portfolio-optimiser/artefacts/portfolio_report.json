@@ -1,0 +1,31 @@
+{
+  "run_id": "20260914-002431-7419",
+  "written_at": "2026-09-14T00:24:34+00:00",
+  "frontier": null,
+  "budget_usd": 2000000000.0,
+  "capacity": 500,
+  "breakeven_margin": 1.343067492729897,
+  "greedy_breakeven": 1.3433208966028718,
+  "upper_bound": 1.2129384520943323,
+  "optimality_gap": 0.10728412510204127,
+  "naive_breakeven": null,
+  "detail": {
+    "n": 282,
+    "parcels": 1024640079.1445723,
+    "cost": 1144463378.3849921,
+    "capital": 1128000000.0,
+    "npv_per_dollar_margin": 4988377042.669814,
+    "npv_fixed": -6699727047.489925,
+    "breakeven_margin": 1.343067492729897
+  },
+  "parameters": {
+    "capital_per_activation_usd": 4000000.0,
+    "horizon_years": 7,
+    "discount_rate": 0.1,
+    "cannibalisation_radius_km": 20.0,
+    "cannibalisation_peak": 0.18,
+    "linehaul_sharing": 0.35,
+    "delivery_days_per_year": 312.0
+  },
+  "path": "outputs/tables/portfolio_2023q4.parquet"
+}

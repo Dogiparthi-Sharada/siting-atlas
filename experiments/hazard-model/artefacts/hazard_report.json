@@ -1,0 +1,821 @@
+{
+  "run_id": "20260914-002509-2374",
+  "written_at": "2026-09-14T00:25:11+00:00",
+  "synthetic": false,
+  "panel_origin": "data/processed/panel.parquet",
+  "panel_detail": {
+    "path": "data/processed/panel.parquet",
+    "rows": 1081312,
+    "non_null": 1081312,
+    "enabled_rows": 27914,
+    "scope": "fit_metros",
+    "cbsa_codes": [
+      "12420",
+      "16980",
+      "19740",
+      "33100",
+      "34980",
+      "35620",
+      "41860",
+      "41940",
+      "42660"
+    ],
+    "units_national": 33791,
+    "units_in_scope": 2206,
+    "units_complete_covariates": 2075,
+    "rows_in_scope": 66400
+  },
+  "risk_set": {
+    "units": 1756,
+    "rows": 40358,
+    "events": 812,
+    "event_rate": 0.020119926656424997,
+    "t_min": 1,
+    "t_max": 31,
+    "mean_quarters_at_risk": 22.982915717539864
+  },
+  "split": {
+    "train": {
+      "rows": 24277,
+      "units": 1054,
+      "events": 487
+    },
+    "calibration": {
+      "rows": 8037,
+      "units": 351,
+      "events": 164
+    },
+    "test": {
+      "rows": 8044,
+      "units": 351,
+      "events": 161
+    }
+  },
+  "fit": {
+    "specification": {
+      "covariates": [
+        "households",
+        "median_household_income",
+        "establishments"
+      ],
+      "baseline": "linear",
+      "n_knots": 4,
+      "standardise": true,
+      "cluster_by_unit": true,
+      "cluster_col": "cbsa_code"
+    },
+    "log_likelihood": -2326.83017512212,
+    "aic": 4663.66035024424,
+    "n_parameters": 5,
+    "n_clusters": 9,
+    "converged": true,
+    "coefficients": [
+      {
+        "term": "intercept",
+        "coefficient": -4.67386,
+        "std_error": 0.410621,
+        "p_value": 0.0,
+        "hazard_ratio": 0.00934
+      },
+      {
+        "term": "t",
+        "coefficient": 0.002336,
+        "std_error": 0.028848,
+        "p_value": 0.935454,
+        "hazard_ratio": 1.00234
+      },
+      {
+        "term": "households",
+        "coefficient": 5.2e-05,
+        "std_error": 1.3e-05,
+        "p_value": 7e-05,
+        "hazard_ratio": 1.00005
+      },
+      {
+        "term": "median_household_income",
+        "coefficient": 1e-06,
+        "std_error": 4e-06,
+        "p_value": 0.780357,
+        "hazard_ratio": 1.0
+      },
+      {
+        "term": "establishments",
+        "coefficient": 0.000149,
+        "std_error": 0.000143,
+        "p_value": 0.297732,
+        "hazard_ratio": 1.00015
+      }
+    ]
+  },
+  "evaluation": {
+    "label": "cloglog-hazard",
+    "n_rows": 8044,
+    "n_events": 161,
+    "event_rate": 0.020015,
+    "auc": 0.6894,
+    "brier": 0.019522,
+    "ece": 0.00863,
+    "calibration": [
+      {
+        "lower": 0.009926,
+        "upper": 0.011379,
+        "n": 805,
+        "weight": 0.10007,
+        "mean_predicted": 0.010915,
+        "mean_observed": 0.004969
+      },
+      {
+        "lower": 0.011379,
+        "upper": 0.012204,
+        "n": 804,
+        "weight": 0.09995,
+        "mean_predicted": 0.011781,
+        "mean_observed": 0.002488
+      },
+      {
+        "lower": 0.012204,
+        "upper": 0.01322,
+        "n": 804,
+        "weight": 0.09995,
+        "mean_predicted": 0.012718,
+        "mean_observed": 0.007463
+      },
+      {
+        "lower": 0.01322,
+        "upper": 0.014112,
+        "n": 805,
+        "weight": 0.10007,
+        "mean_predicted": 0.013651,
+        "mean_observed": 0.009938
+      },
+      {
+        "lower": 0.014112,
+        "upper": 0.015293,
+        "n": 804,
+        "weight": 0.09995,
+        "mean_predicted": 0.014673,
+        "mean_observed": 0.013682
+      },
+      {
+        "lower": 0.015293,
+        "upper": 0.017457,
+        "n": 804,
+        "weight": 0.09995,
+        "mean_predicted": 0.016235,
+        "mean_observed": 0.016169
+      },
+      {
+        "lower": 0.017457,
+        "upper": 0.020536,
+        "n": 805,
+        "weight": 0.10007,
+        "mean_predicted": 0.018814,
+        "mean_observed": 0.036025
+      },
+      {
+        "lower": 0.020536,
+        "upper": 0.025171,
+        "n": 804,
+        "weight": 0.09995,
+        "mean_predicted": 0.022785,
+        "mean_observed": 0.03607
+      },
+      {
+        "lower": 0.025171,
+        "upper": 0.033845,
+        "n": 804,
+        "weight": 0.09995,
+        "mean_predicted": 0.029612,
+        "mean_observed": 0.044776
+      },
+      {
+        "lower": 0.033845,
+        "upper": 0.091678,
+        "n": 805,
+        "weight": 0.10007,
+        "mean_predicted": 0.043957,
+        "mean_observed": 0.028571
+      }
+    ]
+  },
+  "brier_skill": 0.00471,
+  "null_model": {
+    "label": "baseline-only",
+    "n_rows": 8044,
+    "n_events": 161,
+    "event_rate": 0.020015,
+    "auc": 0.5,
+    "brier": 0.019614,
+    "ece": 5e-05,
+    "calibration": [
+      {
+        "lower": 0.02006,
+        "upper": 0.02006,
+        "n": 8044,
+        "weight": 1.0,
+        "mean_predicted": 0.02006,
+        "mean_observed": 0.020015
+      }
+    ]
+  },
+  "conformal": {
+    "alpha": 0.1,
+    "nominal_coverage": 0.9,
+    "empirical_coverage": 0.8819,
+    "upper_bound": 0.9001,
+    "tolerance_2sigma": 0.032,
+    "within_tolerance": true,
+    "n_calibration": 8037,
+    "n_test": 8044,
+    "n_effective": 351,
+    "q_hat": 0.033726,
+    "q_hat_is_infinite": false,
+    "mean_set_size": 0.8991,
+    "share_singleton": 0.8991,
+    "share_full": 0.0,
+    "share_empty": 0.1009
+  },
+  "recovery": [],
+  "predictions_path": "outputs/tables/hazard_predictions.parquet",
+  "baseline_hazard": [
+    {
+      "t": 1,
+      "hazard": 0.01862706347450566
+    },
+    {
+      "t": 2,
+      "hazard": 0.018670222344140404
+    },
+    {
+      "t": 3,
+      "hazard": 0.01871348025635157
+    },
+    {
+      "t": 4,
+      "hazard": 0.018756837433960574
+    },
+    {
+      "t": 5,
+      "hazard": 0.018800294100269194
+    },
+    {
+      "t": 6,
+      "hazard": 0.018843850479060554
+    },
+    {
+      "t": 7,
+      "hazard": 0.018887506794599968
+    },
+    {
+      "t": 8,
+      "hazard": 0.018931263271635992
+    },
+    {
+      "t": 9,
+      "hazard": 0.01897512013540131
+    },
+    {
+      "t": 10,
+      "hazard": 0.01901907761161369
+    },
+    {
+      "t": 11,
+      "hazard": 0.019063135926476862
+    },
+    {
+      "t": 12,
+      "hazard": 0.019107295306681586
+    },
+    {
+      "t": 13,
+      "hazard": 0.019151555979406504
+    },
+    {
+      "t": 14,
+      "hazard": 0.01919591817231913
+    },
+    {
+      "t": 15,
+      "hazard": 0.019240382113576742
+    },
+    {
+      "t": 16,
+      "hazard": 0.019284948031827412
+    },
+    {
+      "t": 17,
+      "hazard": 0.019329616156210924
+    },
+    {
+      "t": 18,
+      "hazard": 0.01937438671635968
+    },
+    {
+      "t": 19,
+      "hazard": 0.01941925994239975
+    },
+    {
+      "t": 20,
+      "hazard": 0.019464236064951717
+    },
+    {
+      "t": 21,
+      "hazard": 0.019509315315131746
+    },
+    {
+      "t": 22,
+      "hazard": 0.019554497924552435
+    },
+    {
+      "t": 23,
+      "hazard": 0.019599784125323864
+    },
+    {
+      "t": 24,
+      "hazard": 0.01964517415005449
+    },
+    {
+      "t": 25,
+      "hazard": 0.019690668231852157
+    },
+    {
+      "t": 26,
+      "hazard": 0.01973626660432502
+    },
+    {
+      "t": 27,
+      "hazard": 0.01978196950158255
+    },
+    {
+      "t": 28,
+      "hazard": 0.01982777715823645
+    },
+    {
+      "t": 29,
+      "hazard": 0.019873689809401678
+    },
+    {
+      "t": 30,
+      "hazard": 0.019919707690697366
+    },
+    {
+      "t": 31,
+      "hazard": 0.019965831038247835
+    }
+  ],
+  "contamination": "Most facility dates are 'operating by' UPPER BOUNDS derived from OSHA inspection records, not opening dates. An inspection occurs at an already-operating site, so recently inspected sites are dated as recently opened; 2023 is the largest cohort and is far more likely to reflect inspection activity than construction. The looseness has been measured on the five addresses that also appear in MWPVL's 2012 table with real opening months: the bound held 5 of 5 times, but the lag between opening and first inspection was (4, 13, 57, 69, 345) months \u2014 one site opened in 1997 and was first inspected in 2026. The dates are therefore valid RIGHT-hand endpoints of a censoring interval and are not event times. Any result that depends on WHEN an event happened inherits that, which is why the temporal split is reported as secondary and the unit-clustered split is the primary evidence. The specification this target actually calls for is interval censoring, which the current risk-set builder does not implement.",
+  "power": {
+    "n_events_zcta": 487,
+    "n_independent_episodes": 28,
+    "n_usable_facilities": 38,
+    "n_parameters": 5,
+    "events_per_parameter_nominal": 97.4,
+    "events_per_parameter_effective": 5.6,
+    "events_per_parameter_optimistic": 7.6,
+    "floor": 10.0,
+    "meets_floor": false,
+    "note": "The nominal ratio counts ZCTAs and is not evidence of power. Independent decisions lie between the metro-quarter episode count (lower bound, merges same-year openings in one metro) and the usable-facility count (upper bound). The verdict is taken on the upper bound."
+  },
+  "event_timing": {
+    "distinct_event_times": 17,
+    "events_by_quarter_of_year": {
+      "1": 288,
+      "2": 155,
+      "3": 176,
+      "4": 193
+    },
+    "share_in_q1": 0.3547,
+    "rows_structurally_eventless": 0.0,
+    "cause": "Events fall in 4 of the 4 quarters of the year, so the Q1 pile-up that made the quarterly grain meaningless is no longer total. Rows whose open_quarter is still blank are dated to Q1 by convention, which is why Q1 remains the largest bucket at 35% of events \u2014 read the quarter-of-year distribution as partly a coverage artefact, not as seasonality."
+  },
+  "events_by_metro": [
+    {
+      "cbsa_code": "35620",
+      "units_at_risk": 624,
+      "rows": 17433,
+      "events": 173
+    },
+    {
+      "cbsa_code": "16980",
+      "units_at_risk": 255,
+      "rows": 4566,
+      "events": 133
+    },
+    {
+      "cbsa_code": "42660",
+      "units_at_risk": 156,
+      "rows": 2443,
+      "events": 131
+    },
+    {
+      "cbsa_code": "41860",
+      "units_at_risk": 167,
+      "rows": 4096,
+      "events": 110
+    },
+    {
+      "cbsa_code": "33100",
+      "units_at_risk": 181,
+      "rows": 4285,
+      "events": 91
+    },
+    {
+      "cbsa_code": "19740",
+      "units_at_risk": 124,
+      "rows": 1864,
+      "events": 87
+    },
+    {
+      "cbsa_code": "41940",
+      "units_at_risk": 59,
+      "rows": 681,
+      "events": 51
+    },
+    {
+      "cbsa_code": "12420",
+      "units_at_risk": 87,
+      "rows": 1797,
+      "events": 36
+    },
+    {
+      "cbsa_code": "34980",
+      "units_at_risk": 103,
+      "rows": 3193,
+      "events": 0
+    }
+  ],
+  "coefficients_clustered_by_zcta": [
+    {
+      "term": "intercept",
+      "coefficient": -4.67386,
+      "std_error": 0.164151,
+      "p_value": 0.0,
+      "hazard_ratio": 0.00934
+    },
+    {
+      "term": "t",
+      "coefficient": 0.002336,
+      "std_error": 0.004254,
+      "p_value": 0.582897,
+      "hazard_ratio": 1.00234
+    },
+    {
+      "term": "households",
+      "coefficient": 5.2e-05,
+      "std_error": 8e-06,
+      "p_value": 0.0,
+      "hazard_ratio": 1.00005
+    },
+    {
+      "term": "median_household_income",
+      "coefficient": 1e-06,
+      "std_error": 1e-06,
+      "p_value": 0.292135,
+      "hazard_ratio": 1.0
+    },
+    {
+      "term": "establishments",
+      "coefficient": 0.000149,
+      "std_error": 8.8e-05,
+      "p_value": 0.088811,
+      "hazard_ratio": 1.00015
+    }
+  ],
+  "temporal_secondary": {
+    "ran": true,
+    "cutoff_t": 19,
+    "train": {
+      "rows": 28487,
+      "events": 567
+    },
+    "test": {
+      "rows": 11871,
+      "events": 245
+    },
+    "evaluation": {
+      "label": "temporal-holdout",
+      "n_rows": 11871,
+      "n_events": 245,
+      "event_rate": 0.020639,
+      "auc": 0.5551,
+      "brier": 0.020635,
+      "ece": 0.01196,
+      "calibration": [
+        {
+          "lower": 0.014426,
+          "upper": 0.018729,
+          "n": 1187,
+          "weight": 0.09999,
+          "mean_predicted": 0.01747,
+          "mean_observed": 0.015164
+        },
+        {
+          "lower": 0.018729,
+          "upper": 0.0206,
+          "n": 1187,
+          "weight": 0.09999,
+          "mean_predicted": 0.019694,
+          "mean_observed": 0.018534
+        },
+        {
+          "lower": 0.0206,
+          "upper": 0.022377,
+          "n": 1188,
+          "weight": 0.10008,
+          "mean_predicted": 0.021487,
+          "mean_observed": 0.01936
+        },
+        {
+          "lower": 0.022377,
+          "upper": 0.02413,
+          "n": 1186,
+          "weight": 0.09991,
+          "mean_predicted": 0.02324,
+          "mean_observed": 0.015177
+        },
+        {
+          "lower": 0.02413,
+          "upper": 0.025996,
+          "n": 1187,
+          "weight": 0.09999,
+          "mean_predicted": 0.025031,
+          "mean_observed": 0.015164
+        },
+        {
+          "lower": 0.025996,
+          "upper": 0.028767,
+          "n": 1187,
+          "weight": 0.09999,
+          "mean_predicted": 0.027273,
+          "mean_observed": 0.019377
+        },
+        {
+          "lower": 0.028767,
+          "upper": 0.033513,
+          "n": 1187,
+          "weight": 0.09999,
+          "mean_predicted": 0.03094,
+          "mean_observed": 0.016849
+        },
+        {
+          "lower": 0.033513,
+          "upper": 0.041232,
+          "n": 1187,
+          "weight": 0.09999,
+          "mean_predicted": 0.037003,
+          "mean_observed": 0.035383
+        },
+        {
+          "lower": 0.041232,
+          "upper": 0.055052,
+          "n": 1187,
+          "weight": 0.09999,
+          "mean_predicted": 0.047228,
+          "mean_observed": 0.029486
+        },
+        {
+          "lower": 0.055052,
+          "upper": 0.256179,
+          "n": 1188,
+          "weight": 0.10008,
+          "mean_predicted": 0.076616,
+          "mean_observed": 0.021886
+        }
+      ]
+    },
+    "null_model": {
+      "label": "baseline-only",
+      "n_rows": 11871,
+      "n_events": 245,
+      "event_rate": 0.020639,
+      "auc": 0.5,
+      "brier": 0.020213,
+      "ece": 0.00073,
+      "calibration": [
+        {
+          "lower": 0.019904,
+          "upper": 0.019904,
+          "n": 11871,
+          "weight": 1.0,
+          "mean_predicted": 0.019904,
+          "mean_observed": 0.020639
+        }
+      ]
+    },
+    "brier_skill": -0.02091,
+    "caveat": "Most facility dates are 'operating by' UPPER BOUNDS derived from OSHA inspection records, not opening dates. An inspection occurs at an already-operating site, so recently inspected sites are dated as recently opened; 2023 is the largest cohort and is far more likely to reflect inspection activity than construction. The looseness has been measured on the five addresses that also appear in MWPVL's 2012 table with real opening months: the bound held 5 of 5 times, but the lag between opening and first inspection was (4, 13, 57, 69, 345) months \u2014 one site opened in 1997 and was first inspected in 2026. The dates are therefore valid RIGHT-hand endpoints of a censoring interval and are not event times. Any result that depends on WHEN an event happened inherits that, which is why the temporal split is reported as secondary and the unit-clustered split is the primary evidence. The specification this target actually calls for is interval censoring, which the current risk-set builder does not implement."
+  },
+  "annual_sensitivity": {
+    "ran": true,
+    "rows_quarterly": 40358,
+    "rows_annual": 10866,
+    "evaluation": {
+      "label": "annual-grain",
+      "n_rows": 2166,
+      "n_events": 161,
+      "event_rate": 0.074331,
+      "auc": 0.6918,
+      "brier": 0.067551,
+      "ece": 0.03001,
+      "calibration": [
+        {
+          "lower": 0.034231,
+          "upper": 0.042517,
+          "n": 217,
+          "weight": 0.10018,
+          "mean_predicted": 0.039541,
+          "mean_observed": 0.018433
+        },
+        {
+          "lower": 0.042517,
+          "upper": 0.046464,
+          "n": 216,
+          "weight": 0.09972,
+          "mean_predicted": 0.044528,
+          "mean_observed": 0.023148
+        },
+        {
+          "lower": 0.046464,
+          "upper": 0.049877,
+          "n": 217,
+          "weight": 0.10018,
+          "mean_predicted": 0.048115,
+          "mean_observed": 0.013825
+        },
+        {
+          "lower": 0.049877,
+          "upper": 0.053716,
+          "n": 216,
+          "weight": 0.09972,
+          "mean_predicted": 0.051665,
+          "mean_observed": 0.046296
+        },
+        {
+          "lower": 0.053716,
+          "upper": 0.059026,
+          "n": 217,
+          "weight": 0.10018,
+          "mean_predicted": 0.056168,
+          "mean_observed": 0.046083
+        },
+        {
+          "lower": 0.059026,
+          "upper": 0.065866,
+          "n": 216,
+          "weight": 0.09972,
+          "mean_predicted": 0.062162,
+          "mean_observed": 0.074074
+        },
+        {
+          "lower": 0.065866,
+          "upper": 0.077496,
+          "n": 217,
+          "weight": 0.10018,
+          "mean_predicted": 0.071022,
+          "mean_observed": 0.124424
+        },
+        {
+          "lower": 0.077496,
+          "upper": 0.093965,
+          "n": 216,
+          "weight": 0.09972,
+          "mean_predicted": 0.084868,
+          "mean_observed": 0.143519
+        },
+        {
+          "lower": 0.093965,
+          "upper": 0.125414,
+          "n": 217,
+          "weight": 0.10018,
+          "mean_predicted": 0.108096,
+          "mean_observed": 0.142857
+        },
+        {
+          "lower": 0.125414,
+          "upper": 0.339893,
+          "n": 217,
+          "weight": 0.10018,
+          "mean_predicted": 0.159612,
+          "mean_observed": 0.110599
+        }
+      ]
+    },
+    "null_model": {
+      "label": "baseline-only",
+      "n_rows": 2166,
+      "n_events": 161,
+      "event_rate": 0.074331,
+      "auc": 0.5,
+      "brier": 0.068806,
+      "ece": 0.0002,
+      "calibration": [
+        {
+          "lower": 0.074533,
+          "upper": 0.074533,
+          "n": 2166,
+          "weight": 1.0,
+          "mean_predicted": 0.074533,
+          "mean_observed": 0.074331
+        }
+      ]
+    },
+    "brier_skill": 0.01823
+  },
+  "transfer_smoke_test": {
+    "ran": true,
+    "evaluation": {
+      "label": "heldout-metros",
+      "n_rows": 5544,
+      "n_events": 32,
+      "event_rate": 0.005772,
+      "auc": 0.6168,
+      "brier": 0.006094,
+      "ece": 0.01651,
+      "calibration": [
+        {
+          "lower": 0.009733,
+          "upper": 0.010718,
+          "n": 555,
+          "weight": 0.10011,
+          "mean_predicted": 0.010366,
+          "mean_observed": 0.001802
+        },
+        {
+          "lower": 0.010718,
+          "upper": 0.011884,
+          "n": 554,
+          "weight": 0.09993,
+          "mean_predicted": 0.011157,
+          "mean_observed": 0.001805
+        },
+        {
+          "lower": 0.011884,
+          "upper": 0.014359,
+          "n": 554,
+          "weight": 0.09993,
+          "mean_predicted": 0.013135,
+          "mean_observed": 0.001805
+        },
+        {
+          "lower": 0.014359,
+          "upper": 0.017164,
+          "n": 555,
+          "weight": 0.10011,
+          "mean_predicted": 0.015825,
+          "mean_observed": 0.003604
+        },
+        {
+          "lower": 0.017164,
+          "upper": 0.020228,
+          "n": 554,
+          "weight": 0.09993,
+          "mean_predicted": 0.018724,
+          "mean_observed": 0.005415
+        },
+        {
+          "lower": 0.020228,
+          "upper": 0.023471,
+          "n": 554,
+          "weight": 0.09993,
+          "mean_predicted": 0.022102,
+          "mean_observed": 0.012635
+        },
+        {
+          "lower": 0.023471,
+          "upper": 0.025718,
+          "n": 555,
+          "weight": 0.10011,
+          "mean_predicted": 0.024633,
+          "mean_observed": 0.009009
+        },
+        {
+          "lower": 0.025718,
+          "upper": 0.029973,
+          "n": 554,
+          "weight": 0.09993,
+          "mean_predicted": 0.027622,
+          "mean_observed": 0.00722
+        },
+        {
+          "lower": 0.029973,
+          "upper": 0.036714,
+          "n": 554,
+          "weight": 0.09993,
+          "mean_predicted": 0.032851,
+          "mean_observed": 0.00722
+        },
+        {
+          "lower": 0.036714,
+          "upper": 0.06356,
+          "n": 555,
+          "weight": 0.10011,
+          "mean_predicted": 0.046428,
+          "mean_observed": 0.007207
+        }
+      ]
+    },
+    "brier_skill": -0.06184,
+    "n_units": 196,
+    "caveat": "Phoenix and Boise hold two dated delivery stations between them, so this is a smoke test for gross failure and not a test of geographic transfer."
+  }
+}

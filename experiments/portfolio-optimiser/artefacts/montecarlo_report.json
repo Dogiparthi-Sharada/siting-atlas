@@ -1,0 +1,46 @@
+{
+  "draws": 500,
+  "ok": 500,
+  "failed": 0,
+  "seed": 20260914,
+  "budget_usd": 2000000000.0,
+  "period": "2023Q4",
+  "bands": {
+    "n": {
+      "p10": 151.9,
+      "p50": 264.5,
+      "p90": 306.1,
+      "min": 82.0,
+      "max": 385.0
+    },
+    "capital_usd": {
+      "p10": 607600000.0,
+      "p50": 1058000000.0,
+      "p90": 1224400000.0,
+      "min": 328000000.0,
+      "max": 1540000000.0
+    },
+    "breakeven_margin": {
+      "p10": 1.0891638833892354,
+      "p50": 1.3682082582252908,
+      "p90": 1.7259400092290988,
+      "min": 0.8603901316118414,
+      "max": 2.3288406720539334
+    },
+    "median_cost_per_parcel": {
+      "p10": 0.8367504378114828,
+      "p50": 1.122364596213233,
+      "p90": 1.4836241277853055,
+      "min": 0.6128313690169237,
+      "max": 2.0951168480226943
+    },
+    "optimality_gap": {
+      "p10": 0.05545297126023111,
+      "p50": 0.09682419023304241,
+      "p90": 0.15321807374094354,
+      "min": 0.011017322782818882,
+      "max": 0.26393039596559337
+    }
+  },
+  "interpretation": "NOT a confidence interval. Every range is from docs/data/PARAMETERS.md and was chosen by this project; eight of the constants have no external source. This measures how far the answer moves across the range we consider plausible, and it propagates our priors rather than the world's."
+}

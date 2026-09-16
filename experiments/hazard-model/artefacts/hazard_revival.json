@@ -1,0 +1,1535 @@
+{
+  "run_id": "20260915-224104-21a7",
+  "written_at": "2026-09-15T22:42:02+00:00",
+  "provenance": {
+    "panel": "data/processed/panel_expanded.parquet",
+    "panel_rows": 1081312,
+    "facilities_loadable": 687,
+    "facilities_dated_frame": 545,
+    "facilities_with_osha_bound": 139,
+    "facilities_dated_both_ways": 130,
+    "facilities_dropped_from_osha_arm": 548,
+    "drop_rule": "a facility with no OSHA bound is dropped from the osha arm; no date is invented for it",
+    "target_rebuild_check": {
+      "panel_enabled_cells": 200219,
+      "recomputed_enabled_cells": 200219,
+      "mismatched_cells": 0
+    },
+    "date_gap_osha_minus_stated": {
+      "all_with_both": {
+        "n": 130,
+        "median_quarters": 0.0,
+        "median_months": 0.0,
+        "mean_months": 8.3,
+        "pct_over_one_year": 18.5
+      },
+      "mwpvl_dated": {
+        "n": 30,
+        "median_quarters": 10.5,
+        "median_months": 31.5,
+        "mean_months": 36.0,
+        "pct_over_one_year": 80.0
+      },
+      "national_dated": {
+        "n": 100,
+        "median_quarters": 0.0,
+        "median_months": 0.0,
+        "mean_months": 0.0,
+        "pct_over_one_year": 0.0
+      },
+      "note": "The national rows were BUILT by classifying the OSHA extract, so their gap of zero is an identity, not a measurement. Only the mwpvl_dated block measures anything."
+    },
+    "catchment_load": {
+      "radius_miles": 15.0,
+      "facilities_attached": 540,
+      "zctas_covered": 9113,
+      "zctas_per_opening": {
+        "median": 39.0,
+        "mean": 52.4,
+        "p10": 11.900000000000006,
+        "p90": 105.0,
+        "max": 317
+      },
+      "zctas_first_switched_on": {
+        "n_facilities": 459,
+        "median": 13.0,
+        "mean": 20.3,
+        "max": 228
+      },
+      "pct_zctas_served_by_2plus": 58.4
+    },
+    "catchment_load_band": {
+      "points": [
+        {
+          "radius_miles": 8.3,
+          "facilities_attached": 540,
+          "zctas_covered": 5260,
+          "zctas_per_opening": {
+            "median": 14.0,
+            "mean": 19.8,
+            "p10": 3.0,
+            "p90": 37.0,
+            "max": 170
+          },
+          "zctas_first_switched_on": {
+            "n_facilities": 494,
+            "median": 8.0,
+            "mean": 10.8,
+            "max": 127
+          },
+          "pct_zctas_served_by_2plus": 42.2
+        },
+        {
+          "radius_miles": 12.7,
+          "facilities_attached": 540,
+          "zctas_covered": 7956,
+          "zctas_per_opening": {
+            "median": 30.0,
+            "mean": 40.5,
+            "p10": 8.0,
+            "p90": 75.30000000000007,
+            "max": 263
+          },
+          "zctas_first_switched_on": {
+            "n_facilities": 470,
+            "median": 12.0,
+            "mean": 17.3,
+            "max": 171
+          },
+          "pct_zctas_served_by_2plus": 55.1
+        },
+        {
+          "radius_miles": 15.0,
+          "facilities_attached": 540,
+          "zctas_covered": 9113,
+          "zctas_per_opening": {
+            "median": 39.0,
+            "mean": 52.4,
+            "p10": 11.900000000000006,
+            "p90": 105.0,
+            "max": 317
+          },
+          "zctas_first_switched_on": {
+            "n_facilities": 459,
+            "median": 13.0,
+            "mean": 20.3,
+            "max": 228
+          },
+          "pct_zctas_served_by_2plus": 58.4
+        },
+        {
+          "radius_miles": 19.6,
+          "facilities_attached": 540,
+          "zctas_covered": 11110,
+          "zctas_per_opening": {
+            "median": 59.0,
+            "mean": 77.6,
+            "p10": 18.0,
+            "p90": 156.70000000000016,
+            "max": 419
+          },
+          "zctas_first_switched_on": {
+            "n_facilities": 441,
+            "median": 16.0,
+            "mean": 26.0,
+            "max": 344
+          },
+          "pct_zctas_served_by_2plus": 61.4
+        },
+        {
+          "radius_miles": 25.0,
+          "facilities_attached": 540,
+          "zctas_covered": 13328,
+          "zctas_per_opening": {
+            "median": 79.0,
+            "mean": 108.4,
+            "p10": 26.900000000000006,
+            "p90": 225.60000000000014,
+            "max": 514
+          },
+          "zctas_first_switched_on": {
+            "n_facilities": 410,
+            "median": 20.0,
+            "mean": 33.8,
+            "max": 471
+          },
+          "pct_zctas_served_by_2plus": 62.8
+        },
+        {
+          "radius_miles": 45.0,
+          "facilities_attached": 540,
+          "zctas_covered": 20741,
+          "zctas_per_opening": {
+            "median": 173.0,
+            "mean": 231.1,
+            "p10": 64.9,
+            "p90": 444.0000000000002,
+            "max": 811
+          },
+          "zctas_first_switched_on": {
+            "n_facilities": 369,
+            "median": 29.0,
+            "mean": 59.1,
+            "max": 782
+          },
+          "pct_zctas_served_by_2plus": 67.1
+        }
+      ],
+      "zctas_covered_ratio_high_low": 3.94,
+      "note": "Measured on the expanded frame. The fits all use 15 miles; this band says only how far the unit-of-analysis problem travels with the radius, and it never reaches one ZCTA per opening."
+    },
+    "truncation_cost": {
+      "frame": {
+        "dated_facilities": 545,
+        "opened_before_window": 49,
+        "opened_after_window": 19,
+        "inside_window": 477,
+        "window": [
+          2018,
+          2025
+        ],
+        "radius_miles": 15.0
+      },
+      "osha": {
+        "dated_facilities": 139,
+        "opened_before_window": 7,
+        "opened_after_window": 18,
+        "inside_window": 114,
+        "window": [
+          2018,
+          2025
+        ],
+        "radius_miles": 15.0
+      },
+      "pair_frame": {
+        "dated_facilities": 130,
+        "opened_before_window": 14,
+        "opened_after_window": 13,
+        "inside_window": 103,
+        "window": [
+          2018,
+          2025
+        ],
+        "radius_miles": 15.0
+      },
+      "pair_osha": {
+        "dated_facilities": 130,
+        "opened_before_window": 7,
+        "opened_after_window": 16,
+        "inside_window": 107,
+        "window": [
+          2018,
+          2025
+        ],
+        "radius_miles": 15.0
+      }
+    },
+    "covariate_coverage_pct": {
+      "households": 99.9,
+      "median_household_income": 90.6,
+      "establishments": 91.5,
+      "rent_index_yoy_pct": 9.5,
+      "permits_yoy_pct": 55.4
+    }
+  },
+  "baseline_retired_run": {
+    "artefact": "outputs/metrics/hazard_report.json",
+    "panel": "data/processed/panel.parquet (43-facility pilot frame)",
+    "covariates": [
+      "households",
+      "median_household_income",
+      "establishments"
+    ],
+    "risk_set": {
+      "units": 1756,
+      "rows": 40358,
+      "events": 812
+    },
+    "usable_facilities": 38,
+    "independent_episodes": 28,
+    "held_out_by_unit": {
+      "n_rows": 8044,
+      "n_events": 161,
+      "auc": 0.6894,
+      "brier": 0.019522,
+      "brier_null": 0.019614,
+      "brier_skill": 0.00471,
+      "ece": 0.00863,
+      "ece_null": 5e-05
+    },
+    "out_of_time": {
+      "n_rows": 11871,
+      "n_events": 245,
+      "auc": 0.5551,
+      "brier": 0.020635,
+      "brier_null": 0.020213,
+      "ece": 0.01196
+    },
+    "out_of_area": {
+      "n_rows": 5544,
+      "n_events": 32,
+      "auc": 0.6168,
+      "brier": 0.006094,
+      "ece": 0.01651
+    }
+  },
+  "arms": {
+    "new_dates_3cov": {
+      "ran": true,
+      "dating": "frame",
+      "scope": {
+        "radius_miles": 15.0,
+        "enabled_cells_national": 200219,
+        "zctas_ever_enabled_national": 8970,
+        "cbsas_reached": 277,
+        "cbsas_in_scope": 275,
+        "cbsas_held_out": [
+          "14260",
+          "38060"
+        ],
+        "rows_in_scope": 490752,
+        "rows_after_covariate_dropna": 442976,
+        "pct_rows_lost_to_missingness": 9.7,
+        "units_in_scope": 15336,
+        "units_complete": 13843,
+        "covariates": [
+          "households",
+          "median_household_income",
+          "establishments"
+        ]
+      },
+      "covariates": [
+        "households",
+        "median_household_income",
+        "establishments"
+      ],
+      "risk_set": {
+        "units": 11230,
+        "rows": 256081,
+        "events": 5441
+      },
+      "split": {
+        "train": {
+          "rows": 153560,
+          "units": 6738,
+          "events": 3255
+        },
+        "calibration": {
+          "rows": 51566,
+          "units": 2246,
+          "events": 1077
+        },
+        "test": {
+          "rows": 50955,
+          "units": 2246,
+          "events": 1109
+        }
+      },
+      "converged": true,
+      "n_parameters": 5,
+      "n_clusters": 274,
+      "log_likelihood": -15215.271658757083,
+      "coefficients": [
+        {
+          "term": "intercept",
+          "coefficient": -4.962416,
+          "std_error": 0.176076,
+          "p_value": 0.0,
+          "hazard_ratio": 0.007
+        },
+        {
+          "term": "t",
+          "coefficient": 0.008032,
+          "std_error": 0.006104,
+          "p_value": 0.188264,
+          "hazard_ratio": 1.00806
+        },
+        {
+          "term": "households",
+          "coefficient": 5.3e-05,
+          "std_error": 5e-06,
+          "p_value": 0.0,
+          "hazard_ratio": 1.00005
+        },
+        {
+          "term": "median_household_income",
+          "coefficient": 6e-06,
+          "std_error": 1e-06,
+          "p_value": 2.6e-05,
+          "hazard_ratio": 1.00001
+        },
+        {
+          "term": "establishments",
+          "coefficient": 0.000361,
+          "std_error": 5e-05,
+          "p_value": 0.0,
+          "hazard_ratio": 1.00036
+        }
+      ],
+      "covariates_p_lt_0_05": [
+        "establishments",
+        "households",
+        "median_household_income"
+      ],
+      "held_out_by_unit": {
+        "n_rows": 50955,
+        "n_events": 1109,
+        "auc": 0.6832,
+        "brier": 0.021163,
+        "brier_null": 0.021291,
+        "beats_null_on_brier": true,
+        "brier_skill": 0.00601,
+        "ece": 0.00494,
+        "ece_null": 0.00057,
+        "null_better_calibrated": true,
+        "ece_ratio_model_over_null": 8.7
+      },
+      "power": {
+        "n_events_zcta": 3255,
+        "n_independent_episodes": 436,
+        "n_usable_facilities": null,
+        "n_parameters": 5,
+        "events_per_parameter_nominal": 651.0,
+        "events_per_parameter_effective": 87.2,
+        "events_per_parameter_optimistic": 87.2,
+        "floor": 10.0,
+        "meets_floor": true,
+        "note": "The nominal ratio counts ZCTAs and is not evidence of power. Independent decisions lie between the metro-quarter episode count (lower bound, merges same-year openings in one metro) and the usable-facility count (upper bound). The verdict is taken on the upper bound.",
+        "episodes_whole_risk_set": 484
+      },
+      "out_of_time": {
+        "ran": true,
+        "cutoff_t": 19,
+        "train_events": 4064,
+        "n_rows": 78676,
+        "n_events": 1377,
+        "auc": 0.6323,
+        "brier": 0.018013,
+        "brier_null": 0.017225,
+        "beats_null_on_brier": false,
+        "brier_skill": -0.0475,
+        "ece": 0.02306,
+        "ece_null": 0.00541,
+        "null_better_calibrated": true,
+        "ece_ratio_model_over_null": 4.3
+      },
+      "out_of_area": {
+        "ran": true,
+        "n_units": 122,
+        "episodes": 6,
+        "n_rows": 2731,
+        "n_events": 53,
+        "auc": 0.7104,
+        "brier": 0.018971,
+        "brier_null": 0.019033,
+        "beats_null_on_brier": true,
+        "brier_skill": 0.00313,
+        "ece": 0.0111,
+        "ece_null": 0.00179,
+        "null_better_calibrated": true,
+        "ece_ratio_model_over_null": 6.2
+      }
+    },
+    "new_dates_5cov": {
+      "ran": true,
+      "dating": "frame",
+      "scope": {
+        "radius_miles": 15.0,
+        "enabled_cells_national": 200219,
+        "zctas_ever_enabled_national": 8970,
+        "cbsas_reached": 277,
+        "cbsas_in_scope": 275,
+        "cbsas_held_out": [
+          "14260",
+          "38060"
+        ],
+        "rows_in_scope": 490752,
+        "rows_after_covariate_dropna": 84363,
+        "pct_rows_lost_to_missingness": 82.8,
+        "units_in_scope": 15336,
+        "units_complete": 4795,
+        "covariates": [
+          "households",
+          "median_household_income",
+          "establishments",
+          "rent_index_yoy_pct",
+          "permits_yoy_pct"
+        ]
+      },
+      "covariates": [
+        "households",
+        "median_household_income",
+        "establishments",
+        "rent_index_yoy_pct",
+        "permits_yoy_pct"
+      ],
+      "risk_set": {
+        "units": 4218,
+        "rows": 21815,
+        "events": 3516
+      },
+      "split": {
+        "train": {
+          "rows": 12718,
+          "units": 2531,
+          "events": 2136
+        },
+        "calibration": {
+          "rows": 4565,
+          "units": 844,
+          "events": 692
+        },
+        "test": {
+          "rows": 4532,
+          "units": 843,
+          "events": 688
+        }
+      },
+      "converged": true,
+      "n_parameters": 7,
+      "n_clusters": 195,
+      "log_likelihood": -5503.171381738317,
+      "coefficients": [
+        {
+          "term": "intercept",
+          "coefficient": -1.199612,
+          "std_error": 0.302724,
+          "p_value": 7.4e-05,
+          "hazard_ratio": 0.30131
+        },
+        {
+          "term": "t",
+          "coefficient": 0.017928,
+          "std_error": 0.005931,
+          "p_value": 0.002503,
+          "hazard_ratio": 1.01809
+        },
+        {
+          "term": "households",
+          "coefficient": -7.5e-05,
+          "std_error": 1.1e-05,
+          "p_value": 0.0,
+          "hazard_ratio": 0.99992
+        },
+        {
+          "term": "median_household_income",
+          "coefficient": -1e-06,
+          "std_error": 2e-06,
+          "p_value": 0.792025,
+          "hazard_ratio": 1.0
+        },
+        {
+          "term": "establishments",
+          "coefficient": 4e-05,
+          "std_error": 0.000122,
+          "p_value": 0.739856,
+          "hazard_ratio": 1.00004
+        },
+        {
+          "term": "rent_index_yoy_pct",
+          "coefficient": 0.046333,
+          "std_error": 0.008381,
+          "p_value": 0.0,
+          "hazard_ratio": 1.04742
+        },
+        {
+          "term": "permits_yoy_pct",
+          "coefficient": -0.000399,
+          "std_error": 0.001254,
+          "p_value": 0.750144,
+          "hazard_ratio": 0.9996
+        }
+      ],
+      "covariates_p_lt_0_05": [
+        "households",
+        "rent_index_yoy_pct"
+      ],
+      "held_out_by_unit": {
+        "n_rows": 4532,
+        "n_events": 688,
+        "auc": 0.6608,
+        "brier": 0.122635,
+        "brier_null": 0.129024,
+        "beats_null_on_brier": true,
+        "brier_skill": 0.04759,
+        "ece": 0.02144,
+        "ece_null": 0.01614,
+        "null_better_calibrated": true,
+        "ece_ratio_model_over_null": 1.3
+      },
+      "power": {
+        "n_events_zcta": 2136,
+        "n_independent_episodes": 866,
+        "n_usable_facilities": null,
+        "n_parameters": 7,
+        "events_per_parameter_nominal": 305.14,
+        "events_per_parameter_effective": 123.71,
+        "events_per_parameter_optimistic": 123.71,
+        "floor": 10.0,
+        "meets_floor": true,
+        "note": "The nominal ratio counts ZCTAs and is not evidence of power. Independent decisions lie between the metro-quarter episode count (lower bound, merges same-year openings in one metro) and the usable-facility count (upper bound). The verdict is taken on the upper bound.",
+        "episodes_whole_risk_set": 1129
+      },
+      "out_of_time": {
+        "ran": true,
+        "cutoff_t": 19,
+        "train_events": 1506,
+        "n_rows": 10449,
+        "n_events": 2010,
+        "auc": 0.4619,
+        "brier": 0.305182,
+        "brier_null": 0.158943,
+        "beats_null_on_brier": false,
+        "brier_skill": -0.96436,
+        "ece": 0.34185,
+        "ece_null": 0.05986,
+        "null_better_calibrated": true,
+        "ece_ratio_model_over_null": 5.7
+      },
+      "out_of_area": {
+        "ran": true,
+        "n_units": 84,
+        "episodes": 22,
+        "n_rows": 821,
+        "n_events": 63,
+        "auc": 0.7515,
+        "brier": 0.075293,
+        "brier_null": 0.079168,
+        "beats_null_on_brier": true,
+        "brier_skill": -0.06274,
+        "ece": 0.10254,
+        "ece_null": 0.09122,
+        "null_better_calibrated": true,
+        "ece_ratio_model_over_null": 1.1
+      }
+    },
+    "old_dates_3cov": {
+      "ran": true,
+      "dating": "osha",
+      "scope": {
+        "radius_miles": 15.0,
+        "enabled_cells_national": 68005,
+        "zctas_ever_enabled_national": 3903,
+        "cbsas_reached": 100,
+        "cbsas_in_scope": 100,
+        "cbsas_held_out": [],
+        "rows_in_scope": 299936,
+        "rows_after_covariate_dropna": 276416,
+        "pct_rows_lost_to_missingness": 7.8,
+        "units_in_scope": 9373,
+        "units_complete": 8638,
+        "covariates": [
+          "households",
+          "median_household_income",
+          "establishments"
+        ]
+      },
+      "covariates": [
+        "households",
+        "median_household_income",
+        "establishments"
+      ],
+      "risk_set": {
+        "units": 8175,
+        "rows": 208040,
+        "events": 3178
+      },
+      "split": {
+        "train": {
+          "rows": 124787,
+          "units": 4905,
+          "events": 1917
+        },
+        "calibration": {
+          "rows": 41510,
+          "units": 1635,
+          "events": 639
+        },
+        "test": {
+          "rows": 41743,
+          "units": 1635,
+          "events": 622
+        }
+      },
+      "converged": true,
+      "n_parameters": 5,
+      "n_clusters": 100,
+      "log_likelihood": -9681.531703038403,
+      "coefficients": [
+        {
+          "term": "intercept",
+          "coefficient": -5.301694,
+          "std_error": 0.265957,
+          "p_value": 0.0,
+          "hazard_ratio": 0.00498
+        },
+        {
+          "term": "t",
+          "coefficient": 0.031,
+          "std_error": 0.011768,
+          "p_value": 0.008431,
+          "hazard_ratio": 1.03149
+        },
+        {
+          "term": "households",
+          "coefficient": 3.2e-05,
+          "std_error": 1.2e-05,
+          "p_value": 0.007651,
+          "hazard_ratio": 1.00003
+        },
+        {
+          "term": "median_household_income",
+          "coefficient": 2e-06,
+          "std_error": 2e-06,
+          "p_value": 0.251975,
+          "hazard_ratio": 1.0
+        },
+        {
+          "term": "establishments",
+          "coefficient": 0.000299,
+          "std_error": 0.000159,
+          "p_value": 0.059367,
+          "hazard_ratio": 1.0003
+        }
+      ],
+      "covariates_p_lt_0_05": [
+        "households"
+      ],
+      "held_out_by_unit": {
+        "n_rows": 41743,
+        "n_events": 622,
+        "auc": 0.6431,
+        "brier": 0.014664,
+        "brier_null": 0.014679,
+        "beats_null_on_brier": true,
+        "brier_skill": 0.00103,
+        "ece": 0.00376,
+        "ece_null": 0.00046,
+        "null_better_calibrated": true,
+        "ece_ratio_model_over_null": 8.1
+      },
+      "power": {
+        "n_events_zcta": 1917,
+        "n_independent_episodes": 147,
+        "n_usable_facilities": null,
+        "n_parameters": 5,
+        "events_per_parameter_nominal": 383.4,
+        "events_per_parameter_effective": 29.4,
+        "events_per_parameter_optimistic": 29.4,
+        "floor": 10.0,
+        "meets_floor": true,
+        "note": "The nominal ratio counts ZCTAs and is not evidence of power. Independent decisions lie between the metro-quarter episode count (lower bound, merges same-year openings in one metro) and the usable-facility count (upper bound). The verdict is taken on the upper bound.",
+        "episodes_whole_risk_set": 157
+      },
+      "out_of_time": {
+        "ran": true,
+        "cutoff_t": 19,
+        "train_events": 2004,
+        "n_rows": 66571,
+        "n_events": 1174,
+        "auc": 0.5596,
+        "brier": 0.0193,
+        "brier_null": 0.017336,
+        "beats_null_on_brier": false,
+        "brier_skill": -0.11402,
+        "ece": 0.03321,
+        "ece_null": 0.00347,
+        "null_better_calibrated": true,
+        "ece_ratio_model_over_null": 9.6
+      },
+      "out_of_area": {
+        "ran": false,
+        "reason": "no enabled cell in the held-out metros for this arm ('enabled' contains no True values (6,272 non-null of 6,272 rows). The facility panel has not arrived; run against the synthetic fixture (models.fixtures) and label the output accordingly)"
+      }
+    },
+    "old_dates_5cov": {
+      "ran": true,
+      "dating": "osha",
+      "scope": {
+        "radius_miles": 15.0,
+        "enabled_cells_national": 68005,
+        "zctas_ever_enabled_national": 3903,
+        "cbsas_reached": 100,
+        "cbsas_in_scope": 100,
+        "cbsas_held_out": [],
+        "rows_in_scope": 299936,
+        "rows_after_covariate_dropna": 67109,
+        "pct_rows_lost_to_missingness": 77.6,
+        "units_in_scope": 9373,
+        "units_complete": 3682,
+        "covariates": [
+          "households",
+          "median_household_income",
+          "establishments",
+          "rent_index_yoy_pct",
+          "permits_yoy_pct"
+        ]
+      },
+      "covariates": [
+        "households",
+        "median_household_income",
+        "establishments",
+        "rent_index_yoy_pct",
+        "permits_yoy_pct"
+      ],
+      "risk_set": {
+        "units": 3537,
+        "rows": 37927,
+        "events": 2038
+      },
+      "split": {
+        "train": {
+          "rows": 22571,
+          "units": 2122,
+          "events": 1234
+        },
+        "calibration": {
+          "rows": 7222,
+          "units": 707,
+          "events": 414
+        },
+        "test": {
+          "rows": 8134,
+          "units": 708,
+          "events": 390
+        }
+      },
+      "converged": true,
+      "n_parameters": 7,
+      "n_clusters": 92,
+      "log_likelihood": -4676.230202898202,
+      "coefficients": [
+        {
+          "term": "intercept",
+          "coefficient": -2.274354,
+          "std_error": 0.369136,
+          "p_value": 0.0,
+          "hazard_ratio": 0.10286
+        },
+        {
+          "term": "t",
+          "coefficient": 0.016636,
+          "std_error": 0.009395,
+          "p_value": 0.076602,
+          "hazard_ratio": 1.01677
+        },
+        {
+          "term": "households",
+          "coefficient": -4.8e-05,
+          "std_error": 1.3e-05,
+          "p_value": 0.000156,
+          "hazard_ratio": 0.99995
+        },
+        {
+          "term": "median_household_income",
+          "coefficient": -2e-06,
+          "std_error": 2e-06,
+          "p_value": 0.423486,
+          "hazard_ratio": 1.0
+        },
+        {
+          "term": "establishments",
+          "coefficient": -0.000167,
+          "std_error": 0.000137,
+          "p_value": 0.222267,
+          "hazard_ratio": 0.99983
+        },
+        {
+          "term": "rent_index_yoy_pct",
+          "coefficient": 0.024805,
+          "std_error": 0.013171,
+          "p_value": 0.059666,
+          "hazard_ratio": 1.02512
+        },
+        {
+          "term": "permits_yoy_pct",
+          "coefficient": 0.000211,
+          "std_error": 0.00033,
+          "p_value": 0.522996,
+          "hazard_ratio": 1.00021
+        }
+      ],
+      "covariates_p_lt_0_05": [
+        "households"
+      ],
+      "held_out_by_unit": {
+        "n_rows": 8134,
+        "n_events": 390,
+        "auc": 0.6459,
+        "brier": 0.045154,
+        "brier_null": 0.045693,
+        "beats_null_on_brier": true,
+        "brier_skill": 0.01083,
+        "ece": 0.0082,
+        "ece_null": 0.00673,
+        "null_better_calibrated": true,
+        "ece_ratio_model_over_null": 1.2
+      },
+      "power": {
+        "n_events_zcta": 1234,
+        "n_independent_episodes": 370,
+        "n_usable_facilities": null,
+        "n_parameters": 7,
+        "events_per_parameter_nominal": 176.29,
+        "events_per_parameter_effective": 52.86,
+        "events_per_parameter_optimistic": 52.86,
+        "floor": 10.0,
+        "meets_floor": true,
+        "note": "The nominal ratio counts ZCTAs and is not evidence of power. Independent decisions lie between the metro-quarter episode count (lower bound, merges same-year openings in one metro) and the usable-facility count (upper bound). The verdict is taken on the upper bound.",
+        "episodes_whole_risk_set": 455
+      },
+      "out_of_time": {
+        "ran": true,
+        "cutoff_t": 19,
+        "train_events": 845,
+        "n_rows": 18628,
+        "n_events": 1193,
+        "auc": 0.4527,
+        "brier": 0.0872,
+        "brier_null": 0.060352,
+        "beats_null_on_brier": false,
+        "brier_skill": -0.45474,
+        "ece": 0.13835,
+        "ece_null": 0.02026,
+        "null_better_calibrated": true,
+        "ece_ratio_model_over_null": 6.8
+      },
+      "out_of_area": {
+        "ran": false,
+        "reason": "no enabled cell in the held-out metros for this arm ('enabled' contains no True values (3,531 non-null of 3,531 rows). The facility panel has not arrived; run against the synthetic fixture (models.fixtures) and label the output accordingly)"
+      }
+    },
+    "new_dates_4cov": {
+      "ran": true,
+      "dating": "frame",
+      "scope": {
+        "radius_miles": 15.0,
+        "enabled_cells_national": 200219,
+        "zctas_ever_enabled_national": 8970,
+        "cbsas_reached": 277,
+        "cbsas_in_scope": 275,
+        "cbsas_held_out": [
+          "14260",
+          "38060"
+        ],
+        "rows_in_scope": 490752,
+        "rows_after_covariate_dropna": 333492,
+        "pct_rows_lost_to_missingness": 32.0,
+        "units_in_scope": 15336,
+        "units_complete": 13685,
+        "covariates": [
+          "households",
+          "median_household_income",
+          "establishments",
+          "permits_yoy_pct"
+        ]
+      },
+      "covariates": [
+        "households",
+        "median_household_income",
+        "establishments",
+        "permits_yoy_pct"
+      ],
+      "risk_set": {
+        "units": 11290,
+        "rows": 171494,
+        "events": 5571
+      },
+      "split": {
+        "train": {
+          "rows": 102355,
+          "units": 6774,
+          "events": 3373
+        },
+        "calibration": {
+          "rows": 34330,
+          "units": 2258,
+          "events": 1090
+        },
+        "test": {
+          "rows": 34809,
+          "units": 2258,
+          "events": 1108
+        }
+      },
+      "converged": true,
+      "n_parameters": 6,
+      "n_clusters": 269,
+      "log_likelihood": -14344.644905549663,
+      "coefficients": [
+        {
+          "term": "intercept",
+          "coefficient": -4.500943,
+          "std_error": 0.187991,
+          "p_value": 0.0,
+          "hazard_ratio": 0.0111
+        },
+        {
+          "term": "t",
+          "coefficient": 0.016952,
+          "std_error": 0.005562,
+          "p_value": 0.002303,
+          "hazard_ratio": 1.0171
+        },
+        {
+          "term": "households",
+          "coefficient": 4.9e-05,
+          "std_error": 7e-06,
+          "p_value": 0.0,
+          "hazard_ratio": 1.00005
+        },
+        {
+          "term": "median_household_income",
+          "coefficient": 4e-06,
+          "std_error": 1e-06,
+          "p_value": 0.009518,
+          "hazard_ratio": 1.0
+        },
+        {
+          "term": "establishments",
+          "coefficient": 0.00038,
+          "std_error": 8.8e-05,
+          "p_value": 1.8e-05,
+          "hazard_ratio": 1.00038
+        },
+        {
+          "term": "permits_yoy_pct",
+          "coefficient": 0.000437,
+          "std_error": 0.000628,
+          "p_value": 0.486089,
+          "hazard_ratio": 1.00044
+        }
+      ],
+      "covariates_p_lt_0_05": [
+        "establishments",
+        "households",
+        "median_household_income"
+      ],
+      "held_out_by_unit": {
+        "n_rows": 34809,
+        "n_events": 1108,
+        "auc": 0.6461,
+        "brier": 0.030685,
+        "brier_null": 0.030819,
+        "beats_null_on_brier": true,
+        "brier_skill": 0.00432,
+        "ece": 0.00647,
+        "ece_null": 0.00112,
+        "null_better_calibrated": true,
+        "ece_ratio_model_over_null": 5.8
+      },
+      "power": {
+        "n_events_zcta": 3373,
+        "n_independent_episodes": 434,
+        "n_usable_facilities": null,
+        "n_parameters": 6,
+        "events_per_parameter_nominal": 562.17,
+        "events_per_parameter_effective": 72.33,
+        "events_per_parameter_optimistic": 72.33,
+        "floor": 10.0,
+        "meets_floor": true,
+        "note": "The nominal ratio counts ZCTAs and is not evidence of power. Independent decisions lie between the metro-quarter episode count (lower bound, merges same-year openings in one metro) and the usable-facility count (upper bound). The verdict is taken on the upper bound.",
+        "episodes_whole_risk_set": 479
+      },
+      "out_of_time": {
+        "ran": true,
+        "cutoff_t": 19,
+        "train_events": 2783,
+        "n_rows": 78257,
+        "n_events": 2788,
+        "auc": 0.5458,
+        "brier": 0.035532,
+        "brier_null": 0.03439,
+        "beats_null_on_brier": false,
+        "brier_skill": -0.0342,
+        "ece": 0.02637,
+        "ece_null": 0.00578,
+        "null_better_calibrated": true,
+        "ece_ratio_model_over_null": 4.6
+      },
+      "out_of_area": {
+        "ran": true,
+        "n_units": 122,
+        "episodes": 6,
+        "n_rows": 2731,
+        "n_events": 53,
+        "auc": 0.712,
+        "brier": 0.019323,
+        "brier_null": 0.019214,
+        "beats_null_on_brier": false,
+        "brier_skill": -0.01537,
+        "ece": 0.0178,
+        "ece_null": 0.01355,
+        "null_better_calibrated": true,
+        "ece_ratio_model_over_null": 1.3
+      }
+    },
+    "matched_new_3cov": {
+      "ran": true,
+      "dating": "pair_frame",
+      "scope": {
+        "radius_miles": 15.0,
+        "enabled_cells_national": 77686,
+        "zctas_ever_enabled_national": 3897,
+        "cbsas_reached": 100,
+        "cbsas_in_scope": 100,
+        "cbsas_held_out": [],
+        "rows_in_scope": 301440,
+        "rows_after_covariate_dropna": 277408,
+        "pct_rows_lost_to_missingness": 8.0,
+        "units_in_scope": 9420,
+        "units_complete": 8669,
+        "covariates": [
+          "households",
+          "median_household_income",
+          "establishments"
+        ]
+      },
+      "covariates": [
+        "households",
+        "median_household_income",
+        "establishments"
+      ],
+      "risk_set": {
+        "units": 7706,
+        "rows": 199937,
+        "events": 2666
+      },
+      "split": {
+        "train": {
+          "rows": 119413,
+          "units": 4624,
+          "events": 1628
+        },
+        "calibration": {
+          "rows": 40504,
+          "units": 1541,
+          "events": 495
+        },
+        "test": {
+          "rows": 40020,
+          "units": 1541,
+          "events": 543
+        }
+      },
+      "converged": true,
+      "n_parameters": 5,
+      "n_clusters": 100,
+      "log_likelihood": -8475.826608117994,
+      "coefficients": [
+        {
+          "term": "intercept",
+          "coefficient": -5.073074,
+          "std_error": 0.29663,
+          "p_value": 0.0,
+          "hazard_ratio": 0.00626
+        },
+        {
+          "term": "t",
+          "coefficient": 0.021041,
+          "std_error": 0.012374,
+          "p_value": 0.089044,
+          "hazard_ratio": 1.02126
+        },
+        {
+          "term": "households",
+          "coefficient": 2.4e-05,
+          "std_error": 1e-05,
+          "p_value": 0.0188,
+          "hazard_ratio": 1.00002
+        },
+        {
+          "term": "median_household_income",
+          "coefficient": 1e-06,
+          "std_error": 2e-06,
+          "p_value": 0.70947,
+          "hazard_ratio": 1.0
+        },
+        {
+          "term": "establishments",
+          "coefficient": 0.000329,
+          "std_error": 0.000143,
+          "p_value": 0.021656,
+          "hazard_ratio": 1.00033
+        }
+      ],
+      "covariates_p_lt_0_05": [
+        "establishments",
+        "households"
+      ],
+      "held_out_by_unit": {
+        "n_rows": 40020,
+        "n_events": 543,
+        "auc": 0.6513,
+        "brier": 0.01336,
+        "brier_null": 0.013384,
+        "beats_null_on_brier": true,
+        "brier_skill": 0.00181,
+        "ece": 0.00308,
+        "ece_null": 7e-05,
+        "null_better_calibrated": true,
+        "ece_ratio_model_over_null": 47.3
+      },
+      "power": {
+        "n_events_zcta": 1628,
+        "n_independent_episodes": 140,
+        "n_usable_facilities": null,
+        "n_parameters": 5,
+        "events_per_parameter_nominal": 325.6,
+        "events_per_parameter_effective": 28.0,
+        "events_per_parameter_optimistic": 28.0,
+        "floor": 10.0,
+        "meets_floor": true,
+        "note": "The nominal ratio counts ZCTAs and is not evidence of power. Independent decisions lie between the metro-quarter episode count (lower bound, merges same-year openings in one metro) and the usable-facility count (upper bound). The verdict is taken on the upper bound.",
+        "episodes_whole_risk_set": 148
+      },
+      "out_of_time": {
+        "ran": true,
+        "cutoff_t": 19,
+        "train_events": 1737,
+        "n_rows": 66432,
+        "n_events": 929,
+        "auc": 0.5924,
+        "brier": 0.014544,
+        "brier_null": 0.01379,
+        "beats_null_on_brier": false,
+        "brier_skill": -0.05477,
+        "ece": 0.02205,
+        "ece_null": 0.00097,
+        "null_better_calibrated": true,
+        "ece_ratio_model_over_null": 22.6
+      },
+      "out_of_area": {
+        "ran": false,
+        "reason": "no enabled cell in the held-out metros for this arm ('enabled' contains no True values (6,272 non-null of 6,272 rows). The facility panel has not arrived; run against the synthetic fixture (models.fixtures) and label the output accordingly)"
+      }
+    },
+    "matched_old_3cov": {
+      "ran": true,
+      "dating": "pair_osha",
+      "scope": {
+        "radius_miles": 15.0,
+        "enabled_cells_national": 67029,
+        "zctas_ever_enabled_national": 3854,
+        "cbsas_reached": 98,
+        "cbsas_in_scope": 98,
+        "cbsas_held_out": [],
+        "rows_in_scope": 297216,
+        "rows_after_covariate_dropna": 273856,
+        "pct_rows_lost_to_missingness": 7.9,
+        "units_in_scope": 9288,
+        "units_complete": 8558,
+        "covariates": [
+          "households",
+          "median_household_income",
+          "establishments"
+        ]
+      },
+      "covariates": [
+        "households",
+        "median_household_income",
+        "establishments"
+      ],
+      "risk_set": {
+        "units": 8095,
+        "rows": 206447,
+        "events": 3131
+      },
+      "split": {
+        "train": {
+          "rows": 123461,
+          "units": 4857,
+          "events": 1919
+        },
+        "calibration": {
+          "rows": 41761,
+          "units": 1619,
+          "events": 592
+        },
+        "test": {
+          "rows": 41225,
+          "units": 1619,
+          "events": 620
+        }
+      },
+      "converged": true,
+      "n_parameters": 5,
+      "n_clusters": 98,
+      "log_likelihood": -9656.354862404129,
+      "coefficients": [
+        {
+          "term": "intercept",
+          "coefficient": -5.324986,
+          "std_error": 0.280507,
+          "p_value": 0.0,
+          "hazard_ratio": 0.00487
+        },
+        {
+          "term": "t",
+          "coefficient": 0.032217,
+          "std_error": 0.012096,
+          "p_value": 0.007735,
+          "hazard_ratio": 1.03274
+        },
+        {
+          "term": "households",
+          "coefficient": 3.2e-05,
+          "std_error": 1.2e-05,
+          "p_value": 0.007799,
+          "hazard_ratio": 1.00003
+        },
+        {
+          "term": "median_household_income",
+          "coefficient": 2e-06,
+          "std_error": 2e-06,
+          "p_value": 0.231117,
+          "hazard_ratio": 1.0
+        },
+        {
+          "term": "establishments",
+          "coefficient": 0.000335,
+          "std_error": 0.000157,
+          "p_value": 0.033218,
+          "hazard_ratio": 1.00033
+        }
+      ],
+      "covariates_p_lt_0_05": [
+        "establishments",
+        "households"
+      ],
+      "held_out_by_unit": {
+        "n_rows": 41225,
+        "n_events": 620,
+        "auc": 0.6556,
+        "brier": 0.014793,
+        "brier_null": 0.014813,
+        "beats_null_on_brier": true,
+        "brier_skill": 0.00139,
+        "ece": 0.0038,
+        "ece_null": 0.0005,
+        "null_better_calibrated": true,
+        "ece_ratio_model_over_null": 7.5
+      },
+      "power": {
+        "n_events_zcta": 1919,
+        "n_independent_episodes": 141,
+        "n_usable_facilities": null,
+        "n_parameters": 5,
+        "events_per_parameter_nominal": 383.8,
+        "events_per_parameter_effective": 28.2,
+        "events_per_parameter_optimistic": 28.2,
+        "floor": 10.0,
+        "meets_floor": true,
+        "note": "The nominal ratio counts ZCTAs and is not evidence of power. Independent decisions lie between the metro-quarter episode count (lower bound, merges same-year openings in one metro) and the usable-facility count (upper bound). The verdict is taken on the upper bound.",
+        "episodes_whole_risk_set": 153
+      },
+      "out_of_time": {
+        "ran": true,
+        "cutoff_t": 19,
+        "train_events": 1973,
+        "n_rows": 66299,
+        "n_events": 1158,
+        "auc": 0.5658,
+        "brier": 0.019073,
+        "brier_null": 0.017173,
+        "beats_null_on_brier": false,
+        "brier_skill": -0.11142,
+        "ece": 0.03284,
+        "ece_null": 0.00339,
+        "null_better_calibrated": true,
+        "ece_ratio_model_over_null": 9.7
+      },
+      "out_of_area": {
+        "ran": false,
+        "reason": "no enabled cell in the held-out metros for this arm ('enabled' contains no True values (6,272 non-null of 6,272 rows). The facility panel has not arrived; run against the synthetic fixture (models.fixtures) and label the output accordingly)"
+      }
+    }
+  },
+  "date_contrast": {
+    "full_frame_new_vs_osha_3cov": {
+      "auc_new_minus_old": 0.0401,
+      "ece_new_minus_old_lower_is_better": 0.00118,
+      "brier_new_minus_old_lower_is_better": 0.006499,
+      "brier_skill_new_minus_old": 0.00498,
+      "auc_out_of_time_new_minus_old": 0.0727,
+      "events_new_minus_old": 2263
+    },
+    "matched_facilities_new_vs_osha_3cov": {
+      "auc_new_minus_old": -0.0043,
+      "ece_new_minus_old_lower_is_better": -0.00072,
+      "brier_new_minus_old_lower_is_better": -0.001433,
+      "brier_skill_new_minus_old": 0.00042,
+      "auc_out_of_time_new_minus_old": 0.0266,
+      "events_new_minus_old": -465
+    },
+    "note": "The full-frame contrast changes the facility set as well as the dates (545 dated against 139), so it does not isolate dating. The matched contrast holds the facility set at 130 and moves only the dates -- but only 30 of those 130 dates actually move, because the 104 national rows were derived from the OSHA bound in the first place. Neither contrast is clean and strong at once; that is a property of the data, not a presentation choice."
+  },
+  "calibration_against_constant": {
+    "model_better_calibrated_at": [],
+    "constant_better_calibrated_at": [
+      "new_dates_3cov/held_out_by_unit",
+      "new_dates_3cov/out_of_time",
+      "new_dates_3cov/out_of_area",
+      "new_dates_5cov/held_out_by_unit",
+      "new_dates_5cov/out_of_time",
+      "new_dates_5cov/out_of_area",
+      "old_dates_3cov/held_out_by_unit",
+      "old_dates_3cov/out_of_time",
+      "old_dates_5cov/held_out_by_unit",
+      "old_dates_5cov/out_of_time",
+      "new_dates_4cov/held_out_by_unit",
+      "new_dates_4cov/out_of_time",
+      "new_dates_4cov/out_of_area",
+      "matched_new_3cov/held_out_by_unit",
+      "matched_new_3cov/out_of_time",
+      "matched_old_3cov/held_out_by_unit",
+      "matched_old_3cov/out_of_time"
+    ],
+    "n_comparisons": 17,
+    "verdict": "the constant null is better calibrated everywhere"
+  },
+  "auc_across_arms": {
+    "all": [
+      {
+        "arm": "new_dates_3cov",
+        "split": "held_out_by_unit",
+        "auc": 0.6832,
+        "n_events": 1109
+      },
+      {
+        "arm": "new_dates_3cov",
+        "split": "out_of_time",
+        "auc": 0.6323,
+        "n_events": 1377
+      },
+      {
+        "arm": "new_dates_3cov",
+        "split": "out_of_area",
+        "auc": 0.7104,
+        "n_events": 53
+      },
+      {
+        "arm": "new_dates_5cov",
+        "split": "held_out_by_unit",
+        "auc": 0.6608,
+        "n_events": 688
+      },
+      {
+        "arm": "new_dates_5cov",
+        "split": "out_of_time",
+        "auc": 0.4619,
+        "n_events": 2010
+      },
+      {
+        "arm": "new_dates_5cov",
+        "split": "out_of_area",
+        "auc": 0.7515,
+        "n_events": 63
+      },
+      {
+        "arm": "old_dates_3cov",
+        "split": "held_out_by_unit",
+        "auc": 0.6431,
+        "n_events": 622
+      },
+      {
+        "arm": "old_dates_3cov",
+        "split": "out_of_time",
+        "auc": 0.5596,
+        "n_events": 1174
+      },
+      {
+        "arm": "old_dates_5cov",
+        "split": "held_out_by_unit",
+        "auc": 0.6459,
+        "n_events": 390
+      },
+      {
+        "arm": "old_dates_5cov",
+        "split": "out_of_time",
+        "auc": 0.4527,
+        "n_events": 1193
+      },
+      {
+        "arm": "new_dates_4cov",
+        "split": "held_out_by_unit",
+        "auc": 0.6461,
+        "n_events": 1108
+      },
+      {
+        "arm": "new_dates_4cov",
+        "split": "out_of_time",
+        "auc": 0.5458,
+        "n_events": 2788
+      },
+      {
+        "arm": "new_dates_4cov",
+        "split": "out_of_area",
+        "auc": 0.712,
+        "n_events": 53
+      },
+      {
+        "arm": "matched_new_3cov",
+        "split": "held_out_by_unit",
+        "auc": 0.6513,
+        "n_events": 543
+      },
+      {
+        "arm": "matched_new_3cov",
+        "split": "out_of_time",
+        "auc": 0.5924,
+        "n_events": 929
+      },
+      {
+        "arm": "matched_old_3cov",
+        "split": "held_out_by_unit",
+        "auc": 0.6556,
+        "n_events": 620
+      },
+      {
+        "arm": "matched_old_3cov",
+        "split": "out_of_time",
+        "auc": 0.5658,
+        "n_events": 1158
+      }
+    ],
+    "min": 0.4527,
+    "max": 0.7515,
+    "median": 0.6459
+  },
+  "covariate_decision": {
+    "question": "panel_source.REAL_COVARIATES was cut from five to three. Should the two be restored on the expanded panel?",
+    "the_cut_rested_on_two_arguments": {
+      "counting": "'49 delivery stations, 44 opening inside the window' gives four events per parameter at five covariates.",
+      "coverage": "rent_index_yoy_pct is present on 30% of pilot ZCTA-quarters and dropping the incomplete rows took the usable event count from 709 to 276."
+    },
+    "what_changed": {
+      "counting": "DEAD. The pre-expansion count is superseded: the expanded frame attaches 540 facilities and the three-covariate risk set carries thousands of ZCTA-level events. Even on the conservative metro-quarter episode count the floor of ten events per parameter is cleared at five covariates. See arms.*.power.",
+      "coverage": "ALIVE AND WORSE. rent_index_yoy_pct's coverage falls at national scope, because Zillow publishes for dense urban ZIPs and the expansion is mostly not that. See provenance.covariate_coverage_pct and arms.new_dates_5cov.scope.pct_rows_lost_to_missingness."
+    },
+    "decision": "Run all three. new_dates_5cov restores both, as asked, and pays the coverage bill in full. new_dates_4cov restores permits_yoy_pct only -- the one the power argument blocked and the coverage argument does not -- and is the specification this evidence actually supports. new_dates_3cov is kept because it is the only arm comparable to the retired run.",
+    "caveat": "The original five-tuple predates version control and is not recoverable as a literal. COVARIATES_ADDED reconstructs it from two pieces of evidence and says so where it is defined.",
+    "missingness_is_not_at_random": "The rows rent_index_yoy_pct costs are the less dense ZCTAs, which is exactly the contrast the model is supposed to measure. A five-covariate arm is therefore fitted on a different population, not a smaller sample of the same one."
+  },
+  "independence_violation": "Unchanged and unfixable by data. One station opening switches on a whole catchment in one quarter and the likelihood counts each ZCTA as an independent observation (Train 2009 sec. 3.7.1, printed p. 61). Every standard error in this file is wrong in that known direction. Clustering the covariance on the CBSA reduces the damage and does not remove it, because the unit of decision is the building, not the metro and certainly not the ZIP.",
+  "comparability": "Brier and ECE are NOT comparable across arms: each arm has a different target, a different test set and a different base rate. Each arm therefore carries the constant-predicting null scored on its own test rows, and the MODEL-AGAINST-ITS-OWN-NULL pair is the comparison. AUC is comparable in the weaker sense that 0.5 means the same thing everywhere.",
+  "verdict": {
+    "retirement_stands": true,
+    "why": "The retirement was taken on the unit of analysis, not on the sample size or the dates. One opening still switches on a median of 39 ZCTAs at the 15-mile catchment (mean 52.4, max 317), and the likelihood still counts them as that many independent observations. Nothing in this run addresses that.",
+    "discrimination": {
+      "retired_auc": 0.6894,
+      "best_arm_auc": 0.6832,
+      "auc_range_across_all_arms_and_holdouts": [
+        0.4527,
+        0.7515
+      ],
+      "reading": "AUC is a measurement of ranking, not evidence that the probabilities may be quoted."
+    },
+    "calibration": {
+      "verdict": "the constant null is better calibrated everywhere",
+      "n_comparisons": 17,
+      "model_wins": []
+    },
+    "framing": "The honest framing of a good result and of a bad one is the same sentence: the negative finding survives on the best data available. That is stronger than retiring the model on 39 events, because the obvious objection -- 'you never gave it enough data, or real dates' -- has now been answered with a measurement."
+  }
+}

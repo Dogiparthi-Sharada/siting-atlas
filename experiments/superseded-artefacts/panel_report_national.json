@@ -1,0 +1,300 @@
+{
+  "run_id": "20260914-220124-a0c7",
+  "written_at": "2026-09-14T22:01:32+00:00",
+  "rows": 1081312,
+  "cols": 50,
+  "coverage": [
+    {
+      "column": "zcta",
+      "non_null": 1081312,
+      "pct": 100.0
+    },
+    {
+      "column": "date_id",
+      "non_null": 1081312,
+      "pct": 100.0
+    },
+    {
+      "column": "year",
+      "non_null": 1081312,
+      "pct": 100.0
+    },
+    {
+      "column": "quarter",
+      "non_null": 1081312,
+      "pct": 100.0
+    },
+    {
+      "column": "county_geoid",
+      "non_null": 1081312,
+      "pct": 100.0
+    },
+    {
+      "column": "state",
+      "non_null": 1081312,
+      "pct": 100.0
+    },
+    {
+      "column": "metro",
+      "non_null": 271264,
+      "pct": 25.09
+    },
+    {
+      "column": "cbsa_code",
+      "non_null": 800704,
+      "pct": 74.05
+    },
+    {
+      "column": "cbsa_title",
+      "non_null": 800704,
+      "pct": 74.05
+    },
+    {
+      "column": "land_area_sqmi",
+      "non_null": 1081312,
+      "pct": 100.0
+    },
+    {
+      "column": "latitude",
+      "non_null": 1081312,
+      "pct": 100.0
+    },
+    {
+      "column": "longitude",
+      "non_null": 1081312,
+      "pct": 100.0
+    },
+    {
+      "column": "population",
+      "non_null": 1080704,
+      "pct": 99.94
+    },
+    {
+      "column": "median_household_income",
+      "non_null": 979776,
+      "pct": 90.61
+    },
+    {
+      "column": "median_home_value",
+      "non_null": 969952,
+      "pct": 89.7
+    },
+    {
+      "column": "median_age",
+      "non_null": 1049856,
+      "pct": 97.09
+    },
+    {
+      "column": "households",
+      "non_null": 1080704,
+      "pct": 99.94
+    },
+    {
+      "column": "owner_occupied",
+      "non_null": 1080704,
+      "pct": 99.94
+    },
+    {
+      "column": "renter_occupied",
+      "non_null": 1080704,
+      "pct": 99.94
+    },
+    {
+      "column": "bachelors_degree",
+      "non_null": 1080704,
+      "pct": 99.94
+    },
+    {
+      "column": "in_labor_force",
+      "non_null": 1080704,
+      "pct": 99.94
+    },
+    {
+      "column": "vehicle_availability_total",
+      "non_null": 1080704,
+      "pct": 99.94
+    },
+    {
+      "column": "establishments",
+      "non_null": 989696,
+      "pct": 91.53
+    },
+    {
+      "column": "employment",
+      "non_null": 989696,
+      "pct": 91.53
+    },
+    {
+      "column": "annual_payroll",
+      "non_null": 989696,
+      "pct": 91.53
+    },
+    {
+      "column": "median_home_value_topcoded",
+      "non_null": 1081312,
+      "pct": 100.0
+    },
+    {
+      "column": "median_home_value_bottomcoded",
+      "non_null": 1081312,
+      "pct": 100.0
+    },
+    {
+      "column": "median_household_income_topcoded",
+      "non_null": 1081312,
+      "pct": 100.0
+    },
+    {
+      "column": "median_household_income_bottomcoded",
+      "non_null": 1081312,
+      "pct": 100.0
+    },
+    {
+      "column": "permit_units_total",
+      "non_null": 707624,
+      "pct": 65.44
+    },
+    {
+      "column": "permits_yoy_pct",
+      "non_null": 599488,
+      "pct": 55.44
+    },
+    {
+      "column": "rent_index",
+      "non_null": 121379,
+      "pct": 11.23
+    },
+    {
+      "column": "rent_index_yoy_pct",
+      "non_null": 103035,
+      "pct": 9.53
+    },
+    {
+      "column": "rent_observed",
+      "non_null": 1081312,
+      "pct": 100.0
+    },
+    {
+      "column": "electricity_cents_kwh",
+      "non_null": 1076544,
+      "pct": 99.56
+    },
+    {
+      "column": "diesel_usd_gal",
+      "non_null": 1076544,
+      "pct": 99.56
+    },
+    {
+      "column": "home_value",
+      "non_null": 809890,
+      "pct": 74.9
+    },
+    {
+      "column": "metro_employment",
+      "non_null": 598496,
+      "pct": 55.35
+    },
+    {
+      "column": "wage_all_occupations",
+      "non_null": 598496,
+      "pct": 55.35
+    },
+    {
+      "column": "wage_light_truck_driver",
+      "non_null": 598496,
+      "pct": 55.35
+    },
+    {
+      "column": "wage_freight_handler",
+      "non_null": 598208,
+      "pct": 55.32
+    },
+    {
+      "column": "wage_transport_supervisor",
+      "non_null": 598496,
+      "pct": 55.35
+    },
+    {
+      "column": "wage_suppressed",
+      "non_null": 598496,
+      "pct": 55.35
+    },
+    {
+      "column": "pm25",
+      "non_null": 1065600,
+      "pct": 98.55
+    },
+    {
+      "column": "diesel_pm",
+      "non_null": 1072928,
+      "pct": 99.22
+    },
+    {
+      "column": "traffic_proximity",
+      "non_null": 1080768,
+      "pct": 99.95
+    },
+    {
+      "column": "low_income_pct",
+      "non_null": 1080768,
+      "pct": 99.95
+    },
+    {
+      "column": "people_of_colour_pct",
+      "non_null": 1080768,
+      "pct": 99.95
+    },
+    {
+      "column": "enabled",
+      "non_null": 1081312,
+      "pct": 100.0
+    },
+    {
+      "column": "open_quarter_imputed",
+      "non_null": 1081312,
+      "pct": 100.0
+    }
+  ],
+  "facility_frame": "national",
+  "path": "data/processed/panel_national.parquet",
+  "enabled_cells": 42091,
+  "optional": [
+    [
+      "home_value"
+    ],
+    [
+      "metro_employment",
+      "wage_all_occupations",
+      "wage_light_truck_driver",
+      "wage_freight_handler",
+      "wage_transport_supervisor",
+      "wage_suppressed"
+    ],
+    [
+      "pm25",
+      "diesel_pm",
+      "traffic_proximity",
+      "low_income_pct",
+      "people_of_colour_pct"
+    ]
+  ],
+  "quality_flags": {
+    "computed": {
+      "median_home_value_topcoded": "acs5_zcta_2023",
+      "median_home_value_bottomcoded": "acs5_zcta_2023",
+      "median_household_income_topcoded": "acs5_zcta_2023",
+      "median_household_income_bottomcoded": "acs5_zcta_2023",
+      "open_quarter_imputed": "data/external/facility_panel/national_facilities.csv",
+      "wage_suppressed": "bls_wages"
+    },
+    "dropped": {},
+    "carried": [
+      "median_home_value_bottomcoded",
+      "median_home_value_topcoded",
+      "median_household_income_bottomcoded",
+      "median_household_income_topcoded",
+      "open_quarter_imputed",
+      "wage_suppressed"
+    ]
+  }
+}
