@@ -39,6 +39,22 @@ times their own metro's median and compress everything else into a smear.
 
 * One series, so no legend: the title names the quantity.
 * One hue, because this is magnitude on a single measure.
+
+Colour
+------
+The dots carry ``figbase``'s shared money ramp -- the same object the national
+map uses, not a second red that happens to look similar. A reader who has
+learned "pale is cheap, dark is dear" from the map two inches above arrives
+here already able to read it.
+
+Colour here is REDUNDANT, deliberately. Every row's dollar value is also
+printed at the right-hand end and the rows are sorted by it, so nothing is
+encoded in colour alone -- the figure is unchanged in greyscale and for a
+reader with a red-green deficiency. The ramp is doing emphasis, not work.
+
+It starts at ``figbase.COST_FLOOR`` rather than at the ramp's pale end: a
+7.5pt dot filled with #fde4dd is invisible on white, and the cheapest metro is
+exactly the one a reader looks for first.
 """
 
 from __future__ import annotations
@@ -52,7 +68,7 @@ sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 import costmetros as cm  # noqa: E402
 import figbase as fb  # noqa: E402
 
-OUT = "docs/figures/hero_cost_per_parcel.png"
+OUT = "docs/figures/fig_cost_per_parcel_by_metro.png"
 
 WIDTH = 9.6
 HEIGHT = 7.0
@@ -118,11 +134,18 @@ def draw(sel, facts, sc):
     ax.axvline(facts["national"], color=fb.MUTED, lw=1.0, ls=(0, (4, 3)),
                zorder=1)
 
+    # The ramp spans the DRAWN medians, so the contrast is spent on the range
+    # the reader can actually see rather than on the full-network extremes
+    # (Enid at $1.71) which would push every metro here into the pale end.
+    clo = float(sel["median"].min())
+    chi = float(sel["median"].max())
+
     for i, r in sel.iterrows():
-        ax.plot([r.q1, r.q3], [i, i], color=fb.FAINT, lw=5.5,
+        ax.plot([r.q1, r.q3], [i, i], color=fb.COST_TRACK, lw=5.5,
                 solid_capstyle="round", zorder=2)
-        ax.plot([r["median"]], [i], "o", color=fb.HUE, ms=7.5,
-                markeredgecolor="white", markeredgewidth=1.6, zorder=3)
+        ax.plot([r["median"]], [i], "o",
+                color=fb.cost_color(float(r["median"]), clo, chi), ms=8.0,
+                markeredgecolor="white", markeredgewidth=1.5, zorder=3)
         # A fixed label column, so the numbers read as a column rather than
         # stepping raggedly with each bar's right-hand end.
         ax.text(xhi + 0.012, i, f"${r['median']:.2f}", color=fb.INK,

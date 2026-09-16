@@ -32,14 +32,55 @@ def _load(rel: str) -> dict:
         return json.load(fh)
 
 
-# ------------------------------------------------------- 1. metro AUC
+# --------------------------------------------------------- data loaders
+#
+# Pulled out of the draw functions so that ``fig_readme``, which draws the
+# same three results at README width, reads the artefact through THIS code
+# rather than through a second copy of the parsing. The two modules differ in
+# composition, which is the point; they must not differ in numbers.
 
-def metro_auc() -> tuple[str, str]:
+def auc_data() -> tuple[dict, list, list, list]:
     d = _load("outputs/metrics/metro_entry.json")
     years = d["held_out_years"]
     f = d["out_of_time"]["prereg_strict"]["forms"]["logit"]
     model = [f[str(y)]["model"]["auc"] for y in years]
     house = [f[str(y)]["baseline2_households"]["auc"] for y in years]
+    return d, years, model, house
+
+
+def dispersion_data() -> tuple[dict, list]:
+    """``(cv, is_interior, is_mixed)`` per network term, sorted by cv.
+
+    "Interior in ANY arm" is the rule behind the published 9-of-14, and the
+    one the errata's "all five failures are sortation-side" claim depends on.
+    Counting strictly (interior in EVERY arm) gives 8, because
+    ``fulfilment_proximity`` is interior in one arm and straddles the boundary
+    in another. That single term is drawn hollow rather than argued away.
+    """
+    g = _load("experiments/gravity-network/artefacts/gravity_network.json")
+    cvs = g["terms"]["dispersion"]["mean_within_metro_cv"]
+    state: dict[str, set] = {}
+    for arm in g["arms"].values():
+        for col, rec in (arm.get("verdicts") or {}).items():
+            if col in cvs:
+                state.setdefault(col, set()).add(rec.get("state"))
+    pts = sorted((cv,
+                  "INTERIOR" in state.get(col, set()),
+                  len(state.get(col, set())) > 1)
+                 for col, cv in cvs.items())
+    return g, pts
+
+
+def gap_data() -> tuple[dict, int, int, int]:
+    c = _load("outputs/metrics/mwpvl_coverage.json")
+    return (c, c["mwpvl_delivery_station_cities"], c["cities_in_both"],
+            c["cities_mwpvl_names_that_osha_never_inspected"])
+
+
+# ------------------------------------------------------- 1. metro AUC
+
+def metro_auc() -> tuple[str, str]:
+    d, years, model, house = auc_data()
 
     fig, ax = fb.figure(fb.COL_W, 2.45)
     low = fb.titles(
@@ -79,22 +120,7 @@ def metro_auc() -> tuple[str, str]:
 # ------------------------------------------------------- 2. dispersion
 
 def dispersion() -> tuple[str, str]:
-    g = _load("experiments/gravity-network/artefacts/gravity_network.json")
-    cvs = g["terms"]["dispersion"]["mean_within_metro_cv"]
-    state: dict[str, set] = {}
-    for arm in g["arms"].values():
-        for col, rec in (arm.get("verdicts") or {}).items():
-            if col in cvs:
-                state.setdefault(col, set()).add(rec.get("state"))
-    # "Interior in ANY arm" is the rule behind the published 9-of-14, and it
-    # is the one the errata's "all five failures are sortation-side" claim
-    # depends on. Counting strictly (interior in EVERY arm) gives 8, because
-    # fulfilment_proximity is interior in one arm and straddles the boundary
-    # in another. That single term is drawn hollow rather than argued away.
-    pts = sorted((cv,
-                  "INTERIOR" in state.get(col, set()),
-                  len(state.get(col, set())) > 1)
-                 for col, cv in cvs.items())
+    g, pts = dispersion_data()
 
     n_lo = sum(1 for cv, _, _ in pts if cv < 0.6)
     n_hi = len(pts) - n_lo
@@ -134,10 +160,7 @@ def dispersion() -> tuple[str, str]:
 # --------------------------------------------------- 3. visibility gap
 
 def visibility_gap() -> tuple[str, str]:
-    c = _load("outputs/metrics/mwpvl_coverage.json")
-    total = c["mwpvl_delivery_station_cities"]
-    seen = c["cities_in_both"]
-    unseen = c["cities_mwpvl_names_that_osha_never_inspected"]
+    c, total, seen, unseen = gap_data()
 
     fig, ax = fb.figure(fb.COL_W, 1.55)
     low = fb.titles(
@@ -171,7 +194,7 @@ def visibility_gap() -> tuple[str, str]:
 def cost_by_metro() -> tuple[str, str]:
     """A column-width cost figure for the paper.
 
-    docs/figures/hero_cost_per_parcel.png says the same thing but is drawn
+    docs/figures/fig_cost_per_parcel_by_metro.png says the same thing but is drawn
     9.6in wide for a README, where it is read on a screen. Dropped into a
     3.4in IEEE column it would be shown at 35% and its labels would reach the
     page at about 3pt. Same data, different medium, different figure.

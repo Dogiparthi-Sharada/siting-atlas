@@ -10,7 +10,8 @@
 ![pre-registered](https://img.shields.io/badge/pre--registered-hash%20verified%20in%20CI-6f42c1)
 ![licence](https://img.shields.io/badge/licence-MIT-lightgrey)
 
-**Where does Amazon build its next delivery station, and what does it cost to
+**Where does Amazofdurlcbklfhnubklfucgirkdvnukvlkv
+n build its next delivery station, and what does it cost to
 put a parcel on a doorstep?**
 
 Two questions, asked of Amazon's US network using nothing but data a member of
@@ -37,7 +38,30 @@ covariates to throw away before you fit anything.
     663    tests · reproduces offline from a clone, no API keys
 ```
 
-![Median cost to deliver one parcel, by metro](docs/figures/hero_cost_per_parcel.png)
+![Every geocoded Amazon delivery station in the lower 48, with the 25 largest metros drawn as bubbles sized by station count and shaded by median cost per parcel](docs/figures/hero_national_map.png)
+
+Every small dot is one delivery station at its geocoded street address — 497
+of them. The bubbles are the 25 largest metros: **area is how many stations
+they hold**, **shade is what it costs to put a parcel on a doorstep there**,
+pale for cheap and deep red for dear. Miami is the cheapest metro at
+**$0.98**; the dearest single station is in Enid, Oklahoma at **$1.71**.
+
+Every state outline on that map is *derived* — from the TIGER ZCTA polygons
+already on disk, by morphological closing — because no basemap package was
+installable here. [`tools/figures/usboundary.py`](tools/figures/usboundary.py)
+has the method and its error bound.
+
+### And what the map cannot show: how wide the spread is inside a metro
+
+![Median and interquartile cost per parcel for the 25 metros holding five or more costed stations](docs/figures/fig_cost_per_parcel_by_metro.png)
+
+A bubble carries one colour, so it hides its own range. Washington DC and
+Atlanta land on the same median — **$1.14** — and tell different stories: DC's
+middle half of stations spans **$0.16**, Atlanta's spans **$0.06**, and DC's
+upper quartile reaches $1.28 where Atlanta's stops at $1.17. Same colour on
+the map, three times the internal spread. The bar here is that interquartile
+range, and the dot shade is the same ramp as the map, so the two figures read
+as one.
 
 ---
 
@@ -45,7 +69,7 @@ covariates to throw away before you fit anything.
 
 Most of Amazon's network is invisible in the public record. We measured it.
 
-![Federal records see 138 of 488 cities](docs/figures/fig_visibility_gap.png)
+![Federal records see 138 of 488 cities](docs/figures/fig_visibility_gap_wide.png)
 
 OSHA enforcement data is the best free source of facility addresses in the
 United States. It holds a record in **138 of the 488 US cities** where an
@@ -55,7 +79,7 @@ independent industry census lists an Amazon delivery station. That is a
 So we tried to predict the next opening anyway — and committed, in advance
 and in writing, to what would count as success.
 
-![Out-of-time AUC by year, model against a households baseline](docs/figures/fig_metro_auc.png)
+![Out-of-time AUC by held-out year: the model against a zero-parameter households baseline, with the gap it lost by printed in the band](docs/figures/fig_auc_by_year.png)
 
 **It cannot be done from public data — and because we wrote the bar down
 first, that is a measurement rather than an opinion.** The question, sample,
@@ -81,7 +105,7 @@ pre-registration committed us to publishing if the model failed:
 
 ## Why open data cannot see it — and how to tell in advance
 
-![Within-metro dispersion against coefficient state](docs/figures/fig_dispersion.png)
+![Within-metro coefficient of variation for 21 candidate covariates, against whether the fitted coefficient reached the interior or pinned at the boundary](docs/figures/fig_dispersion_wide.png)
 
 A conditional choice model can only use a covariate that varies *inside* a
 metro. Most free US public data is published at county grain and arrives as
@@ -227,7 +251,8 @@ make help                          # every stage, with a one-line description
 make test                          # 660 tests
 make lint                          # ruff over src and tests
 bash scripts/preflight_publish.sh  # secrets, licensing, prereg seal, file sizes
-python tools/figures/fig_paper.py  # rebuild the figures from artefacts
+python tools/figures/fig_readme.py # rebuild the README figures
+python tools/figures/fig_paper.py  # rebuild the paper figures (column width)
 python tools/paper/build_docx.py   # rebuild the paper as .docx
 ```
 

@@ -115,7 +115,7 @@ If you compile from a directory where the relative paths do not resolve, copy
 the four PNGs into `paper/` — `\graphicspath` already includes `./`.
 
 **Two figures the paper does not use, and why.**
-`../docs/figures/hero_cost_per_parcel.png` shows the same data as Fig. 4 but
+`../docs/figures/fig_cost_per_parcel_by_metro.png` shows the same data as Fig. 4 but
 is drawn 8.97in wide for the repository README; in a 3.40in column it would be
 shown at 37% and its labels would reach the page at about 3pt.
 `../outputs/figures/cost_vs_density_2023q4_baseline.png` is drawn 7.41in wide

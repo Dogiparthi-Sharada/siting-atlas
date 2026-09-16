@@ -49,6 +49,54 @@ WARM = "#b3452f"
 FAINT = "#c3d3e2"
 GRID = "#e9e9e9"
 
+# ------------------------------------------------------- money is red
+#
+# One rule, enforced by one object: anything encoding dollars uses this ramp,
+# and every figure imports it rather than keeping a copy. Two figures with
+# their own near-identical red drift apart the first time one is edited, and
+# a reader who has learned "dark = dear" on the map then mis-reads the chart
+# below it.
+#
+# Light to dark in a single hue. Monotonic in LIGHTNESS, which is the property
+# that makes it survive greyscale printing and red-green colour deficiency --
+# a darker mark is dearer whether or not the hue is visible. Red rather than
+# the repository's blue because cost is the one quantity a reader already has
+# a convention for: dark red reads as expensive before the legend is found.
+COST_STOPS = ["#fde4dd", "#f4a58c", "#d94f36", "#8c1d0c"]
+
+#: Where on the ramp the cheapest mark sits. Not 0.0: #fde4dd is a whisper on
+#: white, so a small marker at the ramp's floor disappears. Bubbles on the map
+#: are large enough to survive it; a 7pt dot in a chart is not, so callers
+#: drawing small marks pass this floor to :func:`cost_color`.
+COST_FLOOR = 0.34
+
+#: The recessive companion for a range/IQR bar behind a cost mark. Warm enough
+#: to belong to the red family, desaturated enough that it never competes with
+#: the mark it is carrying.
+COST_TRACK = "#efdcd6"
+
+#: The ramp's dark end, for rules and emphasis text about cost.
+COST_DEEP = "#8c1d0c"
+
+
+def cost_cmap():
+    """The shared red ramp. Built on demand to keep import side effects out."""
+    from matplotlib.colors import LinearSegmentedColormap
+    return LinearSegmentedColormap.from_list("cost", COST_STOPS)
+
+
+def cost_color(value, lo, hi, *, floor: float = COST_FLOOR):
+    """Colour for one dollar value, compressed into ``[floor, 1]``.
+
+    ``lo``/``hi`` are the ends of the range being shown, so the ramp always
+    spans the data actually drawn rather than some absolute dollar scale.
+    A degenerate range (one row, or every value equal) maps to the midpoint
+    instead of dividing by zero.
+    """
+    span = hi - lo
+    t = 0.5 if span <= 0 else (value - lo) / span
+    return cost_cmap()(floor + (1.0 - floor) * min(max(t, 0.0), 1.0))
+
 
 def figure(width: float = COL_W, height: float = 2.4):
     fig, ax = plt.subplots(figsize=(width, height), dpi=DPI)

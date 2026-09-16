@@ -75,7 +75,7 @@ import sys
 
 import numpy as np
 import pandas as pd
-from matplotlib.colors import LinearSegmentedColormap, Normalize
+from matplotlib.colors import Normalize
 
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 
@@ -86,20 +86,26 @@ from usboundary import albers, load_conus, project  # noqa: E402
 
 ROOT = cm.ROOT
 FACIL = "data/external/facility_panel/geocoded_expanded.csv"
-OUT = "docs/figures/national_facility_map.png"
+OUT = "docs/figures/hero_national_map.png"
 
 WIDTH = 10.0
 HEIGHT = 7.05
 
-LAND = "#eef2f5"
-BORDER = "#dce3e9"
-COAST = "#bcc8d3"
-DOT = "#63788c"
+#: The basemap. Deliberately a cool, desaturated grey-blue so it never
+#: competes with the red cost ramp -- the land is the stage, not a series.
+#: Strengthened on 2026-09-16: the first version was so pale that the state
+#: lines vanished at README display width, and a map whose geography you
+#: cannot read is a scatter plot with a decorative background.
+LAND = "#e4eaf0"      # was #eef2f5 -- a shade deeper so the coast reads
+BORDER = "#9aabbb"    # was #dce3e9 then #b9c6d2 -- state lines read
+COAST = "#8d9eae"     # was #bcc8d3 -- the national outline anchors the shape
+DOT = "#5b708a"
 
-#: Light-to-dark on the repository's one hue. Perceptually monotonic, so a
-#: darker bubble is never anything but dearer.
-COST_CMAP = LinearSegmentedColormap.from_list(
-    "cost", ["#dce9f4", "#7aa6c8", "#2c6490", "#12344d"])
+#: The shared money ramp, defined once in ``figbase`` and imported by every
+#: figure that encodes dollars. It used to be declared here as its own
+#: ``LinearSegmentedColormap``, which meant the map and the metro dot plot
+#: each owned a red and only agreed by accident.
+COST_CMAP = fb.cost_cmap()
 
 #: Points of marker area per station. A bubble's area is its station count;
 #: the constant only sets how big "one station" is on a 10-inch canvas.
@@ -224,8 +230,8 @@ def draw(dots, counts, sel, facts, states, nation):
     fig.subplots_adjust(top=low - 0.030, bottom=0.085, left=0.0, right=1.0)
 
     nation.plot(ax=ax, facecolor=LAND, edgecolor="none", zorder=1)
-    states.boundary.plot(ax=ax, color=BORDER, linewidth=0.55, zorder=2)
-    nation.boundary.plot(ax=ax, color=COAST, linewidth=0.8, zorder=3)
+    states.boundary.plot(ax=ax, color=BORDER, linewidth=1.15, zorder=2)
+    nation.boundary.plot(ax=ax, color=COAST, linewidth=1.7, zorder=3)
 
     fx, fy = albers(dots["longitude"].to_numpy(), dots["latitude"].to_numpy())
     ax.scatter(fx, fy, s=9.5, c=DOT, alpha=0.75, linewidths=0, zorder=4)
