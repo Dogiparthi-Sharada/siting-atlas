@@ -10,8 +10,7 @@
 ![pre-registered](https://img.shields.io/badge/pre--registered-hash%20verified%20in%20CI-6f42c1)
 ![licence](https://img.shields.io/badge/licence-MIT-lightgrey)
 
-**Where does Amazofdurlcbklfhnubklfucgirkdvnukvlkv
-n build its next delivery station, and what does it cost to
+**Where does Amazon build its next delivery station, and what does it cost to
 put a parcel on a doorstep?**
 
 Two questions, asked of Amazon's US network using nothing but data a member of
