@@ -1,5 +1,36 @@
 # Every Free Parameter, Its Source, and What It Is Worth
 
+> ## STATUS — every cost-model figure below is from the RETIRED pilot
+>
+> **Updated 2026-09-16.** The parameter provenance in this document is
+> unaffected and remains current. The *measured sensitivities and headline
+> figures* are not: on 2026-09-16 the depot layer was rebuilt on the
+> operator's **501 real address-geocoded delivery stations**
+> (`src/siting_atlas/cost/stations.py`), replacing the solved 334-site
+> p-median in `depots.py`. Every figure below belongs to the p-median run and
+> is correct *for that run*; none of it describes the current model.
+>
+> | | pilot (this document) | current |
+> |---|---|---|
+> | depots | 334 solved | 501 real, 481 with a costed ZCTA |
+> | ZCTAs costed | 2,333 (10 metros) | 8,037 (57.8% of US households) |
+> | median $/parcel | $1.0830 | **$1.1389** |
+> | median line haul | 4.02 mi | **9.09 mi** |
+> | service/vehicle/drive/distance | 66.96/22.93/6.97/3.14 | **59.75/21.63/12.63/5.98** |
+> | artefact | `cost_report.json` `20260916-064133-4d65` | `cost_by_station.json` `20260916-131845-34f1` |
+>
+> Two further consequences for this document specifically.
+> `parcels_per_depot_per_day` (40,000) — the largest **rank** mover in the
+> model, Spearman 0.90 — **no longer enters the cost path at all**, because
+> there is no placement step left to feed. And every "moves the median by X%"
+> figure below was measured on the 2,333-ZCTA pilot frame and has not been
+> re-measured on the 8,037-ZCTA one; treat them as indicative of direction and
+> rough magnitude, not as current measurements. **`docs/NUMBERS.md` §10 is the
+> current figures**, §10.3 is the full before/after, and §10.4 records that the
+> "zero of 43 facilities sit in their metro's cheapest decile" statistic is
+> **withdrawn** as unidentified.
+
+
 **The document to hand a reviewer who asks "where does 2.4 minutes per stop
 come from?" It answers that question for every constant in the cost and
 portfolio models, names the ones that have no published source, and measures

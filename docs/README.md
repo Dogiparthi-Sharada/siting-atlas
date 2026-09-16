@@ -1,6 +1,16 @@
 # docs/ — the index
 
-*One line per document, grouped by who needs it. Updated 2026-09-15.*
+*One line per document, grouped by who needs it. Updated 2026-09-16.*
+
+> **Cost model rebuilt 2026-09-16.** The depot layer is no longer a solved
+> 334-site p-median; it is the operator's 501 real geocoded delivery stations.
+> Median cost per parcel $1.0830 → **$1.1389** over 2,333 → **8,037** ZCTAs,
+> and the "zero of 43 facilities sit in their metro's cheapest decile"
+> statistic is **withdrawn** — the test is unidentified once depots are the
+> facilities. [`NUMBERS.md`](NUMBERS.md) §10 is the record;
+> [`EXPERIMENTS.md`](EXPERIMENTS.md) E17 is the run;
+> [`LESSONS.md`](LESSONS.md) §6.5 is why the withdrawal is itself a lesson.
+> Documents dated before 2026-09-16 describe the retired pilot.
 
 **Two rules before you read anything else.**
 [`STATUS.md`](STATUS.md) is the current state of the project.
@@ -51,7 +61,7 @@ variants still in circulation. Where a document and `NUMBERS.md` disagree,
 | [`adr/`](adr/) | The four decisions formal enough to have their own record. ADR-0004 (the model change) is *proposed*, not accepted |
 | [`ALTERNATIVES.md`](ALTERNATIVES.md) | The owner, deciding where the project goes. Five options, what each costs, the evidence in hand, and what would make each fail |
 | [`AUDIT_2026_09_14.md`](AUDIT_2026_09_14.md) | A full audit of what the project had lost track of across data, code, parameters, features and literature. Historical — its test-coverage figures are superseded by `NUMBERS.md` §12 |
-| [`LESSONS.md`](LESSONS.md) | Anyone building something else. 53 things this project learned the hard way, grouped by the kind of mistake — statistics, estimators, parameters, artefacts, checks that do not check, data, near-misses, conduct — each with the code or artefact that establishes it, what it cost, and why it was easy to get wrong. Ends with the five that generalise beyond this problem |
+| [`LESSONS.md`](LESSONS.md) | Anyone building something else. 54 things this project learned the hard way, grouped by the kind of mistake — statistics, estimators, parameters, artefacts, checks that do not check, data, near-misses, conduct — each with the code or artefact that establishes it, what it cost, and why it was easy to get wrong. Ends with the five that generalise beyond this problem |
 
 ## Data
 
@@ -135,6 +145,14 @@ variants still in circulation. Where a document and `NUMBERS.md` disagree,
 This project reports its defects rather than hiding them. These will cost you
 time if you do not know them.
 
+0. **Anything describing a "solved 334-depot network" as the current cost
+   model is stale**, including `REPRODUCE.md` §5, `DECISION_LOG.md` §4.2,
+   `ARCHITECTURE.md`, `docs/data/COST_MODEL.md` and the two cost figures under
+   `docs/figures/`. Those are dated records of the retired pilot and their
+   numbers are correct *for what they describe*. The current model is
+   `NUMBERS.md` §10.1. Related: `cost/stations.py`'s `CATCHMENT_MILES`
+   docstring still claims the 15-mile catchment is denser than the pilot — it
+   is sparser, 350 against 475 stops/sq mi, and the docstring is wrong.
 1. **`ARCHITECTURE.md` and `REPRODUCE.md` are stale.** Both predate the panel
    expansion. `REPRODUCE.md:502` claims the `enabled` column is `0.00%`
    non-null; it is 100% non-null (2.58% TRUE), and §4.4 of the same document

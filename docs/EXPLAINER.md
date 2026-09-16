@@ -39,47 +39,83 @@ continuous approximation, 1984). The intuition is simple:
 ### What it produces
 
 ```
-  median cost per parcel   $1.083
-  p10 $0.98, p90 $1.42
-  cheapest metro  Miami   $0.94      (metro median)
-  dearest metro   Boise   $1.43      (metro median)
-  2,333 ZIPs costed, 334 depots solved
+  median cost per parcel   $1.1389
+  p10 $1.0008, p90 $1.3445
+  cheapest station  MWP-0156, Miami FL        $0.92   (catchment median)
+  dearest  station  MWP-0472, Enid OK         $1.71
+  cheapest metro    Virginia Beach, VA-NC     $0.97   (median of its 4 stations)
+  dearest  metro    Enid, OK                  $1.71   (a single station)
+  8,037 ZIPs costed, 501 real stations (481 with a costed ZIP)
 ```
 
-*Re-derived 2026-09-16 from `outputs/tables/cost_to_serve_2023q4_baseline.parquet`
-and `cost_report.json` (`20260916-024154-0aa8`). This block previously read
-p90 $1.36 and "dearest metro Boise $1.31". Both were wrong, and in the same
-direction: $1.31 is **Nashville's** median, the second-dearest metro, and the
-real p90 is $1.4180. The spread is wider than the old block admitted — Miami
-to Boise is $0.49 per parcel, not $0.36 — which strengthens rather than
-weakens the density story below.*
+*From `outputs/metrics/cost_by_station.json` (`run_id 20260916-131845-34f1`).
+**The depot layer changed on 2026-09-16** and this block is not a correction of
+the old one — it is a different model. Depots used to be 334 sites a p-median
+solver invented across 10 metros; they are now the operator's 501 real,
+address-geocoded delivery stations, nationally. The old block read $1.083 over
+2,333 ZIPs with "cheapest metro Miami $0.94, dearest Boise $1.43"; that run is
+retired and is kept as the comparison in `docs/NUMBERS.md` §10.2. Note the
+metro extremes are now thin — Enid OK is one station — so read the station
+extremes, not the metro ones.*
 
-Broken down per stop: **66.96% driver time at the door**, 22.93% vehicle
-lease, 6.97% driving, 3.14% fuel (stop-weighted shares, recomputed from the
-parquet; `docs/NUMBERS.md` §10).
+Broken down per stop: **59.75% driver time at the door**, 21.63% vehicle
+lease, 12.63% driving, 5.98% fuel (stop-weighted shares; `docs/NUMBERS.md`
+§10.1).
+
+**What changed when the depots became real, and why it matters more than the
+level.** The median rose only 5.2%. But the median **line haul** — how far the
+van drives before its first stop — went from 4.02 miles to **9.09**, because a
+real national network is not a distance-minimising one. So driving and fuel
+went from 10.1% of a stop to **18.6%**. Labour still carries the bill, but it
+is no longer true that "the routing mathematics is decoration"; that sentence
+was about the old model. A p-median is a lower bound on line haul by
+construction, so **the 5.2% is the measured price of siting in the real world
+rather than the optimal one** — land, labour, zoning and leases.
+
+*Coverage: 20 of the 501 stations have no ZIP within 15 miles; 316 ZIPs (0.83%
+of catchment households) are dropped for having no federal driver wage and
+nothing is imputed; 8 of the 501 are announced rather than open.*
 
 ### Why it is trustworthy
 
 It is a published method with sourced parameters, and it was stress-tested
-across five scenarios spanning −17% to +4.4% — `dense_routing` −17.09% and
-`congested` +4.35%, measured on **median cost per parcel**, all five parquets
-re-run 2026-09-15. (Checked 2026-09-16 because two other documents carried
-"−16.6% to +4.8%" for this span, which no basis in the parquets reproduces.
-Name the statistic: on *total* daily cost the same spread is −17.0% to +4.1%.)
-It does not depend on the facility data at all, so none of the upheaval
-elsewhere touched it.
+across five scenarios spanning **−17.2% to +7.7%** — `dense_routing` −17.20%
+and `congested` +7.68%, measured on **median cost per parcel**
+(`cost_by_station.json`, `sensitivity.span_pct`). Always name the statistic:
+the retired pilot's span was −17.09% to +4.35%, and two documents once carried
+"−16.6% to +4.8%", which no parquet reproduces.
+
+One thing that *used* to be true here is no longer: the cost model used to be
+independent of the facility data, so none of the upheaval elsewhere touched
+it. **It is now built on the facility panel** — the depots are 501 rows of it.
+That is a large improvement in realism and a new dependency, and both should
+be said.
 
 ### The one thing it cannot do
 
-It cannot rank **where Amazon will build**. Tested directly: of 40 facilities
-ranked by cost-to-serve within their own metro, **none** sits in its metro's
-cheapest 10% (chance would give 10%).
-
-That is not a broken model. It is the model working and revealing something:
-the cheapest places to serve are the densest, and the densest are exactly
-where a warehouse cannot physically be built.
+It cannot rank **where Amazon will build** — and the reason is in the cost
+function itself, not in a statistic. Cost falls as one over the square root of
+density. So the cheapest places to serve are the densest, and the densest are
+exactly where a warehouse cannot physically be built: no parcel of land, no
+loading dock, no zoning, no lease. The cost surface and the buildable surface
+point in opposite directions.
 
 > **Feasibility binds before economics.**
+
+That is also why the only covariate that predicts siting at all is a raw count
+of existing warehouses: it measures where building is *possible*.
+
+**A note on a statistic this document used to carry, and no longer does.**
+Earlier versions said "of 40 facilities [later 43], none sits in its metro's
+cheapest 10%". **That claim is withdrawn.** Once the cost model's depots *are*
+the facilities, a ZIP containing a station has a line haul of about zero
+because the station is inside it — so the model makes every facility's own ZIP
+cheap by construction and the test measures its own circularity. Masking each
+station and re-pricing gives 6.9% of the 501 stations in their metro's
+cheapest decile but 16.3% of the original 43 — below chance and above chance,
+opposite conclusions from the same run. A number that flips sign depending on
+which facilities you draw it over is not evidence. The mechanism above stands
+on its own; the decile count does not. Details in `docs/NUMBERS.md` §10.4.
 
 ---
 

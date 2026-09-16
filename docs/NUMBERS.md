@@ -1,9 +1,17 @@
 # NUMBERS — single source of truth
 
 Every value below was **re-derived from `outputs/metrics/*.json` and the data files
-on 2026-09-15**. No markdown document was trusted as a source; the documents are what
-this file exists to correct. Where a number could not be derived from an artefact it is
-in the "cannot be verified" section rather than restated.
+on 2026-09-15**, and §10 was re-derived again on **2026-09-16** from
+`cost_by_station.json` (`run_id 20260916-131845-34f1`). No markdown document was
+trusted as a source; the documents are what this file exists to correct. Where a number
+could not be derived from an artefact it is in the "cannot be verified" section rather
+than restated.
+
+> **§10 changed shape on 2026-09-16.** The cost model's depot layer is no longer a
+> p-median solve; it is the operator's 501 real stations. The median moves
+> $1.0830 → **$1.1389**, the costed set 2 333 → **8 037** ZCTAs, and the
+> cheapest-decile statistic is **withdrawn** (§10.4). Anything in this repository
+> still describing a "solved 334-depot network" as current is stale.
 
 Artefacts with no `run_id`/`written_at` field are stamped with their file mtime
 (local time, `-0700`) and marked `mtime only`.
@@ -274,29 +282,203 @@ see §14.
 
 ## 10. Cost model
 
-Source: `outputs/metrics/cost_report.json`, `run_id 20260916-024154-0aa8`,
-`written_at 2026-09-16T02:42:22+00:00`; underlying tables
-`outputs/tables/cost_to_serve_2023q4_*.parquet` (all five, mtime 2026-09-15 19:42). Every
-figure below was recomputed from the parquet and matches the report unless noted.
+**The depot layer changed on 2026-09-16 and the headline moved with it.** The
+p-median solve is deleted from the cost path; depots are now the operator's
+**501 geocoded delivery stations**. §10.1 is the current model. §10.2 is the
+retired pilot, kept because it is the comparison the change is measured
+against — **it is not a current figure and must not be quoted as one**.
 
-**Regenerated 2026-09-16.** The report previously carried `run_id
-20260914-002418-0623` / `written_at 2026-09-14T00:24:23+00:00` and held **only**
-the `baseline` key. All five scenarios are present again and every value below
-is unchanged — this is a re-run of the same model on the same inputs, not a
-correction. Any document still citing the 2026-09-14 id for a cost figure is
-citing a file that no longer exists in that form.
+### 10.1 Current — real stations as the depot layer
+
+Source: `outputs/metrics/cost_by_station.json`, `run_id 20260916-131845-34f1`,
+`written_at 2026-09-16T13:18:54+00:00`. Tables
+`outputs/tables/cost_to_serve_station_2023q4_*.parquet` (per ZCTA) and
+`cost_by_station_2023q4_*.parquet` (per station), all five scenarios, mtime
+2026-09-16 06:18. Emitters: `src/siting_atlas/cost/stations.py`,
+`station_runner.py`, `station_report.py`, `station_pilot.py`, `station_print.py`.
 
 | Quantity | Correct value | Notes |
 |---|---|---|
-| **Median cost per parcel** | **$1.0830** | 2023Q4 baseline scenario |
-| **p10 / p90** | **$0.9778 / $1.4180** | |
-| **ZIPs (ZCTAs) costed** | **2 333** | |
-| Total daily cost | $14 001 626 | |
-| Total vans | **78 292** | = `ceil(sum(van_days))` = 78 291.6. The parquet's `vans_required` column sums to **79 484** because it ceilings per ZCTA first. Report the 78 292. |
-| **Depots solved** | **334** | **Resolved.** 334 = Σ over the 10 pilot metros of `ceil(metro daily parcels / 40 000)`. 329 = 13 152 992 / 40 000 = 328.8, the *national* division that ignores per-metro rounding. Both are derivable; the solver opens 334. The `depots.py:67` docstring and the `params.py:220` docstring are both right about different things and should say so. |
+| **Median cost per parcel** | **$1.1389** | 2023Q4 baseline. `scenarios.baseline.median_cost_per_parcel` |
+| **p10 / p25 / p75 / p90** | **$1.0008 / $1.0579 / $1.2368 / $1.3445** | |
+| **Pooled cost per parcel** | **$1.1281** | Σ daily cost / Σ daily parcels. A *different* statistic from the median of ZCTA medians and routinely confused with it |
+| **ZCTAs costed** | **8 037** | |
+| Total daily parcels | **42 048 849** | |
+| Total daily cost | **$47 434 701** | |
+| Total vans | **250 291** | `ceil(Σ van_days)`, same convention as §10.2 |
+| **Median line haul** | **9.09 road miles** | Against 4.02 in the pilot. `median_linehaul_miles` |
+| **Depots** | **501 real stations, 481 of which carry at least one costed ZCTA** | Not solved — observed. 20 stations lose every nearby ZCTA to a closer station or to the wage drop |
+| **Cost decomposition (stop-weighted shares)** | service time **59.75%**, vehicle **21.63%**, drive time **12.63%**, distance **5.98%** | `scenarios.baseline.decomposition`. Cost per stop $1.5793; realised parcels per stop 1.40; 0 rows dropped for incomplete components |
+| Per-station spread | median station cost **$1.1375**, IQR **$0.1322**; cheapest `MWP-0156` (Miami, FL) **$0.9241**, dearest `MWP-0472` (Enid, OK) **$1.7116**, spread **$0.7875** | `scenarios.baseline.extremes` |
+| Metros | **174** metros contain a costed station (`by_metro`); the 8 037 costed ZCTAs carry **194** distinct metro labels | Two different counts — see confusable 13 |
+| Scenario span on the median | **−17.20%** (`dense_routing`, $0.9431) to **+7.68%** (`congested`, $1.2264) | `sensitivity.span_pct`. `high_fuel` +1.02%, `pessimistic_tour` +1.02% |
+| Portfolio breakeven margin | $1.3431 (greedy) / $1.3431 exact, upper bound $1.2129, gap 10.7%; 282 activations | `portfolio_report.json`, `20260914-002431-7419`. **Computed on the pilot depot layer and not yet re-run on the stations** |
+
+**The depot layer is a station panel, and what it is made of is a number too**
+(`stations`, `coverage`):
+
+| Quantity | Correct value |
+|---|---|
+| Facility rows in `geocoded_expanded.csv` | **693** |
+| …with an address-level coordinate, used as depots | **501** |
+| …excluded as ZCTA-centroid fallbacks | **192** |
+| Distinct coordinates among the 501 | **497** (4 coincident pairs) |
+| By operator / facility type | **501 Amazon**, **501 type `DS`** — one operator, one class |
+| By status | **493 `open`, 8 `announced`, 0 `closed`** |
+| National panel ZCTAs / households | 32 828 / 128 701 376 |
+| Within the 15-mile catchment | **8 353 ZCTAs, 75 020 240 households (58.29%)** |
+| Dropped for no OEWS driver wage | **316 ZCTAs, 620 635 households = 0.83% of catchment households.** Nothing imputed |
+| **Costed** | **8 037 ZCTAs, 74 399 605 households = 57.81% of US households** |
+| Median households/sq mi, costed set | **866.1** |
+
+**Coverage caveats that must travel with the headline.** 20 of 501 stations
+contribute no costed ZCTA. 316 ZCTAs were dropped, not imputed. 8 of the 501
+are `announced` rather than operating. All 501 are Amazon delivery stations, so
+"the operator's network" is one operator and one facility class.
+
+**Regime bounds** (`scenarios.baseline.tour_floors`): **496 of 8 037 ZCTAs
+(6.17%)** generate fewer than the 120 stops a tour assumes, and **136 (1.69%)**
+fall below the Larson–Odoni `n ≥ 15` floor. By demand they are trivial —
+0.077% and 0.0035% of catchment households — but both rose against the pilot
+(5.40% and 1.24%), because the catchment is **sparser** than the pilot, not
+denser. Median daily stops 3 390.
+
+**The 15-mile catchment is a coverage/regime trade, and is NOT justified by
+density.** The radius sweep (`radius_sweep`, computed over the in-catchment
+frame before the wage drop):
+
+| Radius | ZCTAs | Households | Share of US | Median hh/sq mi | Median stops/sq mi |
+|---|---|---|---|---|---|
+| 5 mi | 2 562 | 28 222 202 | 21.93% | 1 499.3 | 588.5 |
+| 10 mi | 6 002 | 59 380 506 | 46.14% | 1 123.2 | 450.7 |
+| **15 mi** | **8 353** | **75 020 240** | **58.29%** | **813.6** | **327.0** |
+| 20 mi | 10 268 | 83 666 004 | 65.01% | 558.9 | 229.8 |
+| 25 mi | 12 174 | 90 034 387 | 69.96% | 378.6 | 154.7 |
+| 30 mi | 14 002 | 94 579 266 | 73.49% | 257.6 | 105.8 |
+| 45 mi | 18 964 | 105 069 120 | 81.64% | 109.5 | 43.8 |
+
+The pilot's densities are **1 074.7 households/sq mi and 474.8 stops/sq mi**.
+Only the 5-mile ring beats the pilot on stops/sq mi, and it reaches 21.9% of
+US households. **No radius is both denser than the pilot and covers a majority
+of US households.** 15 miles is chosen because it is the catchment this
+project pre-registered elsewhere (`docs/EXPERIMENTS.md` E12), and it is
+defended as the point where the coverage/regime trade is least bad: it is the
+smallest radius in the sweep that reaches a majority of US households. **It is
+not chosen because it is dense, and the density argument previously used to
+defend it was wrong.**
+
+> **The claim "the catchment is denser than the pilot, 742 against 475" is
+> withdrawn.** It compared **households** per square mile on one side against
+> **stops** per square mile on the other, and the two differ by roughly 2.3×
+> (parcels per household, then parcels per stop). Like for like the catchment
+> is **sparser**: **350 against 475 stops/sq mi** (re-derived from
+> `cost_to_serve_station_2023q4_baseline.parquet` and
+> `cost_to_serve_2023q4_baseline.parquet`), **866 against 1 075 households/sq
+> mi**. Any document that still says the catchment is denser is wrong.
+
+### 10.2 Retired — the pilot, kept as the comparison
+
+Source: `outputs/metrics/cost_report.json`, `run_id 20260916-064133-4d65`,
+`written_at 2026-09-16T06:42:03+00:00`; tables
+`outputs/tables/cost_to_serve_2023q4_*.parquet` (all five, mtime
+2026-09-15 23:41). Cross-checked against `cost_by_station.json`'s
+`pilot_comparison` block, which re-reads the same baseline parquet.
+
+**Superseded on 2026-09-16 by §10.1.** These figures are correct for what they
+are — a Daganzo cost model over a **solved** 334-depot p-median network across
+the 10 pilot metros — and they are wrong as a description of the current model.
+
+| Quantity | Value | Notes |
+|---|---|---|
+| Median cost per parcel | $1.0830 | |
+| p10 / p90 | $0.9778 / $1.4180 | |
+| Pooled cost per parcel | $1.0645 | Re-derived from the parquet; `cost_report.json` does not carry it |
+| ZCTAs costed | 2 333 | 10 metros |
 | Total daily parcels | 13 152 992 | |
-| **Cost decomposition (stop-weighted shares)** | service time **66.96%**, vehicle **22.93%**, drive time **6.97%**, distance **3.14%** | Recomputed from the parquet. Consistent with `params.py`'s "local travel is 3.3% of the bill" and with the claim that routing mathematics is decoration while labour carries the headline. `runner.py:156` records a historical bug where "shares summed to 140%" — any document quoting shares that do not sum to 100% is quoting that bug. |
-| Portfolio breakeven margin | $1.3431 (greedy) / $1.3431 exact, upper bound $1.2129, gap 10.7%; 282 activations | `portfolio_report.json`, `20260914-002431-7419` |
+| Total daily cost | $14 001 626 | |
+| Total vans | 78 292 | = `ceil(sum(van_days))` = 78 291.6. The parquet's `vans_required` column sums to **79 484** because it ceilings per ZCTA first. 78 292 is the reported figure |
+| **Depots solved** | **334** | 334 = Σ over the 10 pilot metros of `ceil(metro daily parcels / 40 000)`. 329 = 13 152 992 / 40 000 = 328.8, the *national* division that ignores per-metro rounding. Both are derivable; the solver opens 334. The `depots.py:67` docstring and the `params.py:220` docstring are both right about different things and should say so |
+| Median line haul | 4.02 miles | |
+| Decomposition | service 66.96%, vehicle 22.93%, drive 6.97%, distance 3.14% | `runner.py:156` records a historical bug where "shares summed to 140%" — any document quoting shares that do not sum to 100% is quoting that bug |
+| Scenario span on the median | −17.09% to +4.35% | |
+| Below one tour / below `n ≥ 15` | 5.40% / 1.24% | |
+
+### 10.3 What moved, and what it means
+
+`pilot_comparison` in `cost_by_station.json` computes the deltas in one place.
+
+| Figure | Pilot (§10.2) | Stations (§10.1) | Change |
+|---|---|---|---|
+| Median cost per parcel | $1.0830 | **$1.1389** | **+5.16%** |
+| p10 / p90 | $0.9778 / $1.4180 | $1.0008 / $1.3445 | narrower |
+| Pooled cost per parcel | $1.0645 | **$1.1281** | +5.98% |
+| ZCTAs costed | 2 333 | **8 037** | ×3.4 |
+| Depots | 334 solved | **481 of 501 real** | observed, not solved |
+| Households covered | 10 metros | **74 399 605 (57.81% of US)** | national |
+| Metros with a station | 10 | **174** | |
+| Median line haul | 4.02 mi | **9.09 mi** | **×2.26** |
+| Total daily cost | $14 001 626 | **$47 434 701** | on 42.05M parcels |
+| Vans | 78 292 | **250 291** | |
+| Service / vehicle / drive / distance | 66.96 / 22.93 / 6.97 / 3.14 | **59.75 / 21.63 / 12.63 / 5.98** | drive+distance **10.11% → 18.61%** |
+| Scenario span on median | −17.09% / +4.35% | **−17.20% / +7.68%** | |
+| Below one tour | 5.40% | **6.17%** | |
+| Below `n ≥ 15` floor | 1.24% | **1.69%** | |
+
+**The level is the least interesting line in that table.** +5.2% is within the
+width of a single scenario. The **composition** change is not: line haul
+doubles, so driving and fuel go from a tenth of the stop to **nearly a fifth**.
+That moves which unsourced parameter carries the headline — away from
+`service_minutes_per_stop` and toward `avg_speed_mph`, `circuity` and
+`van_mpg`, none of which is externally sourced. Any Threats or limitations
+section that still says "the routing mathematics is decoration" is quoting
+§10.2.
+
+**Why real siting is dearer than a solved one.** A p-median minimises
+demand-weighted distance by construction, so it is a *lower bound* on line haul
+for a given number of depots. Real buildings sit where land, labour, zoning and
+lease terms allowed, which is not the distance-minimising point. The +5.2% and
+the doubled line haul are the measured price of that difference — and that is
+itself a result, not only a correction.
+
+### 10.4 The cheapest-decile statistic is withdrawn
+
+**"Of 43 facilities, zero sit in their metro's cheapest decile" must not be
+quoted anywhere.** It is withdrawn, not restated with new digits, because the
+test stopped being identified when the model improved.
+
+*Why.* Once depots **are** the facilities, a ZCTA containing a station has a
+line haul of roughly zero **because the station is inside it**. Line haul
+enters as `2L/C` per stop and drive-plus-distance is 18.6% of the bill, so the
+model makes every facility's own ZCTA cheap by construction. Ranked on the
+published frame, `decile_test.as_costed` reads **275 of 476 facilities (57.8%)
+in the cheapest decile, median within-metro percentile rank 0.080**. That is
+the circularity measured, not a finding.
+
+*And the fix does not rescue it.* `decile_test.leave_one_out` re-prices every
+ZCTA against the nearest station **outside** it
+(`StationNetwork.assign(exclude_own_zcta=True)`) and gives:
+
+| Arm | Facility set | In cheapest decile | Median pct rank | Median line haul |
+|---|---|---|---|---|
+| `as_costed` | 501 stations (476 matched) | 275 (57.8%) | 0.080 | 2.09 mi |
+| `as_costed` | 43 pilot facilities | 26 (60.5%) | 0.074 | 1.87 mi |
+| **`leave_one_out`** | **501 stations (476 matched)** | **33 (6.9%)** | **0.642** | 10.38 mi |
+| **`leave_one_out`** | **43 pilot facilities** | **7 (16.3%)** | **0.333** | 6.84 mi |
+
+**6.9% and 16.3% straddle the 10% a uniform placement gives, in opposite
+directions, on the same frame under the same mask.** The mask under-corrects in
+dense metros, where a masked station's neighbour is two miles away. A statistic
+whose sign depends on which facility set you draw the counterfactual over is
+not evidence, and no wording of it is safe.
+
+*What survives, and it is the part that mattered.* The **mechanism** is
+untouched: cost falls as `1/√δ`, so the cheapest places to serve are the
+densest, and the densest are where a warehouse cannot be built. **Feasibility
+binds before economics** is a statement about the cost function and the land
+market, and it is sourced from the Daganzo form plus the observation that a
+raw warehouse count is the only covariate that predicts siting — a measure of
+where building is *possible*. State it that way. Do not attach a decile count
+to it.
 
 ---
 
@@ -453,10 +635,34 @@ centroid. The 501 geocoded points live in the side file and are not joined into 
     artefacts say so in a `spread_is_not_a_standard_error` / `interval_note` field. Any
     document that writes "95% CI" for one of these is wrong.
 
-11. **334 vs 329 depots.** 334 = per-metro `ceil`, summed over 10 metros — what the
-    solver opens. 329 = one national division of 13.2M by 40 000. Not a discrepancy once
-    stated; a discrepancy every time it is not.
+11. **334 vs 329 depots.** Both belong to the **retired** pilot (§10.2). 334 = per-metro
+    `ceil`, summed over 10 metros — what the solver opens. 329 = one national division of
+    13.2M by 40 000. Not a discrepancy once stated; a discrepancy every time it is not.
+    Neither number describes the current model, which has **501 stations, 481 costed**.
 
-12. **78 292 vs 79 484 vans.** 78 292 = `ceil` of the summed van-days (the reported
-    figure). 79 484 = sum of the per-ZCTA `vans_required` column, which ceilings 2 333
-    times. Only the first is in `cost_report.json`.
+12. **78 292 vs 79 484 vs 250 291 vans.** 78 292 = `ceil` of the summed van-days on the
+    pilot (the reported pilot figure). 79 484 = sum of the per-ZCTA `vans_required`
+    column, which ceilings 2 333 times. **250 291** is the current figure, on 8 037
+    ZCTAs (§10.1). Only 78 292 is in `cost_report.json`; only 250 291 is in
+    `cost_by_station.json`.
+
+13. **Three "how many metros" for the cost model.** **10** = the pilot's metros (§10.2).
+    **174** = metros containing a costed station, the unit of `by_metro`. **194** =
+    distinct `metro_label` values across the 8 037 costed ZCTAs, which is larger because
+    a station's 15-mile catchment crosses metro boundaries. Name the unit.
+
+14. **Four "how many stations".** **693** facility rows; **501** with an address-level
+    coordinate and used as depots; **496** with at least one ZCTA inside 15 miles
+    *before* the driver-wage drop (this is `radius_sweep.stations_used`); **481** with at
+    least one *costed* ZCTA (`scenarios.*.stations`). The 496/481 gap is the 316 dropped
+    wage-less ZCTAs, not a second catchment rule.
+
+15. **Median cost per parcel vs pooled cost per parcel.** $1.1389 is the median over
+    8 037 ZCTA values. $1.1281 is Σ dollars / Σ parcels. The second is the one that
+    multiplies out to the $47.4M daily total; the first is the one every headline quotes.
+    The pilot pair is $1.0830 / $1.0645.
+
+16. **Households per square mile vs stops per square mile.** They differ by ~2.3× and
+    swapping them produced a published claim that the station catchment was *denser*
+    than the pilot when it is **sparser** (§10.1). The `1/√δ` term consumes **stops**.
+    Never compare a households density to a stops density.

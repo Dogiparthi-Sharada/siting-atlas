@@ -20,9 +20,9 @@ only: **how does Amazon pick its next sites, and what does it cost to deliver
 a parcel?**
 
 ```
-  1  The cost question is answered. 2,333 ZIP-code areas costed from a
-     Daganzo continuous approximation over a solved 334-depot network,
-     median $1.0830 per parcel.
+  1  The cost question is answered. 8,037 ZIP-code areas -- 57.8% of US
+     households -- costed from a Daganzo continuous approximation over
+     the operator's 501 REAL delivery stations, median $1.1389 per parcel.
   2  The siting question is answered with a NEGATIVE, and it is
      pre-registered. The metro-entry model loses to a households baseline
      in 7 of 7 held-out years.
@@ -64,8 +64,10 @@ Built, running on real data, and not in dispute.
   data pipeline        L0 acquire -> L1 normalise -> L2 warehouse ->
                        L3 panel. panel_report.json,
                        run 20260914-220244-d57b: 1,081,312 rows x 50 cols
-  cost to serve        cost_report.json, run 20260916-024154-0aa8
-  depot network        p-median, cost/depots.py, 334 depots
+  cost to serve        cost_by_station.json, run 20260916-131845-34f1
+  depot network        OBSERVED, not solved. cost/stations.py, the 501
+                       geocoded delivery stations; the p-median in
+                       cost/depots.py is retired from the cost path
   portfolio optimiser  portfolio_report.json, run 20260914-002431-7419
   Monte Carlo          montecarlo_report.json + montecarlo_draws.parquet,
                        500 of 500 draws, seed 20260914
@@ -79,25 +81,50 @@ Built, running on real data, and not in dispute.
   ruff                 `ruff check src tests` clean
 ```
 
-**Cost to serve** — `cost_report.json`, run `20260916-024154-0aa8`, 2023Q4
-baseline:
+**Cost to serve** — `cost_by_station.json`, run `20260916-131845-34f1`,
+2023Q4 baseline:
 
 ```
-  median cost per parcel   $1.0830    p10 $0.9778   p90 $1.4180
-  ZCTAs costed              2,333
-  total daily cost     $14,001,626
-  vans                     78,292    (ceil of summed van-days; the
-                                      per-ZCTA column sums to 79,484
-                                      because it ceilings 2,333 times)
-  depots solved               334    = sum over 10 pilot metros of
-                                      ceil(metro parcels / 40,000)
+  median cost per parcel   $1.1389    p10 $1.0008   p90 $1.3445
+  pooled cost per parcel   $1.1281    (sum dollars / sum parcels)
+  ZCTAs costed              8,037    57.8% of US households (74.4M)
+  total daily cost     $47,434,701    on 42,048,849 daily parcels
+  vans                    250,291    ceil of summed van-days
+  depots                      501    REAL geocoded stations, of which
+                                      481 carry at least one costed ZCTA
+  metros with a station       174
+  median line haul        9.09 mi    against 4.02 on the retired pilot
+  scenario span    -17.2% / +7.7%    dense_routing / congested
 ```
 
-Stop-weighted cost decomposition, recomputed from the parquet: **service time
-66.96%, vehicle 22.93%, drive time 6.97%, distance 3.14%**. Labour at the
-door carries the bill; the routing mathematics is decoration. Any document
-quoting shares that do not sum to 100% is quoting a historical bug recorded
-at `optimize/runner.py:156`.
+Stop-weighted cost decomposition: **service time 59.75%, vehicle 21.63%,
+drive time 12.63%, distance 5.98%**. Labour at the door still carries the
+bill, but **driving and fuel are now 18.6% of the stop against 10.1% on the
+pilot**, because line haul to a real building is more than twice as long as
+to a solved one. The old summary — "the routing mathematics is decoration" —
+belongs to the pilot and should not be repeated. Any document quoting shares
+that do not sum to 100% is quoting a historical bug recorded at
+`optimize/runner.py:156`.
+
+**What the change cost, and why it is a finding.** Deleting the 334-depot
+p-median and substituting the 501 buildings the operator actually runs moves
+the median **+5.2%** ($1.0830 → $1.1389) and the median line haul **×2.26**.
+A p-median minimises demand-weighted distance by construction, so it is a
+lower bound on line haul; real siting is constrained by land, labour, zoning
+and lease terms. The 5.2% is the measured price of that constraint. Full
+before/after: [`NUMBERS.md`](NUMBERS.md) §10.3.
+
+**Coverage caveats.** 20 of 501 stations have no ZCTA within 15 miles. 316
+ZCTAs (0.83% of catchment households) are dropped for having no OEWS driver
+wage and **nothing is imputed**. 8 of the 501 are `announced` rather than
+open. All 501 are Amazon, facility type `DS`. Regime bounds rose with the
+sparser catchment: 6.17% of costed ZCTAs fall below one tour (was 5.40%) and
+1.69% below the Larson–Odoni `n ≥ 15` floor (was 1.24%), carrying 0.077% and
+0.0035% of households.
+
+**The cheapest-decile statistic is withdrawn** — see [`NUMBERS.md`](NUMBERS.md)
+§10.4. It is not restated with new digits; the test is not identified once
+the depots are the facilities.
 
 **Portfolio** — `portfolio_report.json`, run `20260914-002431-7419`:
 
@@ -544,11 +571,16 @@ pre-registered H0.
   - status = "announced" on expanded rows is not enforced anywhere. A
     not-yet-confirmed building enables a catchment exactly like a real
     one; mwpvl_vouched is the column a consumer has to test and no
-    consumer tests it.
+    consumer tests it. This now reaches the cost model: 8 of the 501
+    stations used as depots are "announced", 493 "open", 0 "closed".
   - depots.py:67 and params.py:220 give different depot counts (334 and
     329) in their docstrings. Both are right about different things --
     334 is per-metro ceil summed, 329 is one national division -- and
-    neither says so.
+    neither says so. Both are now moot for the cost path, which no
+    longer solves depots at all.
+  - cost/stations.py's CATCHMENT_MILES docstring still claims the 15-mile
+    costed set is DENSER than the pilot. It is sparser -- 350 against 475
+    stops/sq mi. The docstring is out of date; NUMBERS.md §10.1 is right.
 ```
 
 ---
@@ -574,13 +606,15 @@ pre-registered H0.
 
 ## 8. What this project can honestly claim today
 
-1. **A cost model that works on real data** — 2,333 ZIP-code areas, a solved
-   334-depot network, a decomposition that says where the money goes, and five
-   sensitivity scenarios spanning −17.1% to +4.4% on the median.
-   *(Corrected 2026-09-16. This read −16.6% to +4.8%, which no basis in the
-   five scenario parquets reproduces. On median cost per parcel the spread is
-   `dense_routing` −17.09% to `congested` +4.35%, which is the spread
-   `COST_MODEL.md` §5.6 and `REPRODUCE.md` already carry, to a decimal place.)*
+1. **A cost model that works on real data** — 8,037 ZIP-code areas covering
+   57.8% of US households, an **observed** depot layer of 501 real delivery
+   stations, a decomposition that says where the money goes, and five
+   sensitivity scenarios spanning −17.2% to +7.7% on the median.
+   *(Rebuilt 2026-09-16 on `cost_by_station.json`. The previous claim —
+   2,333 ZCTAs, a solved 334-depot network, −17.1% to +4.4% — is the retired
+   pilot and is kept only as the comparison in [`NUMBERS.md`](NUMBERS.md)
+   §10.2. Earlier still, that span was published as −16.6% to +4.8%, which no
+   basis in any parquet reproduces.)*
 2. **A pre-registered negative result on the siting question**, with both
    outcomes' language written before the model was fitted, and H0 returned on
    every arm and every model form.

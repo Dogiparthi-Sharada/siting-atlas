@@ -18,7 +18,8 @@ Companion: [`EXPERIMENTS.md`](EXPERIMENTS.md), what each was used for and how it
 | [7](#a7) | Gradient-boosted trees (LightGBM lambdarank) | `models/gbm_benchmark.py`, `covariate_gbm.py` | `MODEL_SPEC.md` §9.4 |
 | [8](#a8) | Discrete-time survival, cloglog link | `experiments/hazard-model/code/hazard.py`, `models/risk_set.py` | **nowhere — see §8** |
 | [9](#a9) | Daganzo continuous approximation | `cost/daganzo.py`, `cost/params.py` | `NOTES_daganzo_1984.md` — **read the caveat** |
-| [10](#a10) | p-median depot solve | `cost/depots.py` | `NOTES_klose_drexl_2005.md`, `NOTES_hakimi_1964.md` |
+| [10](#a10) | p-median depot solve — **retired from the cost path 2026-09-16** | `cost/depots.py` | `NOTES_klose_drexl_2005.md`, `NOTES_hakimi_1964.md` |
+| [10b](#a10b) | Observed depot layer + 15-mile catchment | `cost/stations.py`, `station_runner.py` | `NUMBERS.md` §10.1, `EXPERIMENTS.md` E17 |
 | [11](#a11) | Fellegi–Sunter linkage + Jaro–Winkler | `common/linkage.py`, `linkage_group.py`, `address.py` | `NOTES_winkler_rr99_01.md`; `METHODS_RESEARCH.md` §7 |
 | [12](#a12) | Fellegi–Holt edit systems | `warehouse/edits.py`, `facility_dedup.py` | `NOTES_fellegi_holt_1976.md` |
 | [13](#a13) | OCR table geometry | `ingest/mwpvl_grid.py`, `tools/ocr/*` | `data/MWPVL_OCR_PIPELINE.md` |
@@ -430,8 +431,15 @@ drive time, service time, vehicle lease ÷ stops per tour — divided by 1.4 par
 DISAGREES with its measured sensitivity, and the framing sentence is the one to quote:
 *"the routing mathematics this module is named after is **DECORATION** (the BHH constant
 moves the median 1.9% when wrong by half) while the unsourced labour and consolidation
-assumptions carry the headline."* Confirmed by the decomposition — service time **66.96%**,
-vehicle 22.93%, drive time 6.97%, distance 3.14%. The largest known error has its own
+assumptions carry the headline."* That was measured on the solved-depot pilot, where the
+decomposition read service 66.96% / vehicle 22.93% / drive 6.97% / distance 3.14%. **On the
+current station-based model it is only half true.** Labour still dominates — service time
+**59.75%**, vehicle **21.63%** — but drive time is **12.63%** and distance **5.98%**, so
+travel is **18.6% of the stop against 10.1% before**, because line haul to a real building
+is 9.09 miles against 4.02 to a solved one. The sentence "routing is decoration" should not
+be repeated without that qualification; `avg_speed_mph`, `circuity` and `van_mpg` now carry
+more of the headline than they did, and none of them is sourced. See `NUMBERS.md` §10.3.
+The largest known error has its own
 heading, **"DISAGREES WITH THE SOURCE OF ITS OWN INPUT"**: `labour_usd_per_hour` divides by
 `9 × 6 × 52 = 2 808` hours, conflating how many days a week the *network* delivers with how
 many hours a year one *driver* works; BLS OEWS builds the annual mean from 2 080, so this
@@ -439,10 +447,19 @@ recovers an hourly rate ~26% below the one BLS measured. Measured: the 2 080 den
 moves the median $1.0875 → $1.3704, **+26.0%**, or +33.6% with the wage-loading correction.
 **Not applied, because it changes the project's headline and that is the owner's call.**
 `vans_required` carries an explicit prohibition: it **must not be summed across ZCTAs** —
-2 333 per-ZCTA ceilings give 79 484 against the reported 78 292.
+2 333 per-ZCTA ceilings give 79 484 against the reported 78 292 on the pilot. The current
+model reports **250 291** vans over 8 037 ZCTAs under the same `ceil(Σ van_days)` rule.
 
 <a id="a10"></a>
-## 10. The p-median depot solve
+## 10. The p-median depot solve — retired from the cost path
+
+> **Status, 2026-09-16.** This algorithm no longer runs in the cost model. Depots are the
+> operator's 501 real geocoded delivery stations (§10b). The section is kept because the
+> solve is still the *benchmark* the observed network is measured against — the p-median is
+> the distance-minimising placement for a given site count, so it bounds line haul from
+> below, and the gap between it and reality is now a reported quantity (+5.2% on the median,
+> line haul 4.02 → 9.09 mi; `NUMBERS.md` §10.3). Everything below describes the retired
+> solve and its figures are pilot figures.
 
 **Plainly.** Given a metro's ZIP codes and their parcel demand, where should depots go? The
 **p-median** problem picks *p* locations minimising total demand-weighted distance. The
@@ -484,6 +501,69 @@ assigned more than its throughput while a neighbour sits idle; **the line haul r
 is therefore a LOWER BOUND** on that of a capacity-feasible network." Measured consequence:
 42% of depots exceed 40 000 parcels/day under nearest-depot assignment, heaviest 3.56× — and
 the bias is optimistic in exactly the dense ZCTAs at the top of the ranking.
+
+<a id="a10b"></a>
+## 10b. The observed depot layer and the 15-mile catchment
+
+**Plainly.** Stop solving for depots. Use the buildings. `cost/stations.py` takes the 501
+rows of `data/external/facility_panel/geocoded_expanded.csv` that carry a real
+address-level coordinate and treats each as a depot. A ZCTA's line haul `L` is the
+great-circle distance to its nearest station; everything else in `daganzo.py` is inherited
+untouched, because `StationCostModel` overrides exactly one method, `linehaul_miles`. So
+any difference between this run and the pilot is attributable to the depot layer and
+nothing else.
+
+**Why 192 rows are excluded.** Of 693 panel rows, 192 carry only a `fallback_latitude`
+imputed to the ZCTA centroid. A centroid depot sits in the middle of its own catchment by
+construction and drives that ZCTA's line haul to roughly zero — the single most
+cost-reducing error available in this model. The exclusion is necessary, and it also means
+the depot layer is the geocodable 72% of the panel rather than the panel.
+
+**The catchment.** A ZCTA is costed only if its internal point lies within
+`CATCHMENT_MILES = 15.0` great-circle miles of some station. Outside that it is served, if
+at all, by a station not in this panel, or over a line haul long enough that the "one depot,
+one tour" geometry stops describing the operation. Great-circle decides membership; the mile
+the model *charges* still goes through `circuity`, so the economics are untouched.
+
+**The radius is a coverage/regime trade and is NOT justified by density.**
+`station_report.radius_sweep` recomputes the table on every run:
+
+```
+  radius   ZCTAs   households    share   hh/sq mi   stops/sq mi   stations
+    5 mi    2 562   28 222 202   21.9%     1 499         588         485
+   10 mi    6 002   59 380 506   46.1%     1 123         451         496
+   15 mi    8 353   75 020 240   58.3%       814         327         496
+   20 mi   10 268   83 666 004   65.0%       559         230         496
+   25 mi   12 174   90 034 387   70.0%       379         155         496
+   30 mi   14 002   94 579 266   73.5%       258         106         496
+   45 mi   18 964  105 069 120   81.6%       110          44         496
+```
+
+The pilot it replaces sits at **1 075 households/sq mi and 475 stops/sq mi**, and the costed
+set at 15 miles sits at **866 and 350**. So the catchment is **SPARSER than the pilot**, and
+**no radius is both denser than the pilot and covers a majority of US households** — only
+the 5-mile ring beats 475 stops/sq mi, at 21.9% of households. 15 miles is defended by
+(a) coverage against regime and (b) being the radius this project already pre-registered
+for its catchment analysis (`EXPERIMENTS.md` E12), so reusing it costs no new degree of
+freedom. **It is not defended by density**, and an earlier claim that the catchment was
+denser at "742 against 475" compared households/sq mi against stops/sq mi — the two differ
+by ~2.3× and are not interchangeable. The `1/√δ` term consumes **stops**.
+
+**What the sparser catchment costs, reported rather than absorbed.** `tour_floors`: 496 of
+8 037 ZCTAs (**6.17%**, was 5.40%) fall below the 120 stops a tour assumes, and 136
+(**1.69%**, was 1.24%) below the Larson–Odoni `n ≥ 15` floor — 0.077% and 0.0035% of
+catchment households.
+
+**Coverage, stated with every figure.** 20 of 501 stations contribute no costed ZCTA; 316
+ZCTAs (0.83% of catchment households) are dropped for having no OEWS driver wage with
+**nothing imputed**; 8 of the 501 are `announced` and 493 `open`; all 501 are Amazon, type
+`DS`.
+
+**What it deleted.** `parcels_per_depot_per_day` was the largest *rank* mover in the model
+(Spearman 0.90) and no longer enters the cost path at all. There is no placement step, no
+throughput constant and no capacity story — and therefore none of §10's capacity caveat
+above. A cost *per station* also becomes definable for the first time: you cannot report an
+operating cost for a p-median artefact.
 
 <a id="a11"></a>
 ## 11. Record linkage — Fellegi–Sunter, Jaro–Winkler, and a deliberate omission

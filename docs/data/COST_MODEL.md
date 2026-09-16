@@ -1,5 +1,30 @@
 # The Cost Model, Explained From Zero
 
+> ## STATUS — this document describes the RETIRED pilot cost model
+>
+> **Updated 2026-09-16.** On 2026-09-16 the depot layer was rebuilt on the
+> operator's **501 real address-geocoded delivery stations**
+> (`src/siting_atlas/cost/stations.py`), replacing the solved 334-site
+> p-median in `depots.py`. Every figure below belongs to the p-median run and
+> is correct *for that run*; none of it describes the current model.
+>
+> | | pilot (this document) | current |
+> |---|---|---|
+> | depots | 334 solved | 501 real, 481 with a costed ZCTA |
+> | ZCTAs costed | 2,333 (10 metros) | 8,037 (57.8% of US households) |
+> | median $/parcel | $1.0830 | **$1.1389** |
+> | median line haul | 4.02 mi | **9.09 mi** |
+> | service/vehicle/drive/distance | 66.96/22.93/6.97/3.14 | **59.75/21.63/12.63/5.98** |
+> | artefact | `cost_report.json` `20260916-064133-4d65` | `cost_by_station.json` `20260916-131845-34f1` |
+>
+> The `1/√δ` mechanism, the parameter provenance and the derivations below are
+> all unchanged and still the best explanation of how the model works — only
+> the depot layer and the costed universe moved. **`docs/NUMBERS.md` §10 is the
+> current figures**, §10.3 is the full before/after, and §10.4 records that the
+> "zero of 43 facilities sit in their metro's cheapest decile" statistic is
+> **withdrawn** as unidentified.
+
+
 **What it costs to deliver one parcel in one ZIP-code area, why the answer
 turns on how tightly packed the deliveries are and how far the nearest depot
 is — two things that are substantially the same thing — and how to read the

@@ -73,11 +73,17 @@ within-metro dispersion is \emph{sufficient} for a covariate to fail (7 of 7
 with coefficient of variation below 0.6 land on the parameter boundary) while
 high dispersion is \emph{necessary but not sufficient} (9 of 14 above 1.3 are
 interior), with the $0.6$--$1.3$ band empty. Third, a parcel-level cost model
---- a Daganzo-style continuous approximation over a solved 334-depot p-median
-network, 2{,}333 ZIP-code areas, median \$1.0830 per parcel --- which does
-work, and which shows that the cheapest places to serve are systematically not
-where facilities get built: of 43 pilot facilities, \textbf{zero} sit in the
-cheapest decile of their own metropolitan area. We also release a recovered
+--- a Daganzo-style continuous approximation whose depot layer is the
+operator's \textbf{501 address-geocoded delivery stations} rather than a
+solved network, covering 8{,}037 ZIP-code areas and 57.8\% of US households,
+median \$1.1389 per parcel --- which does work, and which prices the
+difference between real and optimal siting: substituting the observed
+buildings for a 334-depot $p$-median raises the median \textbf{5.2\%} and more
+than doubles median line haul, from 4.02 to 9.09 miles. Because cost falls as
+$1/\sqrt{\delta}$, the cheapest places to serve are the densest and the
+densest are where a warehouse cannot be built --- feasibility binds before
+economics, which is also why a raw warehouse count out-predicts every
+covariate we fitted. We also release a recovered
 dataset of 1{,}904 facilities, 1{,}420 with opening years, OCR'd from an
 industry document whose tables are images and validated three ways. The
 contribution is methodological as much as empirical: pre-registration is rare
@@ -149,9 +155,14 @@ nine distinct values across two hundred candidate ZIP codes, however important
 the underlying construct is. We tie this to an asymmetric dispersion
 regularity and state its limits.
 
-\item \textbf{A parcel-level cost model that does work}, and the finding that
-feasibility binds before economics: the cheapest ZIP codes to serve are the
-densest, and the densest are where a warehouse cannot be built.
+\item \textbf{A parcel-level cost model that does work, on an observed depot
+layer.} The line-haul term is measured to the operator's 501 real
+address-geocoded delivery stations rather than to a solved network, which both
+removes the largest unclassified assumption in the model and prices it:
+\textbf{+5.2\%} on the median and \textbf{$\times 2.26$} on median line haul.
+The accompanying finding is that feasibility binds before economics --- the
+cheapest ZIP codes to serve are the densest, and the densest are where a
+warehouse cannot be built.
 
 \item \textbf{A recovered dataset.} 1{,}904 facilities, 1{,}420 with opening
 years, read out of an industry PDF whose tables are images, with three
@@ -174,11 +185,16 @@ non-results section in the paper for that reason.
 standard method applied to a new dataset; the contribution is the measurement
 and the protocol, not the machinery.
 
-\emph{Facility location.} The depot layer solves a $p$-median problem over
-candidate nodes. Hakimi's result that an absolute median of a graph always
-lies at a vertex~\cite{hakimi1964} is what makes a discrete candidate set
-legitimate; Klose and Drexl~\cite{klosedrexl2005} survey the model family and
-its capacitated and multi-stage variants.
+\emph{Facility location.} An earlier version of the depot layer solved a
+$p$-median problem over candidate nodes; Hakimi's result that an absolute
+median of a graph always lies at a vertex~\cite{hakimi1964} is what made a
+discrete candidate set legitimate, and Klose and Drexl~\cite{klosedrexl2005}
+survey the model family and its capacitated and multi-stage variants. That
+solve is retired from the cost path. The depots are now observed, so the
+relevant use of this literature here is as a \emph{benchmark}: the $p$-median
+is the distance-minimising placement for a given number of sites, and the gap
+between it and the operator's realised network is a quantity we report rather
+than a modelling choice we make.
 
 \emph{Continuous approximation.} The cost model computes distance per stop as
 a line-haul term shared across a tour of $C$ stops plus a local term scaling
@@ -441,11 +457,38 @@ land area. Distance per stop is
 \underbrace{\frac{2L}{C}}_{\text{line haul}}
 \end{equation}
 with $\delta$ stop density per square mile of land, $\rho$ a circuity factor,
-$L$ great-circle miles to the nearest solved depot and $C$ stops per tour.
-Depots are solved as a $p$-median over ZCTA candidate nodes, $p$ set per metro
-by $\lceil$metro daily parcels / 40{,}000$\rceil$. Cost per stop is then a
-per-mile term, a per-hour driver term at 22\,mph, a flat service time and a
-vehicle lease share. Five parameter scenarios are run end to end.
+$L$ great-circle miles to the nearest depot and $C$ stops per tour. Cost per
+stop is then a per-mile term, a per-hour driver term at 22\,mph, a flat
+service time and a vehicle lease share. Five parameter scenarios are run end
+to end.
+
+\textbf{The depots are observed, not solved.} $L$ is measured to the nearest
+of the operator's \textbf{501 address-geocoded delivery stations}. The
+facility panel holds 693 rows; 192 carry only a ZCTA-centroid fallback
+coordinate and are excluded, because a centroid depot sits inside its own
+catchment by construction and drives that ZCTA's line haul to zero --- the
+single most cost-reducing error available in this model. A ZCTA is costed if
+its internal point lies within a 15-mile great-circle catchment of some
+station; the catchment radius is the one this project pre-registered for an
+unrelated analysis, so reusing it spends no new researcher degree of freedom.
+Great-circle miles decide the catchment; the miles the model \emph{charges}
+pass through $\rho$ exactly as the local term does.
+
+The catchment is a trade of coverage against the regime the approximation is
+valid in, and it is \emph{not} chosen for density. A sweep from 5 to 45 miles
+is monotone in both directions: 5 miles gives a median 588 stops/sq.\,mi but
+reaches 21.9\% of US households; 45 miles reaches 81.6\% at 44 stops/sq.\,mi.
+\textbf{No radius is simultaneously denser than the retired pilot
+(475 stops/sq.\,mi) and covers a majority of US households.} At 15 miles the
+costed set is \emph{sparser} than the pilot --- 350 against 475 stops/sq.\,mi,
+866 against 1{,}075 households/sq.\,mi --- and we report the resulting regime
+violations rather than absorbing them (Section~\ref{sec:threats}).
+
+Three coverage facts travel with every cost figure in this paper. Twenty of
+the 501 stations contribute no costed ZCTA. Three hundred and sixteen ZCTAs,
+0.83\% of catchment households, are dropped for carrying no OEWS driver wage
+and \textbf{nothing is imputed}. Eight of the 501 stations are announced
+rather than open.
 
 \subsection{Reporting discipline}
 
@@ -709,77 +752,128 @@ silent about intermediate dispersion. We state it as a screening heuristic
 worth seconds of compute before fitting anything, and no more than that.
 
 \subsection{The cost model works, and says feasibility binds first}
+\label{sec:cost}
 
 \begin{figure}[!t]
 \centering
 \includegraphics[width=\columnwidth]{fig_cost_by_metro.png}
-\caption{Median and interquartile cost to deliver one parcel, by metro, over
-2{,}333 ZIP-code areas (2023\,Q4 baseline scenario). Every value is read at
+\caption{Median and interquartile cost to deliver one parcel, by metro
+(2023\,Q4 baseline scenario, observed depot layer). Every value is read at
 build time from
-\texttt{outputs/tables/cost\_to\_serve\_2023q4\_baseline.parquet}; nothing in
-the figure is typed by hand. Dashed line: national median \$1.08. Cheapest
-metro Miami \$0.94, dearest Boise \$1.43.}
+\texttt{outputs/tables/cost\_by\_station\_2023q4\_baseline.parquet}; nothing
+in the figure is typed by hand. The 15 metros drawn are those with at least
+eight costed stations --- 194 of the 481 stations, selected by a threshold
+rather than a rank because eight metros tie at five stations and a ``top
+$n$'' cut would break that tie arbitrarily. The remaining 159 metros are
+mostly single-station, where an interquartile bar has no content: the median
+metro-level IQR across all 174 is \$0.00.}
 \label{fig:cost}
 \end{figure}
 
 \begin{table}[!t]
-\caption{The 2023\,Q4 baseline cost model, over 2{,}333 ZCTAs and a solved
-334-depot network. Source: \texttt{cost\_report.json}; every figure
-re-derived from
-\texttt{outputs/tables/cost\_to\_serve\_2023q4\_baseline.parquet}.}
+\caption{The 2023\,Q4 baseline cost model on the observed depot layer, over
+8{,}037 ZCTAs and 501 real delivery stations. Source:
+\texttt{cost\_by\_station.json}, \texttt{run\_id 20260916-131845-34f1}; the
+per-ZCTA and per-station tables it is computed from ship with the repository.}
 \label{tab:cost}
 \centering
 \begin{tabular}{lr}
 \hline
-Median cost per parcel & \$1.0830 \\
-p10 / p90 & \$0.9778 / \$1.4180 \\
-Total daily parcels & 13{,}152{,}992 \\
-Total daily cost & \$14{,}001{,}626 \\
-Vans ($\lceil \sum \text{van-days} \rceil$) & 78{,}292 \\
+Median cost per parcel & \$1.1389 \\
+p10 / p90 & \$1.0008 / \$1.3445 \\
+Pooled cost per parcel & \$1.1281 \\
+ZCTAs costed & 8{,}037 \\
+Households covered & 74{,}399{,}605 (57.8\%) \\
+Stations (real / with a costed ZCTA) & 501 / 481 \\
+Metros containing a station & 174 \\
+Median line haul & 9.09 mi \\
+Total daily parcels & 42{,}048{,}849 \\
+Total daily cost & \$47{,}434{,}701 \\
+Vans ($\lceil \sum \text{van-days} \rceil$) & 250{,}291 \\
 \hline
 \end{tabular}
 \end{table}
 
 Table~\ref{tab:cost} summarises the baseline scenario and Fig.~\ref{fig:cost}
-shows how it distributes across the ten pilot metros.
-
-The stop-weighted decomposition, recomputed from the parquet, is service time
-\textbf{66.96\%}, vehicle 22.93\%, drive time 6.97\%, distance 3.14\%. Labour
-at the door carries the bill and the routing mathematics is decoration ---
-a conclusion the sensitivity analysis confirms rather than threatens. Across
-the five parameter scenarios the median moves from $-17.1\%$ (dense routing,
-\$0.8979) to $+4.4\%$ (congested, \$1.1302).
+shows how it distributes across metros. Across the five parameter scenarios
+the median moves from $-17.2\%$ (dense routing, \$0.9431) to $+7.7\%$
+(congested, \$1.2264).
 
 \begin{table}[!t]
-\caption{Where the 43 pilot facilities sit in the cost distribution of their
-own metropolitan area, against what chance alone would give. Re-derived by
-joining \texttt{facilities.csv} to
-\texttt{cost\_to\_serve\_2023q4\_baseline.parquet} on ZIP.}
-\label{tab:decile}
+\caption{What replacing a solved depot network with the observed one costs.
+The pilot column is a Daganzo model identical in every parameter, differing
+only in that its depots are a 334-site $p$-median over ten metros. Source:
+\texttt{cost\_by\_station.json}, \texttt{pilot\_comparison}.}
+\label{tab:depotswap}
 \centering
 \begin{tabular}{lrr}
 \hline
-& observed & chance \\
+& solved depots & observed depots \\
 \hline
-In the cheapest 10\% of its metro & \textbf{0} (0\%) & 10\% \\
-In the cheapest 25\% & 5 (11.6\%) & 25\% \\
-Median within-metro percentile rank & 0.441 & 0.500 \\
+Depots & 334 $p$-median & 501 real (481 used) \\
+ZCTAs costed & 2{,}333 & 8{,}037 \\
+Median cost per parcel & \$1.0830 & \$1.1389 \\
+p10 / p90 & 0.9778 / 1.4180 & 1.0008 / 1.3445 \\
+Median line haul (mi) & 4.02 & 9.09 \\
+Service time share & 66.96\% & 59.75\% \\
+Vehicle share & 22.93\% & 21.63\% \\
+Drive-time share & 6.97\% & 12.63\% \\
+Distance share & 3.14\% & 5.98\% \\
+Scenario span on median & $-17.1/+4.4\%$ & $-17.2/+7.7\%$ \\
 \hline
 \end{tabular}
 \end{table}
 
-The finding that matters for the rest of the paper is what the cost surface
-says about where facilities actually are. Joining the 43 pilot facilities to
-the costed table by ZIP and ranking each within its own metro
-(re-derived from \texttt{facilities.csv} and the baseline parquet) gives
-Table~\ref{tab:decile}.
+\textbf{The level is the least interesting line in Table~\ref{tab:depotswap}.}
+Replacing the solve with the observed network moves the median \textbf{+5.2\%},
+which is inside the width of a single stress scenario. What moves materially is
+the \emph{composition}. Median line haul more than doubles, 4.02 to 9.09 miles,
+because a real national network is not a distance-minimising one --- and
+because the costed universe is now national rather than ten dense metros. Drive
+time and distance together rise from \textbf{10.1\%} of a stop to
+\textbf{18.6\%}. Labour at the door still carries the bill at 59.75\%, but the
+summary this project previously published --- that the routing mathematics is
+decoration --- described the solved network and no longer holds. The
+consequence for this paper is that the parameters now carrying the headline
+have shifted from \texttt{service\_minutes\_per\_stop} toward
+\texttt{avg\_speed\_mph}, \texttt{circuity} and \texttt{van\_mpg}, none of
+which has an external source (Section~\ref{sec:threats}).
 
-\textbf{Zero of forty-three.} This is not a broken cost model; it is the model
-working and revealing something. Cost falls as $1/\sqrt{\delta}$, so the
-cheapest ZIPs to serve are the densest, and the densest are precisely where a
-warehouse cannot physically be built. \textbf{Feasibility binds before
-economics} --- which is also why a raw warehouse count out-predicts everything
-else we fitted: that count is a measure of where building is \emph{possible}.
+\textbf{A $p$-median is a lower bound, so the 5.2\% is a measurement.} The
+solve minimises demand-weighted distance by construction; the operator's
+buildings sit where land, labour, zoning and lease terms allowed. The gap
+between the two is the cost of siting in the world rather than in the
+objective function, and on this network it is 5.2\% of the median parcel and a
+doubling of line haul. We know of no comparable figure computed on a real
+US last-mile network from public data.
+
+\textbf{Feasibility binds before economics, and this is an argument about the
+cost function rather than a statistic.} Cost falls as $1/\sqrt{\delta}$. The
+cheapest ZIPs to serve are therefore the densest, and the densest are
+precisely where a warehouse cannot physically be built --- no parcel, no dock,
+no zoning, no lease. That is also why a raw warehouse count out-predicts
+everything else we fitted: the count measures where building is
+\emph{possible}, not where delivering is cheap.
+
+\textbf{A statistic supporting that claim is withdrawn, and the withdrawal is
+itself a result.} Earlier versions of this work reported that of 43 pilot
+facilities, zero sat in the cheapest decile of their own metro. That test is
+\textbf{not identified on the present model} and we do not restate it with new
+digits. Once the depots \emph{are} the facilities, a ZCTA containing a station
+has a line haul of approximately zero because the station is inside it; line
+haul enters as $2L/C$ and drive-plus-distance is 18.6\% of the bill, so the
+model makes every facility's own ZCTA cheap by construction. Ranked on the
+published frame, 275 of 476 matched facilities (57.8\%) land in the cheapest
+decile at a median percentile rank of 0.080 --- the circularity, measured.
+Re-pricing every ZCTA against the nearest station \emph{outside} it does not
+rescue the test: the mask gives \textbf{33 of 476 (6.9\%)} for the 501
+stations but \textbf{7 of 43 (16.3\%)} for the original pilot facilities,
+below and above the 10\% a uniform placement would give. The mask
+under-corrects in dense metros, where a masked station's neighbour is two
+miles away (median masked line haul 6.8 miles for the 43 against 10.4 for the
+501). A statistic whose sign depends on which facility set draws the
+counterfactual is not evidence for either sign. The mechanism in the preceding
+paragraph does not depend on it.
 
 \subsection{Three further programmes, each retired on a measurement}
 
@@ -977,6 +1071,90 @@ excluded the numeraire under re-split percentiles contains it under a
 metro-clustered bootstrap, a clustered sandwich and an independent sandwich
 alike.
 
+\subsection{The depot layer was invented; it is now observed, and the
+substitution has a price}
+
+This subsection used to record a defect and now records its repair and the
+cost of the repair, because both are measurements.
+
+\textbf{What the old model assumed.} The depot layer was solved. The number of
+depots in a metro was $\lceil$metro daily parcels / 40{,}000$\rceil$ and their
+positions were a $p$-median over ZCTA candidate nodes: 334 buildings the
+operator never chose. Two things made this worse than an ordinary modelling
+simplification. First, the throughput constant and the placement algorithm
+entered the line-haul term, which is the only channel by which geography
+reaches the bill, and \texttt{parcels\_per\_depot\_per\_day} was the largest
+\emph{rank} mover in the whole model. Second --- and this is the transferable
+part --- placement was implemented as an \emph{algorithm choice} rather than a
+constant, so it had no entry in any range dictionary, could not be swept, and
+was therefore structurally invisible to the sensitivity analysis. A sensitivity
+analysis enumerates the things you called parameters. Depot placement moved the
+answer further than anything on that list and was not on it. Changing the
+solver from $k$-means to $p$-median alone removed 9.3\% of billed parcel-miles
+and reordered the published ranking (Spearman $\rho = 0.888$).
+
+\textbf{What replaced it.} The facility panel now carries 501 address-geocoded
+delivery stations, so the assumption is deleted rather than improved. There is
+no placement step, no throughput constant and no capacity story:
+\texttt{parcels\_per\_depot\_per\_day} no longer enters the cost path at all,
+and \texttt{StationCostModel} overrides exactly one method of the Daganzo model
+--- \texttt{linehaul\_miles} --- so every other parameter is inherited and any
+difference between the two runs is attributable to the depot layer.
+
+\textbf{What it cost.} The median rises 5.2\%, \$1.0830 to \$1.1389, and
+median line haul rises from 4.02 to 9.09 miles
+(Table~\ref{tab:depotswap}). \textbf{Real siting is less cost-optimal than a
+$p$-median solve, and 5.2\% is how much less on this network} --- a finding in
+its own right, since the $p$-median is by construction the distance-minimising
+placement and therefore a lower bound. Part of the doubling is also
+composition: the costed universe moves from ten dense metros to 57.8\% of US
+households, and the added ring is sparser.
+
+\textbf{What it did not fix.} Three things are now the binding coverage
+limitations and are stated with the headline throughout: 20 of the 501 stations
+contribute no costed ZCTA; 316 ZCTAs (0.83\% of catchment households) are
+dropped for carrying no OEWS driver wage, with \textbf{nothing imputed}; and
+8 of the 501 are announced rather than open. All 501 are Amazon delivery
+stations, so ``the operator's network'' remains one operator and one class.
+A further 192 of the 693 panel rows are excluded because their only coordinate
+is a ZCTA centroid, and a centroid depot would drive its own ZCTA's line haul
+to zero --- the exclusion is necessary, and it also means the depot layer is
+the geocodable 72\% of the panel rather than the panel.
+
+\subsection{The composition shift moves which unsourced parameter matters}
+
+With a solved network the bill was 66.96\% service time and 10.1\% driving
+plus fuel, and the defensible summary was that labour carries the headline
+while the routing mathematics is decoration. On the observed network driving
+plus fuel is \textbf{18.6\%}. Service time still dominates at 59.75\%, but the
+sensitivity of the headline has moved toward \texttt{avg\_speed\_mph} (22),
+\texttt{circuity} (1.3) and \texttt{van\_mpg} (14), none of which is
+externally sourced, and the scenario span widens accordingly: the congested
+arm now costs $+7.7\%$ where it cost $+4.4\%$. Any reader carrying forward the
+older summary will under-weight exactly the parameters this model is now most
+exposed to.
+
+\subsection{A test that stopped being identified when the model improved}
+
+We previously reported that zero of 43 facilities sat in the cheapest decile
+of their own metro. \textbf{We withdraw the statistic.} The reason is
+structural rather than arithmetic and is worth stating as a threat because the
+failure mode is general: the test was identified only while the depot layer was
+\emph{wrong}. Once depots are the facilities, a ZCTA holding a station has a
+line haul of about zero because the station is inside it, and drive plus
+distance is 18.6\% of the bill, so the cost model makes every facility's own
+ZCTA cheap by construction. On the published frame the test inverts to 275 of
+476 (57.8\%) in the cheapest decile, which measures the circularity and nothing
+else. A leave-one-out counterfactual --- re-pricing every ZCTA against the
+nearest station outside it --- gives 6.9\% on the 501 stations and 16.3\% on
+the original 43, straddling the 10\% chance rate in \emph{opposite directions}
+on the same frame under the same mask. We report both arms rather than the
+convenient one. The claim the statistic was recruited to support, that
+feasibility binds before economics, is argued in Section~\ref{sec:cost} from
+the $1/\sqrt{\delta}$ form of the cost function and from the fact that a raw
+warehouse count is the only covariate that predicts siting; it does not rest
+on a decile count.
+
 \subsection{The cost model's central constant is undefended}
 
 The local-travel coefficient is set to $k=0.57$. Of the four sources our code
@@ -1000,26 +1178,35 @@ robust to the constant while its \emph{defence} is not.
 Nobody publishes what it actually costs this operator to deliver a parcel, so
 no external validation is possible. What we can say is bounded and we say only
 that: the structure is a published method, five parameter scenarios span
-$-17.1\%$ to $+4.4\%$ on the median, the decomposition is internally
+$-17.2\%$ to $+7.7\%$ on the median, the decomposition is internally
 recomputable from the stored table, and eight of the model's parameters have no
-external source at all. A Monte Carlo over parameter ranges is \emph{not} a
+external source at all. The depot layer is now observed, which removes one
+unvalidated input, but observing where the buildings are says nothing about
+what the operator pays to run them. A Monte Carlo over parameter ranges is \emph{not} a
 confidence interval --- every range is ours --- and one parameter was never
 sampled at all, so every band it reports is a floor.
 
 \subsection{Validity conditions of the continuous approximation}
 
-We apply one constant to all 2{,}333 ZCTAs as though each were a compact convex
+We apply one constant to all 8{,}037 ZCTAs as though each were a compact convex
 routing district. They are not: ZCTAs approximate postal delivery routes, which
 are by construction long thin things. Daganzo's own abstract states that zone
 \emph{shape} is his contribution and that ignoring it during clustering can
 significantly increase travel distances; our repository holds no shape or
-compactness measure at all. Separately, 126 of 2{,}333 ZCTAs (5.4\%) generate
-fewer than the 120 stops a tour assumes, so the vehicle's working area exceeds
-the zone whose density is being charged, and 29 (1.2\%) fall below the $n \geq
-15$ that Larson and Odoni call adequate. Those ZCTAs carry 0.07\% of parcels
-and are already reported as the expensive tail, so the effect on the headline
-is small --- but the condition was never written down, and a limitation nobody
-records is not a limitation anybody checks.
+compactness measure at all. Separately, \textbf{496 of 8{,}037 ZCTAs (6.17\%)}
+generate fewer than the 120 stops a tour assumes, so the vehicle's working area
+exceeds the zone whose density is being charged, and \textbf{136 (1.69\%)} fall
+below the $n \geq 15$ that Larson and Odoni call adequate. Those ZCTAs carry
+0.077\% and 0.0035\% of catchment households respectively and are already
+reported as the expensive tail, so the effect on the headline is small.
+\textbf{Both fractions rose} when the depot layer became real --- they were
+5.40\% and 1.24\% on the ten-metro pilot --- because the 15-mile station
+catchment is \emph{sparser} than the pilot it replaces, 350 against 475
+stops/sq.\,mi. An earlier draft of this paper asserted the opposite, that the
+catchment was denser at 742 against 475; that comparison put households per
+square mile against stops per square mile and is withdrawn. No catchment radius
+we swept is both denser than the pilot and covers a majority of US households,
+so the radius is a coverage/regime trade and is defended as one.
 
 \subsection{Engineering caveats that bear on the numbers}
 
@@ -1085,13 +1272,22 @@ are published once, late, and without history. Layered on top is a measured
 floor on visibility: OSHA holds a record in 138 of the 488 cities where an
 independent census says a delivery station exists.
 
-Alongside the nulls sits a cost model that does work --- 2{,}333 ZIP-code
-areas, a solved 334-depot network, \$1.0830 median per parcel, a decomposition
-that says 67\% of the bill is a driver standing at a door --- and a finding
-that reframes the whole exercise: of 43 facilities, zero sit in the cheapest
-decile of their own metro. The places that are cheapest to serve are the places
-where a warehouse cannot be built. Feasibility binds before economics, and no
-amount of public demographic data recovers a constraint that is not published.
+Alongside the nulls sits a cost model that does work --- 8{,}037 ZIP-code
+areas covering 57.8\% of US households, an \emph{observed} depot layer of 501
+real delivery stations, \$1.1389 median per parcel, a decomposition that says
+60\% of the bill is a driver standing at a door. Deleting the solved depot
+network in favour of the buildings the operator actually runs is the largest
+single improvement in this model's realism and it has a price we can state:
+\textbf{+5.2\% on the median and a doubling of line haul, 4.02 to 9.09 miles}.
+Real siting is less cost-optimal than a $p$-median solve, and that is the
+measurement, not the defect.
+
+It is also the frame for the whole exercise. Cost falls as one over the square
+root of density, so the places cheapest to serve are the densest, and the
+densest are the places where a warehouse cannot be built. Feasibility binds
+before economics, and no amount of public demographic data recovers a
+constraint that is not published --- which is why the one covariate that
+predicts anything is a count of the warehouses already there.
 
 \vspace{1em}
 \noindent\textbf{Availability.} Code, artefacts, the sealed pre-registration

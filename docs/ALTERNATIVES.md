@@ -178,21 +178,24 @@ price the parcel they have already chosen.
 saving from siting at each candidate. But a test on 2026-09-14 found
 something that must be said out loud before anyone builds on this:
 
-```
-  40 pilot facilities, ranked by cost-to-serve within their own metro
-      in the cheapest 10% of the metro     0%    (chance: 10%)
-      in the cheapest 25%                 12%    (chance: 25%)
-      median rank                       0.44     (chance: 0.50)
-```
+**Amazon does not build where it is cheapest to serve** — but the *measurement*
+that sentence used to rest on is withdrawn, and only the mechanism survives.
 
-**Amazon does not build where it is cheapest to serve.** Zero of forty.
+Under Daganzo, cost falls as one over the square root of density, so the
+cheapest ZIPs to serve are the densest ones — central Manhattan — and those
+are precisely where you cannot build a warehouse. **Feasibility binds before
+economics.** It is also why counting warehouses wins: that count is really a
+measure of where building is possible.
 
-That is not a broken cost model. Under Daganzo, cost falls as one over the
-square root of density, so the cheapest ZIPs to serve are the densest ones —
-central Manhattan — and those are precisely where you cannot build a
-warehouse. **Feasibility binds before economics.** It is also why counting
-warehouses wins: that count is really a measure of where building is
-possible.
+> **Withdrawn, 2026-09-16.** This block used to read *"40 pilot facilities
+> ranked by cost-to-serve within their own metro: 0% in the cheapest 10% of
+> the metro against a 10% chance rate"*. Do not quote it. Once the cost
+> model's depot layer became the operator's 501 real stations, the test lost
+> identification: a ZCTA holding a station has a line haul of ~0 **because the
+> station is inside it**, so the model makes every facility's own ZCTA cheap
+> by construction. Masking each station and re-pricing gives 6.9% for the 501
+> and 16.3% for the original 43 — below and above chance, opposite
+> conclusions from one run. `docs/NUMBERS.md` §10.4 is the record.
 
 So the tool prices a SPECIFIC parcel somebody is already considering. It
 does not rank all ZIPs and it must not be sold as though it does.
@@ -341,12 +344,15 @@ No longer the dates. Four things, in descending order of how likely each is to
 be the one that bites.
 
 ```
-  1  SELECTION. Amazon does not site at random and this document already
-     measures it: Option C found Amazon builds in ZERO of forty metros'
-     cheapest decile, because feasibility binds before economics. A ZCTA
-     that can host a warehouse differs from one that cannot in exactly the
-     ways house prices differ. Parallel trends is the assumption and it is
-     the one a reviewer will attack first.
+  1  SELECTION. Amazon does not site at random, because feasibility binds
+     before economics: cost falls as 1/sqrt(density), the cheapest places
+     to serve are the densest, and the densest are where a warehouse
+     cannot be built. (This used to cite a decile statistic from Option C;
+     that statistic is withdrawn -- NUMBERS.md 10.4 -- and the mechanism
+     is what carries the point.) A ZCTA that can host a warehouse differs
+     from one that cannot in exactly the ways house prices differ.
+     Parallel trends is the assumption and it is the one a reviewer will
+     attack first.
   2  ATTENUATION FROM DATE ERROR, above. Measurable, and it biases
      towards finding nothing.
   3  GEOCODING. 0 of 104 national, 0 of 589 MWPVL and 0 of 43 pilot

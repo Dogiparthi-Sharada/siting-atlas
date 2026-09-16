@@ -33,6 +33,7 @@ how each estimator works and why it was chosen.
 | [14](#e14) | The pre-registered metro-entry test | Which *metro* gets the next station? | **H0** on every arm × form. 0 of 7 years beaten a households baseline | `metro_entry.json` |
 | [15](#e15) | Subsidies, line-haul saving, data coverage | Three smaller questions | All negative, each for a different reportable reason | see §15 |
 | [16](#e16) | Data acquisition — six ways to build the target variable | Where does a panel of dated delivery stations come from? | Five failed. The survivors are LLM-assisted labelling and an OCR pass graded at **94.71%** | `mwpvl_extraction.json`, `mwpvl_validation.json`, `satellite_dates.csv` |
+| [17](#e17) | Real stations as the depot layer | Does deleting the invented 334-depot p-median change the cost model? | Level barely (**+5.2%**), composition a lot (drive+distance 10.1% → **18.6%**), and it **withdraws the cheapest-decile finding** — that test is unidentified once depots are the facilities | `cost_by_station.json` |
 
 ---
 
@@ -970,6 +971,77 @@ shipped reads 210 of the 362 rows and writes **nine**. The thirteen also **must 
 a `with_saving` fit: they carry no opening date, so `choice.build` counts every one of them
 first-in-metro by construction, which would dilute 35 informative decisions with thirteen
 degenerate ones and make an underpowered test look better resolved than it is.
+
+---
+
+<a id="e17"></a>
+## 17. Real stations as the depot layer
+
+**Asks.** `cost/depots.py` invents the depot network: `ceil(metro daily parcels / 40 000)`
+sites per metro, placed by a p-median, **334 buildings the operator never chose**. The
+facility panel now carries 501 address-level geocoded Amazon delivery stations. Does
+deleting the assumption change the answer, and what does a cost *per station* look like?
+
+**Tested.** `cost/stations.py` + `cost/station_runner.py`. Depots are the 501 rows of
+`geocoded_expanded.csv` with a true coordinate (192 of 693 excluded — their coordinate is a
+ZCTA-centroid fallback, and a centroid depot drives its own ZCTA's line haul to zero). Each
+ZCTA takes the great-circle distance to its nearest station as `L`; `StationCostModel`
+subclasses `DaganzoCostModel` and overrides **only** `linehaul_miles`, so every parameter
+and the whole cost identity are inherited and any difference is attributable to the depot
+layer. Costed set: every ZCTA in the national panel within **15 miles** of a station, all
+five scenarios, 2023Q4.
+
+**Result.** `cost_by_station.json`, `run_id 20260916-131845-34f1`. **8 037 ZCTAs, 481 of
+501 stations, 57.8% of US households** (8 353 ZCTAs and 58.3% before dropping 316 ZCTAs,
+0.83% of catchment households, that carry no OEWS driver wage; 20 stations lose every ZCTA
+to a nearer neighbour). Median **$1.1389**/parcel, p10 $1.0008, p90 $1.3445 — **+5.2%** on
+the pilot's $1.0830. Scenario span **−17.2% to +7.7%** against the pilot's −17.1% to +4.4%.
+
+**The level is the least interesting part.** Median line haul **doubles**, 4.02 → 9.09
+road miles, because the real network is national and the p-median's was not, and the
+decomposition moves with it: service time **66.96% → 59.75%**, vehicle 22.93% → 21.63%,
+drive time **6.97% → 12.63%**, distance **3.14% → 5.98%**. Driving is now a fifth of the
+bill rather than a tenth, which shifts which unsourced parameter carries the headline.
+
+**Two claims are weakened and both are reported as such.**
+
+1. **The catchment is SPARSER than the pilot, not denser.** Median stop density **350**
+   stops/sq mi against the pilot's **475**; on households, 866 against 1 075. The radius
+   sweep is monotone — 5 mi gives 588 stops/sq mi at 21.9% of households, 45 mi gives 44 at
+   81.6% — so **no radius is both denser than the pilot and covers a majority of US
+   households**. 15 miles is a coverage/regime trade, not a strengthening. Consistent with
+   that, `below_one_tour` rises 5.40% → **6.17%** and the Larson–Odoni `n ≥ 15` floor
+   1.24% → **1.69%**, though both are trivial by demand: 0.077% and 0.003% of catchment
+   households.
+2. **"Zero of 43 facilities sit in their metro's cheapest decile" is WITHDRAWN, not
+   restated.** The test stopped being identified when the model improved, which is why the
+   owner withdrew the statistic rather than publishing a new number for it. Once depots ARE
+   the facilities, a ZCTA containing a station has a line haul of ~0 *because the station is
+   in it* — median 2.1 miles against 9.1 across the costed set — so the model makes every
+   facility's own ZCTA cheap by construction. On the published frame the test reads **275 of
+   476 (57.8%) in the cheapest decile, median rank 0.080**: that is the circularity, not a
+   finding. Masking each ZCTA's own station and re-pricing
+   (`assign(exclude_own_zcta=True)`, median haul 10.4 mi) gives **33 of 476, 6.9%, median
+   rank 0.642** — but see *Does not support* below, because the same mask on the original
+   facility set gives the opposite sign. No arm of this test is quotable.
+
+   **What survives is the mechanism, and it never needed the statistic.** Cost falls as
+   `1/√δ`, so the cheapest places to serve are the densest and the densest are where a
+   warehouse cannot be built. *Feasibility binds before economics* is a claim about the
+   cost function and the land market, corroborated by the fact that a raw warehouse count
+   is the only covariate that predicts siting. State it that way and attach no decile
+   count to it. `docs/NUMBERS.md` §10.4 is the canonical record of the withdrawal.
+
+**Does not support.** The 43 pilot facilities re-ranked on the leave-one-out frame give
+**7 of 43, 16.3%, median rank 0.333** — *over*-represented, the opposite sign to the 501's
+6.9%, on the same frame under the same mask. The mask under-corrects in dense metros, where
+a masked station's neighbour is often two miles away (median leave-one-out haul 6.8 mi for
+the 43 against 10.4 for the 501). So the two arms are not one result plus a caveat: they
+straddle the 10% chance rate in opposite directions, and **the test is fragile to how the
+counterfactual is drawn**. Also unresolved: **8 of 501 stations are `announced` and 493
+`open`** (the artefact's `stations.by_status` records **no** closed stations — an earlier
+note claiming 2 closed was wrong), and all 501 are Amazon delivery stations, so the
+"operator's network" is one operator's and one class.
 
 ---
 

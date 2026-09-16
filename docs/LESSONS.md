@@ -116,6 +116,7 @@ it happened.
 | 6.2 Cite what you read — and grade every citation
 | 6.3 A scoring rule can be proper while its skill score is improper
 | 6.4 A figure must not contain a number that was never computed
+| 6.5 A test can stop being identified because your model got better
 
 **[Part 7 — Data that lies quietly](#part-7--data-that-lies-quietly)**
 | 7.1 A geography can change underneath a join
@@ -1214,6 +1215,32 @@ which of them could move the answer further than your widest parameter. Then
 check whether any two of your headline figures are deterministic functions of
 each other.
 
+**Closed, 2026-09-16, and the close is worth as much as the finding.** Point 3
+above is no longer true of the cost model, because the lever was **deleted
+rather than tuned**. The facility panel turned out to carry 501
+address-geocoded delivery stations, so `cost/stations.py` uses those as the
+depots and `cost/depots.py` is retired from the cost path. There is no
+placement algorithm left to be invisible to a sensitivity sweep, and
+`parcels_per_depot_per_day` — the largest *rank* mover in the model, Spearman
+0.90 — no longer enters the cost path at all.
+
+The price of the repair is the interesting part, and it is a measurement:
+median cost per parcel $1.0830 → **$1.1389 (+5.2%)**, median line haul
+**4.02 → 9.09 miles** (`cost_by_station.json`, `run_id 20260916-131845-34f1`;
+`NUMBERS.md` §10.3). A p-median minimises demand-weighted distance by
+construction, so it is a **lower bound** on line haul — the solved network was
+not merely arbitrary, it was *optimistic*, and every cost figure this project
+published before 2026-09-16 was biased downward for a reason nobody had
+stated. **When your unclassified lever is an optimiser, the bias has a known
+sign.** That is a stronger statement than "it moves the answer", and it is
+available for free the moment you notice the lever is a solve.
+
+**The generalisable version.** The fix for a lever that is not a parameter is
+usually not to promote it to a parameter and sweep it. It is to find the
+observation that makes it unnecessary. Ask of every invented layer: *is there a
+dataset in which this thing is simply recorded?* Here the answer had been
+sitting in the project's own `data/external/` directory for a week.
+
 ---
 
 # Part 4 — Believe the artefact, not the document
@@ -1225,8 +1252,12 @@ new way. Four sequences, all verified:
 
 - **Cost per parcel** went $2.10 → $1.51 → $1.0875 — three corrections, each of
   which made the number *more* right
-  ([`DECISION_LOG.md`](DECISION_LOG.md) §3.6) — and `cost_report.json`
-  (`run_id 20260916-064133-4d65`) now reads **$1.0830**. Four published values.
+  ([`DECISION_LOG.md`](DECISION_LOG.md) §3.6) — `cost_report.json`
+  (`run_id 20260916-064133-4d65`) reads **$1.0830**, and the current artefact
+  `cost_by_station.json` (`run_id 20260916-131845-34f1`) reads **$1.1389** on a
+  different and better depot layer. **Five published values, and the fifth is
+  not a correction of the fourth** — it is a different model, and saying so is
+  the whole point of §4.5.
   Note also that the first figure is itself a correction: the widely-quoted
   "$2.12" **appears nowhere in this repository**; reconstructed under the old
   depot proxy the median is **$2.1023**.
@@ -2067,6 +2098,88 @@ travel.
 
 ---
 
+## 6.5 A test can stop being identified because your model got better
+
+**What happened.** For most of this project's life the cost model's headline
+secondary finding was a clean, memorable statistic: *"of 43 facilities ranked
+by cost-to-serve within their own metro, **zero** sit in their metro's cheapest
+decile."* It appeared in the README, the paper's abstract, the paper's
+conclusion, the explainer, the alternatives document and the numbers document.
+It was re-derived from an artefact every time it was quoted. It was not wrong.
+
+Then the depot layer was rebuilt on the operator's 501 real geocoded delivery
+stations instead of a solved 334-site p-median (§3.5). **The statistic did not
+change value — it stopped being a statistic.**
+
+```
+  decile_test, cost_by_station.json, run 20260916-131845-34f1
+
+  arm            facility set        in cheapest decile   median rank   haul
+  as_costed      501 stations (476)   275  57.8%             0.080      2.1 mi
+  as_costed      43 pilot facilities   26  60.5%             0.074      1.9 mi
+  leave_one_out  501 stations (476)    33   6.9%             0.642     10.4 mi
+  leave_one_out  43 pilot facilities    7  16.3%             0.333      6.8 mi
+
+  chance rate under uniform placement: 10%
+```
+
+**Why.** Once the depots ARE the facilities, a ZCTA that contains a station has
+a line haul of roughly zero **because the station is inside it**. Line haul
+enters the cost identity as `2L/C` per stop, and drive plus distance is 18.6% of
+the bill, so the model now makes every facility's own ZCTA cheap **by
+construction**. Ranking facilities on that surface measures the circularity, not
+the siting: the finding inverts from 0% to 57.8% and it means nothing either
+time. *The improvement to the model is precisely what destroyed the test.* The
+test was identified only while the depot layer was wrong in a way that happened
+to be independent of where facilities are.
+
+**And the repair does not rescue it.** The obvious counterfactual is
+leave-one-out: re-price every ZCTA against the nearest station *outside* it, and
+ask how expensive this place would be if the operator had not built here. Run
+it, and the 501 stations give **6.9%** — under-represented against chance, the
+direction the old claim wanted — while the original 43 give **16.3%**,
+over-represented, the opposite sign. Same frame, same mask, same run. The mask
+under-corrects in dense metros, where a masked station's neighbour is two miles
+away, and the two facility sets differ in exactly how dense their metros are
+(median masked haul 6.8 mi against 10.4 mi). **A statistic whose sign depends on
+which set you draw the counterfactual over is not evidence for either sign.**
+
+**What we did.** Withdrew it everywhere, and kept the conclusion by re-sourcing
+it. *Feasibility binds before economics* is a claim about the cost function and
+the land market: cost falls as `1/√δ`, so the cheapest places to serve are the
+densest, and the densest are where a warehouse cannot be built. That argument
+needs the Daganzo form and the observation that a raw warehouse count is the
+only covariate that predicts siting — it never needed a decile count. Removing
+the number cost the sentence nothing except its air of measurement, which it
+was not entitled to.
+
+**Why it was easy to get wrong**, and this is the transferable part. Nothing in
+the usual defences catches this. The statistic was derived from an artefact, not
+typed into prose. It was recomputed on every run. It had a test. It had a
+chance-rate comparison. Every discipline this project adopted after its earlier
+failures was satisfied — because all of those disciplines check whether the
+number is *computed correctly*, and none of them checks whether the number is
+*identified*. Identification is a property of the relationship between your
+estimand and your data-generating process, and it can be silently destroyed by a
+change that improves the model in every other respect.
+
+**Rule.** When you change a model's structure, do not only re-run its numbers —
+**re-ask what each number identifies.** For every claim of the form "X is
+unusually high/low relative to a reference set", write down the counterfactual
+explicitly ("how expensive would this place be if the facility were not here?")
+and check that the new model still lets you construct it. If the improved model
+makes the treated units special *by construction*, the comparison is gone, and a
+leave-one-out patch is a hypothesis to be tested, not a fix to be applied:
+report every arm of it, and if the arms disagree in sign, withdraw the claim
+rather than picking one. **A test that becomes unidentified when the model
+improves is itself a finding — record it, because the alternative is that
+someone reinstates the statistic the next time it reads well.**
+
+*(§3.5 is the change that caused this; `NUMBERS.md` §10.4 is the canonical
+record of the withdrawal; `EXPERIMENTS.md` E17 is the run.)*
+
+---
+
 # Part 7 — Data that lies quietly
 
 ## 7.1 A geography can change underneath a join, and a LEFT JOIN reports the loss as NULL
@@ -2871,8 +2984,12 @@ labour cost precisely in the dense, high-volume ZCTAs the ranking exists to
 identify as cheap."* It was easy to get wrong because both are integer counts of
 things a van handles, both live in the same dataframe, and at
 `parcels_per_stop = 1.4` they differ by only 40% — small enough that the output
-stays plausible, large enough to reorder a ranking. Service time is **66.96% of
-total cost**, so the entire headline rides on that one unit conversion.
+stays plausible, large enough to reorder a ranking. Service time was **66.96%
+of total cost** on the solved-depot pilot this was measured on, and is
+**59.75%** on the current station-based model, so the entire headline still
+rides on that one unit conversion — a little less of it than before, because
+real line haul is more than twice as long as solved line haul and drive plus
+fuel now take 18.6% of the stop rather than 10.1%.
 *Cannibalisation*: a linear decay at 0.18 per unit of neighbour exposure, where
 exposure reaches 99.2 for the most crowded ZCTA, claimed nearby activations
 destroy **90% of each other's demand**. `optimize/params.py:37-51` records the
@@ -3200,8 +3317,10 @@ your rows is identical to no screen at all.)*
 
 ### 4. Verify against the artefact that emitted the number — never a document that quotes it, and least of all a corrected one
 
-Corrections here inherited errors four separate times. $2.10 → $1.51 → $1.0875,
-with the artefact now reading $1.0830. Activations 317 → 330 → 282, where the
+Corrections here inherited errors four separate times. $2.10 → $1.51 → $1.0875
+→ $1.0830, with the current artefact reading **$1.1389** on a rebuilt depot
+layer — a *model change*, not a fifth correction, and the two must not be
+collapsed into one sequence. Activations 317 → 330 → 282, where the
 three accompanying capital figures turned out to be one number in three costumes.
 A retired artefact whose own summary field contradicts the fields beside it. And
 a correction that got every number right and changed one verb —

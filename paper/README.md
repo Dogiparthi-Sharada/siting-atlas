@@ -28,8 +28,9 @@ argument in one paragraph:
 > public visibility (OSHA holds a record in 138 of the 488 cities where an
 > independent census lists a delivery station), a recovered dataset of 1,904
 > facilities OCR'd from an image-only industry document, and a parcel-level
-> cost model that does work and shows that the cheapest places to serve are
-> systematically not where facilities get built.
+> cost model that does work on an observed depot layer — the operator's 501
+> real delivery stations rather than a solved network — and prices the
+> difference: +5.2% on the median parcel and a doubling of line haul.
 
 The methodological contribution is the pre-registration itself. The
 hypothesis, sample, covariates, baselines, metrics and numeric success
@@ -89,15 +90,15 @@ scales it.**
 | Fig. 1 | `fig_visibility_gap.png` | 138 of 488 cities: the public-visibility floor | `outputs/metrics/mwpvl_coverage.json` |
 | Fig. 2 | `fig_metro_auc.png` | out-of-time AUC by held-out year, model vs households baseline | `outputs/metrics/metro_entry.json` |
 | Fig. 3 | `fig_dispersion.png` | within-metro cv against interior/boundary, and the empty band | `experiments/gravity-network/artefacts/gravity_network.json` |
-| Fig. 4 | `fig_cost_by_metro.png` | median and IQR cost per parcel by metro | `outputs/tables/cost_to_serve_2023q4_baseline.parquet` |
+| Fig. 4 | `fig_cost_by_metro.png` | median and IQR cost per parcel by metro | `outputs/tables/cost_to_serve_2023q4_baseline.parquet` — **still the retired pilot table.** `tools/figures/fig_paper.py` has not been repointed at `cost_to_serve_station_2023q4_baseline.parquet`, and the caption now says so |
 
 | Table | What it shows |
 |---|---|
 | I | the visibility gap, as counted (488 / 340 / 138 / 350 / 28.3%) |
 | II | out-of-time AUC by held-out year, verdict arm |
 | III | within-metro dispersion against coefficient state, 21 network terms |
-| IV | the 2023 Q4 baseline cost model |
-| V | where the 43 pilot facilities sit in their own metro's cost distribution |
+| IV | the 2023 Q4 baseline cost model on the observed depot layer |
+| V | what replacing the solved depot network with the observed one costs |
 
 Two further in-column displays — the OCR extraction counts and the assembled
 panel's composition — are deliberately left as unnumbered `center` blocks.
@@ -121,7 +122,8 @@ shown at 37% and its labels would reach the page at about 3pt.
 and would be shown at 46%, putting its tick labels near 4.6pt — below the
 6.5pt floor that `tools/figures/figbase.py` enforces on everything else here.
 Its point, that cost falls as 1/√δ onto a fixed-cost floor, is stated
-algebraically in the text and carried by Table V.
+algebraically in the text. Both were drawn from the retired pilot table and
+would need regenerating before reuse.
 
 **No figure in this paper contains a hand-typed value.** That rule exists
 because this project previously shipped a decay curve with nine hand-entered
@@ -143,18 +145,29 @@ Every figure in the paper is traceable to one of:
 Two quantities in the paper are re-derived rather than read from a JSON
 artefact, and the paper says so both times:
 
-1. The cost decomposition shares (66.96% / 22.93% / 6.97% / 3.14%) and the
-   five-scenario sensitivity range (−17.1% to +4.4% on median cost per
-   parcel; the range read −16.6% to +4.8% until 2026-09-16 and did not
-   reproduce) are recomputed from the
-   stored parquet tables, following `docs/NUMBERS.md` §10.
-2. The "zero of 43 pilot facilities sit in the cheapest decile of their own
-   metro" test is re-derived by joining
-   `data/external/facility_panel/facilities.csv` to
-   `outputs/tables/cost_to_serve_2023q4_baseline.parquet` on ZIP. An earlier
-   bench run recorded in `docs/ALTERNATIVES.md` gives 40 facilities, 0%, 12%
-   and median rank 0.44; the re-derivation gives 43, 0%, 11.6% and 0.441. The
-   paper quotes the re-derivation.
+1. The stops-per-square-mile densities used to defend the 15-mile catchment
+   (350 for the costed set against 475 for the retired pilot) are recomputed
+   from `outputs/tables/cost_to_serve_station_2023q4_baseline.parquet` and
+   `outputs/tables/cost_to_serve_2023q4_baseline.parquet`. Every other density
+   in the paper comes from `cost_by_station.json` directly.
+2. The pilot column of the depot-swap table is read from
+   `cost_by_station.json`'s `pilot_comparison` block, which re-reads the
+   retired pilot parquet at run time; `cost_report.json`
+   (`20260916-064133-4d65`) holds the same figures independently and the two
+   agree.
+
+**Withdrawn, and the withdrawal is deliberate.** The paper used to carry a
+test reading *"zero of 43 pilot facilities sit in the cheapest decile of their
+own metro"*, re-derived by joining `facilities.csv` to the pilot cost parquet
+on ZIP. **That statistic is gone from the paper and must not be reinstated.**
+Once the cost model's depots became the operator's real stations, the test
+stopped being identified — a ZCTA containing a station has a line haul of ~0
+because the station is inside it — and the leave-one-out repair gives 6.9% on
+the 501 stations against 16.3% on the original 43, straddling the 10% chance
+rate in opposite directions. The paper now argues *feasibility binds before
+economics* from the `1/√δ` form of the cost function instead. `docs/NUMBERS.md`
+§10.4 records the withdrawal; the paper's Threats section carries it as a
+limitation in its own right.
 
 If the paper and `docs/NUMBERS.md` ever disagree, **`docs/NUMBERS.md` is
 right and the paper is wrong.**

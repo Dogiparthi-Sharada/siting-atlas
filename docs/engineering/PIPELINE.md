@@ -643,13 +643,25 @@ removed rather than left to mislead.
 
 ### 6.1 L4 — cost
 
+> **Superseded 2026-09-16.** The headline cost stage is now
+> `cost/stations.py` + `cost/station_runner.py`, which take the depot layer
+> from the operator's **501 real geocoded delivery stations** instead of
+> solving for it. Output `cost_to_serve_station_<yr>q<q>_<scenario>.parquet`
+> and `cost_by_station_<yr>q<q>_<scenario>.parquet`, plus
+> `outputs/metrics/cost_by_station.json` (`run_id 20260916-131845-34f1`):
+> **8,037 ZCTAs, 481 of 501 stations, median $1.1389/parcel, 250,291 vans,
+> $47.43m/day**. The p-median stage below still runs and its artefact is kept
+> as the comparison. `../NUMBERS.md` §10 is the tie-breaker.
+
 `cost/params.py` (frozen assumptions), `cost/daganzo.py` (the continuous
 approximation), **`cost/depots.py`** (the depot network — see §6.2) and
 `cost/runner.py` (the stage). Output
 `outputs/tables/cost_to_serve_<yr>q<q>_<scenario>.parquet`, one row per pilot
 ZCTA, plus `outputs/metrics/cost_report.json`.
 
-Last run, `outputs/metrics/cost_report.json` run **`20260916-024154-0aa8`**:
+Last run, `outputs/metrics/cost_report.json` run **`20260916-064133-4d65`**
+(this line read `20260916-024154-0aa8` until 2026-09-16; that id is not in the
+file on disk):
 **2,333 pilot ZCTAs** (2,413 minus 80 with no households), median
 **$1.08/parcel**, p10 $0.98, p90 **$1.42**, **78,292 vans/day**,
 **$14.00 m/day**. Read `total_vans`, `total_daily_cost_usd` and
@@ -664,8 +676,8 @@ the distribution is.*
 *The five-scenario spread is reproducible again as of 2026-09-16. This note
 used to say it was not: `cost_report.json` held only the `baseline` key and
 the four other scenario parquets predated the p-median rewrite. All five were
-re-run on the current depot network (parquets 2026-09-15 19:42, report
-`20260916-024154-0aa8`), and on median cost per parcel the spread recomputes
+re-run on the current depot network (report `20260916-064133-4d65`), and on
+median cost per parcel the spread recomputes
 to **−17.1% (`dense_routing`) to +4.4% (`congested`)** — the same figures this
 section carried before, now re-derived rather than remembered.*
 

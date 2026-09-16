@@ -4,7 +4,7 @@
      four are static and work as-is. Add the Zenodo badge once you have a DOI;
      zenodo.org mints one from a GitHub release in two clicks. -->
 
-[![CI](https://github.com/Dogiparthi-Sharada/siting-atlas/actions/workflows/ci.yml/badge.svg)](https://github.com/Dogiparthi-Sharada/siting-atlas/actions/workflows/ci.yml)
+[![CI](https://github.com/Dogipathi-Sharada/siting-atlas/actions/workflows/ci.yml/badge.svg)](https://github.com/Dogiparthi-Sharada/siting-atlas/actions/workflows/ci.yml)
 ![tests](https://img.shields.io/badge/tests-663%20passing-brightgreen)
 ![reproducible](https://img.shields.io/badge/reproducible-offline%2C%20no%20API%20keys-1f4e79)
 ![pre-registered](https://img.shields.io/badge/pre--registered-hash%20verified%20in%20CI-6f42c1)
@@ -16,8 +16,9 @@ put a parcel on a doorstep?**
 Two questions, asked of Amazon's US network using nothing but data a member of
 the public can download for free.
 
-**The second we can now answer to the cent**, for any of 2,333 ZIP code areas
-— from road geometry and population density, with no Amazon disclosure of any
+**The second we can now answer to the cent**, for any of 8,037 ZIP code areas
+covering 57.8% of US households — from road geometry, population density and
+the operator's 501 real delivery stations, with no Amazon disclosure of any
 kind. The first turned out to be the better question, because the answer is
 that **almost nobody outside the company can see where the network is going**,
 and this repository measures exactly how far short the public record falls.
@@ -30,8 +31,8 @@ covariates to throw away before you fit anything.
   1,904    Amazon facilities recovered from a PDF whose tables are images
   1,420    of them carry an opening date
     693    in the analysis panel · 687 buildings · 230 metros · 50 states
-  2,333    ZIP-code areas costed against a solved 334-depot network
-  $1.0830  median cost to deliver one parcel     p10 $0.98   p90 $1.42
+  8,037    ZIP-code areas costed against 501 real delivery stations
+  $1.1389  median cost to deliver one parcel     p10 $1.00   p90 $1.34
     138    of 488 US cities with a delivery station appear in federal records
     663    tests · reproduces offline from a clone, no API keys
 ```
@@ -102,20 +103,45 @@ terms, one run.
 
 ## What does work
 
-The cost model. 2,333 ZIP-code areas costed with a Daganzo continuous
-approximation over a p-median depot network. Median **$1.0830** per parcel,
-five stress scenarios spanning −17.1% to +4.4%. The bill is
-**66.96% driver time at the door**, 22.93% vehicle, 6.97% driving, 3.14%
-distance — labour carries it and the routing mathematics is decoration.
+The cost model. 8,037 ZIP-code areas costed with a Daganzo continuous
+approximation, with the depot layer taken from the operator's **501 real
+geocoded delivery stations** rather than solved. Median **$1.1389** per parcel,
+five stress scenarios spanning −17.2% to +7.7%. The bill is
+**59.75% driver time at the door**, 21.63% vehicle, 12.63% driving, 5.98%
+distance. Labour still carries it, but driving is now nearly a fifth of the
+stop rather than a tenth, because line haul to a real building is **9.09
+miles** against 4.02 to a solved one.
 
-It also shows something the prediction model could not: of 43 facilities
-ranked by cost-to-serve within their own metro, **zero** sit in their metro's
-cheapest decile. The cheapest places to serve are the densest, and the densest
-are where a warehouse cannot be built. **Feasibility binds before economics.**
+**Real depots cost more than optimal ones, and that is a result.** Replacing
+the 334-depot p-median solve with the 501 buildings Amazon actually operates
+moves the median **+5.2%** and more than doubles line haul. A p-median
+minimises demand-weighted distance by construction; real siting is constrained
+by land, labour, zoning and lease terms, and the gap between the two is what
+that 5.2% measures. Full before/after in [`docs/NUMBERS.md`](docs/NUMBERS.md)
+§10.3.
+
+**Why the cost surface cannot rank where Amazon will build.** Under Daganzo
+cost falls as one over the square root of density, so the cheapest ZIPs to
+serve are the densest — and the densest are exactly where a warehouse cannot
+physically be built. **Feasibility binds before economics**, which is also why
+a raw warehouse count out-predicts everything else we fitted: that count
+measures where building is *possible*, not where delivering is cheap. This is
+an argument about the cost function and the land market. It used to be
+attached to a statistic — "zero of 43 facilities sit in their metro's cheapest
+decile" — and **that statistic is withdrawn**: once the depots are the
+facilities, a ZCTA holding a station has a line haul of ~0 because the station
+is inside it, so the test measures its own circularity. See
+[`docs/NUMBERS.md`](docs/NUMBERS.md) §10.4 for the withdrawal and the two
+leave-one-out arms that disagree in sign.
 
 *"Works" means the method is published, the parameters are sourced or flagged
 as unsourced, and the result survives five stress scenarios. It does **not**
 mean validated against Amazon's realised costs — nobody publishes those.*
+
+*Coverage, stated up front: 20 of the 501 stations have no ZCTA within 15
+miles; 316 ZCTAs (0.83% of catchment households) are dropped for having no
+OEWS driver wage and **nothing is imputed**; 8 of the 501 are `announced`
+rather than open; all 501 are Amazon delivery stations.*
 
 ## Start here
 
@@ -224,7 +250,7 @@ flowchart TD
     PANEL --> L2
     L2 -->|make panel| L3["<b>L3</b> panel.parquet<br/>1,081,312 ZCTA-quarters"]
 
-    L3 --> COST["<b>L4</b> cost to serve<br/>Daganzo CA + p-median depots"]
+    L3 --> COST["<b>L4</b> cost to serve<br/>Daganzo CA + 501 real stations"]
     L3 --> CHOICE["<b>L4</b> conditional choice<br/><i>which ZIP, given one opening</i>"]
     L3 --> METRO["<b>L4</b> metro entry<br/><i>pre-registered · which metro next</i>"]
 
@@ -250,7 +276,7 @@ and is reported as one, in the language fixed before the run.
 | L1 | `make normalise` | cache | one typed parquet per source |
 | L2 | `make warehouse` | parquet + facility panel | DuckDB star schema |
 | L3 | `make panel` | star schema | `panel.parquet`, 1,081,312 rows |
-| L4 | `make cost` | panel | cost per parcel, 2,333 ZCTAs |
+| L4 | `make cost` | panel | cost per parcel, 8,037 ZCTAs |
 | L4 | `make model` | panel | conditional choice fit |
 | L4 | `make metro` | panel | the pre-registered test |
 | L5 | `make figures` `make scope` | L4 outputs | figures, study scope |
