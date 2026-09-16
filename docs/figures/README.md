@@ -1,77 +1,27 @@
 # Figures — index
 
-*Index last updated 2026-09-16, re-derived from what is actually on disk.
-Previously 2026-09-13, after figs 08 and 09 were rebuilt from measured
-artefacts.*
+*Index last updated 2026-09-13, after figs 08 and 09 were rebuilt from
+measured artefacts.*
 
-**Fourteen PNGs are in this directory, from three separate builders, and five
-more are described here but not on disk.** The counts are worth setting out,
-because "the 14 figures" used to mean fig01-fig14 and now collides with a
-different 14:
+The 14 PNGs embedded in the proposal and the two decks. **Every one of them is
+generated. Do not edit a PNG; edit the Python that draws it and rebuild.**
 
-```
-  on disk (14)          fig01 fig02 fig03 fig04 fig05 fig06 fig07 fig08 fig09
-                        hero_cost_per_parcel
-                        fig_metro_auc  fig_dispersion  fig_visibility_gap
-                        fig_cost_by_metro
-  described, absent (5) fig10 fig11 fig12 fig13 fig14
-```
-
-Three builders, and they do not know about each other:
-
-| builder | writes | consumed by |
-|---|---|---|
-| `tools/figures/build_all.py` | `fig01`–`fig14` | the proposal docx and both decks |
-| `tools/figures/fig_hero_cost.py` | `hero_cost_per_parcel` | the top-level `README.md` |
-| `tools/figures/fig_paper.py` | the four `fig_*` results figures | `paper/siting_atlas_ieee.tex` |
-
-`tools/figures/build_all.py` still declares and builds all fourteen numbered
-figures; figs 10-14 simply were not written in the 2026-09-15 16:22 rebuild
-that produced the nine that are here. **Until `build_all.py` is re-run,
-`tools/proposal/build_v4.py` will hard-fail** — its `REQUIRED_FIGURES` list
-names all fourteen and `check_figures` refuses to assemble the document with
-any of them missing. `tools/deck/build_deck.py` needs fig10-fig14 too. Nothing
-is lost; they are regenerable by one command. The entries for figs 10-14 below
-describe what that command will produce.
-
-`hero_cost_per_parcel` and the four `fig_*` paper figures were not indexed
-here at all until 2026-09-16. None of the five is part of the numbered
-fourteen.
-
-**Every one of them is generated. Do not edit a PNG; edit the Python that
-draws it and rebuild.**
-
-**Seven of the fourteen on disk contain measured results**, and they are the
-ones to trust. `fig08_backtest` and `fig09_conformal_coverage` read every
-value they print from
-`experiments/hazard-model/artefacts/hazard_report.json` at build time and
-carry the run id on the image. `hero_cost_per_parcel` and `fig_cost_by_metro`
-read every value they plot from
-`outputs/tables/cost_to_serve_2023q4_baseline.parquet`; `fig_metro_auc` from
-`metro_entry.json`, `fig_dispersion` from `gravity_network.json`,
-`fig_visibility_gap` from `mwpvl_coverage.json`. The other seven — fig01
-through fig07 — are schematics or hand-typed illustrative numbers
-(`fig06_portfolio` is part live; its ZCTA count comes from `scope.json`).
-fig08 and fig09 were both previously hand-typed illustrations and both were
-wrong; see "What was fixed" below. Read "What is stale" before you put any of
-the schematics in front of an examiner.
+**12 of the 14 contain no real results.** They are schematics or hand-typed
+illustrative numbers. The two that do — `fig08_backtest` and
+`fig09_conformal_coverage` — read every value they print from
+`outputs/metrics/hazard_report.json` at build time and carry the run id on the
+image. Both were previously hand-typed illustrations and both were wrong; see
+"What was fixed" below. Read "What is stale" before you put any of the other
+twelve in front of an examiner.
 
 ---
 
 ## How they are built
 
 ```
-  python tools/figures/build_all.py            # writes fig01-fig14 into
-                                               # docs/figures. Run this first:
-                                               # fig10-fig14 are missing today
-  python tools/figures/fig_hero_cost.py        # writes hero_cost_per_parcel.png
-                                               # -- NOT registered in build_all
-  python tools/figures/fig_paper.py            # writes the four fig_*.png the
-                                               # IEEE paper embeds -- also NOT
-                                               # registered in build_all
-  bash   scripts/build_all.sh                  # step 1/4 calls build_all.py,
-                                               # then rebuilds docx and both
-                                               # decks
+  python tools/figures/build_all.py            # writes all 14 into docs/figures
+  bash   scripts/build_all.sh                  # step 1/4 does the same, then
+                                               # rebuilds docx and both decks
   make docs                                    # calls scripts/build_all.sh
 ```
 
@@ -91,21 +41,11 @@ The drawing code:
   tools/figures/fig_evaluation.py   figs 10, 14
   tools/figures/fig_backtest.py     figs 08, 09 -- the measured ones
   tools/figures/fig_impact.py       figs 11, 12, 13
-  tools/figures/fig_hero_cost.py    hero_cost_per_parcel -- standalone, NOT
-                                    in build_all.py's MODULES list. Reads
-                                    outputs/tables/cost_to_serve_2023q4_
-                                    baseline.parquet and types nothing
-  tools/figures/fig_paper.py        the four paper figures -- also standalone
-                                    and not in MODULES. Every value read from
-                                    an artefact at build time
-  tools/figures/figbase.py          IEEE column geometry, palette and the
-                                    minimum-point-size gate fig_paper.py puts
-                                    each figure through before writing it
   tools/scope.py                    live data hook: reads
                                     outputs/metrics/scope.json, used by
                                     fig06 and fig12 for scope counts
   tools/hazard_metrics.py           live data hook: reads
-                                    experiments/hazard-model/artefacts/hazard_report.json, used
+                                    outputs/metrics/hazard_report.json, used
                                     by fig08 and fig09 and by the proposal
                                     and deck builders. Raises at import if
                                     the artefact is missing, so a figure
@@ -114,17 +54,14 @@ The drawing code:
 
 `tools/proposal/build_v4.py` hard-fails if any of the 14 is missing, so a
 deleted PNG breaks the proposal build rather than producing a silent hole.
-**It will hard-fail right now**, on fig10 through fig14 — which is the check
-doing its job, not a defect.
 
 ---
 
-## The figures
+## The 14 figures
 
 `SCHEMATIC` = a diagram, no numbers to be wrong about. `ILLUSTRATIVE` = the
 numbers in the picture are typed into the source by hand and are **not
 results**. `PART LIVE` = some values come from `outputs/metrics/scope.json`.
-`ABSENT` = described here and buildable, but not on disk today.
 
 ```
   fig01_architecture     End-to-end flow: 8 public sources -> ELT/DuckDB ->
@@ -177,7 +114,7 @@ results**. `PART LIVE` = some values come from `outputs/metrics/scope.json`.
                          the same rows, and the ten-bin calibration curve
                          against the 45-degree line.
                          LIVE. Every number is read from
-                         experiments/hazard-model/artefacts/hazard_report.json and the run id is
+                         outputs/metrics/hazard_report.json and the run id is
                          printed on the image. It shows a model that failed,
                          which is the project's central finding.
 
@@ -190,63 +127,6 @@ results**. `PART LIVE` = some values come from `outputs/metrics/scope.json`.
                          LIVE. Replaced fig09_rank_stability, which invented
                          eight ZIP codes and their shares of a Monte Carlo
                          pass that has never been run.
-
-  hero_cost_per_parcel   The repository's hero image: median and
-                         interquartile cost to deliver one parcel, for each
-                         of the 10 pilot metros, ranked, with the national
-                         median as a reference line.
-                         LIVE, and the only figure here that reads the COST
-                         model rather than the hazard model. Every value --
-                         the ten medians, the IQR whiskers, the national
-                         median, the "2,333 ZIP code areas in 10 metros"
-                         subtitle -- is computed at build time from
-                         outputs/tables/cost_to_serve_2023q4_baseline.parquet.
-                         Miami cheapest at $0.94, Boise dearest at $1.43.
-                         Draws the IQR and not p10-p90 on purpose: Boise's
-                         p90 is $3.56 against its own median of $1.43, and
-                         plotting it flattens the other nine metros. The
-                         source docstring records that choice.
-                         Not one of the fourteen; not embedded in the
-                         proposal or either deck; used as the README image.
-
-  fig_metro_auc          Out-of-time AUC by held-out year, model against the
-                         households baseline, verdict arm `prereg_strict`,
-                         form `logit`.
-                         LIVE, from outputs/metrics/metro_entry.json. Draws
-                         the run id. Paper Fig. 2.
-
-  fig_dispersion         Within-metro cv against interior/boundary for the 21
-                         network terms, log x-axis, with the empty 0.6-1.3
-                         band shaded. Hollow markers are terms interior in
-                         one arm and boundary-straddling in another.
-                         LIVE, from experiments/gravity-network/artefacts/
-                         gravity_network.json. Its own subtitle states the
-                         one-way reading — "Low variation guarantees failure.
-                         High variation guarantees nothing." Paper Fig. 3.
-
-  fig_visibility_gap     One stacked bar: 138 of 488 delivery-station cities
-                         with an OSHA record, 350 invisible.
-                         LIVE, from outputs/metrics/mwpvl_coverage.json
-                         (unstamped artefact — mtime only). Paper Fig. 1.
-
-  fig_cost_by_metro      The same data as hero_cost_per_parcel, redrawn at
-                         3.40in for an IEEE column: median and IQR cost per
-                         parcel by metro, national median as a reference
-                         line, "San Francisco Bay Area" shortened because the
-                         geometry gate rejected the full label at that width.
-                         LIVE, from the cost parquet. Paper Fig. 4.
-
-  The four above are paper-only: tools/figures/fig_paper.py writes them,
-  paper/siting_atlas_ieee.tex embeds them, and neither build_all.py nor the
-  proposal nor the decks know they exist. They are each drawn AT the width
-  they will be placed at, so nothing scales them; figbase.py refuses to write
-  a figure whose text would land below 6.5pt on the page.
-
-  ------------------------------------------------------------------------
-  The five below are ABSENT from docs/figures as of 2026-09-16. They are
-  declared in tools/figures/build_all.py and rebuild in seconds. The
-  descriptions are of what the code draws.
-  ------------------------------------------------------------------------
 
   fig10_positioning      What the literature already owns and what is left to
                          claim, after the prior-art check; plus the rule
@@ -293,7 +173,7 @@ If you are preparing to present: open `fig08_backtest.png` first, because it
 is embedded in the proposal as Figure 4 and in both decks and it is the figure
 most likely to be challenged. It now shows the measured failure rather than a
 target, so the challenge to prepare for is "why is this in your deck at all",
-and the answer is in `../METHODS_RESEARCH.md` §14.4.
+and the answer is in `../PLAN.md` §9.
 
 If you are trying to understand the project: `fig01_architecture` then
 `fig04_estimand`, in that order, keeping in mind that both name the abandoned
@@ -312,7 +192,7 @@ targets, drawn as though measured. Its ROC curve was not a curve at all: it was
 0.84 printed beside it. The source comment said as much.
 
 What it prints now, all of it read from
-`experiments/hazard-model/artefacts/hazard_report.json`:
+`outputs/metrics/hazard_report.json`:
 
 ```
                         was (typed)   now (measured)   null (a constant)
@@ -339,7 +219,7 @@ this file said — is wrong twice.** AUC's null is 0.5000, not the base rate of
 0.5551 is slightly *above* its null, not below anything.
 
 **The geographic hold-out is deliberately not in the table.**
-`experiments/hazard-model/artefacts/hazard_report.json:819` records that Phoenix and Boise hold
+`outputs/metrics/hazard_report.json:819` records that Phoenix and Boise hold
 two dated stations between them, "so this is a smoke test for gross failure
 and not a test of geographic transfer". Quoting its -0.0618 as a transfer
 result overstates the evidence against the project's own model.
@@ -393,11 +273,10 @@ README.
 ### fig04_estimand endorses the abandoned specification
 
 It is not false — it shows no results — but the box it points at says
-"DISCRETE-TIME HAZARD MODEL", and `../METHODS_RESEARCH.md` §14.3 records that
-the unit moved
+"DISCRETE-TIME HAZARD MODEL", and `../PLAN.md` §5 records that the unit moved
 from ZCTA-quarter to the station siting decision and the headline metric moved
 from AUC to Brier skill plus calibration. The metric list in the figure no
-longer matches the specification. It needs redrawing for the conditional ZIP-choice
+longer matches the plan. It needs redrawing for the conditional ZIP-choice
 model. `fig01_architecture` has the same string in its contribution box.
 
 ### fig12 has two concrete defects
@@ -429,8 +308,7 @@ because there is nothing to regenerate it from.
 
 fig07 could read `outputs/metrics/cost_report.json` today and become a genuine
 sensitivity analysis. fig05 cannot — the cannibalisation decay has never been
-estimated, and `../ROADMAP.md` "Phase 3 — Causal layer" lists the spatial-DiD
-estimand as never started.
+estimated, and `../PLAN.md` §6 lists the spatial-DiD estimand as untouched.
 Until it is, fig05 is a picture of a hypothesis.
 
 ---
@@ -451,18 +329,6 @@ document builders.
   Decks, tools/deck/build_deck.py — 9 of the 14:
     fig01 03 05 08 10 11 12 13 14
     fig02, 04, 06, 07, 09 are proposal-only
-
-  hero_cost_per_parcel — neither builder. It is embedded by the top-level
-    ../../README.md and listed in ../../paper/README.md; it is the
-    repository's cover image.
-
-  Paper, paper/siting_atlas_ieee.tex — the four fig_* figures only:
-    Fig. 1 fig_visibility_gap   Fig. 2 fig_metro_auc
-    Fig. 3 fig_dispersion       Fig. 4 fig_cost_by_metro
-    It reaches them through \graphicspath and uses none of fig01-fig14.
 ```
-
-*(The line above this block used to read "Nothing in Markdown references these
-PNGs." That is still true of fig01-fig14 and was never true of the hero.)*
 
 There is no `.txt` twin convention here; these are binaries, not documents.
