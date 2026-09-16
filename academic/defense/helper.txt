@@ -1,0 +1,903 @@
+================================================================================
+
+   SITING ATLAS  -  DEFENCE HELPER
+
+   Hard questions, and how to hold the room.
+   Print this. Keep it face-down beside you.
+
+================================================================================
+
+
+--------------------------------------------------------------------------------
+  0.  THE SIX RULES
+--------------------------------------------------------------------------------
+
+  RULE 0   SAY "IT FAILED" IN THOSE WORDS - AND SAY IT TWICE.
+           There are TWO siting models now and BOTH concessions are
+           yours to make before anyone makes them for you.
+           ONE. The discrete-time hazard model over ZIP-quarters was
+           built, fitted on real data, and it failed. It is RETIRED.
+           TWO. Its successor, a conditional ZCTA choice model, IS
+           fitted - on the national frame, 94 decisions - and on the
+           38 held-out decisions it is BEATEN by a single raw Census
+           warehousing count with nothing fitted from it: 8 top-1
+           against 7, 20 top-10 against 19. Say "beaten". Never
+           "matched". The estimation buys nothing measurable.
+           Every softer phrasing - refined, evolved, under-powered,
+           directionally right - costs you credibility you then have to
+           spend defending the components that DO work. Lead with the
+           failure and the rest of the viva is about the project rather
+           than about whether you can be trusted to describe it.
+
+  RULE 1   NAME THE WEAKNESS BEFORE THEY DO.
+           Every limitation you volunteer with its mitigation and its
+           residual buys credibility for the claims you keep. Every one you
+           defend past the point of defensibility spends it.
+
+  RULE 2   NEVER SAY "FIRST" OR "NOVEL".
+           Say "not published in the open literature" or "not available as
+           something anyone can check". Those stay true whatever any vendor
+           ships and whatever the operator runs internally.
+
+  RULE 3   IF YOU DON'T KNOW, SAY SO AND SAY WHAT YOU'D DO.
+           "We can't measure that - here's what we report instead" is a
+           complete answer. Bluffing is the only unrecoverable failure.
+
+  RULE 4   ANSWER THE QUESTION THEY ASKED.
+           Not the adjacent one you prepared. If you need a moment, repeat
+           the question back in your own words. That buys four seconds and
+           checks you understood it.
+
+  RULE 5   NEVER QUOTE A NUMBER THIS PROJECT HAS NOT COMPUTED.
+           The defence pack contains illustrative arithmetic - an 8 km
+           decay band, a rank of 1 in 40, a first-stage F, a PR-AUC, a
+           precision@100. NONE of those is a measurement. If you are asked
+           for one, the answer is "that is the design, I have not run it".
+           A negative result you can defend is survivable. An invented
+           figure is not - it turns a negative result into an integrity
+           problem, and there is no recovering from that in the room.
+           ONE THING MOVED OFF THIS LIST. The Monte Carlo RAN - 500 of
+           500 draws, seed 20260914, montecarlo_report.json. Its bands
+           ARE quotable and are in Sec. 5. The rank-stability example
+           (87% / 34%) is still made up and stays on the list.
+
+
+--------------------------------------------------------------------------------
+  1.  THE ANSWER SHAPE  -  use this every time
+--------------------------------------------------------------------------------
+
+      1. NAME IT          "The ACS covariates lag 18 to 24 months."
+      2. SIZE IT          "That affects level features, not rate-of-change
+                           features."
+      3. WORK AROUND      "We blend monthly rents and permits, and align
+                           covariate vintage to decision vintage - the
+                           operator faced the same lag."
+      4. STATE RESIDUAL   "An area that changed in the last 18 months with
+                           no permit signal will be misclassified. We flag
+                           those low-confidence."
+
+  Never stop at 1. Never skip 4. Step 4 is what makes steps 2 and 3 believable.
+
+
+--------------------------------------------------------------------------------
+  2.  THE EIGHT HARDEST QUESTIONS
+--------------------------------------------------------------------------------
+
+  Ranked by how badly a weak answer hurts you.
+
+
+  ============================================================================
+  HARD #1   "Why did the method change again?"
+  ============================================================================
+
+  WHY IT'S HARD   Any answer that sounds like taste rather than evidence
+                  reads as indecision, and indecision is the impression that
+                  costs you the room.
+
+  DO NOT          Say "we refined the approach" or "the data suggested a
+                  different direction". Both are true and both sound like
+                  you are hiding a failure.
+
+  SAY FIRST       "I specified a model, built it, tested it, and it failed.
+                   Then I went to the literature to find out why."
+
+  THEN            "The hazard model over ZIP-quarters was built and fitted
+                   on the 43-building panel. It lost to a model that
+                   predicts the same constant everywhere: AUC 0.689, Brier
+                   skill half a percent, calibration 170x worse than the
+                   constant, negative skill on both hold-outs.
+                   So I went to Train, Discrete Choice Methods. The
+                   assumption I broke is in Section 3.7.1, printed page 61:
+                   the likelihood is a PRODUCT over decision makers, and
+                   that product is only a likelihood if each decision maker's
+                   choice is INDEPENDENT of every other's. Mine were not. A
+                   station switches on every ZIP within 15 miles at once -
+                   median 58, mean 88, largest 307. So 812 ZIP-quarter
+                   events were 43 real decisions wearing geometry as a
+                   disguise. The standard name is CLUSTERING, or
+                   pseudo-replication.
+                   Same question, correct unit. Train Section 2.2 is the
+                   authority for building the SUCCESSOR choice set - which
+                   ZIP, conditional on a station opening in metro m in
+                   period t - and that successor is now fitted."
+
+  THE CITATION    An earlier version of this sheet blamed Train Section 2.2
+  CORRECTION      and MUTUAL EXCLUSIVITY. That was the wrong section, and
+                  volunteering the correction makes the argument STRONGER,
+                  so say it if the examiner has read Train.
+                  Section 2.2 governs a choice set facing a DECISION MAKER.
+                  A hazard on area-quarters has no decision maker choosing
+                  among those rows, so exclusivity is not a property they
+                  can have or lack. Worse for the old rhetoric, Train calls
+                  that criterion "not restrictive" and says "Appropriate
+                  definition of alternatives can nearly always assure that
+                  the alternatives are mutually exclusive" (p. 12), and
+                  gives a two-line repair. If the examiner knows the book,
+                  the old citation hands them the win. The independence
+                  assumption has no two-line repair, which is exactly why
+                  the corrected diagnosis is the stronger one.
+
+  IF PUSHED       "So it was wrong from the start?"
+                  -> "It was UNTESTED from the start, which is worse in one
+                      way and better in another. Worse, because it went into
+                      a proposal untested. Better, because a specification
+                      that was tested, failed, and was replaced for an
+                      articulable reason is worth more than one that was
+                      never stress-tested. The ZIP-quarter unit came in at
+                      proposal v4 and was never checked against Train's rule."
+
+  WHY THIS WORKS  It converts "you keep changing your mind" into "I ran the
+                  test that most projects skip". Own the provenance of the
+                  mistake and it stops being a wound.
+
+
+  ============================================================================
+  HARD #2   "Your model doesn't work. Why should I pass this?"
+  ============================================================================
+
+  WHY IT'S HARD   It is the hardest question in the viva and it is fair.
+                  Flinching loses more than the failure does.
+
+  DO NOT          Soften it. Do not say "under-powered" or "directionally
+                  right". Do not oversell the four components that work.
+
+  SAY             "You are right about both of them, and I'd rather say it
+                   in those words. Four reasons it is still worth passing.
+                   ONE, both negative results are MEASURED, not vague.
+                   The hazard model: AUC 0.689 against a null of 0.500,
+                   Brier skill +0.0047, calibration 170x the null's,
+                   negative skill on both hold-outs - hazard_report.json.
+                   Its successor, the fitted choice model: on 38 held-out
+                   decisions it gets 7 top-1 and 19 top-10, and a single
+                   raw Census warehousing count with NOTHING fitted from it
+                   gets 8 and 20. The estimation bought nothing I can
+                   measure - choice_report.json, and you can regenerate it.
+                   TWO, both come with a DIAGNOSIS. The hazard model broke
+                   INDEPENDENCE ACROSS OBSERVATIONS - Train 3.7.1, p. 61 -
+                   because a 15-mile catchment ties a median of 58 ZIPs to
+                   one building. The choice model is not broken; it is
+                   simply not better than its own best single covariate,
+                   and with 56 training decisions and three parameters,
+                   two of them pinned at the boundary, that is the result
+                   the sample supports.
+                   THREE, 'the operator builds where warehouses already
+                   are' is a real, useful finding - twice as good as a
+                   population map at top-10, 20 against 10 - and it needs
+                   no model at all. Reporting that a raw count beats my
+                   estimator is the finding, not an admission.
+                   FOUR, the other components work and never needed the
+                   facility panel: cost model over 2,333 ZIPs, portfolio
+                   optimiser, the 33,791-ZCTA warehouse, six agent gates,
+                   638 tests passing and 2 xfailed."
+
+  IF PUSHED       "Isn't that rationalisation after the fact?"
+                  -> "It would be if the diagnosis arrived with the excuse.
+                      The power check that reports 7.6 events per parameter
+                      runs every time the model runs and was written BEFORE
+                      the result - it reports three different event counts
+                      precisely so the flattering one cannot be the one
+                      quoted. The 4-to-345-month date measurement was made
+                      before the model was fitted. The machinery that says
+                      this model is weak was built into the model."
+
+  IF PUSHED       "Why not just get more data?"
+                  -> "Five routes failed, each documented with the artefact
+                      that proves it. The sixth gave 43 buildings. MWPVL
+                      sells the panel Houde et al. used, and buying it would
+                      dissolve the problem and the point of the project at
+                      the same time - which is that a city should be able to
+                      do this from free federal records. That decision is
+                      written down in METHODS_RESEARCH Sec. 9."
+
+  NEVER SAY       That the failure was the plan. It was not.
+
+
+  ============================================================================
+  HARD #3   "Did you just copy a paper?"
+  ============================================================================
+
+  WHY IT'S HARD   Two Econometrica papers do look like this project from a
+                  distance. If you answer vaguely you sound derivative.
+
+  WHY IT'S EASY   This is the STRONGEST card in the pack, because the answer
+                  is evidence rather than assertion.
+
+  SAY             "Neither paper studies the facility I study, and neither
+                   could be reproduced without a purchase order.
+                   HOLMES 2011, Econometrica 79(1), on Wal-Mart. His Sec. 3:
+                   the store data 'was obtained from Trade Dimensions, a unit
+                   of ACNielsen'. Purchased.
+                   HOUDE, NEWBERRY & SEIM 2023, Econometrica 91(1) 147-190,
+                   on Amazon. Their Sec. 2.2: they obtain the network 'from
+                   the supply-chain consulting company MWPVL, International'.
+                   Also purchased.
+                   And the clincher: their Sec. 1 says they focus on
+                   fulfillment centers and sortation centers, and they drop
+                   specialised centres including PrimeNow Hubs. I searched
+                   their published text for 'delivery station'. ZERO HITS.
+                   So: facility type, delivery stations, unstudied in either.
+                   Data provenance, 5.2m free federal OSHA records against
+                   two purchased panels. Question, who gets served and can a
+                   city check it, against nexus tax policy.
+                   I do NOT claim a new estimator. Both papers use the same
+                   machinery and if I go that route I'll be using theirs."
+
+  IF PUSHED       "Is a new dataset really a contribution?"
+                  -> "On its own, no. Here it is the only free route to this
+                      facility class, and the route itself is a finding:
+                      five methods failed before one worked, and the one that
+                      worked measures something other than an opening date.
+                      Both halves are written down."
+
+  DO NOT SAY      "State grain." An earlier draft said Houde et al. worked at
+                  state grain. Wrong. Demand is COUNTY grain, supply is a
+                  20-mile cluster; state is the unit of the TAX variation.
+
+
+  ============================================================================
+  HARD #4   "Your instrument is invalid. The exclusion restriction fails."
+  ============================================================================
+
+  WHY IT'S HARD   It's correct. The restriction is not testable and ours is
+                  contestable. Any attempt to argue it away loses.
+                  It is ALSO not built, and that has to be said.
+
+  DO NOT          Claim the restriction holds. Cite the F-statistic as if it
+                  addressed exclusion (it addresses relevance). And do NOT
+                  quote a first-stage F - no such number exists in any
+                  artefact in this repository. Inventing one is the single
+                  unrecoverable error available to you in this viva.
+
+  SAY             "Two answers, and the second matters more.
+                   First: it is contestable and I'd rather say so myself.
+                   Commercial zoning correlates with employment density and
+                   traffic, either of which could enter residential demand
+                   directly.
+                   Second: it is not instrumenting anything yet. The design
+                   reports a first-stage F for relevance and a sensitivity
+                   path for exclusion. Neither has been run, because both sit
+                   behind a siting model that does not work. Correcting
+                   selection in a specification whose unit of analysis is
+                   wrong is polishing the wrong object."
+
+  THE ORDER       Fix the unit of analysis FIRST - clustered observations
+                  are not a selection problem and no selection correction
+                  repairs them. Then ask about selection. The other order
+                  gives you a corrected estimate of something that was
+                  never a choice probability.
+
+  BACKUP          The Heckman two-step is designed, not built. Say
+                  "designed, not built". Do not say "run on one metro".
+
+
+  ============================================================================
+  HARD #5   "You can't observe revenue, so the NPV is meaningless."
+  ============================================================================
+
+  WHY IT'S HARD   Half true. The dollar figure IS unidentified.
+
+  DO NOT          Defend a point estimate of NPV. Invent a margin.
+
+  SAY             "The dollar figure is unidentified and we make no accuracy
+                   claim on it. But six of our eight outputs don't need it:
+                   ranking is invariant to a common positive scale factor, so
+                   the ranked list, the bundle choice, rank stability,
+                   break-even thresholds, timing and the selection propensity
+                   are all unaffected.
+                   For the two that do need it, we factor margin out and
+                   report NPV as a_i times m minus b_i, with the break-even
+                   value. A reader with a view on margin substitutes theirs.
+                   And we validate the half we can observe - capital against
+                   disclosed capex, target within 25 percent."
+
+  THE COUNTER     "But if margin varies by area, ranking moves too."
+                  -> "Correct, and that's the one case that breaks
+                      scale-invariance. We re-rank under a margin varying
+                      with income as a worst case and report top-100 churn."
+                  Concede this fast. It is a good objection and conceding it
+                  makes the rest credible.
+
+
+  ============================================================================
+  HARD #6   "Isn't this just a worse version of what Esri already sells?"
+  ============================================================================
+
+  WHY IT'S HARD   Partly true on capability. Sounds dismissive.
+
+  DO NOT          Get defensive. Overstate the technical difference.
+
+  SAY             "On trade-area geometry, yes - theirs is better and I'd
+                   use it. But their cannibalization tool measures trade-area
+                   OVERLAP, which is descriptive geometry. It answers 'how
+                   much do these areas share'. It does not answer 'what would
+                   volume in B have been if A had never opened'. That is the
+                   distinction that survives - it is a distinction between
+                   two DESIGNS, and I have to be straight that ours is
+                   designed and not yet built. What runs in our optimiser
+                   today is a 20 km / 0.18 assumed penalty, which is the same
+                   KIND of object as theirs. The causal version is the second
+                   estimand and it is untouched.
+                   And structurally: every commercial tool models your OWN
+                   network from licensed data for a client who paid. None
+                   forecasts a competitor's network from public data, and
+                   none can be opened by a city council. That part is true
+                   today, not in the design."
+
+  THE PIVOT       "Every technique in this project has a paywalled
+                   equivalent. What doesn't exist is a version anyone can
+                   check."
+
+
+  ============================================================================
+  HARD #7   "What is the weakest part of this project?"
+  ============================================================================
+
+  WHY IT'S HARD   Any deflection reads as evasion. "Nothing" is fatal.
+
+  DO NOT          Name something trivial. Name something you've already fixed.
+
+  SAY             "The siting model, and it isn't close. Both versions.
+                   The retired hazard model was fitted on the real panel and
+                   does not work: AUC 0.689, Brier skill half a percent,
+                   calibration 170x worse than a constant, negative skill on
+                   both hold-outs.
+                   Its successor IS fitted, and it is BEATEN on held-out
+                   data by a raw Census warehousing count with nothing
+                   fitted from it - 8 top-1 against my 7, 20 top-10 against
+                   my 19. Three free parameters and two of them sit at the
+                   boundary at 3e-16 and 5e-16, so one parameter is doing
+                   all the work. The estimation buys nothing measurable.
+                   I lead with that rather than being walked to it.
+                   Root cause: a target that cannot carry a siting model -
+                   43 buildings on the pilot frame, 94 decisions nationally,
+                   56 of them used for training, and most dates are OSHA
+                   'operating by' upper bounds.
+                   SECOND weakest, and worth naming so it doesn't look like
+                   I only admit the obvious one: the intervals landed on
+                   the last day and they COVER THE NULL. The null here is
+                   beta = 1, not beta = 0 - households is the numeraire, so
+                   1 means 'worth the same as one household'. Sandwich 95%
+                   on the only interior parameter is [0.734, 2.835],
+                   z = 1.064, p = 0.287. Bootstrap over decisions
+                   [0.760, 4.762], over metros [0.702, 10.013], BCa
+                   [0.714, 3.522]. All four cover 1.0. So the one covariate
+                   that does any work is not distinguishable from one more
+                   household. The sandwich is refused at the two boundary
+                   parameters and that refusal is right: its asymptotics
+                   assume an interior maximum with a vanishing gradient.
+                   THIRD: the cannibalisation parameter in the optimiser is
+                   ASSUMED, not estimated - 20 km radius, a linear distance
+                   taper, a 0.18 peak. No standard error, no donor pool, no
+                   weights matrix W anywhere in the source tree. It feeds
+                   NPV directly, which is why we report a break-even margin
+                   and a 500-draw Monte Carlo band rather than point NPVs."
+
+  WHY THIS WORKS  It names the real thing first, sizes it with measurements,
+                  and then volunteers a SECOND and THIRD weakness
+                  unprompted. Naming more than one is what separates "I know
+                  where my inference is load-bearing" from "I rehearsed one
+                  admission".
+
+  DO NOT SAY      That the intervals rescue the model. They do the
+                  opposite - they agree with the ranking defeat. And do not
+                  say "the interval excludes zero": it does, and that is
+                  meaningless here, because the null is 1. Quoting the zero
+                  test would be technically true and completely misleading.
+                  Say the interval COVERS THE NULL.
+                  One more: the inference code landed on 2026-09-14 and was
+                  uncommitted. If asked when, say so plainly.
+
+
+  ============================================================================
+  HARD #8   "This is a college project. The data is tiny."
+  ============================================================================
+
+  WHY IT'S HARD   It's an attack on seriousness, not on method.
+
+  DO NOT          Claim it's big data. It collapses in thirty seconds and you
+                  go from "honest engineer" to "inflates claims".
+
+  SAY             "Row count is the only axis where it's small, and it's
+                   small deliberately. What it ranks is 7.2 to 12.1 billion
+                   dollars of capital allocation across 2,413 ZIP-code areas.
+                   The portfolio search space is 2 to the 2,413. We integrate
+                   fourteen registered public sources at several
+                   geographic grains.
+                   The hard problem here is identification, not throughput -
+                   and I can show you exactly where identification failed."
+
+  IF PUSHED       "Could you handle 100x?" -> "The architecture is
+                   scale-agnostic below the feature layer. Going national -
+                   33,000 areas - is a config change and 460 MB; we ran it.
+                   At 100x the same pipeline moves to object storage without
+                   touching the model layer."
+
+
+--------------------------------------------------------------------------------
+  3.  TRAPS  -  questions designed to make you overclaim
+--------------------------------------------------------------------------------
+
+  TRAP   "So you can predict where Amazon will build next?"
+  RISK   Saying yes without qualification.
+  SAY    "We predict what their revealed preference implies for areas they
+          haven't reached. That's operator-consistent desirability, not
+          objective viability - the distinction matters because the model
+          learns their historical pattern, including any part of it we
+          wouldn't endorse."
+
+  TRAP   "Is this publishable?"
+  RISK   Overselling to a room that knows what publishable means.
+  SAY    "One component plausibly is - the inferential-integrity gates, at
+          an AI-safety workshop. Beyond that, the honest candidates are the
+          data-collection record and the negative result: '43 delivery
+          stations dated by federal inspection records cannot identify a
+          siting policy' is a measured statement about what public data can
+          do for a facility class nobody has studied. That is a short paper,
+          not a big one. I would NOT claim an estimated decay parameter -
+          that was designed and never built."
+
+  TRAP   "How accurate is it?"
+  RISK   Giving one number for a system with four different outputs.
+  SAY    "Depends which output, and we're explicit about that." Then split:
+          cost to serve  -> engineering model, no statistical accuracy claim.
+                            Sensitivity of every parameter is published.
+          hazard model   -> RETIRED, and it FAILED. Say so first, then the
+                            numbers: AUC 0.689 against a NULL MODEL's 0.500,
+                            and worse calibrated than a constant. (0.500 is
+                            the null's AUC, not the base rate - the base rate
+                            is 2.0%. Do not mix those up in the room.)
+                            Do not lead with AUC; AUC is monotone-invariant
+                            so it cannot see the calibration failure that
+                            sank the model.
+          choice model   -> fitted, and BEATEN by one raw covariate. On 38
+                            held-out decisions: 7 top-1, 16 top-5, 19 top-10.
+                            Raw warehousing count: 8, 16, 20. Give BOTH rows
+                            or you have oversold it. In-sample McFadden
+                            rho-squared 0.197 on the 56 training decisions -
+                            quote it as in-sample or not at all.
+          dollar NPV     -> no accuracy claim; reported as a break-even
+                            margin (1.3431) because the operator's margin is
+                            unobservable, plus a 500-draw Monte Carlo band.
+
+  TRAP   "You changed your headline metric after the model failed."
+  RISK   Defending the sequence, or claiming AUC was unfair. It was not
+         unfair - it was the FLATTERING metric. And the sequence really was
+         failure-then-change, so denying it loses the room.
+  SAY    "Partly fair, and I'll give you the part that lands first. I
+          pre-registered AUC, measured 0.6894, and THEN read the scoring-
+          rules literature. Wrong order - I should have registered a proper
+          score at design time. What I'll defend is the destination.
+          AUC isn't a scoring rule at all: propriety means your expected
+          score is maximised by quoting what you actually believe, and it's
+          defined on one forecast and one observation. AUC is a rank
+          statistic over PAIRS, so the guarantee isn't available for it.
+          Gneiting and Raftery, JASA 2007 - nineteen years before my
+          result. Section 8 of that paper shows two improper scores picking
+          the wrong weather model on sixteen thousand real forecasts."
+  NEVER  "Gneiting and Raftery show AUC is improper." THEY NEVER MENTION
+         AUC. Zero occurrences in twenty pages. The argument is ours, the
+         framework is theirs, and the fabricated version is checkable in
+         thirty seconds.
+  ALSO   Do not say "Brier skill is the proper scoring rule". The BRIER
+         SCORE is strictly proper; the SKILL score is generally improper -
+         same paper, page 362. Report the raw pair: 0.019522 model against
+         0.019614 null, same 8,044 rows. Skill is how you display it.
+  FULL   VIVA_QA.md D5.
+
+  TRAP   "Did AI write this?"
+  RISK   Sounding defensive.
+  SAY    "Yes - for code and literature triage, and it's also a component:
+          an agent writes to the analytical model behind gates. The
+          interesting part was finding where it breaks. Standard gates protect
+          data integrity; none check whether a valid write invalidates a
+          causal assumption. That's the failure class we found."
+
+  TRAP   "Why should a regulator trust a student project?"
+  RISK   Defending your credentials instead of the artifact.
+  SAY    "They shouldn't trust it - they should check it. That's the point.
+          Every input is public, the code is open, and the panel is
+          published. It's the only model in this space they CAN check."
+
+
+--------------------------------------------------------------------------------
+  4.  IF SOMETHING GOES WRONG
+--------------------------------------------------------------------------------
+
+  YOU DON'T KNOW THE ANSWER
+      "I don't know. Here's how I'd find out: [method]. Can I follow up?"
+      Then actually follow up. This costs you nothing.
+
+  THEY FIND AN ERROR IN A SLIDE
+      "You're right, that's wrong. [Correct it.] Does it change the
+       conclusion? [Answer honestly.]"
+      Do not argue. Do not explain how it happened.
+
+  THEY CITE A PAPER YOU HAVEN'T READ
+      "I haven't read that one. What does it establish?" Then engage with
+      the substance they give you. Never pretend.
+      Note: we found Houde/Newberry/Seim and Pollmann exactly this way -
+      by checking rather than assuming. Say so if it helps.
+
+  THEY DISAGREE WITH A DESIGN CHOICE
+      "That's a fair alternative. We chose X because [reason]. The tradeoff
+       is [tradeoff]. If you think [their option] is better, that changes
+       [specific consequence] - is that what you'd want?"
+      Turn it into a design conversation, not a defence.
+
+  A TEAMMATE GIVES A WEAK ANSWER
+      Do not correct them in the room unless it's factually wrong AND
+      material. If it is: "Let me add to that - [correction]." Never
+      "actually, no".
+
+  YOU'RE RUNNING LONG
+      Skip: slides 3, 21, 23, 24 in the overview deck. Never skip 6, 9, 14
+      or 17.
+
+  A QUESTION IS HOSTILE RATHER THAN CURIOUS
+      Answer the technical content, ignore the tone, keep your pace. Do not
+      match energy. The room notices who stayed calm.
+
+
+--------------------------------------------------------------------------------
+  5.  NUMBERS TO KNOW COLD
+--------------------------------------------------------------------------------
+
+    2,413        ZCTAs in the pilot (OMB 2023 CBSA delineation)
+    33,791       US ZCTAs
+    $3-5M        capital per ZIP activation
+    $7.2-12.1B   capital allocation in scope
+    1,081,312    rows in the analytical panel
+    ~15 MB       size of that panel
+    2^2,413      portfolio search space
+
+    THE RETIRED HAZARD MODEL FAILED. Numbers, not targets. Artefact
+    hazard_report.json, current run id 20260914-002509-2374:
+    0.6894       out-of-sample AUC (a coin flip is 0.500)
+    +0.0047      Brier skill over a constant - i.e. almost none
+    0.00863      calibration error, against the CONSTANT's 0.00005.
+                 A model that ignores every covariate is better
+                 calibrated than ours. Volunteer this; do not be caught
+                 with it.
+    -0.021       temporal hold-out skill (negative = worse than guessing)
+    -0.062       geographic hold-out skill
+    7.6          events per parameter, against a floor of 10
+    43           delivery stations in the fitted panel
+    38 / 28      usable BUILDINGS (upper bound on independent decisions)
+                 and independent metro-period episodes (lower bound).
+                 NOT "events" - the risk set holds 812 ZCTA-quarter
+                 events, and that number is the lie the whole failure
+                 is about. 7.6 = 38 / 5 parameters, taken on the
+                 OPTIMISTIC bound so nobody can blame a conservative
+                 proxy for the verdict.
+    58 / 88/ 307 ZCTAs a single station switches on at once: median,
+                 mean, largest. This is WHY 812 was not 812, and it is
+                 the violation of INDEPENDENCE ACROSS OBSERVATIONS
+                 (Train 3.7.1, p. 61), not of mutual exclusivity.
+    0.8819       conformal empirical coverage against 0.90 nominal,
+                 inside a two-sigma tolerance of 0.032 on 351
+                 effective units. 10.09% of sets came back EMPTY.
+
+    THE SUCCESSOR CHOICE MODEL IS FITTED - AND A RAW COUNT BEATS IT.
+    Artefact choice_report.json. Conditional ZCTA choice, frame
+    "national", seed 20260914.
+    94 / 56 / 38 decisions total / train / held out
+    3            free parameters, converged
+    1.4428       beta on warehousing_establishments, with households
+                 FIXED AT 1 as the numeraire. The model is
+                 scale-invariant, so only ratios are identified and one
+                 coefficient must be pinned.
+    3e-16        beta on land_area_sqmi - AT THE BOUNDARY
+    5e-16        beta on establishments - AT THE BOUNDARY
+                 So ONE parameter of three is doing any work.
+    0.19691      McFadden rho-squared, IN SAMPLE, on the 56. Say
+                 "in sample" out loud or do not say the number.
+    -203.4497    log-likelihood, against a uniform model's -253.3351
+
+    HELD OUT, 38 decisions, 3,998 alternatives. Learn both rows:
+                              top-1  top-5  top-10   Brier
+      fitted model             7/38  16/38   19/38   0.008724
+      warehousing count alone  8/38  16/38   20/38   0.008951
+      households alone         1/38   5/38   10/38   0.009271
+      establishments alone     0/38   8/38    9/38   0.009307
+      land area alone          0/38   3/38    6/38   0.009816
+      uniform within metro     1/38   3/38    7/38   0.009316
+    A single raw Census County Business Patterns count - NAICS 493,
+    warehousing and storage, NOTHING fitted from it - BEATS the
+    three-parameter fitted model at top-1 and top-10 and ties at
+    top-5. Say BEATS, never "matches". The fitted model is marginally
+    ahead on raw Brier and that gap is far too small to survive 38
+    decisions. The substantive reading is "the operator builds where
+    warehouses already are" - true, useful, exactly twice as good as
+    a population map at top-10 (20 against 10), and obtainable with
+    no model at all.
+
+    THE INTERVALS EXIST, AND THEY COVER THE NULL. They landed on
+    2026-09-14, uncommitted. THE NULL IS beta = 1, NOT beta = 0,
+    because households is the numeraire and only ratios are
+    identified.
+      warehousing_establishments   beta 1.4428, only interior param
+        sandwich 95%      [0.734,  2.835]   z 1.064   p 0.287
+        boot, decisions   [0.760,  4.762]
+        boot, metros      [0.702, 10.013]   <- the conservative one
+        BCa               [0.714,  3.522]
+        ALL FOUR COVER 1.0
+      land_area 3.0e-16 and establishments 4.7e-16 are ON the
+        boundary. Sandwich refused for both, correctly - its
+        asymptotics assume an interior maximum with a vanishing
+        gradient. One-sided bootstrap instead, ~80% of replicates
+        at the boundary.
+    Say it as a FOURTH negative result, not as a rescue: the one
+    covariate that works is not distinguishable from one more
+    household. ADR-0004 predicted exactly this before it was run.
+    Train's precondition fails at 56 decisions (Sec. 8.6 p.202), so
+    these measure sensitivity to WHICH OF OUR 56, not sampling
+    variability over the population.
+
+    CONFORMAL ON THE CHOICE MODEL - this is a WORSE look than the
+    hazard model's, so volunteer it. 24-decision test split, median
+    choice set 59.5:
+      alpha 0.10  nominal 0.90  coverage 1.000  median set 38.5
+      alpha 0.20  nominal 0.80  coverage 0.958  median set 34.0
+      alpha 0.30  nominal 0.70  coverage 0.833  median set 18.5
+    At the 90% level the set is 71% of the metro. It covers by being
+    very nearly vacuous. Do not present that as a success.
+
+    WHAT DOES WORK, on real data:
+    2,333        ZIP codes priced by the cost model
+    $1.0830      median cost to serve per parcel; p10 $0.9778, p90
+                 $1.4180. Run 20260914-002418-0623.
+                 NUMBERS WITHDRAWN. $1.09, $1.0875 and $1.0874 are
+                 STALE - do not say any of them. "334 depots" is also
+                 withdrawn: no current artefact supports it. If asked,
+                 say it has to be re-derived.
+    282          activations the optimiser chooses. NOT 330. NOT 317.
+    $1.128B      of a $2B budget - 56.4% deployed, so it DECLINES
+                 about 44% of the budget. Not "a third", not "roughly
+                 two thirds spent". Capacity 500 is NOT binding.
+    1.3431       break-even margin per parcel for that portfolio
+                 (1.343067). NOT $1.39. NOT $1.3842.
+    0.1073       optimality gap, against an upper bound of 1.2129
+                 NO FRONTIER EXISTS. portfolio_report.json has
+                 "frontier": null. Any six-margin ladder you may have
+                 seen in an older draft is not in the artefact.
+    638 / 2      tests passing / xfailed, 640 collected. "483 tests"
+                 and "426 tests" are STALE.
+    yes          the repository IS under git version control. If an
+                 older draft said otherwise, that is withdrawn.
+
+    THE MONTE CARLO RAN. 500 of 500 draws, seed 20260914, artefacts
+    montecarlo_report.json and montecarlo_draws.parquet. Any claim
+    that it is specified, blocked, on the backlog, illustrative or
+    not yet run is FALSE.
+      activations n     p10 152    p50 264.5  p90 306   min 82 max 385
+      capital $bn       p10 0.608  p50 1.058  p90 1.224
+      breakeven margin  p10 1.0892 p50 1.3682 p90 1.7259
+      median $/parcel   p10 0.8368 p50 1.1224 p90 1.4836
+    282 sits at the 67th percentile - INSIDE the band. 330 is at the
+    97th, OUTSIDE it; 317 at the 95th. So the drift in the headline
+    was REAL, and the parameters did not cause it. Depot placement
+    did, and depot placement is not classified as a parameter.
+    capital_usd is EXACTLY $4m x n in all 500 draws, so $1.128bn,
+    $1.268bn and $1.320bn are the three activation counts restated in
+    dollars, not three financial results. Do not present them as
+    three findings.
+    Top variance driver in n: cannibalisation_peak, rho -0.622, 44.3%
+    of variance; then cannibalisation_radius_km 6.9%,
+    parcels_per_stop 5.0%.
+    IT IS NOT A CONFIDENCE INTERVAL and the artefact says so itself -
+    the ranges come from this project's own PARAMETERS.md and eight
+    of the constants have no external source. It propagates our
+    priors, not the world's.
+    AND parcels_per_depot_per_day WAS NOT SAMPLED, by oversight, so
+    EVERY BAND IS A FLOOR. Volunteer that; it is the kind of thing
+    that looks like concealment if they find it.
+    There was never a 10,000-draw NPV Monte Carlo and never a
+    24-billion-draw one. If you have said either, withdraw it.
+
+    DATA COLLECTION - the part nobody else has done:
+    5.2 million  federal OSHA inspection records scanned
+                 (exactly 5,200,011 -> 951 Amazon rows)
+    516          distinct Amazon addresses found nationally
+    104          delivery stations classified across 62 metros in the
+                 NATIONAL panel. THE FITTED CHOICE MODEL READS IT. The
+                 artefact says so: choice_report.json, "frame":
+                 "national", 94 decisions, 56 train / 38 held out.
+                 A CLAIM WITHDRAWN. This sheet used to say "nothing
+                 reads it - it is a separate frame - never imply the
+                 model was fitted on it". That was FALSE, and reading
+                 it out would have been a self-inflicted wound: the
+                 national frame IS the estimation frame.
+    5            sourcing methods that FAILED before the sixth worked
+    4 to 345     months: verified lag between a facility opening and its
+                 first OSHA inspection. This is why our dates are upper
+                 bounds, not event times.
+    54% / 37.8%  the MOST of US cities-with-an-Amazon-facility that OSHA
+                 can see, by two-list capture-recapture: an upper bound
+                 of 54% under Chapman, 37.8% under the Chao lower-bound
+                 estimator. A three-list log-linear model on ten states
+                 gives 314-417 cities. The DEPENDENCE between the lists
+                 is MEASURED, not assumed - both OSHA and NLRB are
+                 driven by worker grievance, which is why every coverage
+                 figure is an upper bound. Artefact nlrb_coverage.json.
+    0            facility locations or dates in Amazon's SEC filings.
+                 "delivery station" appears 4 times in all of them and
+                 Item 2 gives aggregate square footage only. That is a
+                 measured negative, and worth saying.
+
+    TWO THINGS THAT FAILED AND MUST BE VOLUNTEERED, NOT WAITED FOR:
+
+    SATELLITE DATING - attempted 2026-09-14 and it FAILED.
+    The idea was sound: OSHA gives an UPPER bound on an opening date,
+    Sentinel-2 imagery should give a LOWER bound, and the two together
+    make an interval the statistics can actually use. Script
+    data/collection/satellite/colab_date_from_satellite.py, run in
+    Google Colab. Source artefact satellite_dates.csv, which sits
+    OUTSIDE this repository - say so when you cite it.
+    107 / 107    sites got an estimate; median 106 cloud-free scenes
+    41%          of the 83 sites with a known year came within 1 year;
+                 error standard deviation 3.42 years
+    36%          THE TEST THAT KILLS IT: 39 of the 107 are LOGICALLY
+                 IMPOSSIBLE - they date construction AFTER the day an
+                 OSHA inspector physically found the building
+                 operating. Median 33 months after.
+    The confidence score does not discriminate: 35% impossible above
+    confidence 2, 30% at confidence 1-2, so filtering changes nothing.
+    Cause is the changepoint detector, not the imagery. Report it as a
+    NEGATIVE RESULT. Do NOT offer the 68 survivors as dates.
+
+    THE LABELLING PROGRAMME - finished, and mostly wasted.
+    362          sites hand-labelled across 6 batches; 135 delivery
+                 stations; THIRTEEN genuinely new to the delivered
+                 facility frames
+    289 / 362    80% of the worklist rows were ALREADY classified in
+                 NATIONAL_CLASSIFIED.csv. Cause:
+                 scripts/make_unlabelled_batches.py selected rows the
+                 OSHA name regex could not classify and never checked
+                 them against NATIONAL_CLASSIFIED.csv - it compared
+                 against the wrong reference. Four evenings of work.
+    122          AND THE RECOVERABLE HALF, which is real: the non-new
+                 remainder are independent confirmations of
+                 classifications the pipeline had already made, each
+                 from a different source with a quote and a URL. That
+                 is an ACCIDENTAL VALIDATION SET for the name-based
+                 classifier in ingest/osha.py - the kind of evidence
+                 reviewers ask for and projects rarely hold. Produced
+                 by accident rather than by design. Say BOTH halves,
+                 in that order: the waste first, then the recovery.
+
+    FOUR MORE OPEN DEFECTS. Name them before they are found:
+    *  The CBP lag guard is NOMINAL. An Amazon delivery station IS a
+       warehousing establishment, so a contemporaneous CBP count would
+       contain its own outcome. ingest/cbp_detail.py scores each
+       facility on the latest CBP vintage strictly EARLIER than its
+       open_year - but open_year is not an opening date. On all 100
+       loaded national rows, open_year and open_quarter equal the
+       quarter of the EARLIEST OSHA INSPECTION, i.e. the "operating
+       by" upper bound restated. A building first inspected in 2022
+       may have opened in 2017, in which case the "strictly earlier"
+       2021 vintage already counts the facility itself. Three of the
+       five pilot addresses with an independently known opening month
+       have lags over twelve months (4, 13, 57, 69, 345). The guard's
+       margin is zero or negative, and this undercuts the warehousing
+       covariate - which is the headline predictor.
+    *  optimize/objective.py prices an activation THREE inconsistent
+       ways (:81-83 a ZCTA, :164 a facility, :158 a facility with a
+       catchment), about a 2.74x capital overcharge. It is the SAME
+       unit-of-analysis error that killed the hazard model, in a
+       second component. Concede the pattern, not just the bug.
+    *  42% of depots exceed 40,000 parcels/day, so line haul is a
+       LOWER bound. rent_index is missing for 94.3% of ZCTAs and the
+       observed stratum is 63.6x denser, and it is still listwise
+       deleted at cost/runner.py:166.
+    *  0 of 104 national and 0 of 43 pilot facilities are geocoded -
+       latitude and longitude are null on every row. Coordinates come
+       from ZCTA centroids, and every distance quantity in the project
+       inherits that.
+
+    ~80% / ~93%  BIRD state of the art / human baseline
+    [71%, 93%]   Wilson interval for 85% at n=40 (why n>=100)
+    14           registered public data sources (13 analytical)
+    18-24 mo     ACS reporting lag
+    18-36 mo     operator's siting lead time  (the reason the lag is fine)
+    60 -> 8 GB   peak disk before / after the routing redesign
+    10 MB        the OD matrix that replaced the routing engine
+    $80 / $100   estimated spend / hard cap
+    $0           compute cost
+
+  If you can only memorise five:
+
+    $7.2-12.1B   the capital allocation the tool ranks
+    $1.0830      median cost to serve, per parcel, on real data
+    8 vs 7       a raw warehousing count beats the fitted choice model at
+                 top-1 on 38 held-out decisions; 20 vs 19 at top-10. The
+                 estimation buys nothing measurable. Lead with that.
+    0.689        the retired hazard model's AUC - and it still FAILED,
+                 because it is worse calibrated than a constant.
+    4-345 mo     the verified lag that makes our dates bounds, not dates
+
+
+--------------------------------------------------------------------------------
+  6.  THE FOUR THINGS THAT MUST LAND
+--------------------------------------------------------------------------------
+
+  If the room remembers nothing else, it should remember these.
+
+  0.  THE FAILURE, AND WHY IT IS NOT A HOLE
+      "I specified a model, built it, tested it, and it failed. Then I went
+       to the literature to find out why - and Train Section 3.7.1, page
+       61, told me the likelihood I was maximising assumes each decision
+       maker's choice is INDEPENDENT of every other's. One building
+       switches on a median of 58 ZIPs, so mine were not independent at
+       all. The name for that is clustering. Then I built the successor,
+       fitted it, and found a raw warehousing count beats it."
+      -> this has to land FIRST. A specification that was tested, failed,
+         was diagnosed and was REPLACED - and whose replacement was then
+         benchmarked honestly against a covariate that beat it - is worth
+         more than one that was never stress-tested at all.
+      -> NOT Section 2.2, and not mutual exclusivity. That was an earlier
+         draft's citation and it is withdrawn; see HARD #1.
+
+  1.  THE CIRCULARITY STORY
+      "We nearly predicted a variable we'd invented from our own predictors.
+       The better the score looked, the more it proved the bug."
+      -> demonstrates you can find a subtle validity error in your own work.
+
+  2.  THE PLANO EXAMPLE
+      "All four gates pass. The data is perfect. The conclusion is broken."
+      -> this is the contribution, in one sentence.
+
+  3.  THE CHECKABILITY LINE
+      "Proprietary data produces conclusions nobody can check. For a decision
+       communities have standing to contest, checkability is the product."
+      -> this is why the project exists.
+
+
+--------------------------------------------------------------------------------
+  7.  PRE-FLIGHT
+--------------------------------------------------------------------------------
+
+  THE NIGHT BEFORE
+    [ ] Say the four landing lines out loud, from memory
+    [ ] Say Hard #1, #2 and #3 out loud, from memory. These three are
+        the viva. Then #4 through #8.
+    [ ] Re-read the numbers block
+    [ ] Decide who answers what: P1 identification, P2 data and
+        reproducibility, P3 delivery and use case
+    [ ] Agree a hand-off phrase: "P2 owns that one"
+
+  THE HOUR BEFORE
+    [ ] Open both decks; confirm figures render
+    [ ] Presenter notes visible on your screen only
+    [ ] Have the proposal PDF open for page references
+    [ ] Water. Phone off.
+
+  THE FIRST SIXTY SECONDS
+    Do not apologise. Do not say "we didn't have time to". Do not open with
+    limitations. Open with what the project does, and let the limitations
+    arrive when they're asked for - which is when they land as rigour
+    rather than as excuses.
+
+
+================================================================================
+                                  END OF FILE
+================================================================================

@@ -1,0 +1,1952 @@
+================================================================================
+
+           MSBA CAPSTONE v3 -- PRE-IMPLEMENTATION REVIEW (ILLUSTRATED)
+
+           "Agent-Assisted Spatial Causal Inference: Optimizing
+            Sub-24-Hour Delivery Territory Expansion"
+           a.k.a. Prime Expansion Twin
+
+           Reviewed : MSBA_Capstone_Proposal_Final_v3.docx
+           Date     : 8 September 2026
+           Purpose  : answer the professor's three questions, and fix what
+                      breaks before a single line of code is written
+
+================================================================================
+
+CONTENTS
+
+   0.  THE 30-SECOND VERSION
+   1.  QUESTION 1 -- "What's the novelty if Amazon already does it?"
+   2.  QUESTION 2 -- "What is the model confidence and accuracy?"
+   3.  QUESTION 3 -- "It's public data. What's the use?"
+   4.  CORRECTION PLAN  (P0 / P1 / P2)
+   5.  SCOPE CHALLENGE -- what to cut, and the honest tradeoff
+   6.  NEW NOVELTY CANDIDATES -- what to add in their place
+         6.7  industry / commercial prior-art check + the framing rule
+   7.  VIVA SCRIPTS -- 60-second spoken answers
+   8.  METHOD NOTE + FILE MAP
+
+
+================================================================================
+0.  THE 30-SECOND VERSION
+================================================================================
+
+Three things are wrong at a level that a viva will expose. All three are
+fixable in roughly one week of rewriting plus two weeks of re-scoped build.
+None is fixable after the professor asks the question out loud.
+
+   +------------------------------------------------------------------------+
+   |                                                                        |
+   |  [1]  A paper you must cite is missing.                                |
+   |       Houde, Newberry & Seim, ECONOMETRICA 2023 -- a structural model  |
+   |       of Amazon's OWN fulfilment-centre entry decision. Not cited      |
+   |       anywhere in v3.                                                  |
+   |                                                                        |
+   |  [2]  Innovation 2 is factually false.                                 |
+   |       "Spatial econometrics has treated W as fixed for four decades"   |
+   |       -- there is an active literature estimating W. One search kills  |
+   |       the sentence.                                                    |
+   |                                                                        |
+   |  [3]  Objective 1 measures nothing.                                    |
+   |       The target variable is BUILT from the same covariates used to    |
+   |       PREDICT it. And MAPE is undefined on a zero-inflated count.      |
+   |                                                                        |
+   +------------------------------------------------------------------------+
+
+Good news: each has a fix that makes the project stronger, not smaller.
+Diagrams below.
+
+
+================================================================================
+1.  QUESTION 1 -- "WHAT IS THE NOVELTY IF AMAZON IS ALREADY DOING IT?"
+================================================================================
+
+1.1  REFRAME THE QUESTION FIRST
+-------------------------------
+
+"Amazon already does this" is not an objection to research. Nobody objects to
+weather models on the grounds that the atmosphere already knows what it is
+doing. The real question is:
+
+        WHAT DOES THIS ARTIFACT DO THAT NO EXISTING *ACCESSIBLE*
+        ARTIFACT DOES, AND FOR WHOM?
+
+There are three separable answers. v3 blurs them into one, which is why the
+claim feels weak.
+
+   +-------------------+-------------------------------+--------------------+
+   | AXIS              | CLAIM                         | STRENGTH           |
+   +-------------------+-------------------------------+--------------------+
+   | Audience novelty  | Amazon's model exists, but    | STRONG             |
+   |                   | serves only Amazon            | (framed badly)     |
+   +-------------------+-------------------------------+--------------------+
+   | Methodological    | Mutable W, event-driven       | OVERSTATED         |
+   | novelty           | re-estimation                 | (must narrow)      |
+   +-------------------+-------------------------------+--------------------+
+   | Architectural     | LLM writes into a CAUSAL      | REAL -- but v3     |
+   | novelty           | ESTIMATOR, not a data table   | misses the good bit|
+   +-------------------+-------------------------------+--------------------+
+
+
+1.2  THE MISSING CITATION -- fix this today
+-------------------------------------------
+
+   Houde, J.-F., Newberry, P., & Seim, K. (2023).
+   "Nexus Tax Laws and Economies of Density in E-Commerce:
+    A Study of Amazon's Fulfillment Center Network."
+   ECONOMETRICA.   (earlier: NBER WP 23361, 2017)
+
+This is the closest published work to your project, and it is in a top-five
+economics journal. Cited properly it becomes your BEST defence, because the
+deltas are clean and large:
+
+        HOUDE / NEWBERRY / SEIM              |   THIS PROJECT
+        (Econometrica 2023)                  |
+   -------------------------------------------------------------------------
+    grain    | STATE                         |   ZCTA  (~5,200 units)
+    network  | 2-DAY fulfilment centres      |   SUB-24H nodes (DS/SDC/AMXL)
+    period   | through ~2018, pre-regional   |   2023-2026, regionalised
+    data     | proprietary + licensed        |   entirely PUBLIC
+    method   | structural entry model        |   Heckman + spatial SCM
+    ident.   | state sales-tax nexus changes |   selection correction + SCM
+    artifact | none runnable                 |   deployed, open, reproducible
+    environ. | static information            |   event-driven state updates
+   -------------------------------------------------------------------------
+
+   RISK IF UNCITED:
+        professor finds it  -->  "novelty" stops being a question
+                                  and becomes a verdict
+   VALUE IF CITED:
+        signals you know the field  -->  the delta table does the work
+
+
+1.3  AUDIT OF THE FIVE CLAIMED INNOVATIONS
+------------------------------------------
+
+   +----+---------------------------------+-------------------------------+
+   | #  | v3 CLAIM                        | VERDICT                       |
+   +----+---------------------------------+-------------------------------+
+   | 1  | Warehouse_Mutator = new LLM     | DOWNGRADE, then RE-AIM.       |
+   |    | safety pattern, "no prior work" | Prior art exists. But the     |
+   |    |                                 | real novelty is next door.    |
+   +----+---------------------------------+-------------------------------+
+   | 2  | Mutable W = new methodology,    | *** MUST REWRITE ***          |
+   |    | "fixed for four decades"        | Factually false.              |
+   +----+---------------------------------+-------------------------------+
+   | 3  | Faster reaction time than       | *** DELETE ***                |
+   |    | Amazon's internal process       | Category error + unverifiable |
+   +----+---------------------------------+-------------------------------+
+   | 4  | First public tool for           | STRONGEST claim,              |
+   |    | competitors and regulators      | but WRONG FRAMING (see Q3)    |
+   +----+---------------------------------+-------------------------------+
+   | 5  | Auditable expansion decisions   | KEEP -- real and cheap        |
+   +----+---------------------------------+-------------------------------+
+
+
+1.3.1  INNOVATION 1 -- the failure the four gates do not catch
+--------------------------------------------------------------
+
+Prior art on gated LLM writes DOES exist (survey arXiv:2608.14590; SafeNlidb
+arXiv:2511.06778; text-to-SQL vulnerabilities arXiv:2211.15363; IEEE S&P 2026
+"Words Become SQL"; plus shipping open-source: sqlgate, llm-safe-sql).
+
+So "LLM proposes a write -> gates validate -> human approves" is well-trodden.
+
+BUT. Every one of those protects DATA INTEGRITY. Your write target is not a
+data table -- it is a PARAMETER OF A CAUSAL ESTIMATOR. That creates a failure
+class nobody has studied. Worked example:
+
+
+   PRESS RELEASE
+   "Walmart opens a new sortation centre in Plano, TX"
+        |
+        v
+   +-------------------------------------------------------------+
+   | LLM extracts:  (33.0198, -96.6989, SORTATION)                |
+   +-------------------------------------------------------------+
+        |
+        v
+   +-------------------------------------------------------------+
+   |  GATE 1   schema conformance .......................  PASS   |
+   |  GATE 2   geocoding reachability (Plano is real) ...  PASS   |
+   |  GATE 3   confidence threshold (0.94) ..............  PASS   |
+   |  GATE 4   audit-log immutability ...................  PASS   |
+   +-------------------------------------------------------------+
+        |
+        |  write lands in dim_logistics_nodes.  System reports SUCCESS.
+        v
+   +-------------------------------------------------------------+
+   |                  BUT DOWNSTREAM  ...                        |
+   +-------------------------------------------------------------+
+        |
+        v
+     W matrix changes            (which ZCTAs are "neighbours")
+        |
+        v
+     Donor pool changes          (Dallas ZCTAs move in/out of controls)
+        |
+        v
+     theta changes               (the cannibalisation coefficient)
+        |
+        v
+     NPV moves by MILLIONS
+        |
+        v
+   +-------------------------------------------------------------+
+   |   <<<  NOTHING IN GATES 1-4 CHECKS ANY OF THIS  >>>          |
+   |   The write is "safe". The inference is broken.              |
+   +-------------------------------------------------------------+
+
+
+   THE FIX -- add two IDENTIFICATION gates.  This is the real contribution.
+
+   +-------------------------------------------------------------------+
+   | GATE 5  DONOR-POOL INTEGRITY                                      |
+   |   Does this mutation move a unit currently serving as a control   |
+   |   into a treated / spillover-contaminated state?                  |
+   |   -> if yes, recompute the donor pool and FLAG the affected       |
+   |      ZCTAs. Do not silently re-weight.                            |
+   +-------------------------------------------------------------------+
+   | GATE 6  ESTIMATE STABILITY                                        |
+   |   Re-run theta with and without the mutation.                     |
+   |   If |delta theta| > PRE-REGISTERED threshold                     |
+   |   -> escalate to a human REGARDLESS of the HITL_REQUIRED flag,    |
+   |      and surface the delta in the diff card.                      |
+   +-------------------------------------------------------------------+
+
+   Effort: ~2 days. You already estimate theta -- you just run it twice
+   and diff.
+
+   RESTATED CLAIM (defensible, narrow, publishable):
+     "Existing work on gated LLM writes protects DATA integrity. We identify
+      a distinct failure class -- INFERENTIAL integrity -- in which a write
+      that satisfies every data-integrity gate nonetheless invalidates a
+      downstream causal identification assumption, and we propose two
+      identification gates that detect it."
+
+
+1.3.2  INNOVATION 2 -- what actually survives
+---------------------------------------------
+
+v3 says W has been "fixed ex ante for four decades". Counter-examples, all
+findable in one search:
+
+    Souza (2019)              estimation/selection of W in a spatial lag model
+    Krisztin & Piribauer      Bayesian estimation of W matrices (2101.11938)
+    Political Analysis (2024)    Parameterizing spatial weight matrices
+    Ahrens & Bhattacharjee       two-step Lasso estimation of W
+    LeSage & Pace (2014)         "The Biggest Myth in Spatial Econometrics"
+
+The save is that all of them update W through a DIFFERENT CHANNEL than you do:
+
+
+   PRIOR ART  --  W as an ESTIMATED PARAMETER
+   ------------------------------------------------------------------
+        +----------------+
+        | outcome panel  |----+
+        |   Y(i,t)       |    |
+        +----------------+    |
+                |             | SAME data used for both
+                |             |
+                v             v
+        +----------------+  +----------------+
+        | estimate  W    |->| infer  theta   |
+        +----------------+  +----------------+
+             in-sample, statistical, ONCE
+
+
+   THIS PROJECT  --  W as EVENT-DRIVEN STATE
+   ------------------------------------------------------------------
+        +----------------+          +---------------------------+
+        | outcome panel  |          |  EXOGENOUS TEXT STREAM    |
+        |   Y(i,t)       |          |  competitor announcements |
+        +----------------+          +---------------------------+
+                |                              |
+                |                              v
+                |                   +---------------------------+
+                |                   | LLM extract + GATES 1-6   |
+                |                   +---------------------------+
+                |                              |
+                |                              v
+                |                   +---------------------------+
+                |                   |   revise W  (between      |
+                |                   |   estimation cycles)      |
+                |                   +---------------------------+
+                |                              |
+                +--------------+---------------+
+                               v
+                     +--------------------+
+                     |  re-infer  theta   |
+                     +--------------------+
+                        streaming, out-of-band, REPEATEDLY
+
+
+   AND THEN -- TURN LeSAGE & PACE INTO YOUR EXPERIMENT.
+   ---------------------------------------------------
+   They claim spatial results are barely sensitive to W. Your project is a
+   natural test of that claim. So PRE-REGISTER it:
+
+      RQ2 (rewritten):  Does event-driven revision of W materially change
+                        the estimated cannibalisation coefficient theta, or
+                        are spatial causal estimates robust to W revision as
+                        LeSage & Pace (2014) suggest?
+
+                              +-------------------+
+                              |   run the test    |
+                              +-------------------+
+                                   /         \
+                                  /           \
+                    theta MOVES  /             \  theta DOESN'T MOVE
+                                v               v
+              +--------------------------+  +--------------------------+
+              | You push back on a known |  | You CONFIRM a known      |
+              | claim in spatial econ,   |  | claim under a NOVEL      |
+              | using a new update       |  | perturbation, AND report |
+              | channel.                 |  | an honest engineering    |
+              |                          |  | finding: the mutable-W   |
+              | -> workshop paper        |  | machinery is elegant but |
+              |                          |  | not decision-relevant.   |
+              |                          |  |                          |
+              |                          |  | -> still publishable     |
+              +--------------------------+  +--------------------------+
+
+                      YOU CANNOT LOSE THIS BET.
+
+   v3 implicitly assumes "it moves" and has no plan for "it doesn't" --
+   which is exactly the situation where an unprepared team starts p-hacking.
+
+
+1.3.3  INNOVATION 3 -- delete it
+--------------------------------
+
+   Claim: "we react in 60 seconds; Amazon takes 7-30 days"
+
+      PROBLEM 1  CATEGORY ERROR
+                 You are racing a governance process with a for-loop.
+                 Amazon's cycle is slow because a human commits $4M of
+                 capital -- not because their software is slow.
+
+      PROBLEM 2  UNVERIFIABLE
+                 You have no access to Amazon's internal cadence. The
+                 "7 to 30 days" figure is uncited and unsourceable.
+
+      PROBLEM 3  SELF-UNDERMINED
+                 Section 5.7.1 concedes the 60-second benchmark runs with
+                 HITL_REQUIRED = OFF, while the demo ships with it ON.
+                 You are benchmarking a mode you do not deploy.
+
+   Fold the latency number into Innovation 1 as a pure internal system
+   metric with no external comparison. Innovations 1, 2 and 5 carry the
+   contribution without it.
+
+
+1.4  OTHER PRIOR WORK YOU MUST CITE
+-----------------------------------
+
+Section 2.1 currently implies the SUTVA/interference problem in synthetic
+control is unsolved. Also falsifiable:
+
+     arXiv:2408.00291   Bayesian synthetic control with spillover effects
+     arXiv:2411.01249   Robust regression approach to SCM with interference
+     arXiv:2007.02714  Review of spatial causal inference (Reich et al.)
+     JCI 2022-0051     Exploiting neighborhood interference, low-order
+     Pollmann (arXiv:2011.00373, submitted to Econometrica)
+                       CAUSAL INFERENCE FOR SPATIAL TREATMENTS
+                       <-- the definitive treatment of treatment-at-a-
+                           location with distance-decaying effects.
+                           SECOND-MOST-DANGEROUS OMISSION after Houde
+                           et al. Sits directly on Section 5.4.
+
+And your actual research question, already published in structural form:
+
+     Mgmt Science 68(12) 2022, 8829-8856
+         Demand Expansion and Cannibalization Effects from Retail Store Entry
+     Mgmt Science 58(11) 2012, 2001-2018
+         Empirical Investigation of Retail Expansion and Cannibalization
+     Caoui, Hollenbeck & Osborne
+         Dynamic Entry and Spatial Competition: Dollar Store Expansion
+     Schorung, Lecourt & Dablanc (2023), WCTR
+         Spatial patterns of Amazon warehouse network in the United States
+     JPAM (2025), doi:10.1002/pam.70065
+         The Impact of Amazon Facilities on Local Economies
+
+   YOUR DELTA vs the Management Science papers:
+     they   = structural demand models, PROPRIETARY firm data, STORE grain,
+              static environment, NO artifact
+     you    = reduced-form spatial causal inference, PUBLIC data, ZCTA grain,
+              SERVICE-TIER (not store) expansion, SHIPPED tool
+
+
+================================================================================
+2.  QUESTION 2 -- "WHAT IS THE MODEL CONFIDENCE AND PREDICTION ACCURACY?"
+================================================================================
+
+2.1  THE BLUNT ANSWER: AS WRITTEN, THE PROPOSAL CANNOT ANSWER THIS
+------------------------------------------------------------------
+
+Section 4.2 says the target variable is CONSTRUCTED:
+
+    "same-day-Prime order volume per ZCTA per month ... distributed across
+     ZCTAs proportionally to a composite of ACS e-commerce-friendliness
+     features and Yelp retail density"
+
+Section 5.3 then fits a ZINB on ACS and Yelp features to predict that target.
+
+
+                     * * *  THE CIRCULARITY TRAP  * * *
+
+      +----------------------------+
+      |  ACS demographics          |
+      |  Yelp retail density       |
+      +----------------------------+
+            |                  \
+            | used to BUILD     \  used to PREDICT
+            |                    \
+            v                     \
+      +----------------------------+ \
+      |  "TARGET" VARIABLE         |  \
+      |                            |   \
+      |  orders_i = Total x        |    \
+      |    (0.6*income_i +         |     \
+      |     0.4*yelp_i) / SUM(..)  |      \
+      +----------------------------+       \
+            |                               \
+            |                                v
+            |                    +--------------------------+
+            |     scored         |      ZINB MODEL          |
+            +------------------->|   f(income, yelp, ...)   |
+                   against       +--------------------------+
+                                            |
+                                            v
+                        +--------------------------------------+
+                        |   REPORTED:  "MAPE = 3-5%"           |
+                        |                                      |
+                        |   LOOKS LIKE   ->  triumph           |
+                        |   ACTUALLY IS  ->  proof of the loop |
+                        +--------------------------------------+
+
+      The model has learned YOUR ARITHMETIC, not Amazon's behaviour.
+      A reviewer spots this in under a minute.
+
+SECOND, SEPARATE PROBLEM -- MAPE is the wrong metric anyway:
+
+      MAPE = mean( |actual - pred| / actual )
+                                     ^^^^^^
+                                     divide by zero
+
+      Your entire premise is that many ZCTAs are STRUCTURAL ZEROS.
+      So you must either
+          (a) drop the zeros  -> destroys the reason you chose ZINB, or
+          (b) report infinity -> not a number
+
+      Citation that settles it: Hyndman & Koehler (2006),
+      "Another look at measures of forecast accuracy", IJF 22(4), 679-688.
+      Cite it YOURSELF before a reviewer cites it AT you.
+
+
+2.2  LAYER 0 -- FIX THE TARGET VARIABLE
+---------------------------------------
+
+Stop asking an unobservable question. Start asking an observable one.
+
+
+   BEFORE (v3)                     |   AFTER (recommended -- "Option A")
+   --------------------------------+-----------------------------------------
+   "How many same-day orders will  |   "HAS Amazon enabled same-day service
+    ZCTA i generate?"              |    in ZCTA i, and WHEN?"
+                                   |
+   UNOBSERVABLE                    |   OBSERVABLE from:
+   -> must be fabricated           |     - Amazon's own delivery-speed
+                                   |       checker, queried by ZIP
+                                   |     - MWPVL facility inventory + open
+                                   |       dates
+                                   |     - Amazon's public announcements
+   --------------------------------+-----------------------------------------
+   Model:  ZINB only               |   Model: discrete-time hazard /
+                                   |          panel logit
+                                   |          (ZINB demoted to secondary)
+   --------------------------------+-----------------------------------------
+   Metric: MAPE  (undefined)       |   Metrics: AUC-ROC, PR-AUC, Brier
+                                   |            score, calibration curve,
+                                   |            ECE, precision@k
+   --------------------------------+-----------------------------------------
+   Validation: held-out ZCTAs      |   Validation: OUT-OF-TIME BACKTEST
+   --------------------------------+-----------------------------------------
+   Framing: "demand forecast"      |   Framing: "Amazon-consistent expansion
+            (indefensible)         |            desirability" -- now
+                                   |            LITERALLY TRUE, not a hedge
+   --------------------------------+-----------------------------------------
+
+
+   THE BACKTEST -- your single most persuasive slide
+   -------------------------------------------------
+
+     TIME ------------------------------------------------------------>
+
+     |<---------- TRAIN ----------->|<------- PREDICT ------->|
+     |                              |                         |
+     +------------------------------+-------------------------+
+     |  all facilities open         |  2024 - 2025            |
+     |  through 2023                |  openings               |
+     +------------------------------+-------------------------+
+                                    |                         |
+                                    |    score against        |
+                                    |    WHAT AMAZON          |
+                                    |    ACTUALLY DID         |
+                                    v                         v
+                        +---------------------------------------+
+                        |  AUC 0.84                             |
+                        |  ECE 0.03                             |
+                        |  precision@100 = 0.61                 |
+                        +---------------------------------------+
+
+     THAT is an answer to "what is your accuracy".
+     "MAPE 25% on a synthetic target" is not.
+
+   Honest numbers to WRITE INTO Objective 1:
+       AUC-ROC        0.80 - 0.88
+       PR-AUC         well above base rate (state the base rate!)
+       ECE            < 0.05
+       precision@100  >= 0.60
+
+   Do NOT promise AUC 0.95. On public data alone that would itself be a
+   red flag.
+
+   FALLBACK ("Option C") if you keep the volume model: relabel it honestly
+   as a SPECIFICATION-RECOVERY exercise, not a forecast, and stamp every
+   downstream NPV figure "conditional on the volume-allocation assumption."
+   Costs nothing. Still far better than v3.
+
+
+2.3  LAYER 1 -- METRIC REPLACEMENT TABLE
+----------------------------------------
+
+   +---------------------------+-------------------------+---------------------+
+   | v3 METRIC                 | PROBLEM                 | REPLACE WITH        |
+   +---------------------------+-------------------------+---------------------+
+   | MAPE < 25%  (Obj 1)       | undefined at y=0;       | binary: AUC/PR-AUC/ |
+   |                           | circular target         | Brier               |
+   |                           |                         | count: Poisson-NB   |
+   |                           |                         | deviance, RMSLE,    |
+   |                           |                         | MASE                |
+   +---------------------------+-------------------------+---------------------+
+   | RQ1 "within 15%"          | contradicts Obj 1's 25% | delete the number;  |
+   |                           |                         | point RQ1 at Obj 1  |
+   +---------------------------+-------------------------+---------------------+
+   | structural-zero F1 > 0.85 | F1 hides base rate;     | PR-AUC + calibration|
+   |                           | threshold-dependent     | curve; state the    |
+   |                           |                         | threshold + why     |
+   +---------------------------+-------------------------+---------------------+
+   | Spearman > 0.80           | reasonable -- KEEP      | keep + bootstrap CI |
+   | (ZINB vs LightGBM)        |                         | on the correlation  |
+   +---------------------------+-------------------------+---------------------+
+   | SCM pre-treat RMSE < 8%   | necessary, NOT          | ADD placebo /       |
+   |                           | sufficient              | permutation         |
+   |                           |                         | inference + post/pre|
+   |                           |                         | RMSPE ratio p-value |
+   +---------------------------+-------------------------+---------------------+
+   | Agent 85% of 40 questions | n=40, single evaluator, | see 2.5             |
+   |                           | self-authored benchmark |                     |
+   +---------------------------+-------------------------+---------------------+
+   | metro CapEx within 25%    | GOOD -- keep            | keep, and FEATURE   |
+   |                           |                         | it. Only externally |
+   |                           |                         | checkable number in |
+   |                           |                         | the whole system    |
+   +---------------------------+-------------------------+---------------------+
+
+   The SCM placebo test is not optional. Its absence is a red flag to any
+   causal-inference reviewer -- it is the Abadie-Diamond-Hainmueller standard.
+
+
+2.4  LAYER 2 -- THE FOUR-LAYER CONFIDENCE ARCHITECTURE
+-------------------------------------------------------
+
+The Monte Carlo (5.6) and bootstrap (5.6.1) quantify PARAMETER uncertainty
+only. In a project built on proxies, SPECIFICATION and PROXY uncertainty
+dominate -- and neither is currently addressed.
+
+
+   +==========================================================================+
+   |  LAYER 3   AGENT ACCURACY                                                |
+   |            execution accuracy, Wilson CIs, difficulty tiers,             |
+   |            gold-set audit, judge-bias mitigation                         |
+   +==========================================================================+
+   |  LAYER 2   HONEST UNCERTAINTY                                            |
+   |            (a) conformal prediction  -> VERIFIED interval coverage       |
+   |            (b) tornado plot over 8 cost buckets                          |
+   |            (c) Top-K rank stability  -> decision-relevant accuracy       |
+   +==========================================================================+
+   |  LAYER 1   RIGHT METRICS                                                 |
+   |            AUC / PR-AUC / Brier / ECE  (not MAPE)                        |
+   |            deviance / RMSLE / MASE for counts                            |
+   |            SCM placebo + RMSPE-ratio p-value                             |
+   +==========================================================================+
+   |  LAYER 0   *** A REAL TARGET VARIABLE ***                                |
+   |            observable service enablement + date                          |
+   |            (everything above is worthless without this)                  |
+   +==========================================================================+
+
+
+   (a) CONFORMAL PREDICTION -- highest return on effort in this whole review
+   -------------------------------------------------------------------------
+       Split conformal gives DISTRIBUTION-FREE, FINITE-SAMPLE coverage.
+       ~30 lines of code. Angelopoulos & Bates (2021), arXiv:2107.07511.
+
+       It lets you say:
+
+            "Our 90% prediction intervals empirically covered 90.2% of
+             held-out ZCTAs."
+
+       That is a VERIFIED claim, not a modelling assumption. Most credible
+       sentence you can put in a methods paper for the least work.
+       IF YOU IMPLEMENT ONE THING FROM THIS REVIEW, IMPLEMENT THIS.
+
+
+   (c) TOP-K RANK STABILITY -- the number an executive actually needs
+   ------------------------------------------------------------------
+       The real question is not "what's your MAPE". It is:
+
+            "If your inputs are wrong within their uncertainty bands,
+             does your RECOMMENDATION change?"
+
+       Across the 10,000 Monte Carlo draws you already run, report:
+
+          ZCTA      appears in TOP 10 in ...
+          -------------------------------------------------------------
+          94608     ############################################ 87%  STABLE
+          94501     ##################################           68%  stable
+          94612     #################                          34%  UNSTABLE
+          94577     ########                                   16%  UNSTABLE
+          -------------------------------------------------------------
+
+          "ZCTA 94612 appears in the top ten in only 34% of draws. Its
+           ranking is not stable and should not drive a capital decision."
+
+       Falls straight out of simulation you are already running. Almost no
+       student project reports it. Turns uncertainty from an apology into a
+       product feature.
+
+
+2.5  LAYER 3 -- AGENT ACCURACY, DONE PROPERLY
+---------------------------------------------
+
+GROUND YOUR TARGET IN THE LITERATURE BEFORE YOU SET IT.
+
+On the BIRD benchmark (Li et al., NeurIPS 2023, arXiv:2305.03111):
+
+
+     execution accuracy on BIRD
+     0%                                                            100%
+     |-------------------------------------------------------------|
+     |                                                             |
+     |                              best public systems  ~80%      |
+     |                              |                              |
+     |                              v                              |
+     |==============================*                              |
+     |                                                             |
+     |                                 human baseline  ~92.96%     |
+     |                                 |                           |
+     |                                 v                           |
+     |=================================*                           |
+     |                                                             |
+     |                          v3 Objective 3:  85%               |
+     |                          on a 40-question set YOU WROTE     |
+     |==============================*                              |
+     |                                                             |
+     |-------------------------------------------------------------|
+
+     You are claiming ABOVE-SOTA performance on an unfalsifiable test set.
+
+
+   FIXES
+   -----
+   1. GROW n AND REPORT AN INTERVAL.
+      At n=40, an observed 85% has a 95% Wilson interval of roughly
+
+           [ 71% ..................... 85% ..................... 93% ]
+             ^                                                     ^
+             a "failure" at 72%          and a "success" at 92%
+             are STATISTICALLY INDISTINGUISHABLE
+
+      Go to n >= 100 and state the interval.
+
+   2. PRIMARY METRIC = EXECUTION ACCURACY, not human judgement.
+      Does the generated SQL return the same result set as a gold query?
+      Objective, reproducible, field-standard. Keep a small human-judged
+      subset only for narrative-quality questions.
+
+   3. STRATIFY BY DIFFICULTY:
+         lookup  |  aggregation  |  spatial join  |  multi-hop
+      Aggregate numbers hide that SPATIAL JOINS are exactly where these
+      systems break -- and your warehouse is spatial.
+
+   4. AUDIT YOUR OWN GOLD SET.
+      arXiv:2601.08778 shows even curated public benchmarks carry heavy
+      label noise. Report an audit of a sample.
+
+   5. IF YOU USE LLM-AS-JUDGE, acknowledge its limits:
+         position bias                 arXiv:2406.07791
+         reliability without validity  arXiv:2606.19544
+         coin-flip behaviour on hard items  arXiv:2606.13685
+      Mitigations: randomise option order, two judges + human tiebreak,
+      REPORT COHEN'S KAPPA.
+
+
+   PRE-REGISTER THE MINIMUM DETECTABLE EFFECT FOR THE 5.10 ABLATION
+   ----------------------------------------------------------------
+      n = 200 press releases, gate-hit rate ~0.8  ->  SE ~ 2.8pp
+      -> differences below ~8pp between Grok / Claude / GPT are NOT
+         distinguishable.
+
+         Grok    |=================================| 82%   +/- 5.5pp
+         Claude  |==================================| 84%  +/- 5.1pp
+         GPT-5   |==================================| 85%  +/- 5.0pp
+                                                     ^
+                                      these bars OVERLAP. There is no result.
+
+      If you have not said this in advance you will be forced either to
+      over-claim a difference that isn't there, or to admit the study was
+      underpowered. Stating the MDE up front converts a weakness into
+      evidence of rigour.
+
+
+2.6  LAYER 4 -- WHAT TO SAY WHEN THE HONEST ANSWER IS "WE CAN'T MEASURE THAT"
+-----------------------------------------------------------------------------
+
+   Keep this sentence ready:
+
+      "For the OBSERVABLE outcome -- whether and when Amazon enables
+       same-day service in a ZCTA -- we report AUC, calibration, and an
+       out-of-time backtest against 2024-25 openings.
+
+       For the UNOBSERVABLE outcome -- dollar NPV -- we make NO ACCURACY
+       CLAIM, because no public ground truth exists. Instead we report
+       empirically validated interval coverage, rank stability under
+       uncertainty, and we externally validate the one component that
+       CAN be checked: metro-level capital expenditure against Amazon's
+       10-K disclosures."
+
+   Precision about what you CANNOT measure reads as rigour.
+   Vagueness reads as evasion.
+
+
+================================================================================
+3.  QUESTION 3 -- "IT'S PUBLIC DATA. WHAT'S THE USE? WHERE'S THE USE CASE?"
+================================================================================
+
+3.1  REFRAME: the professor is asking
+--------------------------------------
+
+        "WHO MAKES A DIFFERENT DECISION BECAUSE THIS EXISTS?"
+
+v3's answer is essentially "Walmart, and consultants are expensive." Thin,
+partly uncited, academically weak. Here are four users with a real decision,
+a real counterfactual, and a real institution behind each.
+
+
+   RANK 1   MUNICIPAL PLANNERS + AIR-QUALITY DISTRICTS      <== BUILD FOR THIS
+   ------------------------------------------------------------------------
+   DECISION   approve / condition / deny a warehouse permit;
+              size mitigation requirements;
+              decide whether to offer a TAX ABATEMENT
+
+   INSTITUTION   South Coast AQMD RULE 2305 -- the Warehouse Indirect
+                 Source Rule (WAIRE Program). Adopted 2021, EPA-APPROVED.
+                 Warehouses >= 100,000 sq ft must earn emission-reduction
+                 points or pay mitigation fees. Other regions are copying it.
+
+   THE KILLER FEATURE -- and it is already in your model:
+
+
+       +----------------------------------------------------------------+
+       |                                                                |
+       |          "WOULD AMAZON HAVE BUILT HERE ANYWAY?"                |
+       |                                                                |
+       +----------------------------------------------------------------+
+                                    |
+                                    v
+       Your HECKMAN SELECTION EQUATION's propensity score *IS* the answer.
+
+
+       CITY COUNCIL DECISION TREE
+       --------------------------
+                        +-----------------------------+
+                        | Amazon considering our ZIP? |
+                        +-----------------------------+
+                                     |
+                        +------------+------------+
+                        |                         |
+              propensity HIGH              propensity LOW
+              (top decile)                 (bottom half)
+                        |                         |
+                        v                         v
+            +------------------------+  +------------------------+
+            | They are coming        |  | An abatement might     |
+            | ANYWAY.                |  | genuinely change the   |
+            |                        |  | decision.              |
+            | DO NOT PAY THE         |  |                        |
+            | ABATEMENT.             |  | Now negotiate on       |
+            |                        |  | terms, knowing that.   |
+            | Negotiate mitigation   |  |                        |
+            | instead.               |  |                        |
+            +------------------------+  +------------------------+
+
+                    ^^^ THAT IS PUBLIC MONEY. ^^^
+
+   Cities routinely subsidise logistics facilities without ever computing
+   this counterfactual -- see "The Impact of Amazon Facilities on Local
+   Economies", JPAM 2025.
+
+   DELIVERABLE  one Streamlit page: "PUBLIC PLANNING VIEW"
+                propensity score + expected timing window + plain-language
+                readout.  ~1 day on top of what you are already building.
+
+
+   RANK 2   COMMUNITY + ENVIRONMENTAL-JUSTICE ORGANISATIONS
+   ------------------------------------------------------------------------
+   DECISION   where to organise, comment, or litigate -- BEFORE the permit
+              application lands, not after it is approved.
+
+   EVIDENCE BASE (all public, all citable)
+        METRANS         Location of warehouses and environmental justice:
+                        evidence from four metros in California
+        Urban Freight Lab  Logistics Sprawl and Environmental Justice --
+                        documents "a significant spatial and racial mismatch
+                        between delivery supply and demand"
+        GWU Milken      warehousing and health-harming pollutants
+        UCS             Warehouses as an Environmental Justice Issue
+        EDF             Indirect Source Review
+
+   THIS IS WHERE SECTION 4.5.5 STOPS BEING A CHECKBOX AND BECOMES THE PRODUCT:
+
+
+        +-------------------------+       +-------------------------+
+        |  YOUR MODEL             |       |  EPA EJScreen           |
+        |  predicted expansion    |  +    |  (free download, joins  |
+        |  probability by ZCTA    |       |   on census geography)  |
+        +-------------------------+       +-------------------------+
+                     |                                |
+                     +----------------+---------------+
+                                      v
+                    +--------------------------------------+
+                    |  PREDICTED WAREHOUSE-BURDEN MAP      |
+                    |  BY DEMOGRAPHIC STRATUM              |
+                    |                                      |
+                    |  *** DOES NOT CURRENTLY EXIST        |
+                    |      PUBLICLY ***                    |
+                    +--------------------------------------+
+
+   EFFORT ~2 days.  Converts the project from "Amazon fan-fiction" into
+   public-interest analytics. HIGHEST-IMPACT SINGLE ADDITION.
+
+
+   RANK 3   COMPETING RETAILERS + LOGISTICS FIRMS   (keep, demote, de-fang)
+   ------------------------------------------------------------------------
+   Legitimate -- Walmart/Target/Costco defensive siting, 3PL lease decisions.
+   But reframe from "adversarial tool against Amazon" to MARKET-STRUCTURE
+   TRANSPARENCY.
+
+   AND DELETE the "$500,000 to $2,000,000 per consulting project" figure
+   unless you can cite it. An uncited dollar amount is a free attack surface.
+
+
+   RANK 4   RESEARCHERS -- the reproducibility contribution
+   ------------------------------------------------------------------------
+   The one the professor will value most academically.
+
+        The Econometrica paper is NOT reproducible by a student:
+            data are licensed, code is not runnable.
+
+        Your artifact IS:
+            + ZCTA-level panel of Amazon facility openings   (publish it)
+            + derived covariate matrix                       (publish it)
+            + evaluation harness                             (publish it)
+
+        -> anyone can swap in causal forests, DoubleML, or a GNN and
+           compare against your baseline.
+
+        "DATASET + BENCHMARK" is a recognised publishable contribution
+        category, with value independent of whether your point estimates
+        are right.
+
+
+3.2  THE FRAMING SENTENCE -- use verbatim
+-----------------------------------------
+
+   "Proprietary data produces conclusions nobody can check. Public data
+    produces conclusions anyone can check. For a decision that
+    municipalities, regulators, and affected communities have legal
+    standing to contest, CHECKABILITY IS THE PRODUCT.
+
+    Amazon's internal model is more accurate and less useful to everyone
+    except Amazon."
+
+
+3.3  AND THE ARGUMENT THAT MAKES THE ACCURACY CEILING A FINDING
+----------------------------------------------------------------
+
+   A central output nobody has published:
+
+        HOW MUCH OF AMAZON'S REVEALED SITING BEHAVIOUR IS EXPLAINABLE
+        FROM PUBLIC DATA ALONE?
+
+                    result = 70%                result = 40%
+                         |                           |
+                         v                           v
+          +---------------------------+  +---------------------------+
+          | A strong result about the |  | A strong result about     |
+          | TRANSPARENCY of logistics |  | their OPACITY -- and it   |
+          | decisions.                |  | tells regulators exactly  |
+          |                           |  | how much disclosure would |
+          |                           |  | be needed to close it.    |
+          +---------------------------+  +---------------------------+
+
+                       EITHER ANSWER IS A CONTRIBUTION.
+
+   This directly disarms "but it's only public data" by making the
+   public-data constraint the RESEARCH QUESTION rather than the limitation.
+
+
+================================================================================
+4.  CORRECTION PLAN
+================================================================================
+
+4.1  PRIORITY MATRIX
+--------------------
+
+                  LOW EFFORT                     HIGH EFFORT
+              +------------------------------+------------------------------+
+              |  *** DO FIRST ***            |  *** DO ***                  |
+        H     |                              |                              |
+        I     |  Cite Houde et al.    0.5d   |  Out-of-time backtest    3d  |
+        G     |  Rewrite Innovation 2 0.5d   |  Identification gates 5,6 2d |
+        H     |  Delete Innovation 3  0.2d   |  SCM placebo inference   2d  |
+              |  Drop MAPE            0.5d   |  EJScreen equity overlay 2d  |
+        I     |  Conformal intervals  1d     |  Agent eval n>=100       2d  |
+        M     |  Top-K rank stability 0.5d   |  "Does W matter?" test   2d  |
+        P     |  Tornado plot         0.5d   |  Fix circular target     3d  |
+        A     |  Pre-register MDE     0.5d   |  MAUP / H3 robustness    1d  |
+        C     |                              |                              |
+        T     +------------------------------+------------------------------+
+              |  *** CHEAP HYGIENE ***       |  *** CUT ***                 |
+        L     |                              |                              |
+        O     |  Fix duplicate Obj 1   5min  |  Phi-3.5-mini narrator   7d  |
+        W     |  Fix XGBoost/LightGBM  5min  |  3-model LLM ablation    4d  |
+              |  Merge two ref lists   30min |                              |
+              |  Fix broken cross-refs 1h    |   ($90 of a contested        |
+              |  Fix "ten metros"      15min |    budget, and answers ZERO  |
+              |  Restore missing S5 hdg 5min |    of the three questions)   |
+              +------------------------------+------------------------------+
+
+
+4.2  P0 -- FATAL IF THE PROFESSOR FINDS THEM FIRST
+--------------------------------------------------
+
+   #  ISSUE                                       WHERE        FIX
+   -----------------------------------------------------------------------
+   1  Circular target variable                    4.2, 5.3     Option A
+   2  Houde/Newberry/Seim not cited               2.5, 6       cite + delta
+   3  Innovation 2 factually false                5.8          narrow claim
+   4  2.1 implies SUTVA problem unsolved          2.1          cite C1-C4
+   5  MAPE undefined on zero-inflated counts      Obj 1, 5.3   see 2.3
+   6  BUDGET SELF-CONTRADICTION                   table + 9    resolve
+   7  "ten pilot metros" then five listed         4.3          rewrite
+   8  Innovation 3 indefensible                   5.8          delete
+   9  POLLMANN (spatial treatments) not cited     2.1, 5.4     cite + adopt
+                                                               his estimator
+  10  LLM-extracted vars are GENERATED            5.4, 5.3.2   cite Egami
+      REGRESSORS -- standard errors understated                et al. / PPI
+   -----------------------------------------------------------------------
+
+   ON #6 -- THE BUDGET. The document contains two incompatible budgets:
+
+      +-------------------------------+   +-------------------------------+
+      |  BUDGET TABLE (pre-S9)        |   |  SECTION 9 PROSE              |
+      |                               |   |                               |
+      |  Total estimated .... $35     |   |  Tier 3 hard cap ..... $200   |
+      |  Hard cap ........... $100    |   |  Estimated spend ..... $180   |
+      |                               |   |  Scale buffer ........ $100   |
+      |  "Course rubric --            |   |  Total available ..... $300   |
+      |   AUTOMATIC B IF EXCEEDED"    |   |                               |
+      +-------------------------------+   +-------------------------------+
+                    |                                    |
+                    +----------------+-------------------+
+                                     v
+                    If the rubric cap really is $100, the
+                    Section 9 plan is an AUTOMATIC B by the
+                    document's own words.
+
+                    -> Resolve to ONE budget.
+                    -> Get WRITTEN instructor sign-off if exceeding $100.
+                    -> Or make the cut in section 5 below, which drops
+                       spend to ~$90 and dissolves the problem entirely.
+
+
+4.3  P1 -- SUBSTANTIVE RIGOUR  (these are what actually answer the professor)
+------------------------------------------------------------------------------
+
+    #   ADDITION                                     EFFORT   WHY
+   ---------------------------------------------------------------------------
+    9   Out-of-time backtest (train <=2023)            3d     most persuasive
+                                                              single result
+   10   Conformal prediction intervals                 1d     best credibility
+                                                              per hour
+   11   SCM placebo / permutation + RMSPE p-value      2d     Abadie standard;
+                                                              absence = red flag
+   12   Identification gates 5 & 6                     2d     the REAL Innov 1
+   13   "Does W actually matter?" test                 2d     win either way
+   14   EJScreen overlay + Public Planning view        2d     answers Q3
+   15   Top-K rank stability                          0.5d    differentiator
+   16   Cost-bucket tornado plot                      0.5d    defends cost model
+   17   Agent eval: n>=100, exec accuracy, Wilson CI   2d     current target is
+                                                              above-SOTA
+   18   Pre-register MDE for 5.10 ablation            0.5d    prevents an
+                                                              unwinnable result
+   19   Reconcile RQ1 (15%) vs Obj 1 (25%)            5min    contradiction
+   20   RURAL STRUCTURAL-ZERO ASSUMPTION IS DEAD      0.5d    see below
+   21   Add MAUP to 4.4 + H3 hex robustness check      1d     spatial reviewers
+                                                              ALWAYS ask
+   ---------------------------------------------------------------------------
+
+
+   ON #20 -- YOUR ZERO-INFLATION STORY IS CONTRADICTED BY CURRENT EVENTS
+   ---------------------------------------------------------------------
+
+      SECTION 2.3 SAYS:
+        "Rural, tribal, and institutional ZCTAs generate zero same-day
+         demand REGARDLESS of income or age structure (structural zeros)"
+
+      JUNE 2025, AMAZON ANNOUNCED:
+        $4 BILLION+ to bring same-day / next-day Prime delivery to
+        4,000+ smaller cities, towns and RURAL COMMUNITIES by end of 2026.
+
+                        v3 assumption          reality
+                     +-----------------+   +-----------------+
+                     | rural = zero    |   | rural = Amazon's|
+                     | demand, always  | X | biggest current |
+                     |                 |   | expansion push  |
+                     +-----------------+   +-----------------+
+
+      FIX: reframe zero-inflation as a statement about SERVICE
+           AVAILABILITY, not latent DEMAND.
+           -> which is yet another argument for the Option A estimand.
+           -> and it is a great topicality hook for Section 1.3.
+
+
+4.4  P2 -- DOCUMENT HYGIENE
+---------------------------
+
+   STRUCTURAL DAMAGE (v3 as it stands):
+
+      TABLE OF CONTENTS
+        |
+        +-- ... 7.2 P2 - Srilekha Budithi ....... 20
+        +-- 7.3 P3 - Rakshitha Venigalla
+        |     |
+        |     +--> [!!] THE ENTIRE BODY TEXT OF SECTION 7.3 IS STRANDED
+        |               HERE, INSIDE THE TABLE OF CONTENTS
+        |
+        +-- "7.3 Joint Ownership 217.4 Joint Ownership 217.4 Joint
+        |    Ownership"                       <-- [!!] mangled TOC line
+        +-- 8. Weekly Timeline ................ 21
+        +-- 9. Budget ......................... 23
+
+      BODY
+        |
+        +-- 4.5.5 Equity audit
+        +-- [!!] "5. Proposed Methods" HEADING IS MISSING ENTIRELY
+        +-- 5.1 System Architecture
+        ...
+        +-- Objective 1 ......... appears TWICE, "two metros" vs "three metros"
+        +-- 5.10 cites "Section 5.11" ......... [!!] 5.11 DOES NOT EXIST
+        +-- 4.5.1 cites "5.5 (NPV Optimizer)" . [!!] 5.5 is the COST model
+        +-- 5.7.1 cites "four gates in 5.7" ... [!!] 5.7 never lists them
+        +-- 5.9, 5.10 ......................... [!!] missing from the TOC
+
+
+   CITATION ERRORS:
+
+      [11]  "Chen, T., & Guestrin, C. (2016). LightGBM: A scalable tree
+             boosting system"
+                                 ^^^^^^^^
+             THAT PAPER IS XGBOOST. LightGBM is Ke et al. (2017), which
+             you cite correctly in the OTHER reference list.
+             The error appears TWICE.
+
+             Extra sting: Section 5.3.3 explicitly argues LightGBM beats
+             XGBoost on your categorical features -- while citing the
+             XGBoost paper as LightGBM.
+
+      Two separate reference lists, with Wager & Athey, Yao et al. and
+      Chen & Guestrin each appearing in both.
+
+      Card & Krueger (1994) cited in 5.8, absent from both lists.
+
+      Angrist & Pischke / Glaeser & Gyourko / Zheng et al. / Chen et al.
+      (2024) / Rojas & Nakamura -- in the lists, never cited in text.
+
+      Wei et al. -- cited as 2022 in text, listed as 2023 in references.
+
+
+   OTHER:
+      "instacart" -> "Instacart"  (Section 1.1)
+      Section 2.1: Reilly's Law passage glued onto the "Our delta"
+                   paragraph with no break
+      Timeline Week 3 still says "5 pilot metros" while scope is 10
+      P3 IS NEVER LISTED AS LEAD FOR ANY WEEK -- Week 6 (the dashboard
+      week) is "P1 + P2", despite 7.3 assigning her the dashboard,
+      deployment and exec deck. Reads badly against a rubric requiring
+      each member to own a unique area.
+
+
+================================================================================
+5.  SCOPE CHALLENGE -- WHAT I WOULD CUT
+================================================================================
+
+Your own note estimates Tier 3 at +20 to 24 person-days. My read: that is
+underestimated by roughly 2x once integration and debugging are counted.
+But the more important point is WHICH additions.
+
+
+                      THE REALLOCATION
+   ============================================================================
+
+   CUT                                  |  ADD
+   -------------------------------------+--------------------------------------
+   5.9  Fine-tuned Phi-3.5-mini         |  Out-of-time backtest          3d
+        narrator                        |  Conformal intervals           1d
+        - LoRA fine-tune                |  SCM placebo inference         2d
+        - 500 hand-written examples     |  Identification gates 5,6      2d
+        - Modal GPU setup               |  "Does W matter?" test         2d
+        - BLEU tone eval                |  EJScreen equity overlay       2d
+        - fallback path                 |  Top-K rank stability        0.5d
+                            ~7 days     |  Tornado plot                0.5d
+                            $30         |  Agent eval upgrade            2d
+                                        |                       ~15 days
+   5.10 Three-model LLM ablation        |                       $0
+        (demote to stretch goal)        |
+                            ~4 days     |
+                            $60         |
+   -------------------------------------+--------------------------------------
+   TOTAL FREED:  ~11 days, $90          |  TOTAL COST: ~15 days, $0
+   ============================================================================
+
+   BUDGET EFFECT:
+        estimated spend  $180  ---->  ~$90     BACK UNDER THE $100 CAP
+        which dissolves correction #6 and removes the "automatic B" exposure.
+
+
+   CONTRIBUTION TO THE PROFESSOR'S THREE QUESTIONS:
+
+        Q1 novelty     Q2 accuracy     Q3 use case
+        -----------    -----------     -----------
+   5.9      -               -               -           <- narrator: ZERO
+   5.10     ~               -               -           <- ablation: marginal
+
+   backtest  -             +++              +
+   conformal -             +++              -
+   placebo   +             +++              -
+   gates 5/6 +++            +               -
+   W test    +++            +               -
+   EJScreen   +             -              +++
+
+
+   THE HONEST TRADEOFF -- so you can decide rather than take my word:
+
+     You lose two impressive-sounding components. If the rubric rewards
+     TECHNIQUE COUNT and breadth of tooling, that is a real cost, and I
+     could be misreading the professor's priorities.
+
+     But the three questions he actually asked are all about SUBSTANCE --
+     novelty, confidence, use -- not surface area. A project that cannot
+     answer "what is your accuracy" does not get rescued by having
+     fine-tuned a language model.
+
+     Your call. I would make the cut.
+
+     WHAT GOES IN THEIR PLACE -> SECTION 6.
+
+
+================================================================================
+6.  NEW NOVELTY CANDIDATES -- WHAT TO ADD IN THEIR PLACE
+================================================================================
+
+Section 5 says what to CUT. This section says what to add instead.
+
+Seven candidates were generated from the gaps found in Sections 1-3. Each was
+then CHECKED against the literature -- the step that Innovation 2 skipped.
+Two died on checking. Five survived. The two that died turned up two more
+papers you are missing.
+
+
+6.0  THE TWO THAT DIED ON CHECKING  (and why that is good news)
+---------------------------------------------------------------
+
+   DEAD #1  "We measure how LLM extraction error propagates into the
+             causal estimate."
+
+      ALREADY SOLVED:
+        Egami, Hinck, Stewart & Wei (NeurIPS 2023, arXiv:2306.04746)
+          "Using Imperfect Surrogates for Downstream Inference:
+           Design-based Supervised Learning"
+        Angelopoulos et al. (Science 2023)  Prediction-Powered Inference
+
+      BUT IT EXPOSES A BUG YOU CURRENTLY HAVE:
+
+        +------------------------------------------------------------+
+        |  Your LLM-extracted facility data are GENERATED REGRESSORS. |
+        |                                                            |
+        |  press release --> LLM extract --> facility row            |
+        |                                        |                   |
+        |                                        v                   |
+        |                              feeds W  AND  the Huff        |
+        |                              gravity pull factor           |
+        |                                        |                   |
+        |                                        v                   |
+        |                              enters the ZINB and the SCM   |
+        |                              as if MEASURED WITHOUT ERROR  |
+        |                                        |                   |
+        |                                        v                   |
+        |               [!!] STANDARD ERRORS ARE UNDERSTATED          |
+        |                    and you do not know by how much         |
+        +------------------------------------------------------------+
+
+      Classic problem (Pagan 1984). Modern fix = DSL / PPI above.
+      NOT a novelty. IS correct, and almost nobody in the LLM-agent
+      space does it.                                        EFFORT ~1 day
+
+
+   DEAD #2  "We invent an estimator for the spillover radius."
+
+      ALREADY EXISTS:
+        Pollmann, M.  "Causal Inference for Spatial Treatments"
+        arXiv:2011.00373, submitted to Econometrica
+        -> treatment applied at a LOCATION, effects decaying with
+           DISTANCE, including distance-band / donut estimation
+
+      This is your SECOND-MOST-DANGEROUS uncited paper after Houde et al.
+      It sits directly on Section 5.4.
+
+      THE IDEA SURVIVES ANYWAY -- see 6.2. The METHOD is his.
+      The NUMBER is still yours, because nobody has estimated it for
+      same-day delivery.
+
+
+6.1  NOVELTY 1 -- EXPANSION IS A PORTFOLIO PROBLEM, NOT A RANKING PROBLEM
+--------------------------------------------------------------------------
+
+THE GAP IN v3
+   Your NPV optimizer RANKS ZCTAs and takes the top ones.
+   That silently assumes:
+
+                    NPV(A + B)  =  NPV(A) + NPV(B)
+
+   It does not hold. You have interaction running in BOTH directions:
+
+        NEGATIVE INTERACTION                POSITIVE INTERACTION
+        cannibalization (theta)             shared delivery station,
+        A steals demand from B              pooled drop density,
+                                            1/sqrt(delta) -> cost falls
+                                            for BOTH ZIPs
+                    \                              /
+                     \                            /
+                      v                          v
+              NPV(A + B)   !=   NPV(A) + NPV(B)
+
+
+WORKED EXAMPLE -- the failure greedy ranking cannot see
+   ---------------------------------------------------------------------
+
+      EVALUATED ALONE                    EVALUATED AS A BUNDLE
+
+   +-------------------------+       +-----------------------------+
+   |  ZIP A                  |       |  ZIP A  +  ZIP B            |
+   |    drop density   LOW   |       |                             |
+   |    needs its own        |       |    share ONE station        |
+   |    delivery station     |       |    pooled density CROSSES   |
+   |                         |       |    the threshold            |
+   |    NPV = -$200k    [X]  |       |    cost/package   -30%      |
+   +-------------------------+       |                             |
+                                     |    NPV = +$1.1M       [OK]  |
+   +-------------------------+       +-----------------------------+
+   |  ZIP B                  |
+   |    drop density   LOW   |
+   |    needs its own        |
+   |    delivery station     |
+   |                         |
+   |    NPV = -$150k    [X]  |
+   +-------------------------+
+
+        GREEDY RANKING REJECTS BOTH.
+        THE BUNDLE IS PROFITABLE.
+        v3's optimizer never evaluates the bundle.
+
+
+WHY GREEDY HAS NO GUARANTEE HERE  (the theoretical hook)
+   ---------------------------------------------------------------------
+
+        cannibalization    -> diminishing returns  -> SUBmodular
+        density economics  -> increasing returns   -> SUPERmodular
+                                    |
+                                    v
+                    the objective is NEITHER
+                                    |
+                                    v
+        the standard (1 - 1/e) greedy approximation guarantee
+        DOES NOT APPLY
+                                    |
+                                    v
+        so the size of the gap is an EMPIRICAL question
+                                    |
+                                    v
+                          <<< THAT IS YOUR RESULT >>>
+
+
+   THE CLAIM
+      "Greedy ZIP ranking -- the industry-standard framing -- leaves X%
+       of achievable NPV on the table once route-density externalities
+       are modelled, and we characterise when."
+
+   MUST CITE (do NOT claim location-allocation is new)
+      p-median / maximal covering location problem literature
+      Hernandez, "Retail Location Decision-Making and Store Portfolio
+        Management"
+      Wharton Baker Retail, "Optimal Retail Location: Empirical
+        Methodology and Application to Practice"
+      Mgmt Science 68(12) 2022 (multichannel entry, structural)
+
+   WHAT IS ACTUALLY NEW
+      solving it with an EMPIRICALLY ESTIMATED cannibalization
+      coefficient and ESTIMATED density externalities JOINTLY, and
+      reporting the greedy-vs-optimized gap for same-day logistics.
+
+   BUILD    greedy + pairwise-swap local search over ~200 candidates,
+            or a small ILP with pairwise interaction terms.
+   EFFORT   ~3 days.  You already have every ingredient.
+   RISK     HIGHEST of the three. See 6.6.
+
+
+6.2  NOVELTY 2 -- ESTIMATE THE CANNIBALIZATION DECAY RADIUS,
+                  THEN BUILD W OUT OF IT
+--------------------------------------------------------------------------
+
+THE GAP IN v3
+   (a) Everyone ASSERTS spillovers exist -- that is your whole SUTVA
+       argument -- but nobody publishes the decay curve for same-day
+       delivery.
+   (b) Your W is contiguity-based "because that is what people do."
+
+   THESE TWO PROBLEMS SOLVE EACH OTHER.
+
+
+ESTIMATE IT (Pollmann's distance-band estimator, applied to your panel)
+   ---------------------------------------------------------------------
+
+   cannibalization of 2-day orders (%)  vs  distance from activated ZCTA
+
+     0% -+-------------------------------------------*----*----*----*--
+         |                                      *
+    -2%  |                                 *
+         |                            *
+    -4%  |                       *
+         |                  *
+    -6%  |             *
+         |         *
+    -8%  |     *
+         |   *
+   -10%  | *
+         |*
+   -12%  *
+         +----+----+----+----+----+----+----+----+----+----+----+----+
+         0    4    8   12   16   20   24   28   32   36   40   44   km
+
+         |<-- MATERIAL -->|<-- FADING -->|<-- indistinguishable from 0 ->|
+              0 - 8 km        8 - 20 km            beyond 20 km
+
+
+   EXAMPLE FINDING (one sentence, citable, reusable by anyone)
+      "Cannibalization of 2-day orders is -12% within 8 km of an
+       activated ZCTA, -4% at 8-20 km, and statistically
+       indistinguishable from zero beyond 20 km."
+
+
+THEN BUILD W FROM THE ESTIMATED RADIUS -- this is the elegant move
+   ---------------------------------------------------------------------
+
+        v3                                PROPOSED
+   +--------------------------+     +----------------------------+
+   |  W = contiguity          |     |  W = f(estimated decay)    |
+   |                          | ==> |                            |
+   |  "because that is what   |     |  derived from the ring     |
+   |   people do"             |     |  regression above          |
+   +--------------------------+     +----------------------------+
+              |                                   |
+              v                                   v
+   "WHY CONTIGUITY?"                  W IS AN ESTIMATED OBJECT
+   -- open to attack, and             -- the objection disappears
+      you have no answer              -- and it ABSORBS the old
+                                         Innovation 2 claim, which
+                                         no longer has to carry
+                                         the novelty on its own
+
+   MUST CITE   Pollmann (arXiv:2011.00373)
+               Gibbons, agglomeration and distance decay
+               Kerr & Kominers, "Agglomerative Forces and Cluster
+                 Shapes" (REStat)
+
+   BUILD    ring / donut analysis around treated ZCTAs
+   EFFORT   ~2 days
+   RISK     LOW. Worst case the bands are noisy, which is itself
+            reportable.
+
+
+6.3  NOVELTY 3 -- CROSS-OPERATOR TRANSFERABILITY (a free falsification test)
+--------------------------------------------------------------------------
+
+THE GAP IN v3
+   You have NO placebo for the siting model itself. And you are already
+   scraping Walmart and Costco facilities for the Huff factor -- so the
+   test units are sitting there unused.
+
+THE TEST
+   ---------------------------------------------------------------------
+
+                        +-------------------------+
+                        |   model FITTED on       |
+                        |   AMAZON openings       |
+                        +-------------------------+
+                              |             |
+                  score on    |             |    score on
+                  AMAZON      v             v    WALMART
+                  openings                       openings
+                  AUC 0.84                       AUC =  ?
+                                    |
+                    +---------------+---------------+
+                    |                               |
+              AUC ~ 0.61                      AUC ~ 0.79
+                    |                               |
+                    v                               v
+      +---------------------------+   +---------------------------+
+      | OPERATOR-SPECIFIC         |   | GENERIC logistics         |
+      | revealed preference       |   | geography                 |
+      |                           |   |                           |
+      | -> the model has learned  |   | -> public covariates      |
+      |    AMAZON, not logistics  |   |    capture general siting |
+      |                           |   |    logic                  |
+      | -> sharpens the "Amazon-  |   | -> the tool GENERALISES   |
+      |    consistent" framing    |   |    beyond Amazon          |
+      |                           |   | -> strengthens Q3 a LOT   |
+      +---------------------------+   +---------------------------+
+
+                     BOTH OUTCOMES ARE RESULTS.
+                     The second is arguably more valuable.
+
+   BUILD    refit + score. Data already in hand.
+   EFFORT   ~1 day
+   RISK     LOW. Highest credibility-per-day on the whole list.
+            Signals scientific maturity rather than dashboard-building.
+
+
+6.4  THREE MORE, IF YOU HAVE APPETITE
+--------------------------------------
+
+   +---------------------------+-------------------------------+--------+
+   | IDEA                      | WHAT IT PRODUCES              | EFFORT |
+   +---------------------------+-------------------------------+--------+
+   | STATED vs REVEALED        | LLM extracts Amazon's STATED  |  2 d   |
+   | siting criteria           | rationale from press          |        |
+   |                           | releases; compare against the |        |
+   |                           | model's FITTED weights.       |        |
+   |                           |                               |        |
+   |                           | Example: "Press releases cite |        |
+   |                           | 'customer demand' in 78% of   |        |
+   |                           | announcements and cost in 4%. |        |
+   |                           | The fitted model attributes   |        |
+   |                           | 31% of siting variance to     |        |
+   |                           | demand and 44% to cost. The   |        |
+   |                           | public narrative              |        |
+   |                           | systematically under-weights  |        |
+   |                           | cost."                        |        |
+   |                           |                               |        |
+   |                           | Finally makes the LLM do      |        |
+   |                           | SCIENCE, not plumbing.        |        |
+   |                           | Cite: "When Large Employers   |        |
+   |                           | Come to Town" (Accounting     |        |
+   |                           | Review); "Corporate           |        |
+   |                           | Disclosure: Facts or          |        |
+   |                           | Opinions?" (Philadelphia Fed) |        |
+   +---------------------------+-------------------------------+--------+
+   | NEGATIVE-SPACE AUDIT      | Take the 20 largest POSITIVE  |  2 d   |
+   | "why NOT here?"           | residuals -- ZCTAs the model  |        |
+   |                           | loves that Amazon skipped --  |        |
+   |                           | and have the LLM hunt for     |        |
+   |                           | permit denials, zoning        |        |
+   |                           | refusals, community           |        |
+   |                           | opposition.                   |        |
+   |                           |                               |        |
+   |                           | Example: "11 of 20 are        |        |
+   |                           | explained by documented       |        |
+   |                           | land-use refusals."           |        |
+   |                           |                               |        |
+   |                           | VALIDATES the Section 4.5     |        |
+   |                           | selection story you currently |        |
+   |                           | only assert. Turns model      |        |
+   |                           | error into a finding.         |        |
+   +---------------------------+-------------------------------+--------+
+   | BREAK-EVEN INVERSION      | Not "what is the NPV" but     | 0.5 d  |
+   |                           | "what would have to be TRUE   |        |
+   |                           | for this to work?"            |        |
+   |                           |                               |        |
+   |                           | Example agent answer: "Boise  |        |
+   |                           | 83702 crosses NPV = 0 if drop |        |
+   |                           | density rises 22%, OR         |        |
+   |                           | permitting cost falls $180k,  |        |
+   |                           | OR cannibalization is below   |        |
+   |                           | 9%."                          |        |
+   |                           |                               |        |
+   |                           | Converts the tool from        |        |
+   |                           | DESCRIPTIVE to PRESCRIPTIVE.  |        |
+   |                           | Root-find on a function you   |        |
+   |                           | already have.                 |        |
+   +---------------------------+-------------------------------+--------+
+
+   BONUS, near-free: PUBLIC FORECAST REGISTRY
+      Publish timestamped monthly predictions to a public CSV, then
+      score yourself later. A pre-registered public forecast log for
+      corporate siting is rare, and it is a COMMITMENT DEVICE -- most
+      student projects are never exposed to falsification.
+                                                        EFFORT ~0.5 day
+
+
+6.5  THE PART YOU WILL NOT LIKE -- DO NOT *ADD* THESE. *REPLACE*.
+------------------------------------------------------------------
+
+   v3 already claims 5 innovations plus a bonus. THREE ARE BROKEN.
+
+        5 claims        +      3 new         =    8 assertions
+        (3 broken)                                (3 still broken)
+                                |
+                                v
+              that is EXACTLY the pattern that produced the
+              professor's question in the first place
+
+   He is not asking "do you have enough novelty."
+   He is asking "IS ANY OF IT REAL."
+
+
+   THE PROPOSED FINAL SET -- exactly four, all supported
+   ---------------------------------------------------------------------
+
+   +---------------------------------------------------------------+
+   |  1.  INFERENTIAL-INTEGRITY GATES  (Gates 5 & 6)               |
+   |      the LLM-safety failure class nobody has studied          |
+   |      -> see Section 1.3.1                                     |
+   +---------------------------------------------------------------+
+   |  2.  CAUSALLY ESTIMATED CANNIBALIZATION RADIUS -> W           |
+   |      commercial tools measure trade-area OVERLAP (geometry);  |
+   |      we estimate a CAUSAL effect with a decay curve, and      |
+   |      build W from it. W becomes an estimated object.          |
+   |      (ABSORBS the old Innovation 2)                           |
+   |      -> see Sections 6.2 and 6.7                              |
+   +---------------------------------------------------------------+
+   |  3.  PUBLIC-DATA EXPLAINABILITY CEILING                       |
+   |      + CROSS-OPERATOR TRANSFER                                |
+   |      how much of Amazon's behaviour is visible from outside?  |
+   |      -> see Sections 3.3 and 6.3                              |
+   +---------------------------------------------------------------+
+   |  4.  THE ARTIFACT ITSELF                                      |
+   |      free / open / reproducible / public-data / serves the    |
+   |      regulator. Every technique here has a paywalled          |
+   |      commercial equivalent -- none of them can be CHECKED.    |
+   |      -> see Section 6.7                                       |
+   +---------------------------------------------------------------+
+
+   NOTE: "portfolio, not ranking" (6.1) was in this set until the
+   commercial prior-art check in 6.7. STILL BUILD IT -- it is the
+   correct method -- but it is a METHOD FIX, not a contribution.
+
+   AND:
+      DROP    old Innovation 3 entirely                    (see 1.3.3)
+      DEMOTE  old Innovation 4 from "innovation" to USE CASE
+              -- because that is what it is                  (see 3.1)
+      KEEP    old Innovation 5 as a PROPERTY of the system,
+              not a headline claim
+
+
+6.6  DOES IT FIT?  -- and where I could be wrong
+-------------------------------------------------
+
+   THE LEDGER
+   ---------------------------------------------------------------------
+
+      FREED by Section 5 cuts            SPENT on Section 6 additions
+      -----------------------            ----------------------------
+      5.9  narrator        ~7 d          6.1  portfolio         3 d
+      5.10 ablation        ~4 d          6.2  decay radius      2 d
+                          ------         6.3  cross-operator    1 d
+                          ~11 d          ----------------------------
+                          $90            top three subtotal     6 d
+
+                                         6.4  stated vs revealed 2 d
+                                         6.4  negative space     2 d
+                                         6.4  break-even       0.5 d
+                                         bonus registry        0.5 d
+                                         ----------------------------
+                                         ALL SIX                11 d
+                                         $0
+
+      -> the top three cost 6 days of the 11 freed
+      -> ALL SIX still fit inside the 11 freed days
+      -> and cost $0, so the budget still drops to ~$90
+
+
+   WHERE I COULD BE WRONG
+   ---------------------------------------------------------------------
+
+      NOVELTY 1 (portfolio) carries real technical risk.
+
+         If the interaction terms cannot be estimated reliably from your
+         data, the greedy-vs-optimal gap comes out as NOISE and you have
+         burned three days.
+
+         MITIGATION: build it as a SIMULATION first, using your estimated
+         theta and density parameters. That demonstrates the principle
+         even if the empirical gap is imprecise.
+
+         DECIDE THIS BEFORE YOU START, not on day three.
+
+      Novelties 2 and 3 are low-risk. Both produce a reportable result
+      even in the worst case.
+
+
+6.7  INDUSTRY / COMMERCIAL PRIOR-ART CHECK  (added after a second challenge)
+-----------------------------------------------------------------------------
+
+Sections 6.0-6.6 above were checked against the ACADEMIC literature only.
+That was an incomplete check and it is corrected here. Patents, commercial
+products and industry practice were checked separately, and THREE of the six
+candidates turned out to have commercial equivalents.
+
+
+THE FOUR KINDS OF PRIOR ART -- and they are NOT equally dangerous
+------------------------------------------------------------------
+
+   +---------------------------+-------------------------+----------------+
+   | KIND                      | WHAT IT DOES TO YOU     | SEVERITY       |
+   +---------------------------+-------------------------+----------------+
+   | PUBLISHED ACADEMIC WORK   | makes your written      | *** FATAL ***  |
+   |                           | claim FALSE             | rewrite it     |
+   +---------------------------+-------------------------+----------------+
+   | COMMERCIAL PRODUCT        | makes "first" / "novel" | MEDIUM         |
+   | FEATURE                   | naive and unverifiable  | reframe it     |
+   +---------------------------+-------------------------+----------------+
+   | AMAZON INTERNAL PRACTICE  | nothing -- already       | LOW            |
+   |                           | handled by the Q1       | ignore         |
+   |                           | reframe in Section 1.1  |                |
+   +---------------------------+-------------------------+----------------+
+   | PATENTS                   | matters for             | NONE at        |
+   |                           | commercialisation only  | capstone level |
+   +---------------------------+-------------------------+----------------+
+
+   Innovation 2 died because of row 1. The three below are row 2 --
+   survivable, but only if the wording changes.
+
+
+WHAT THE COMMERCIAL CHECK FOUND
+--------------------------------
+
+   CANNIBALIZATION IS A BUTTON IN ESRI.
+      ArcGIS Pro Business Analyst ships a documented tool literally called
+      "Measure Cannibalization", plus "Analyze and resolve interactions
+      between trade areas."
+         -> hits NOVELTY 2 (decay radius)
+
+   MULTI-FACILITY NETWORK OPTIMISATION IS A MATURE PRODUCT CATEGORY.
+      Supply-chain network design (SCND) software -- Coupa Supply Chain
+      Guru (formerly LLamasoft), AIMMS SC Navigator, anyLogistix,
+      Optilogic -- all solve multi-site facility location as an
+      OPTIMISATION, not a ranking.
+         -> hits NOVELTY 1 (portfolio, not ranking) HARD
+
+   WHAT-IF / SENSITIVITY IS IN EVERY SCND AND SITE-SELECTION PACKAGE.
+         -> hits the break-even inversion idea (6.4)
+
+   SITE SELECTION IS A CROWDED COMMERCIAL MARKET.
+      Buxton ("Factor"), Kalibrate, Placer.ai, Esri Business Analyst.
+         -> general context; raises the bar on "first public tool"
+
+   BUT -- NOBODY PUBLICLY PREDICTS A COMPETITOR'S NEXT LOCATIONS.
+      The commercial-real-estate press (CoStar, Bisnow, CRE Daily, Site
+      Selection Magazine) tracks Amazon's expansion AFTER the fact. No
+      open, auditable, forward-looking model was found.
+         -> NOVELTY 3 and NOVELTY 4 SURVIVE INTACT
+
+
+THE DISTINCTION THAT SAVES THE SURVIVORS: CAUSAL vs GEOMETRIC
+--------------------------------------------------------------
+
+   Esri's "Measure Cannibalization" is a TRADE-AREA OVERLAP calculation.
+   It is DESCRIPTIVE GEOMETRY. It answers "how much do these two trade
+   areas overlap?"
+
+   It does NOT answer "what would sales in B have been if A had never
+   opened?" -- there is no counterfactual, no donor pool, no treatment
+   effect.
+
+        COMMERCIAL TOOLS                 THIS PROJECT
+   +-------------------------+      +----------------------------+
+   |  trade-area OVERLAP     |      |  CAUSAL treatment effect   |
+   |  = geometry             |  vs  |  = counterfactual          |
+   |                         |      |                            |
+   |  "these circles share   |      |  "sales in B would have    |
+   |   38% of their          |      |   been X% higher if A had  |
+   |   population"           |      |   never been activated"    |
+   +-------------------------+      +----------------------------+
+              |                                  |
+              v                                  v
+      no counterfactual                 estimated against a
+      no donor pool                     synthetic control, with
+      no standard error                 inference and a decay curve
+
+   THAT IS A REAL AND DEFENSIBLE DELTA.  Use it verbatim.
+
+   The same logic rescues the portfolio idea only PARTLY: SCND tools
+   optimise YOUR OWN network with ASSUMED demand and KNOWN costs. They do
+   not carry an ESTIMATED CAUSAL interaction term, and they cannot run on
+   PUBLIC data for SOMEBODY ELSE'S network.
+
+
+REVISED VERDICTS
+-----------------
+
+   +--------------------------+-------------------+----------------------+
+   | CANDIDATE                | REVISED VERDICT   | WHY                  |
+   +--------------------------+-------------------+----------------------+
+   | 6.3 Cross-operator       | SURVIVES BEST     | no commercial or     |
+   |     transferability      | *** promote ***   | academic equivalent  |
+   |                          |                   | found. It is a       |
+   |                          |                   | falsification test,  |
+   |                          |                   | not a product        |
+   |                          |                   | feature. 1 day.      |
+   +--------------------------+-------------------+----------------------+
+   | 3.3 Public-data          | SURVIVES          | CRE press tracks     |
+   |     explainability       |                   | Amazon AFTER the     |
+   |     ceiling              |                   | fact; nobody         |
+   |                          |                   | publishes the        |
+   |                          |                   | ceiling              |
+   +--------------------------+-------------------+----------------------+
+   | 1.3.1 Inferential-       | SURVIVES          | commercial LLM       |
+   |     integrity gates      |                   | data-governance      |
+   |                          |                   | gates protect DATA;  |
+   |                          |                   | none check causal    |
+   |                          |                   | identification       |
+   +--------------------------+-------------------+----------------------+
+   | 6.2 Decay radius -> W    | SURVIVES,         | Esri ships           |
+   |                          | NARROWED          | cannibalization as   |
+   |                          |                   | GEOMETRY. Claim the  |
+   |                          |                   | CAUSAL estimate and  |
+   |                          |                   | the published        |
+   |                          |                   | parameter, nothing   |
+   |                          |                   | more.                |
+   +--------------------------+-------------------+----------------------+
+   | 6.4 Stated vs revealed   | SURVIVES          | accounting lit       |
+   |                          |                   | exists, but not for  |
+   |                          |                   | SITING criteria      |
+   +--------------------------+-------------------+----------------------+
+   | 6.4 Negative-space audit | SURVIVES          | a diagnostic, not a  |
+   |                          |                   | product feature      |
+   +--------------------------+-------------------+----------------------+
+   | 6.1 Portfolio, not       | *** DEMOTED ***   | SCND software has    |
+   |     ranking              | method fix, NOT   | done multi-facility  |
+   |                          | a novelty claim   | optimisation for     |
+   |                          |                   | 20+ years. Saying    |
+   |                          |                   | this is "new" to a   |
+   |                          |                   | business professor   |
+   |                          |                   | would be             |
+   |                          |                   | embarrassing.        |
+   |                          |                   | STILL BUILD IT --    |
+   |                          |                   | it is CORRECT. Just  |
+   |                          |                   | do not call it a     |
+   |                          |                   | contribution.        |
+   +--------------------------+-------------------+----------------------+
+   | 6.4 Break-even inversion | DEMOTED           | what-if analysis is  |
+   |                          | UX feature        | in every SCND and    |
+   |                          |                   | site-selection       |
+   |                          |                   | package              |
+   +--------------------------+-------------------+----------------------+
+
+
+THE FRAMING RULE -- apply to EVERY claim in the document
+---------------------------------------------------------
+
+   +---------------------------------------------------------------------+
+   |                                                                     |
+   |   NEVER WRITE            "first", "novel", "no prior work",         |
+   |                          "nobody has done this"                     |
+   |                                                                     |
+   |   ALWAYS WRITE           "not published in the open literature"     |
+   |                          "not available as a public, reproducible   |
+   |                           artifact"                                 |
+   |                          "to our knowledge, not reported for        |
+   |                           same-day delivery at ZCTA grain"          |
+   |                                                                     |
+   +---------------------------------------------------------------------+
+
+   WHY THIS WORKS
+      The second form stays TRUE no matter what Esri ships, what Coupa
+      sells, or what Amazon runs internally -- because all of those are
+      proprietary, licensed, and unreproducible. You are not claiming to
+      have invented the technique. You are claiming that no one can
+      CHECK the commercial versions, and yours can be checked.
+
+      That claim cannot be falsified by a product datasheet.
+
+
+AND THE HONEST BOTTOM LINE
+---------------------------
+
+   Every TECHNIQUE in this project has a commercial equivalent behind a
+   paywall. That is not a failure -- it is what you should expect in a
+   mature, high-value commercial domain.
+
+        +---------------------------------------------------------+
+        |                                                         |
+        |   THE STRONGEST NOVELTY IN THIS PROJECT IS NOT A        |
+        |   TECHNIQUE AT ALL. IT IS THE ARTIFACT PLUS THE         |
+        |   AUDIENCE:                                             |
+        |                                                         |
+        |     free            (vs $50k-$500k licences)            |
+        |     open            (vs proprietary black box)          |
+        |     reproducible    (vs unauditable vendor model)       |
+        |     public data     (vs licensed panels)                |
+        |     serves the      (vs serves only the operator who    |
+        |     REGULATOR        can pay)                           |
+        |                                                         |
+        +---------------------------------------------------------+
+
+   FOR A CAPSTONE THAT IS ENOUGH. It is also honest, which the
+   "no prior published work" formulation was not.
+
+
+================================================================================
+7.  VIVA SCRIPTS -- 60-SECOND SPOKEN ANSWERS
+================================================================================
+
+Q1: "AMAZON ALREADY DOES THIS. WHAT'S NEW?"
+-------------------------------------------
+  "The definitive academic treatment is Houde, Newberry and Seim in
+   Econometrica 2023 -- the two-day fulfilment network, state grain, through
+   2018, on data nobody else can obtain. We do the sub-24-hour network at
+   ZCTA grain through 2026 on entirely public data, and we ship a running
+   tool.
+
+   Beyond the reproduction, we contribute two things the literature doesn't
+   have. First, a failure class in LLM-agent systems where a write passes
+   every data-integrity gate but breaks a causal identification assumption --
+   with two new gates that catch it. Second, a direct empirical test of
+   whether event-driven revision of the spatial weight matrix actually moves
+   causal estimates, which tests LeSage and Pace's robustness claim.
+
+   We don't claim the estimators are new. We claim the grain, the data
+   regime, and those two findings are."
+
+
+Q2: "WHAT'S YOUR MODEL CONFIDENCE AND ACCURACY?"
+------------------------------------------------
+  "It depends on which output, and we're explicit about that.
+
+   For the observable outcome -- whether and when Amazon enables same-day in
+   a ZCTA -- we backtest: train on facilities open through 2023, predict
+   2024-25 openings, and report AUC, calibration error, and precision at 100.
+
+   For the unobservable outcome -- dollar NPV -- we make no accuracy claim,
+   because there's no public ground truth. Instead we report conformal
+   prediction intervals with empirically verified coverage, and rank
+   stability: how often a ZCTA stays in the top ten across ten thousand
+   Monte Carlo draws.
+
+   And we externally validate the one thing that can be checked -- metro-level
+   capital expenditure against Amazon's 10-K, targeting within 25 percent."
+
+
+Q3: "IT'S PUBLIC DATA. WHO ACTUALLY USES THIS?"
+-----------------------------------------------
+  "Three users with real decisions.
+
+   Air-quality districts operating warehouse indirect-source rules -- South
+   Coast AQMD's Rule 2305 is EPA-approved and others are copying it -- need to
+   forecast where warehouses appear so they can plan mitigation capacity.
+
+   City councils deciding on tax abatements need to know whether Amazon would
+   have built there anyway. Our Heckman propensity score IS that
+   counterfactual, and it's public money.
+
+   And environmental-justice organisations need to know where the burden lands
+   before the permit is filed, which is why we overlay predicted expansion on
+   EPA EJScreen by demographic stratum -- a map that doesn't currently exist
+   publicly.
+
+   Proprietary data produces conclusions nobody can check. For a decision that
+   communities have standing to contest, checkability is the product."
+
+
+================================================================================
+8.  METHOD NOTE + FILE MAP
+================================================================================
+
+METHOD NOTE
+-----------
+  Direct page fetching is proxy-blocked on this host, so this review was
+  built from search results rather than full-text reads of every paper.
+
+     Titles, journals and years    -> RELIABLE
+     Some author lists and pages   -> NOT FULLY CONFIRMED
+
+  Every citation is marked confident / verify in REFERENCES_to_add_v4.md.
+  Budget 30 minutes on Google Scholar before submitting. In particular,
+  confirm the Econometrica volume/issue/pages for Houde et al. -- that is
+  the one citation that must be perfect.
+
+
+FILE MAP
+--------
+  /weka/emulation01/users/vanadurgakundan/claude_work/Stuff/MSBA_Project/
+
+     MSBA_Capstone_Proposal_Final_v3.docx   the source document
+     REVIEW_v4_professor_questions.md       full markdown review
+     REFERENCES_to_add_v4.md                ~30 paste-ready citations,
+                                            mapped to target sections,
+                                            with a verification checklist
+     REVIEW_v4_illustrated.txt              <- THIS FILE
+                                            (Section 6 = new novelty
+                                             candidates, added after
+                                             the first read-through)
+
+
+SUGGESTED ORDER OF WORK
+-----------------------
+
+   WEEK 0  (before any code)
+      [ ] Decide: Option A estimand?  yes / no          <-- everything hinges
+      [ ] Decide: cut 5.9 and 5.10?   yes / no          <-- budget hinges
+      [ ] Decide: adopt the four-innovation set in 6.5? yes / no
+      [ ] Decide: portfolio novelty (6.1) -- full build or simulation-only?
+                  DECIDE NOW, not on day three
+      [ ] Verify the citations (30 min)
+      [ ] Fix P0 items 2, 3, 4, 5, 7, 8, 9, 10 in the text
+      [ ] Resolve the budget contradiction, in writing, with the instructor
+
+   WEEK 1
+      [ ] Fix P2 document hygiene (half a day, all of it)
+      [ ] Rebuild v4 .docx
+      [ ] Build the facility-opening panel (the new target variable)
+
+   WEEK 2+
+      [ ] P1 items, in the order listed in 4.3
+      [ ] Section 6 novelties, cheapest first:
+            6.3 cross-operator (1 d)  ->  6.2 decay radius (2 d)
+            ->  6.1 portfolio (3 d)
+
+================================================================================
+                                  END OF FILE
+================================================================================

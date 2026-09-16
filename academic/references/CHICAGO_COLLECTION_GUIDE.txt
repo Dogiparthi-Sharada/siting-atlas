@@ -1,0 +1,321 @@
+===============================================================================
+  HOW TO BUILD THE CHICAGO DELIVERY-STATION PANEL
+  a step-by-step guide you can follow on your own
+  written 2026-09-12
+===============================================================================
+
+GOAL
+  One CSV listing every Amazon DELIVERY STATION in the Chicago metro, with
+  the year and quarter it opened.
+
+TARGET
+  ~40 delivery stations. Six are already found for you. So ~34 to go.
+
+TIME
+  3-5 hours. Less if you work the job-postings route first.
+
+WHY CHICAGO
+  380 ZIP-code areas (the most of any single-CBSA pilot metro), one clean
+  CBSA boundary, and no confusable neighbours - unlike the Bay Area, where
+  Stockton and Vacaville already cost us four wasted rows.
+
+
+===============================================================================
+  BEFORE YOU START - SET THE SPREADSHEET UP CORRECTLY
+===============================================================================
+
+Do this FIRST. If you skip it you will lose leading zeros and have to redo
+the file.
+
+  Google Sheets (recommended):
+    1. New blank sheet.
+    2. Select column F (this will be `zip`).
+    3. Format -> Number -> Plain text.
+    4. ONLY THEN start typing or pasting.
+
+  Excel:
+    1. New blank workbook.
+    2. Right-click column F -> Format Cells -> Text -> OK.
+    3. ONLY THEN type. If you paste first, Excel converts before you can stop
+       it and 60608 is fine but 06608 becomes 6608.
+
+  Safest of all: type the CSV in Notepad / VS Code. No spreadsheet, no
+  conversion, no surprises.
+
+Put this header in row 1, exactly:
+
+facility_id,operator,facility_type,city,state,zip,latitude,longitude,open_year,open_quarter,square_feet,status,source_url,source_type,confidence
+
+Chicago ZIPs all start with 6, so leading zeros are not actually a risk for
+THIS metro. Set it up properly anyway - the habit is what matters when you
+later do New York (ZIPs starting 0).
+
+
+===============================================================================
+  STEP 1 - SEED THE FILE WITH THE SIX WE ALREADY HAVE   (10 min)
+===============================================================================
+
+Type these in. Locations are confirmed; only the dates are missing.
+
+  AMZ-DCH1  DS  Chicago        IL  60608  41.84046  -87.68357
+  AMZ-DLN4  DS  Chicago        IL  60628  41.70383  -87.59760
+  AMZ-DIL3  DS  Chicago        IL  60632  41.79878  -87.71207
+  AMZ-DXH5  DS  Chicago        IL  60609  41.82977  -87.66421
+  AMZ-DIL7  DS  Skokie         IL  60076  42.01744  -87.71966
+  AMZ-DIL5  DS  West Chicago   IL  60185  41.87538  -88.25294
+
+Leave open_year / open_quarter blank for now. Fill status = open,
+operator = Amazon.
+
+
+===============================================================================
+  STEP 2 - BUILD THE FRAME FROM AMAZON'S OWN JOB POSTINGS   (60-90 min)
+===============================================================================
+
+This is the most reliable free method. Every delivery station that is
+operating is hiring, and the job posting names the building.
+
+  1. Go to  hiring.amazon.com  (the warehouse/hourly site, NOT amazon.jobs -
+     amazon.jobs is corporate roles).
+
+  2. Search location: Chicago, IL. Set the radius to 50 miles.
+
+  3. Open each result. You are looking for a FACILITY CODE, which appears in
+     the job title, the location line, or the address block. It looks like a
+     short code of 3-5 characters:
+
+        DCH1    DIL3    DXH5    MDW5    ORD9    UIL1
+
+  4. HOW TO READ THE CODE - this tells you the facility type:
+
+        Starts with D          -> DELIVERY STATION.  This is what you want.
+                                  DCH1, DIL3, DLN4, DXH5, DIL5, DIL7
+        Starts with X          -> sortation centre (SC). Collect, lower value.
+        Airport code + digit   -> fulfillment centre (FC). ORD9, MDW5, MDW7.
+                                  Chicago airports are ORD and MDW.
+        Starts with S or H     -> usually FC variants. Treat as FC.
+
+     This is a strong convention, not a law. If the posting text says
+     "delivery station", trust the TEXT over the code.
+
+  5. Record every D-code you find, with its city and ZIP from the address.
+     Set source_type = job_posting, confidence = medium.
+     source_url = the job posting URL.
+
+     A job posting proves the building EXISTS and OPERATES. It does not give
+     you the opening date. That is Step 4.
+
+  6. Repeat the search for these suburbs individually - the 50-mile radius
+     search misses some:
+
+        Joliet        Aurora         Naperville     Elgin
+        Waukegan      Schaumburg     Cicero         Bolingbrook
+        Melrose Park  Bedford Park   Markham        Matteson
+        Romeoville    Monee          University Park
+        Gary IN       Hammond IN     East Chicago IN
+
+     Do not forget INDIANA. The Chicago CBSA includes Lake and Porter
+     counties in Indiana. Gary and Hammond have Amazon buildings.
+
+
+===============================================================================
+  STEP 3 - CROSS-CHECK THE FRAME   (30 min)
+===============================================================================
+
+Three quick passes to catch what Step 2 missed.
+
+  A. Wikipedia
+     Search: "List of Amazon locations" wikipedia
+     Find the Illinois and Indiana sections. Text, easy to copy.
+
+  B. MWPVL International
+     Search: MWPVL Amazon distribution network
+     Their delivery-station table is published as an IMAGE, and they have
+     stopped updating the public copy - so read it on screen rather than
+     trying to copy it, and treat it as a historical list. It is still
+     useful: most Amazon expansion happened 2019-2022, well inside the
+     window we care about.
+
+  C. Google, these exact searches
+        site:aboutamazon.com "delivery station" Illinois
+        "Amazon delivery station" Chicago opened
+        "Amazon delivery station" Illinois 2021
+        "Amazon" "delivery station" Joliet OR Aurora OR Elgin
+
+Add any NEW facility you find to the sheet. Duplicates are fine at this
+stage - you will de-duplicate on facility code at the end.
+
+
+===============================================================================
+  STEP 4 - FIND THE OPENING DATE FOR EACH ONE   (90-120 min)
+===============================================================================
+
+This is the slow part. Work down the list. Budget 2-3 minutes each.
+
+For each facility, try these IN ORDER and stop at the first that works:
+
+  TIER 1 - press release (confidence = high, source_type = press_release)
+     Search:  site:aboutamazon.com Chicago delivery station <city>
+     Amazon announces most openings. Gives an exact date.
+
+  TIER 2 - building permit (confidence = high, source_type = permit)
+     Use the occupancy/completion date, not the application date.
+        Chicago city    -> Chicago Department of Buildings permit search
+        Cook County     -> Cook County permit portal
+        DuPage County   -> DuPage County building permits
+        Will County     -> Will County Land Use permits
+        Lake County IL  -> Lake County permit search
+        Lake/Porter IN  -> respective county building departments
+
+  TIER 3 - local news (confidence = medium, source_type = news)
+     Search:  "Amazon" "<city>" delivery station opens
+     Best Chicago outlets: Crain's Chicago Business, Daily Herald,
+     Chicago Tribune, Chicago Sun-Times, Patch (very good on suburbs),
+     The Times of Northwest Indiana.
+
+  TIER 4 - hiring announcement (confidence = low, source_type = news)
+     "Amazon to hire 500 in <city>" articles usually run 1-3 months BEFORE
+     opening. If that is all you have, use the article's quarter and mark
+     confidence = low.
+
+  TIER 5 - nothing found
+     Leave open_year BLANK and keep the row. Tell me how many are blank.
+     DO NOT GUESS. A guessed date is a fabricated event and I will have to
+     throw the row out, which is worse than a blank.
+
+
+  CONVERTING A MONTH TO A QUARTER
+        Jan Feb Mar = 1        Jul Aug Sep = 3
+        Apr May Jun = 2        Oct Nov Dec = 4
+
+  If you only know the year, leave open_quarter BLANK and set
+  confidence = low. Blank is honest. A guess is not.
+
+
+  WORKED EXAMPLE - doing DCH1 properly
+  ------------------------------------
+   1. Search: site:aboutamazon.com DCH1
+      -> nothing. Move on.
+   2. Search: "Amazon" "delivery station" Chicago 60608
+      -> suppose a Crain's article from 14 March 2021 says the station on
+         West 35th Street began operating "this month".
+   3. Record:
+         open_year     = 2021
+         open_quarter  = 1              (March -> Q1)
+         status        = open
+         source_url    = the Crain's URL
+         source_type   = news
+         confidence    = medium         (news, not a press release)
+   4. SANITY CHECK the ZIP against the street address in the article. If the
+      article says a different ZIP from 60608, trust the ARTICLE and fix it.
+
+
+===============================================================================
+  STEP 5 - THE THREE THINGS PEOPLE ALWAYS GET WRONG
+===============================================================================
+
+  1. NEVER infer the city from the facility code.
+     Amazon names buildings after the nearest big AIRPORT. "MDW5" is Midway,
+     but the building is in Crest Hill, 35 miles away. This already cost us
+     four rows: OAK3 and OAK4 sound like Oakland and are in Patterson and
+     Tracy, 70 miles inland.
+     -> Always take city and ZIP from the ADDRESS, never from the code.
+
+  2. INCLUDE CLOSED FACILITIES.
+     If a station opened in 2019 and shut in 2022, that is TWO real events
+     and the model needs both. Set status = closed and still fill in
+     open_year. Amazon closed a number of sites in 2022-23.
+
+  3. INCLUDE PRE-2018 OPENINGS.
+     My panel starts in 2018. A station that opened in 2015 is not an
+     "event", but it tells me that ZIP was ALREADY being served. Without it
+     the model believes the area was waiting to be switched on when it was
+     not. These rows are cheap and they matter.
+
+
+===============================================================================
+  STEP 6 - QUALITY CHECK BEFORE YOU SEND IT
+===============================================================================
+
+Go through this list. It takes five minutes and saves a round trip.
+
+  [ ] Header row matches exactly (copy it from this guide)
+  [ ] Every row has: facility_id, operator, facility_type, city, state, zip,
+      source_url, source_type      (these are REQUIRED - blank = rejected)
+  [ ] zip is 5 digits, stored as TEXT
+  [ ] facility_type is one of:  DS  SDC  SC  FC  AMXL
+  [ ] source_type is one of:
+          press_release  permit  news  company_site  job_posting  osm  other
+      (note: company_site, NOT company_page)
+  [ ] status is one of:  open  closed  announced
+  [ ] open_quarter is 1, 2, 3, 4, or BLANK.  Never 0. Never 5.
+  [ ] longitude is NEGATIVE (Chicago is about -87.6). A positive longitude
+      puts the building in China.
+  [ ] latitude is about 41-42 for Chicago
+  [ ] no duplicate facility_id
+  [ ] city has no trailing comma (an OSM export gave us "Santa Clara," once)
+  [ ] at least 30 rows have facility_type = DS
+
+
+===============================================================================
+  STEP 7 - SEND IT TO ME
+===============================================================================
+
+  1. Save as CSV:   Downloads\Job2_facility_panel\facilities.csv
+
+  2. Tell me it is ready. I will copy it onto the cluster and run:
+
+         python -m siting_atlas.ingest.external --check
+
+     which checks every box in Step 6 automatically and prints exactly what
+     is wrong, row by row.
+
+  3. Also tell me, in one short paragraph:
+       - which sources you used
+       - roughly what fraction of Chicago delivery stations you think you got
+       - how many rows have a blank open_year
+
+     This is the "frame note". It matters more than it sounds: a stated
+     coverage of 85% is defensible in your defence, an unstated one is not.
+     The professor can attack an unknown denominator; they cannot attack a
+     declared one.
+
+
+===============================================================================
+  IF YOU GET STUCK
+===============================================================================
+
+  Fewer than 20 DS found
+      Send me what you have. 20 real delivery stations in one metro still
+      runs the full model end to end. I would rather have 20 verified than
+      40 with guessed dates.
+
+  Cannot find dates for most of them
+      Send the list with locations and blank dates. A facility with a known
+      location and an unknown date is still usable - it tells me the ZIP is
+      served by the end of the window, which is real information.
+
+  Not sure whether something is a delivery station
+      Include it, set facility_type to your best guess, and put a note in
+      the confidence column like "low - might be SC". I can reclassify.
+
+  Cannot tell which metro a suburb belongs to
+      Send me the ZIP. I will check it against the official OMB delineation,
+      which is the only thing that decides it.
+
+
+===============================================================================
+  SUMMARY
+===============================================================================
+
+  1. Set the zip column to TEXT before typing anything.
+  2. Seed the 6 known Chicago delivery stations.
+  3. Build the list from hiring.amazon.com - codes starting with D.
+  4. Cross-check against Wikipedia, MWPVL, and Google.
+  5. Date each one: press release > permit > news > hiring article > blank.
+  6. Never guess a date. Never read the city off the code.
+  7. Include closed and pre-2018 facilities.
+  8. Run the Step 6 checklist, save to Downloads\Job2_facility_panel\,
+     tell me, and include the frame note.
+
+===============================================================================

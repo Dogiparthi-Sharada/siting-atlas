@@ -1,0 +1,310 @@
+===============================================================================
+  SITING ATLAS - WHAT YOU NEED TO DO
+  written 2026-09-12 - everything else is already running or done
+===============================================================================
+
+  *** DONE. This brief was completed on 2026-09-13. ***
+
+  data/external/facility_panel/facilities.csv now holds 43 Amazon delivery
+  stations and `ingest.external --check` reports:
+
+      facility_panel  ok  43 facilities, 2015-2025, 1 operator(s)
+
+  The file is kept as the historical brief, because the two traps in TASK 0
+  are still the two traps, and because anyone adding a metro should read
+  them first. Do not work from the task list below as if it were open.
+  For what was actually collected, how, and where it is weak, read
+  docs/data/FACILITY_PANEL_PROVENANCE.md.
+
+  One correction to the plan below: most rows ended up dated from the US
+  DOL OSHA bulk inspection extract, which gives the date a building was
+  first INSPECTED - an "operating by" upper bound, not an opening date.
+
+-------------------------------------------------------------------------------
+
+There is exactly ONE thing blocking the project: the facility panel.
+Everything in this file is about producing it. Nothing else needs you.
+
+Read TASK 0 first. If you are short on time, do TASK 0 + TASK 1-FAST and
+stop - that alone unblocks me.
+
+
+===============================================================================
+  WHY THIS MATTERS (read once, then skip)
+===============================================================================
+
+The model asks: "which ZIP code did the operator switch on, and when?"
+
+To answer that I need a list of delivery facilities with OPENING DATES. From
+that I compute, for every ZIP and every quarter, whether it was being served.
+That column is called `enabled`. It was 0% populated when this was written;
+it is now 2.69% of 1,081,312 national cells, and 51.0% of the 2,413 ZCTAs
+in the ten pilot metros are enabled at some point.
+
+A facility you MISS is worse than one you get slightly wrong. A missing
+facility becomes a ZIP that looks unserved when it was served - a false zero.
+False zeros do not add noise, they add bias, all in one direction. So
+COMPLETENESS beats volume every time.
+
+       +---------------------------------------------------------+
+       |  RULE:  a complete list of ONE operator in ONE metro     |
+       |         beats a patchy list of four operators everywhere |
+       +---------------------------------------------------------+
+
+
+===============================================================================
+  TASK 0  -  UNDERSTAND THE TWO TRAPS  (5 minutes, do not skip)
+===============================================================================
+
+TRAP 1 - THE AIRPORT CODE LIE
+-----------------------------
+Amazon names buildings after the nearest big AIRPORT, not the city they are
+in. This already cost us 4 of the 8 rows you sent.
+
+    OAK3  is in Patterson, CA     -> Stanislaus County, 70 mi from Oakland
+    OAK4  is in Tracy, CA         -> San Joaquin County, NOT the Bay Area
+    SCK3  is in Manteca, CA       -> San Joaquin County
+    SMF5  is in Vacaville, CA     -> Solano County (Vallejo metro)
+
+  NEVER decide the metro from the facility code.
+  ALWAYS decide it from the ZIP CODE.
+
+TRAP 2 - EXCEL EATS LEADING ZEROS
+---------------------------------
+    01890  becomes  1890  and every join silently drops that row.
+
+  When you save the CSV, the `zip` column MUST be formatted as TEXT.
+  In Excel:  select the column -> Format Cells -> Text -> re-enter values.
+  In Google Sheets: Format -> Number -> Plain text BEFORE pasting.
+  Safest: edit the CSV in a plain text editor, not a spreadsheet.
+
+  My validator catches this, so you will not ship it silently - but it is
+  faster to avoid than to fix.
+
+
+===============================================================================
+  TASK 1  -  BUILD THE FACILITY LIST
+===============================================================================
+
+WHY WE ARE CHANGING SOURCE
+--------------------------
+Your Job 1 used OpenStreetMap. It worked, but OSM is badly incomplete:
+
+    New York metro, per OSM  :   1 delivery station,  2 fulfillment centres
+    New York metro, reality  :  well over a dozen delivery stations
+
+That gap IS the false-zero problem. So we swap the source.
+
+
+-------------------------------------------------------------------------
+ TASK 1-FAST   (~3-4 hours)  <-- DO THIS ONE IF TIME IS SHORT
+-------------------------------------------------------------------------
+Pick ONE metro. I recommend CHICAGO or the SAN FRANCISCO BAY AREA.
+Get EVERY Amazon DELIVERY STATION in it, with an opening date.
+
+Target: about 40 delivery stations.
+That is enough to run the whole model end to end on real data.
+
+-------------------------------------------------------------------------
+ TASK 1-FULL   (~12-20 hours, splits 3 ways across P1/P2/P3)
+-------------------------------------------------------------------------
+All 8 FITTING metros. Target ~300 facilities total.
+Leave Phoenix and Boise for last - they are held out of model fitting, so
+they are needed for the final transfer test but not for anything before it.
+
+    P1  New York, Chicago            (the two biggest)
+    P2  San Francisco Bay Area, Seattle, Denver
+    P3  Miami, Austin, Nashville
+    later  Phoenix, Boise            (held out)
+
+
+WHERE TO GET THE LIST
+---------------------
+  1. MWPVL International - "Amazon Global Supply Chain and Fulfillment
+     Center Network". This is the standard public reference. It is organised
+     BY FACILITY TYPE and usually already carries the opening year.
+     -> Search: MWPVL Amazon distribution network
+
+  2. Wikipedia - "List of Amazon locations" (cross-check only)
+
+  3. aboutamazon.com press releases (for the exact date + a citable URL)
+
+Use source 1 to get the LIST. Use source 3 to get the DATE and the URL.
+That turns "research 300 facilities" into "verify 300 facilities".
+
+
+WHICH FACILITY TYPES TO COLLECT
+-------------------------------
+  +------+----------------------+--------------------------------+--------+
+  | code | name                 | what it does                   | want?  |
+  +------+----------------------+--------------------------------+--------+
+  | DS   | Delivery Station     | LAST MILE. Vans leave here.    | YES #1 |
+  |      |                      | THIS is what enables a ZIP.    |        |
+  | SDC  | Same-Day / Sub-Same  | same-day micro-fulfilment      | YES #2 |
+  | SC   | Sortation Centre     | feeds delivery stations        | YES #3 |
+  | FC   | Fulfillment Centre   | regional, 100s of miles.       | low    |
+  |      |                      | Does NOT by itself enable a ZIP|        |
+  | AMXL | Extra-Large          | furniture/appliances, niche    | low    |
+  +------+----------------------+--------------------------------+--------+
+
+  Your 8 rows were 7 FC and 1 SC - the LOW priority types.
+  Collect DS first. Then SDC. Then SC. FC last.
+
+
+===============================================================================
+  TASK 2  -  FILL IN THE FILE
+===============================================================================
+
+START FROM THIS FILE - it is already generated for you:
+
+    /weka/.../MSBA_Project/JOB2_WORKLIST.csv        (88 rows, pre-sorted)
+
+It contains the 88 OSM candidates that genuinely fall inside pilot metros,
+already sorted so the most valuable work is at the top:
+
+    priority 0   delivery stations, fitting metros    32 rows  <- start here
+    priority 1   fulfillment centres, fitting metros  32 rows
+    priority 2   Phoenix delivery stations             8 rows  (held out)
+    priority 3   Phoenix / Boise FCs                  16 rows  (held out)
+
+Fill in the blank columns. ADD new rows for anything MWPVL lists that OSM
+missed - that is the whole point, OSM is missing most of New York.
+
+
+COLUMN BY COLUMN
+----------------
+  facility_id    any unique string. AMZ-<code> is fine.        REQUIRED
+  operator       Amazon                                        REQUIRED
+  facility_type  one of: DS SDC SC FC AMXL                     REQUIRED
+  city           city name                                     REQUIRED
+  state          2-letter                                      REQUIRED
+  zip            5 digits, TEXT FORMAT, leading zeros intact   REQUIRED
+  latitude       decimal, e.g. 41.8781. blank is OK            optional
+  longitude      decimal, NEGATIVE in the US, e.g. -87.6298    optional
+  open_year      4 digits, e.g. 2021                           REQUIRED
+  open_quarter   1 2 3 or 4.  SEE NOTE BELOW.                  IMPORTANT
+  square_feet    integer, blank is OK                          optional
+  status         open | closed | announced                     REQUIRED
+  source_url     the page you got the DATE from                REQUIRED
+  source_type    press_release | news | permit | company_page  REQUIRED
+  confidence     high | medium | low                           REQUIRED
+
+NOTE ON open_quarter - THIS ONE MATTERS
+  My panel is QUARTERLY. 7 of your 8 rows had no quarter.
+  If you know the month, convert:
+        Jan Feb Mar = 1     Jul Aug Sep = 3
+        Apr May Jun = 2     Oct Nov Dec = 4
+  If you truly only know the year, leave it BLANK and set
+  confidence = low. Do not guess a quarter - blank is honest,
+  a guess is a fabricated event date and I will have to discard it.
+
+NOTE ON confidence
+  high    = official Amazon press release, or a permit with a date
+  medium  = local news article stating the opening
+  low     = year only, or inferred from a job posting / satellite imagery
+
+NOTE ON status
+  Include CLOSED facilities too, with their open date. A facility that
+  opened in 2019 and closed in 2023 is a real event in both directions and
+  the model needs both. Amazon closed a number of sites in 2022-23.
+
+NOTE ON PRE-2018 FACILITIES
+  Include them. My panel starts in 2018, so a facility that opened in 2014
+  is not an "event" - but it tells me that ZIP was ALREADY being served, and
+  without it the model thinks the ZIP was waiting to be switched on when it
+  was not. These rows are cheap to collect and they matter.
+
+
+===============================================================================
+  TASK 3  -  DELIVER IT
+===============================================================================
+
+Paths below are relative to the project root, written here as $PROJ:
+
+    PROJ=/weka/emulation01/users/vanadurgakundan/claude_work/Stuff
+    PROJ=$PROJ/MSBA_Project
+
+STEP 1 - save your finished file as CSV (zip column as TEXT) to:
+
+    $PROJ/facilities.csv
+
+STEP 2 - copy it into the repo:
+
+    cp "$PROJ/facilities.csv" \
+       "$PROJ/siting-atlas/data/external/facility_panel/facilities.csv"
+
+STEP 3 - validate it. Run exactly this:
+
+    cd $PROJ/siting-atlas
+    PYTHONPATH=src .venv/bin/python -m siting_atlas.ingest.external --check
+
+    Read the output. It will tell you, precisely:
+      - any missing required column
+      - any ZIP that lost its leading zero
+      - any non-numeric open_year
+      - any unrecognised facility_type
+      - the row count it accepted
+
+STEP 4 - tell me it is in. Just say "facilities.csv is in" and I will take
+         it from there. Do not run anything else - I will handle L1 -> L5.
+
+
+===============================================================================
+  IF YOU WANT TO SEE THE PROJECT RUNNING RIGHT NOW
+===============================================================================
+
+None of this needs the facility panel. All of it works today. Run from:
+
+  cd $PROJ/siting-atlas          # $PROJ is defined in TASK 3 above
+
+  # 1. cost to serve every pilot ZIP, plus a 5-scenario sensitivity sweep
+  PYTHONPATH=src .venv/bin/python -m siting_atlas.cost.runner --all-scenarios
+      -> 2,333 ZIPs, median $1.09/parcel, p10 $0.99, p90 $1.36
+      -> places 334 delivery-station depots from parcel volume
+
+  # 2. which 500 ZIPs to fund with $2bn, against the naive answer
+  PYTHONPATH=src .venv/bin/python -m siting_atlas.optimize.runner \
+      --budget 2e9 --compare-naive
+      -> break-even margin $1.442/parcel, 7.1% better than naive top-K
+
+  # 3. the hazard model. RUNS ON SYNTHETIC DATA until facilities.csv lands.
+  #    Every output is stamped SYNTHETIC_ and warns on each run.
+  PYTHONPATH=src .venv/bin/python -m siting_atlas.models.runner
+      -> recovers known coefficients from a controlled DGP
+      -> held-out AUC 0.729 vs 0.500 null, conformal coverage 87.8% (nom 90%)
+
+  # 4. the six-gate agent, on the real warehouse, reproducing the Plano case
+  PYTHONPATH=src .venv/bin/python -m siting_atlas.agent.runner --demo-plano
+      -> gates 1-4 PASS on real data, gates 5-6 HOLD -> escalated to human
+
+  # 5. regenerate the 20 charts into outputs/figures/
+  PYTHONPATH=src .venv/bin/python -m siting_atlas.viz.build --all-scenarios
+
+  # 6. the interactive dashboard, then open http://localhost:8501
+  bash scripts/run_dashboard.sh
+
+  # 7. the full test suite
+  PYTHONPATH=src .venv/bin/python -m pytest tests/ -q
+
+  # 8. the docs (markdown + ASCII .txt twins)
+  PYTHON=.venv/bin/python bash scripts/build_docs.sh
+      -> start with docs/REPRODUCE.txt, docs/ARCHITECTURE.txt, docs/TODO.txt
+      -> docs/data/COST_MODEL.txt explains the cost model from scratch
+
+
+===============================================================================
+  SUMMARY - THE SHORT VERSION
+===============================================================================
+
+  1. Get the Amazon facility list from MWPVL, not OSM.
+  2. DELIVERY STATIONS first. Not fulfillment centres.
+  3. Judge the metro by the ZIP CODE, never by the facility code.
+  4. Save the zip column as TEXT so leading zeros survive.
+  5. Fill in open_year AND open_quarter. Blank beats a guess.
+  6. Start from JOB2_WORKLIST.csv. Add the rows OSM missed.
+  7. Minimum to unblock me: ~40 delivery stations in ONE metro.
+     Full target: ~300 facilities across the 8 fitting metros.
+  8. Drop it at data/external/facility_panel/facilities.csv, run
+     `--check`, and tell me.
+
+===============================================================================
