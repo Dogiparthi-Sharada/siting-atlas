@@ -1,0 +1,70 @@
+1. DELIVERY STATION - "DSX8 - Amazon warehouse facility in San Antonio, TX. Address: 6558 E Campus Dr, 78247." - https://warehouse.ninja/locations/amazon/dsx8/
+2. FULFILLMENT CENTER - "Amazon Fulfillment Center Tours - SAT2 ... 1401 East McCarty Lane, San Marcos TX" - https://www.loc8nearme.com/texas/san-marcos/amazon-sat2/6147401/
+3. FULFILLMENT CENTER - "PAE2: Amazon Fulfillment Center. 4620 172nd St NE. Arlington. WA." - https://events.amazontours.com/na/onsite/PAE2
+4. FULFILLMENT CENTER - "Bellevue has FBA warehouses SEA6/SEA8, on 1227 124th Avenue NE." - https://www.bookairfreight.com/china-usa-shipping-routes/ship-freight-china-to-bellevue
+5. DELIVERY STATION - "DWA1 - Amazon warehouse facility in Bremerton, WA. Address: 7555 Airport Way SW, 98312." - https://warehouse.ninja/locations/amazon/dwa1/
+6. FULFILLMENT CENTER - "Amazon Fulfillment Center BFI9 3230 International Pl, DuPont, Washington" - https://www.waze.com/live-map/directions
+7. DELIVERY STATION - "We are a delivery company... Amazon Delivery Driver in Everett, WA... 315 Shuksan Way, Everett" - https://www.indeed.com/cmp/Tem-Express-Logistics-LLC
+8. SORTATION CENTER - "Amazon SWA1 is a sorting office in Snohomish, Washington ... 607 Riverside Road, Everett" - https://mapcarta.com/N9352269821
+9. DELIVERY STATION - "Pro Edge Delivery Service LLC - Is an Amazon delivery service serving Snohomish County ... 6617 Associated Blvd , Everett, WA" - https://www.proedgedelivery.com/
+10. SORTATION CENTER - "7449 45th St Ct E, Fife, WA, 98424, Sortation Center" - https://zonhack.com/amazon-warehouse-locations-in-washington/
+11. DELIVERY STATION - "HWA3 - Amazon warehouse facility in Kent, WA. Address: 20202 84th AVE S, 98032." - https://warehouse.ninja/locations/amazon/hwa3/
+12. SORTATION CENTER - "BFI5 Amazon Fulfillment Center, Kent, Washington. 20526 59th Place South Kent, WA 98032 - Sort Center" - https://www.warehouseworkernetwork.com/listing/bfi5-amazon-fulfillment-center-kent-washington/
+13. UNKNOWN - "" - none
+14. SORTATION CENTER - "Amazon BFI4 is a sorting office in Washington ... 21005 64th Avenue South, Kent, WA" - https://mapcarta.com/W500861061
+15. DELIVERY STATION - "Amazon Delivery Driver at Pinnacle Delivery Service LLC... Location: 22001 84th Ave S, Kent, WA 98032." - https://talents.vaia.com/companies/pinnacle-delivery-service-llc/amazon-delivery-driver-78867108/
+16. OFFICE - "Amazon UWA1 is an office in King County... Type: Office. Address: 11710 118th Avenue Northeast, Kirkland, 98034." - https://mapcarta.com/W161678116
+17. DELIVERY STATION - "DWA2 - Amazon warehouse facility in Lacey, WA. Address: 3300 Hogum Bay Rd NE, 98516." - https://warehouse.ninja/locations/amazon/dwa2/
+18. DELIVERY STATION - "Amazon Distribution Center - DSW5 14802 Spring St SW Lakewood, WA 98439" - https://trusteddeliverysolutions.com/
+19. DELIVERY STATION - "Hustle Logistics LLC is a Delivery Service Partner ... 23226 Witte Rd SE, Maple Valley, WA 98038." - https://dspjobhub.com/job/delivery-associate-in-maple-valley-wa-united-states-jid-359
+20. DELIVERY STATION - "Rainier Express Delivery LLC is an Amazon DSP ... Amazon Warehouse DWA7. 5509 Military Rd. E, Frederickson, WA" - https://www.rainierexpress.com/about
+21. DELIVERY STATION - "Amazon Delivery Station. 1101 SW 16th St RENTON,WA." - https://www.myskillsmyfuture.org/Employers.aspx
+22. UNKNOWN - "" - none
+23. OTHER - "The address of Amazon Varzea is 2201 Westlake Ave, Seattle WA 98121 ... part of the Seattle Downtown Main Campus." - https://campusbuilding.com/b/amazon-varzea/
+24. OTHER - "Amazon - Atlas (sea90) is located at 325 Eastlake Ave E, Seattle, WA 98109." - https://www.buzzfile.com/business/Amazon-Atlas-sea90
+25. UNKNOWN - "" - none
+26. FRESH - "Amazon Fresh / Prime Now Site (Uwa4 / Fse3) ... 76 S Lander St Seattle, WA 98134" - https://moovitapp.com/index/en/public_transit-Amazon_Fresh_Prime_Now_Site
+27. FULFILLMENT CENTER - "3138 200th ST E, Spanaway, WA 98387. Washington, IBF3, FC" - https://selleressentials.com/amazon-fulfillment-center-locations/
+28. FULFILLMENT CENTER - "10010 W Geiger Blvd, Spokane, WA 99224. Washington, GEG1, FC" - https://selleressentials.com/amazon-fulfillment-center-locations/
+29. FULFILLMENT CENTER - "18007 E Garland Ave, Spokane Valley, WA 99016. Washington, GEG2, FC" - https://selleressentials.com/amazon-fulfillment-center-locations/
+30. FULFILLMENT CENTER - "Amazon BFI1/BFI2 ... Full Address: 1800 140th Ave E, Sumner, WA" - https://www.flexfulfillment.eu/amazon-fulfillment-center-bfi1-in-sumner-united-states/
+31. FULFILLMENT CENTER - "BFI7 Amazon Fulfillment Center, 1901 140th Ave E, Sumner" - https://www.waze.com/live-map/directions/us/wa/sumner/bfi7-amazon-fulfillment-center
+32. DELIVERY STATION - "JPEX is an Amazon Delivery Service Partner hiring delivery drivers... 2201 140th Ave E, Sumner" - https://www.indeed.com/cmp/Jpex-2
+33. DELIVERY STATION - "Amazon Delivery Station DWA9 Sumner. Located: 3711 142nd Ave E Sumner, WA 98390." - https://dspjobhub.com/job/delivery-driver-in-sumner-wa-united-states-jid-747
+34. DELIVERY STATION - "2871 S 102nd St, Tukwila, WA, 98168, Delivery Station" - https://zonhack.com/amazon-warehouse-locations-in-washington/
+35. DELIVERY STATION - "Truck Entrance, 501 N Keys Rd, Yakima, WA 98901 ... Apcore Logistics is a delivery service partner with Amazon." - https://jobs.smartrecruiters.com/ApcoreLogisticsLLC/3743990013507672
+36. DELIVERY STATION - "Amazon warehouse facility in Anchorage, AK. Address: 5900 Old Seward Hwy, 99518." - https://warehouse.ninja/locations/amazon/danc/
+37. FULFILLMENT CENTER - "7001 Zeuber Rd, Little Rock, AR 72206. Arkansas, LIT1, FC" - https://selleressentials.com/amazon-fulfillment-center-locations/
+38. DELIVERY STATION - "Horizon Delivery Squad is a locally owned and operated Amazon DSP ... Location Address: 48, Boston Post Rd, Orange, Connecticut." - https://dspjobhub.com/job/delivery-driver-in-orange-ct-united-states-jid-1319
+39. DELIVERY STATION - "Amazon has opened its newest delivery station in Plainfield ... The station is located at 137 Lathrop Road." - https://patch.com/connecticut/across-ct/amazon-opens-new-delivery-station-ct-enhance-service-across-three-states
+40. SORTATION CENTER - "BDL5 - Amazon Sortation Center at 29 Research Parkway, Wallingford, CT 06492" - https://warehouse.ninja/amazon-fulfillment-center-locations/
+41. UNKNOWN - "" - none
+42. FULFILLMENT CENTER - "560 Merrimac Ave, Middletown, DE 19709. Delaware, PHL7, FC" - https://selleressentials.com/amazon-fulfillment-center-locations/
+43. FULFILLMENT CENTER - "1 Centerpoint Blvd, New Castle, DE 19720. Delaware, PHL1, FC" - https://selleressentials.com/amazon-fulfillment-center-locations/
+44. SORTATION CENTER - "ILG1, Sort Center, 780 S Dupont Hwy, New Castle, DE, United States, 19720" - https://zonprep.com/resources/free-tools/amazon-fulfillment-centers-locations/
+45. DELIVERY STATION - "Amazon Delivery Station at 2101 Auiki Street, Honolulu, HI 96819" - https://warehouse.ninja/amazon-fulfillment-center-locations/
+46. FULFILLMENT CENTER - "500 32nd St SW, Bondurant, IA 50035. Iowa, DSM5, FC" - https://selleressentials.com/amazon-fulfillment-center-locations/
+47. DELIVERY STATION - "DDSM - Amazon warehouse facility in Grimes, IA. Address: 1301 SE Gateway Dr, 50111." - https://warehouse.ninja/locations/amazon/ddsm/
+48. DELIVERY STATION - "Amazon operates a local delivery station at 1411 3rd Ave. North, near Franklin Boulevard and Interstate 84 in Nampa." - https://www.panattoni.com/news_article/amazon-said-its-new-nampa-warehouse-would-employ-1000-that-number-has-grown/
+49. FULFILLMENT CENTER - "BOI2 5295 E Franklin Rd, Nampa, ID 83687." - https://myfbaprep.com/blog/amazon/a-list-of-amazon-fulfillment-centers-near-you/
+50. FULFILLMENT CENTER - "BOI2 Amazon Fulfillment Center 5319 E Franklin Rd, Nampa, Idaho, United States." - https://www.waze.com/live-map/directions
+51. FULFILLMENT CENTER - "9850 Mississippi St, Merrillville, IN 46410. Indiana, PUR1, FC" - https://selleressentials.com/amazon-fulfillment-center-locations/
+52. DELIVERY STATION - "DIN4 - Amazon warehouse facility in Fort Wayne, IN. Address: 5510 Flaugh Rd, 46818." - https://warehouse.ninja/locations/amazon/din4/
+53. FULFILLMENT CENTER - "9798 Smith Rd, Fort Wayne, IN 46809. Indiana, FWA4, FC" - https://selleressentials.com/amazon-fulfillment-center-locations/
+54. FULFILLMENT CENTER - "4412 W 300 N, Greenfield, IN 46140. Indiana, MQJ1, FC" - https://selleressentials.com/amazon-fulfillment-center-locations/
+55. FULFILLMENT CENTER - "710 S Girls School Rd, Indianapolis, IN 46231. Indiana, IND4, FC" - https://selleressentials.com/amazon-fulfillment-center-locations/
+56. SORTATION CENTER - "IND5, Sort Center, 7760 W Morris St, Indianapolis, IN, United States, 46231" - https://zonprep.com/resources/free-tools/amazon-fulfillment-centers-locations/
+57. FULFILLMENT CENTER - "900 Patrol Rd, Jeffersonville, IN 47130. Indiana, SDF8, FC" - https://selleressentials.com/amazon-fulfillment-center-locations/
+58. DELIVERY STATION - "DIN7 - Amazon warehouse facility in New Carlisle, IN. Address: 31100 State Road 2, 46552." - https://warehouse.ninja/locations/amazon/din7/
+59. FULFILLMENT CENTER - "715 Airtech Pkwy, Plainfield, IN 46168. Indiana, IND2, FC" - https://selleressentials.com/amazon-fulfillment-center-locations/
+60. FULFILLMENT CENTER - "800 Perry Rd, Plainfield, IN 46168. Indiana, IND3, FC" - https://selleressentials.com/amazon-fulfillment-center-locations/
+61. FULFILLMENT CENTER - "4255 Anson Blvd, Whitestown, IN 46075. Indiana, IND1, FC" - https://selleressentials.com/amazon-fulfillment-center-locations/
+62. OTHER - "CLOSED 2015. Amazon announced it will close its fulfillment center at 1 Amazon Way, Coffeyville, Kansas in 2015." - https://www.reuters.com/article/us-amazon-kansas/
+63. OTHER - "CLOSED 2015. The former Amazon warehouse at 2654 Hwy 169 in Coffeyville closed in 2015." - https://www.bizjournals.com/wichita/news/2015/02/18/amazon-to-close-coffeyville-distribution-center.html
+64. FULFILLMENT CENTER - "ICT2 - Amazon Fulfillment Center at 7130 North Broadway, Park City, KS 67219" - https://selleressentials.com/amazon-fulfillment-center-locations/
+65. DELIVERY STATION - "DMC3 - Amazon warehouse facility in Shawnee, KS. Address: 4054 Powell Dr, 66226." - https://warehouse.ninja/locations/amazon/dmc3/
+66. FULFILLMENT CENTER - "SDF1 - Amazon Fulfillment Center at 1050 S Columbia Ave, Campbellsville, KY 42718" - https://warehouse.ninja/amazon-fulfillment-center-locations/
+67. SORTATION CENTER - "CVG9, Sort Center, 289 Wendell H Ford Blvd, Erlanger, KY, United States, 41018" - https://zonprep.com/resources/free-tools/amazon-fulfillment-centers-locations/
+68. SORTATION CENTER - "CVG2, Sort Center, 4600 Olympic Blvd, Erlanger, KY, United States, 41018" - https://zonprep.com/resources/free-tools/amazon-fulfillment-centers-locations/
+69. SORTATION CENTER - "CVG1, Sort Center, 4620 Olympic Blvd, Erlanger, KY, United States, 41018" - https://zonprep.com/resources/free-tools/amazon-fulfillment-centers-locations/
+70. FULFILLMENT CENTER - "SDF1 - Amazon Fulfillment Center at 1051 S. Columbia Avenue, Finley, KY" - https://selleressentials.com/amazon-fulfillment-center-locations/

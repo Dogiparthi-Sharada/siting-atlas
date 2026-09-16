@@ -1,0 +1,14 @@
+facility_id,operator,facility_type,city,state,zip,site_address,latitude,longitude,open_year,open_quarter,close_year,close_quarter,square_feet,status,source_url,source_type,confidence,cbsa_title,osha_operating_by
+CAND-B1-002,Amazon,DS,GOODYEAR,AZ,85395,17341 WEST MINNEZONA AVENUE,,,,,,,,open,https://warehouse.ninja/locations/amazon/dpx3/,web_evidence,high,"Phoenix-Mesa-Chandler, AZ",2024-09-18
+CAND-B1-006,Amazon,DS,PHOENIX,AZ,85043,800 S 75TH AVE,,,,,,,,open,https://warehouse.ninja/locations/amazon/dpx4/,web_evidence,high,"Phoenix-Mesa-Chandler, AZ",2017-06-02
+CAND-B1-033,Amazon,DS,ORLAND,CA,95963,6990 HAIGH DRIVE,,,,,,,,open,https://warehouse.ninja/locations/amazon/amr1/,web_evidence,high,,2025-08-11
+CAND-B1-060,Amazon,DS,VACAVILLE,CA,95688,4800 MIDWAY ROAD,,,,,,,,open,https://warehouse.ninja/locations/amazon/dvo1/,web_evidence,high,"Vallejo, CA",2025-08-04
+CAND-B1-061,Amazon,DS,VACAVILLE,CA,95688,920 EUBANKS DRIVE,,,,,,,,open,https://zonhack.com/amazon-warehouse-locations-in-california/,web_evidence,high,"Vallejo, CA",2026-02-27
+CAND-B2-054,Amazon,DS,BETHPAGE,NY,11714,201 W. GRUMMAN ROAD,,,,,,,,open,https://hiring.amazon.com/jobDetail/en-US/Amazon-Delivery-Station-Warehouse-Associate/Bethpage/a0R4U00000EV4OeUAL,web_evidence,high,"New York-Newark-Jersey City, NY-NJ",2021-10-13
+CAND-B3-035,Amazon,DS,YAKIMA,WA,98901,501 N KEYS RD,,,,,,,,open,https://jobs.smartrecruiters.com/ApcoreLogisticsLLC/3743990013507672,web_evidence,high,"Yakima, WA",2026-09-02
+CAND-B3-038,Amazon,DS,ORANGE,CT,06477,48 BOSTON POST ROAD,,,,,,,,open,https://dspjobhub.com/job/delivery-driver-in-orange-ct-united-states-jid-1319,web_evidence,high,"New Haven, CT",2023-11-21
+CAND-B3-039,Amazon,DS,PLAINFIELD,CT,06374,137 LATHROP ROAD,,,,,,,,open,https://patch.com/connecticut/across-ct/amazon-opens-new-delivery-station-ct-enhance-service-across-three-states,web_evidence,high,"Putnam, CT",2026-09-02
+CAND-B4-065,Amazon,DS,NASHUA,NH,03061,10 STATE ST,,,,,,,,open,https://hiring.amazon.com/jobDetail/en-US/Delivery-Station-Warehouse-Associate/Nashua/JOB-US-0000018825,web_evidence,high,,2020-01-09
+CAND-B6-001,Amazon,DS,HAMPTON,VA,23666,2000 ENTERPRISE PARKWAY,,,,,,,,open,https://www.virginiabusiness.com/article/amazon-to-open-hampton-delivery-station/,web_evidence,high,"Virginia Beach-Chesapeake-Norfolk, VA-NC",2024-09-18
+CAND-B6-007,Amazon,DS,VIRGINIA BEACH,VA,23456,1833 TWIN MILLS RD.,,,,,,,,open,https://www.wavy.com/news/local-news/virginia-beach/amazon-announces-two-new-facilities-in-virginia-beach/,web_evidence,high,"Virginia Beach-Chesapeake-Norfolk, VA-NC",2026-04-30
+CAND-B6-009,Amazon,DS,GREENVILLE,WI,54942,W6331 WALLY WAY,,,,,,,,open,https://www.postcrescent.com/story/money/companies/2021/10/14/amazon-opens-delivery-station-village-greenville/8447844002/,web_evidence,high,"Appleton, WI",2024-07-10

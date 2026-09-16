@@ -1,0 +1,70 @@
+1. FULFILLMENT CENTER - "6001 E Tropical Pkwy, Las Vegas, NV 89115. Nevada, LAS1, FC" - https://selleressentials.com/amazon-fulfillment-center-locations/
+2. FULFILLMENT CENTER - "9085 Moya Blvd, Reno, NV 89506. Nevada, RNO3, FC" - https://selleressentials.com/amazon-fulfillment-center-locations/
+3. SORTATION CENTER - "RNO4, Sort Center, 555 Milan Dr, Sparks, NV, 89434" - https://zonprep.com/resources/free-tools/amazon-fulfillment-centers-locations/
+4. FULFILLMENT CENTER - "Amazon Fulfillment Center ... 2400 Romig Road, Akron, OH 44320" - https://selleressentials.com/amazon-fulfillment-center-locations/
+5. DELIVERY STATION - "DCL6, Delivery Station, 2450 Romig Road, Akron, OH, 44320" - https://zonprep.com/resources/free-tools/amazon-fulfillment-centers-locations/
+6. UNKNOWN - "" - none
+7. DELIVERY STATION - "DCM3 - Amazon warehouse facility in Columbus, OH. Address: 6465 Busch Blvd, 43229." - https://warehouse.ninja/locations/amazon/dcm3/
+8. FULFILLMENT CENTER - "11999 National Rd SW, Etna, OH 43018. Ohio, CMH1, FC" - https://selleressentials.com/amazon-fulfillment-center-locations/
+9. FULFILLMENT CENTER - "1155 Babbitt Rd, Euclid, OH 44132. Ohio, CLE3, FC" - https://selleressentials.com/amazon-fulfillment-center-locations/
+10. FULFILLMENT CENTER - "6050 Gateway Court, Groveport, OH 43125. Ohio, CMH2, FC" - https://selleressentials.com/amazon-fulfillment-center-locations/
+11. FULFILLMENT CENTER - "2570 Beech Rd NW, Johnstown, OH 43031. Ohio, CMH4, FC" - https://selleressentials.com/amazon-fulfillment-center-locations/
+12. FULFILLMENT CENTER - "21500 Emery Rd, North Randall, OH 44128. Ohio, CLE2, FC" - https://selleressentials.com/amazon-fulfillment-center-locations/
+13. FULFILLMENT CENTER - "PCW1 - Amazon Fulfillment Center at 27400 Crossroads Parkway, Rossford, OH 43460" - https://warehouse.ninja/amazon-fulfillment-center-locations/
+14. DELIVERY STATION - "DCL7 - Amazon warehouse facility in Valley View, OH. Address: 5585 Canal Rd, 44125." - https://warehouse.ninja/locations/amazon/dcl7/
+15. FULFILLMENT CENTER - "1550 W Main St, West Jefferson, OH 43162. Ohio, CMH7, FC" - https://selleressentials.com/amazon-fulfillment-center-locations/
+16. AIR HUB - "Amazon Air hub located at 150 Ruane Drive, Wilmington, OH 45177" - https://www.bizjournals.com/dayton/news/2021/05/18/amazon-wilmington.html
+17. OTHER - "Amazon Data Services located at 73575 Lewis And Clark Rd, Boardman, OR 97818" - https://mapcarta.com/
+18. DELIVERY STATION - "DPD5 - Amazon warehouse facility in Fairview, OR. Address: 3108 NE 230th Ave, 97024." - https://warehouse.ninja/locations/amazon/dpd5/
+19. SORTATION CENTER - "PDX5, Sort Center, 5647 NE Huffman St, Hillsboro, OR, 97124" - https://zonprep.com/resources/free-tools/amazon-fulfillment-centers-locations/
+20. SORTATION CENTER - "PDX5, Sort Center, 5647 NE Huffman St, Hillsboro, OR, 97124" - https://zonprep.com/resources/free-tools/amazon-fulfillment-centers-locations/
+21. UNKNOWN - "" - none
+22. FULFILLMENT CENTER - "15000 N Lombard St, Portland, OR 97203. Oregon, PDX9, FC" - https://selleressentials.com/amazon-fulfillment-center-locations/
+23. FRESH - "Amazon Prime Now - UOR1 ... 2104 NW York St, Portland, OR" - https://foursquare.com/v/amazon-prime-now--uor1/
+24. DELIVERY STATION - "DPD4 - Amazon warehouse facility in Portland, OR. Address: 3610 NW St Helens Rd, 97210." - https://warehouse.ninja/locations/amazon/dpd4/
+25. FULFILLMENT CENTER - "4775 Depot Ct SE, Salem, OR 97317. Oregon, PDX7, FC" - https://selleressentials.com/amazon-fulfillment-center-locations/
+26. FULFILLMENT CENTER - "1250 NW Swigert Way, Troutdale, OR 97060. Oregon, PDX8, FC" - https://selleressentials.com/amazon-fulfillment-center-locations/
+27. DELIVERY STATION - "DPD6 - Amazon warehouse facility in Tualatin, OR. Address: 21409 SW 115th Ave, 97062." - https://warehouse.ninja/locations/amazon/dpd6/
+28. FULFILLMENT CENTER - "Woodburn Fulfillment Center (PDX4) ... 450 Butteville Rd. NE, Woodburn, OR 97071" - https://woodburn-or.gov/economic-dev/
+29. FULFILLMENT CENTER - "705 Boulder Dr, Breinigsville, PA 18031. Pennsylvania, ABE2, FC" - https://selleressentials.com/amazon-fulfillment-center-locations/
+30. FULFILLMENT CENTER - "2 Ames Dr, Carlisle, PA 17015. Pennsylvania, MDT8, FC" - https://selleressentials.com/amazon-fulfillment-center-locations/
+31. FULFILLMENT CENTER - "675 Allen Rd, Carlisle, PA 17015. Pennsylvania, PHL6, FC" - https://selleressentials.com/amazon-fulfillment-center-locations/
+32. DELIVERY STATION - "DPI2 - Amazon warehouse facility in Coraopolis, PA. Address: 177 McClaren Rd, 15108." - https://warehouse.ninja/locations/amazon/dpi2/
+33. DELIVERY STATION - "DPT8 - Amazon warehouse facility in Erie, PA. Address: 2424 W 23rd St, 16506." - https://warehouse.ninja/locations/amazon/dpt8/
+34. FULFILLMENT CENTER - "3563 Mountain Rd, Hamburg, PA 19526. Pennsylvania, ABE8, FC" - https://selleressentials.com/amazon-fulfillment-center-locations/
+35. FULFILLMENT CENTER - "550 Oak Ridge Rd, Hazleton, PA 18202. Pennsylvania, AVP1, FC" - https://selleressentials.com/amazon-fulfillment-center-locations/
+36. FULFILLMENT CENTER - "550 Oak Ridge Rd, Hazleton, PA 18202. Pennsylvania, AVP1, FC" - https://selleressentials.com/amazon-fulfillment-center-locations/
+37. DELIVERY STATION - "DDT6 - Amazon warehouse facility in Jessup, PA. Address: 45 Valley View Dr, 18434." - https://warehouse.ninja/locations/amazon/ddt6/
+38. FULFILLMENT CENTER - "PHL4 - Amazon Fulfillment Center at 200 Goodman Dr, Lewisberry, PA 17339" - https://warehouse.ninja/amazon-fulfillment-center-locations/
+39. DELIVERY STATION - "DPN5 - Amazon warehouse facility in Mechanicsburg, PA. Address: 360 Independence Ave, 17055." - https://warehouse.ninja/locations/amazon/dpn5/
+40. DELIVERY STATION - "DPN3 - Amazon warehouse facility in Middletown, PA. Address: 3327 E Harrisburg Pike, 17057." - https://warehouse.ninja/locations/amazon/dpn3/
+41. DELIVERY STATION - "DPH1 - Amazon warehouse facility in Philadelphia, PA. Address: 4219 Richmond St, 19137." - https://warehouse.ninja/locations/amazon/dph1/
+42. DELIVERY STATION - "DPH7 - Amazon warehouse facility in Philadelphia, PA. Address: 7575 Brewster Ave, 19153." - https://warehouse.ninja/locations/amazon/dph7/
+43. SORTATION CENTER - "PIT5, Sort Center, 2250 Roswell Drive, Pittsburgh, PA, 15205" - https://zonprep.com/resources/free-tools/amazon-fulfillment-centers-locations/
+44. SORTATION CENTER - "PIT5, Sort Center, 2250 Roswell Drive, Pittsburgh, PA, 15205" - https://zonprep.com/resources/free-tools/amazon-fulfillment-centers-locations/
+45. FULFILLMENT CENTER - "1480 United Dr, Shippensburg, PA 17257. Pennsylvania, HGR5, FC" - https://selleressentials.com/amazon-fulfillment-center-locations/
+46. FULFILLMENT CENTER - "Amazon's 3.8-million-square-foot fulfillment center in Johnston... 2120 Hartford Ave." - https://turnto10.com/news/local/amazon-johnston-fulfillment-center-opening-date
+47. DELIVERY STATION - "DBH3 - Amazon warehouse facility in Providence, RI. Address: 115 Dupont Dr, 02907." - https://warehouse.ninja/locations/amazon/dbh3/
+48. DELIVERY STATION - "DSC4 - Amazon warehouse facility in Ladson, SC. Address: 9801 Hwy 78, 29456." - https://warehouse.ninja/locations/amazon/dsc4/
+49. FULFILLMENT CENTER - "225 Infinity Dr NW, Charleston, TN 37310. Tennessee, CHA2, FC" - https://selleressentials.com/amazon-fulfillment-center-locations/
+50. FULFILLMENT CENTER - "7200 Discovery Dr, Chattanooga, TN 37421. Tennessee, CHA1, FC" - https://selleressentials.com/amazon-fulfillment-center-locations/
+51. FULFILLMENT CENTER - "MQY5 3875 Guthrie Hwy, Clarksville, TN 37040" - https://myfbaprep.com/blog/amazon/a-list-of-amazon-fulfillment-centers-near-you/
+52. DELIVERY STATION - "The new Amazon delivery station at 3001 Knoxville Center Drive" - https://www.knoxnews.com/story/money/business/2022/10/25/
+53. FULFILLMENT CENTER - "Amazon Fulfillment Center - Lebanon, TN 37090 ... 500 Duke Dr, Lebanon, TN 37090." - https://www.yellowpages.com/lebanon-tn/mip/amazon-fulfillment-center-508642668
+54. FULFILLMENT CENTER - "3292 E Holmes Rd, Memphis, TN 38118. Tennessee, MEM4, FC" - https://selleressentials.com/amazon-fulfillment-center-locations/
+55. SORTATION CENTER - "MEM6, Sort Center, 5155 Citation Drive, Memphis, TN, 38118" - https://zonprep.com/resources/free-tools/amazon-fulfillment-centers-locations/
+56. FULFILLMENT CENTER - "Our fulfillment center in Mt. Juliet, TN (MQY1) ... 6060 Golden Bear Gateway." - https://help.amazontours.com/hc/en-us/articles/23515025592468-MQY1-Tours-Mt-Juliet-TN
+57. FULFILLMENT CENTER - "One Amazon FBA fulfillment center located in Murfreesboro: BNA3 - 2020 Joe B Jackson Pkwy" - https://www.forestshipping.com/amazon-fulfillment-center-murfreesboro-tn
+58. FULFILLMENT CENTER - "2813 Brick Church Pike, Nashville, TN 37207. Tennessee, DNA2, FC" - https://selleressentials.com/amazon-fulfillment-center-locations/
+59. DELIVERY STATION - "DUT3 - Amazon warehouse facility in American Fork, UT. Address: 1222 S 500 E, 84003." - https://warehouse.ninja/locations/amazon/dut3/
+60. DELIVERY STATION - "Delivery Station Customer Service Associate ... 346 E 1600 S 1S22 American Fork UT 84003-9562." - https://hiring.amazon.com/jobDetail/en-US/Delivery-Station-Customer-Service-Associate/American-Fork/
+61. DELIVERY STATION - "DUT1 - Amazon warehouse facility in Salt Lake City, UT. Address: 5420 John Cannon Dr, 84116." - https://warehouse.ninja/locations/amazon/dut1/
+62. SORTATION CENTER - "SLC5, Sort Center, 770 Gladiola St, Salt Lake City, UT, 84104" - https://zonprep.com/resources/free-tools/amazon-fulfillment-centers-locations/
+63. FULFILLMENT CENTER - "777 N 5600 W, Salt Lake City, UT 84116. Utah, SLC1, FC" - https://selleressentials.com/amazon-fulfillment-center-locations/
+64. FULFILLMENT CENTER - "6802 W Old Bingham Hwy, West Jordan, UT 84081. Utah, SLC2, FC" - https://selleressentials.com/amazon-fulfillment-center-locations/
+65. DELIVERY STATION - "DUT2 - Amazon warehouse facility in West Jordan, UT. Address: 7001 New Bingham Hwy, 84081." - https://warehouse.ninja/locations/amazon/dut2/
+66. DELIVERY STATION - "DUT7 - Amazon warehouse facility in West Jordan, UT. Address: 7148 W Old Bingham Hwy, 84081." - https://warehouse.ninja/locations/amazon/dut7/
+67. OTHER - "Whole Foods Market Ashburn at 19800 Belmont Chase Dr Ste 160, Ashburn, VA 20147" - https://www.wholefoodsmarket.com/stores/ashburn
+68. FULFILLMENT CENTER - "ORF3 - Amazon Fulfillment Center at 5045 Portsmouth Boulevard, Chesapeake, VA 23321" - https://selleressentials.com/amazon-fulfillment-center-locations/
+69. FULFILLMENT CENTER - "1901 Meadowville Technology Pkwy, Chester, VA 23836. Virginia, RIC2, FC" - https://selleressentials.com/amazon-fulfillment-center-locations/
+70. FULFILLMENT CENTER - "BWI4 - Amazon Fulfillment Center at 165 Business Blvd, Clear Brook, VA 22624" - https://warehouse.ninja/amazon-fulfillment-center-locations/

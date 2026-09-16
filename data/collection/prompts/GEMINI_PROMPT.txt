@@ -1,0 +1,55 @@
+For each Amazon delivery station location below, tell me the year it opened.
+
+Answer in this format, one line each:
+
+1. 2020 Q3 - opened - https://source-url.com
+2. 2019 - opened - https://source-url.com
+3. UNKNOWN
+
+Rules:
+- If you cannot find a real dated source, write UNKNOWN. Do not estimate.
+- Include the quarter (Q1-Q4) only if you know the month.
+- Give a working source URL for every date.
+- Write "announced" instead of "opened" if the source only says Amazon
+  planned or proposed the site.
+- If a location is actually a fulfillment centre or sortation centre rather
+  than a delivery station, say so.
+- If it has closed, say so and give the closing year.
+
+Locations:
+
+1. Chicago, IL 60608  (41.84046, -87.68357)
+2. Chicago, IL 60632  (41.79878, -87.71207)
+3. West Chicago, IL 60185  (41.87538, -88.25294)
+4. Skokie, IL 60076  (42.01744, -87.71966)
+5. Chicago, IL 60628  (41.70383, -87.5976)
+6. Chicago, IL 60609  (41.82977, -87.66421)
+7. Denver, CO 80221  (39.81384, -104.99896)
+8. Thornton, CO 80241  (39.92747, -104.97267)
+9. Broomfield, CO 80023  (39.98531, -104.99259)
+10. Centennial, CO 80112  (39.55684, -104.84203)
+11. near, CO 80011  (39.7566, -104.75515)
+12. near, NY 11378  (40.71985, -73.91388)
+13. San Jose, CA 95122  (37.33525, -121.85438)
+14. Dublin, CA 94568  (37.71273, -121.88958)
+15. Livermore, CA 94550  (37.70534, -121.70638)
+16. San Jose, CA 95131  (37.40333, -121.89833)
+17. Milpitas, CA 95035  (37.43967, -121.92463)
+18. San Jose, CA 95133  (37.36299, -121.86678)
+19. Milpitas, CA 95035  (37.43158, -121.92375)
+20. Fremont, CA 94538  (37.49801, -121.96737)
+21. San Jose, CA 95125  (37.30753, -121.87211)
+22. Lakewood, WA 98439  (47.12288, -122.53925)
+23. Maple Valley, WA 98038  (47.39104, -122.04062)
+24. Kent, WA 98032  (47.40531, -122.23216)
+25. Frederickson, WA 98375  (47.10651, -122.35486)
+26. Sumner, WA 98390  (47.22282, -122.23781)
+27. Everett, WA 98204  (47.93931, -122.24485)
+28. Phoenix, AZ 85034  (33.4199, -112.03531)
+29. Tempe, AZ 85281  (33.41033, -111.96431)
+30. Goodyear, AZ 85338  (33.44147, -112.36111)
+31. Chandler, AZ 85286  (33.25928, -111.8207)
+32. Chandler, AZ 85225  (33.34262, -111.83655)
+33. Phoenix, AZ 85027  (33.70014, -112.08076)
+34. Phoenix, AZ 85040  (33.41964, -111.99827)
+35. Mesa, AZ 85215  (33.47109, -111.71759)

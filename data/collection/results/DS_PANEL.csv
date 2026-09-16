@@ -1,0 +1,65 @@
+addr,city,state,zip,by,src,metro
+4616-6 HOWARD LANE,AUSTIN,TX,78728,2019-03-15,osha,Austin
+4616-6 WEST HOWARD LANE,AUSTIN,TX,78728,2019-08-01,osha,Austin
+1411 3RD AVE NORTH,NAMPA,ID,83687,2019-02-22,osha,Boise
+2801 S. WESTERN AVE.,CHICAGO,IL,60608,2017-01-27,osha,Chicago
+(osm),Chicago,IL,60608,2015,osm,Chicago
+(osm),Chicago,IL,60628,2020,osm,Chicago
+(osm),Chicago,IL,60632,2020,osm,Chicago
+(osm),Chicago,IL,60609,2022,osm,Chicago
+4500 WESTERN AVE.,LISLE,IL,60532,2018-09-06,osha,Chicago
+315 SOUTH HICKS ROAD,PALATINE,IL,60067,2021-09-14,osha,Chicago
+(osm),Skokie,IL,60076,2019,osm,Chicago
+(osm),West Chicago,IL,60185,2020,osm,Chicago
+(osm),?,CO,80011,2020,osm,Denver
+(osm),Broomfield,CO,80023,2021,osm,Denver
+(osm),Centennial,CO,80112,2022,osm,Denver
+6150 DOWNING ST BUILDING 5,DENVER,CO,80216,2019-12-20,osha,Denver
+(osm),Denver,CO,80221,2021,osm,Denver
+(osm),Thornton,CO,80241,2020,osm,Denver
+700 BANYAN TRAIL,BOCA RATON,FL,33431,2021-04-19,osha,Miami
+1900 NORTHWEST 132ND PLACE,MIAMI,FL,33178,2022-12-07,osha,Miami
+39 BAYVIEW COURT,BAYONNE,NJ,07002,2022-08-04,osha,New York
+630 SULLIVAN ROAD,ELIZABETH,NJ,07201,2017-03-16,osha,New York
+50 CENTRAL AVENUE,KEARNY,NJ,07032,2023-07-13,osha,New York
+429 DELANCY STREET,NEWARK,NJ,07105,2025-03-09,osha,New York
+(osm),?,NY,11378,2023,osm,New York
+1 BULOVA AVENUE,FLUSHING,NY,11377,2023-08-09,osha,New York
+(osm),Chandler,AZ,85225,,osm,Phoenix
+(osm),Chandler,AZ,85286,,osm,Phoenix
+(osm),Goodyear,AZ,85338,,osm,Phoenix
+(osm),Mesa,AZ,85215,2021,osm,Phoenix
+(osm),Phoenix,AZ,85040,,osm,Phoenix
+(osm),Phoenix,AZ,85034,,osm,Phoenix
+(osm),Phoenix,AZ,85027,,osm,Phoenix
+(osm),Tempe,AZ,85281,,osm,Phoenix
+(osm),Dublin,CA,94568,,osm,San Francisco Bay Area
+44109 PACIFIC COMMONS BLVD.,FREMONT,CA,94538,2022-05-19,osha,San Francisco Bay Area
+(osm),Fremont,CA,94538,2022,osm,San Francisco Bay Area
+(osm),Livermore,CA,94550,2019,osm,San Francisco Bay Area
+(osm),Milpitas,CA,95035,,osm,San Francisco Bay Area
+5800 COLISEUM WAY,OAKLAND,CA,94621,2023-06-06,osha,San Francisco Bay Area
+6045 GIANT HWY,RICHMOND,CA,94806,2025-02-28,osha,San Francisco Bay Area
+(osm),San Jose,CA,95133,,osm,San Francisco Bay Area
+(osm),San Jose,CA,95125,2023,osm,San Francisco Bay Area
+(osm),San Jose,CA,95131,2021,osm,San Francisco Bay Area
+(osm),San Jose,CA,95122,2020,osm,San Francisco Bay Area
+6617 ASSOCIATED BLVD,EVERETT,WA,98203,2021-11-22,osha,Seattle
+315 SHUKSAN WAY DWS4,EVERETT,WA,98203,2021-12-20,osha,Seattle
+315 SHUKSAN WAY,EVERETT,WA,98203,2023-07-05,osha,Seattle
+(osm),Everett,WA,98204,,osm,Seattle
+(osm),Frederickson,WA,98375,,osm,Seattle
+20202 84TH AVE S,KENT,WA,98032,2020-10-16,osha,Seattle
+22001 84TH AVE S,KENT,WA,98032,2023-12-19,osha,Seattle
+(osm),Kent,WA,98032,2015,osm,Seattle
+14802 SPRING ST SW,LAKEWOOD,WA,98439,2023-06-29,osha,Seattle
+(osm),Lakewood,WA,98439,,osm,Seattle
+23226 WITTE RD SE,MAPLE VALLEY,WA,98038,2022-07-05,osha,Seattle
+(osm),Maple Valley,WA,98038,,osm,Seattle
+5509 MILITARY RD.,PUYALLUP,WA,98375,2023-10-27,osha,Seattle
+"5509 MILITARY RD E,",PUYALLUP,WA,98375,2024-12-05,osha,Seattle
+1101 SW 16TH ST,RENTON,WA,98057,2020-11-02,osha,Seattle
+2201 140TH AVE E,SUMNER,WA,98390,2021-06-30,osha,Seattle
+3711 142ND AVE E,SUMNER,WA,98390,2022-02-01,osha,Seattle
+(osm),Sumner,WA,98390,,osm,Seattle
+2871 S 102ND ST,TUKWILA,WA,98168,2023-06-22,osha,Seattle

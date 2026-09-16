@@ -1,0 +1,89 @@
+facility_id,operator,facility_type,city,state,zip,latitude,longitude,open_year,open_quarter,square_feet,status,source_url,source_type,confidence,metro_label,in_fitting_metro,priority,osm_name
+AMZ-DCH1,Amazon,DS,Chicago,IL,60608,41.84046,-87.68357,,,,open,,,,Chicago,True,0,Amazon DCH1
+AMZ-DLN4,Amazon,DS,Chicago,IL,60628,41.70383,-87.5976,,,,open,,,,Chicago,True,0,Amazon Logistics - DLN4 Chicago
+AMZ-DIL3,Amazon,DS,Chicago,IL,60632,41.79878,-87.71207,,,,open,,,,Chicago,True,0,Amazon DIL3
+AMZ-DXH5,Amazon,DS,Chicago,IL,60609,41.82977,-87.66421,,,,open,,,,Chicago,True,0,Amazon DXH5 Delivery Station
+AMZ-DIL7,Amazon,DS,Skokie,IL,60076,42.01744,-87.71966,,,,open,,,,Chicago,True,0,Amazon Fulfillment Center DIL7
+AMZ-DIL5,Amazon,DS,West Chicago,IL,60185,41.87538,-88.25294,,,,open,,,,Chicago,True,0,Amazon Delivery Station DIL5
+AMZ-DEN5,Amazon,DS,Aurora,CO,80011,39.76767,-104.75575,,,,open,,,,Denver,True,0,Amazon DEN5
+AMZ-DEN2,Amazon,DS,Aurora,CO,80019,39.74614,-104.72599,,,,open,,,,Denver,True,0,Amazon DEN2
+AMZ-DEN7,Amazon,DS,Aurora,CO,80019,39.75248,-104.72723,,,,open,,,,Denver,True,0,Amazon DEN7
+AMZ-DEN8,Amazon,DS,Aurora,CO,80019,39.73808,-104.7482,,,,open,,,,Denver,True,0,Amazon DEN8
+AMZ-DDV3,Amazon,DS,Broomfield,CO,80023,39.98531,-104.99259,,,,open,,,,Denver,True,0,Amazon DDV3
+AMZ-DDV4,Amazon,DS,Centennial,CO,80112,39.55684,-104.84203,,,,open,,,,Denver,True,0,DDV4
+AMZ-DDE9,Amazon,DS,Denver,CO,80221,39.81384,-104.99896,,,,open,,,,Denver,True,0,Amazon DDE9
+AMZ-DEN3,Amazon,DS,Thornton,CO,80023,39.96081,-104.98519,,,,open,,,,Denver,True,0,Amazon DEN3
+AMZ-DDV2,Amazon,DS,Thornton,CO,80241,39.92747,-104.97267,,,,open,,,,Denver,True,0,Amazon DDV2
+AMZ-DDV5,Amazon,DS,,CO,80011,39.7566,-104.75515,,,,open,,,,Denver,True,0,Amazon DDV5
+AMZ-DBK4,Amazon,DS,,NY,11378,40.71985,-73.91388,,,,open,,,,New York,True,0,
+AMZ-DFA9,Amazon,DS,Dublin,CA,94568,37.71273,-121.88958,,,,open,,,,San Francisco Bay Area,True,0,Amazon Delivery Station DFA9
+AMZ-DXC5,Amazon,DS,Fremont,CA,94538,37.49801,-121.96737,,,,open,,,,San Francisco Bay Area,True,0,Amazon Delivery Station DXC5
+AMZ-DFO3,Amazon,DS,Livermore,CA,94550,37.70534,-121.70638,,,,open,,,,San Francisco Bay Area,True,0,Amazon Delivery Station DFO3
+AMZ-DSF7,Amazon,DS,Milpitas,CA,95035,37.43967,-121.92463,,,,open,,,,San Francisco Bay Area,True,0,Amazon Delivery Station DSF7
+AMZ-DUR3,Amazon,DS,Milpitas,CA,95035,37.43158,-121.92375,,,,open,,,,San Francisco Bay Area,True,0,Amazon Delivery Station DUR3
+AMZ-DSJ7,Amazon,DS,San Jose,CA,95133,37.36299,-121.86678,,,,open,,,,San Francisco Bay Area,True,0,Amazon Delivery Station DSJ7
+AMZ-DXC8,Amazon,DS,San Jose,CA,95125,37.30753,-121.87211,,,,open,,,,San Francisco Bay Area,True,0,Amazon Delivery Station DXC8
+AMZ-DSF3,Amazon,DS,San Jose,CA,95131,37.40333,-121.89833,,,,open,,,,San Francisco Bay Area,True,0,DSF3 Amazon Delivery Station
+AMZ-DCX5,Amazon,DS,San Jose,CA,95122,37.33525,-121.85438,,,,open,,,,San Francisco Bay Area,True,0,Amazon Delivery Station DCX5
+AMZ-DWS5,Amazon,DS,Everett,WA,98204,47.93931,-122.24485,,,,open,,,,Seattle,True,0,Amazon DWS5
+AMZ-DWA7,Amazon,DS,Frederickson,WA,98375,47.10651,-122.35486,,,,open,,,,Seattle,True,0,Amazon DWA7
+AMZ-DWA6,Amazon,DS,Kent,WA,98032,47.40531,-122.23216,,,,open,,,,Seattle,True,0,Amazon DWA6
+AMZ-DSW5,Amazon,DS,Lakewood,WA,98439,47.12288,-122.53925,,,,open,,,,Seattle,True,0,Amazon DSW5
+AMZ-DWA5,Amazon,DS,Maple Valley,WA,98038,47.39104,-122.04062,,,,open,,,,Seattle,True,0,Amazon DWA5
+AMZ-DWA9,Amazon,DS,Sumner,WA,98390,47.22282,-122.23781,,,,open,,,,Seattle,True,0,Amazon DWA9
+AMZ-AUS5,Amazon,FC,Kyle,TX,78640,30.0253,-97.85689,,,,open,,,,Austin,True,1,Amazon AUS5
+AMZ-AUS2,Amazon,FC,Pflugerville,TX,78660,30.43255,-97.59852,,,,open,,,,Austin,True,1,Amazon AUS2
+AMZ-SAT2,Amazon,FC,San Marcos,TX,78666,29.83732,-97.96295,,,,open,,,,Austin,True,1,Amazon SAT2
+AMZ-MDW9,Amazon,FC,Aurora,IL,60502,41.81496,-88.21279,,,,open,,,,Chicago,True,1,Amazon Fulfillment Center MDW9
+AMZ-ORD9,Amazon,FC,Channahon,IL,60410,41.43718,-88.18715,,,,open,,,,Chicago,True,1,
+AMZ-SIL4,Amazon,FC,Chicago,IL,60651,41.90429,-87.73728,,,,open,,,,Chicago,True,1,Amazon SIL4
+AMZ-SIL1,Amazon,FC,Country Club Hills,IL,60478,41.57955,-87.73017,,,,open,,,,Chicago,True,1,Amazon SIL1
+AMZ-MDW5,Amazon,FC,Crest Hill,IL,60403,41.57821,-88.13342,,,,open,,,,Chicago,True,1,Amazon MDW5
+AMZ-MDW4,Amazon,FC,Joliet,IL,60433,41.48681,-88.07467,,,,open,,,,Chicago,True,1,Amazon Fulfillment Center - MDW4
+AMZ-IGQ1,Amazon,FC,Markham,IL,60428,41.5983,-87.67209,,,,open,,,,Chicago,True,1,Amazon IGQ1
+AMZ-ORD5,Amazon,FC,Matteson,IL,60443,41.52485,-87.78677,,,,open,,,,Chicago,True,1,Amazon Fulfillment Center ORD5
+AMZ-MDW7,Amazon,FC,Monee,IL,60449,41.42412,-87.77282,,,,open,,,,Chicago,True,1,Amazon Fulfillment Center MDW7
+AMZ-MDW6,Amazon,FC,Romeoville,IL,60446,41.67234,-88.11553,,,,open,,,,Chicago,True,1,Amazon MDW6
+AMZ-SIL2,Amazon,FC,Skokie,IL,60077,42.01814,-87.76355,,,,open,,,,Chicago,True,1,SIL2 - Amazon SSD
+AMZ-IGQ2,Amazon,FC,University Park,IL,60484,41.46575,-87.75056,,,,open,,,,Chicago,True,1,Amazon Fulfillment Center IGQ2
+AMZ-HMW1,Amazon,FC,Wilmington,IL,60481,41.33785,-88.20839,,,,open,,,,Chicago,True,1,Amazon HMW1
+AMZ-BDU5,Amazon,FC,Commerce City,CO,80022,39.84727,-104.7836,,,,open,,,,Denver,True,1,Amazon BDU5
+AMZ-JFK8,Amazon,FC,Staten Island,NY,10303,40.61901,-74.18822,,,,open,,,,New York,True,1,Amazon JFK8
+AMZ-LDJ5,Amazon,FC,Staten Island,NY,10303,40.62095,-74.18513,,,,open,,,,New York,True,1,Amazon LDJ5 & DYX2
+AMZ-SCA2,Amazon,FC,Brisbane,CA,94005,37.67899,-122.39256,,,,open,,,,San Francisco Bay Area,True,1,SCA2
+AMZ-HSF2,Amazon,FC,Fremont,CA,94539,37.50964,-121.94072,,,,open,,,,San Francisco Bay Area,True,1,Amazon Delivery Station HSF2
+AMZ-HLI2,Amazon,FC,Hollister,CA,95023,36.90111,-121.41098,,,,open,,,,San Francisco Bay Area,True,1,Amazon HLI2
+AMZ-OAK7,Amazon,FC,Newark,CA,94560,37.51972,-122.01535,,,,open,,,,San Francisco Bay Area,True,1,Amazon Sort Center OAK5
+AMZ-USF1,Amazon,FC,"Santa Clara,",CA,95054,37.37883,-121.94772,,,,open,,,,San Francisco Bay Area,True,1,Amazon Fulfillment Center USF1
+AMZ-BFI3,Amazon,FC,DuPont,WA,98327,47.11256,-122.63896,,,,open,,,,Seattle,True,1,Amazon BFI3
+AMZ-BFI9,Amazon,FC,DuPont,WA,98327,47.11052,-122.62473,,,,open,,,,Seattle,True,1,Amazon BFI9
+AMZ-RNT9,Amazon,FC,Fife,WA,98424,47.21854,-122.33044,,,,open,,,,Seattle,True,1,Amazon RNT9
+AMZ-HBF2,Amazon,FC,Kent,WA,98032,47.41011,-122.22547,,,,open,,,,Seattle,True,1,Amazon HBF2
+AMZ-BFI4,Amazon,FC,Kent,WA,98032,47.4145,-122.25778,,,,open,,,,Seattle,True,1,Amazon BFI4
+AMZ-BFI5,Amazon,FC,Kent,WA,98032,47.41758,-122.25995,,,,open,,,,Seattle,True,1,Amazon BFI5
+AMZ-BFI1,Amazon,FC,Sumner,WA,98390,47.241,-122.24342,,,,open,,,,Seattle,True,1,BFI1 Amazon Fulfillment Center
+AMZ-BFI7,Amazon,FC,Sumner,WA,98390,47.24015,-122.23941,,,,open,,,,Seattle,True,1,Amazon BFI7
+AMZ-DTU3,Amazon,DS,Chandler,AZ,85225,33.34262,-111.83655,,,,open,,,,Phoenix,False,2,Amazon DTU3
+AMZ-DPX7,Amazon,DS,Chandler,AZ,85286,33.25928,-111.8207,,,,open,,,,Phoenix,False,2,Amazon DPX7
+AMZ-DPX6,Amazon,DS,Goodyear,AZ,85338,33.44147,-112.36111,,,,open,,,,Phoenix,False,2,Amazon DPX6
+AMZ-DTU9,Amazon,DS,Mesa,AZ,85215,33.47109,-111.71759,,,,open,,,,Phoenix,False,2,Amazon DTU9
+AMZ-DTU8,Amazon,DS,Phoenix,AZ,85040,33.41964,-111.99827,,,,open,,,,Phoenix,False,2,Amazon DTU8
+AMZ-DAZ2,Amazon,DS,Phoenix,AZ,85034,33.4199,-112.03531,,,,open,,,,Phoenix,False,2,Amazon DAZ2
+AMZ-DTU6,Amazon,DS,Phoenix,AZ,85027,33.70014,-112.08076,,,,open,,,,Phoenix,False,2,Amazon DTU6
+AMZ-DPX4,Amazon,DS,Tempe,AZ,85281,33.41033,-111.96431,,,,open,,,,Phoenix,False,2,Amazon DPX4
+AMZ-BOI2,Amazon,FC,Nampa,ID,83687,43.60349,-116.49887,,,,open,,,,Boise,False,3,BOI2 Amazon Fulfillment Center
+AMZ-HPX3,Amazon,FC,Gilbert,AZ,85233,33.37261,-111.83857,,,,open,,,,Phoenix,False,3,Amazon HPX3
+AMZ-PHX5,Amazon,FC,Goodyear,AZ,85338,33.41222,-112.42195,,,,open,,,,Phoenix,False,3,Amazon PHX5
+AMZ-GYR1,Amazon,FC,Goodyear,AZ,85338,33.44113,-112.37244,,,,open,,,,Phoenix,False,3,Amazon GYR1
+AMZ-KRB9,Amazon,FC,Mesa,AZ,85212,33.35203,-111.65091,,,,open,,,,Phoenix,False,3,Amazon Fulfillment Center - KRB9
+AMZ-PHX7,Amazon,FC,Phoenix,AZ,85043,33.45708,-112.2254,,,,open,,,,Phoenix,False,3,Amazon Fulfillment - PHX7
+AMZ-PHX6,Amazon,FC,Phoenix,AZ,85043,33.43253,-112.16475,,,,open,,,,Phoenix,False,3,Amazon PHX6
+AMZ-PHX3,Amazon,FC,Phoenix,AZ,85043,33.43334,-112.2078,,,,open,,,,Phoenix,False,3,Amazon PHX3
+AMZ-PPX1,Amazon,FC,Phoenix,AZ,85034,33.42354,-111.99873,,,,open,,,,Phoenix,False,3,Amazon PPX1
+AMZ-PHX9,Amazon,FC,Phoenix,AZ,85353,33.44105,-112.22729,,,,open,,,,Phoenix,False,3,Amazon PHX9
+AMZ-SAZ1,Amazon,FC,Phoenix,AZ,85040,33.41616,-112.06341,,,,open,,,,Phoenix,False,3,Amazon SAZ1/HPX1/VAZ1
+AMZ-AZA5,Amazon,FC,Phoenix,AZ,85043,33.45314,-112.18875,,,,open,,,,Phoenix,False,3,Amazon AZA5
+AMZ-TUS1,Amazon,FC,Phoenix,AZ,85043,33.42091,-112.17589,,,,open,,,,Phoenix,False,3,Amazon TUS1
+AMZ-GYR3,Amazon,FC,Phoenix,AZ,85043,33.45751,-112.2333,,,,open,,,,Phoenix,False,3,Amazon Fulfillment - GYR3
+AMZ-AZA4,Amazon,FC,Phoenix,AZ,85043,33.41702,-112.18427,,,,open,,,,Phoenix,False,3,Amazon AZA4
+AMZ-AZA7,Amazon,FC,Tempe,AZ,85282,33.39872,-111.96584,,,,open,,,,Phoenix,False,3,Amazon AZA7

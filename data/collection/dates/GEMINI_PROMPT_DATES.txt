@@ -1,0 +1,85 @@
+I need the OPENING DATE for 13 Amazon delivery stations in the United States.
+
+For each address, answer one line:
+
+   1. 2021-06 - CERTIFICATE OF OCCUPANCY - "quote naming the address or the
+      building" - https://url
+   2. 2019 - YEAR BUILT - "quote" - https://url
+   3. NOT FOUND
+
+The kinds of date, best first. Give me the best one you can find, not all of
+them:
+
+   CERTIFICATE OF OCCUPANCY  the building may legally be occupied. Closest
+                             thing to an opening date.
+   FINAL INSPECTION          usually within weeks of the above.
+   PERMIT ISSUED             construction started. Still useful.
+   OPENED                    a news story or press release saying Amazon
+                             opened it. Just as good as a permit.
+   YEAR BUILT                the assessor's year. Year only, but fine.
+
+Where to look, in order - please actually try these:
+
+   - the COUNTY ASSESSOR for that county, searching the street address.
+     Every US county publishes "year built" per parcel because it drives the
+     tax bill. This is usually the fastest hit.
+   - the CITY OR COUNTY BUILDING PERMIT PORTAL. Most run Accela Citizen
+     Access, eTRAKiT, CitizenServe or Tyler EnerGov. Search the street
+     number and street name only - "17341 Minnezona" finds more than
+     "17341 West Minnezona Avenue".
+   - LOCAL NEWS. Amazon delivery station openings are almost always covered
+     by the local paper or the local business journal. Search the address
+     plus "Amazon" plus "delivery station".
+   - the permit portal again, searching the APPLICANT or OWNER field rather
+     than the address, for: Amazon, Amazon.com Services, Amazon Logistics,
+     Amazon.com Services LLC. Amazon usually LEASES, so also try the
+     landlord: Prologis, Duke Realty, First Industrial, STAG Industrial.
+
+Three rules, and the first one matters most:
+
+   - I have given you a date in the last column called MUST BE BEFORE. That
+     is a hard upper bound: a government inspection proved the building was
+     already operating on that day. Any date you give me MUST be earlier
+     than it. If the only date you can find is LATER, tell me so explicitly
+     and give it anyway, marked IMPOSSIBLE - that tells me something is
+     wrong with either the record or my bound, and I want to know.
+
+   - NOT FOUND is a good answer. Do not guess, do not estimate, and do not
+     give me a date for a different building on the same street. A wrong
+     date is worse than no date, because nothing downstream can tell it is
+     wrong.
+
+   - MANY OF THESE BUILDINGS EXISTED BEFORE AMAZON MOVED IN. If the
+     assessor's "year built" is much earlier than my upper bound, say so and
+     give me BOTH: the year the building was built, and the date Amazon took
+     it over if you can find it. The second is the one I actually want. It
+     is usually a tenant improvement permit or a news story.
+
+These are real Amazon delivery stations. Every address comes from US
+Department of Labor inspection records, so the building definitely exists
+and Amazon was definitely operating there.
+
+    #   ADDRESS                                      MUST BE BEFORE
+    1.  17341 West Minnezona Avenue, Goodyear, AZ 85395          2024-09-18
+    2.  800 S 75th Ave, Phoenix, AZ 85043                        2017-06-02
+    3.  6990 Haigh Drive, Orland, CA 95963                       2025-08-11
+    4.  4800 Midway Road, Vacaville, CA 95688                    2025-08-04
+    5.  920 Eubanks Drive, Vacaville, CA 95688                   2026-02-27
+    6.  48 Boston Post Road, Orange, CT 06477                    2023-11-21
+    7.  137 Lathrop Road, Plainfield, CT 06374                   2026-09-02
+    8.  10 State St, Nashua, NH 03061                            2020-01-09
+    9.  201 W. Grumman Road, Bethpage, NY 11714                  2021-10-13
+   10.  2000 Enterprise Parkway, Hampton, VA 23666               2024-09-18
+   11.  1833 Twin Mills Road, Virginia Beach, VA 23456           2026-04-30
+   12.  501 N Keys Rd, Yakima, WA 98901                          2026-09-02
+   13.  W6331 Wally Way, Greenville, WI 54942                    2024-07-10
+
+Two notes that will save you time:
+
+   Connecticut has no county government. For 6 and 7, search the TOWN of
+   Orange and the TOWN of Plainfield, not a county.
+
+   Virginia independent cities are their own assessor. For 10 and 11, search
+   the City of Hampton and the City of Virginia Beach, not a county.
+
+Answer all 13 in order, numbered, one line each.

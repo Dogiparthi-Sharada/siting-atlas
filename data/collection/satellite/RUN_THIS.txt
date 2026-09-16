@@ -1,0 +1,231 @@
+================================================================================
+  HOW TO RUN THE SATELLITE DATING SCRIPT IN GOOGLE COLAB
+  Plain instructions. Follow top to bottom. Nothing here needs the repo.
+================================================================================
+
+WHAT THIS IS FOR, IN ONE PARAGRAPH
+
+  Every facility in our panel has an UPPER bound on its opening date: an OSHA
+  inspection proves the building was operating by some date. We have no lower
+  bound, so we can say "open by 2019" and never "opened in 2019". That single
+  gap is what stops the model using time at all, and it is currently blocking
+  three separate things.
+
+  Satellite imagery supplies the missing side. When a delivery station is
+  built, bare ground turns into a large bright roof and a car park. Sentinel-2
+  photographs every point on Earth every five days, free, back to 2015. The
+  script finds the month the ground changed.
+
+  Upper bound from OSHA + lower bound from satellite = an interval, which is
+  something the statistics can actually use.
+
+
+WHAT YOU NEED
+
+  Two files, both in the same folder as this one:
+
+      SITES_TO_DATE.csv                133 rows. The addresses.
+      colab_date_from_satellite.py     the script.
+
+  A Google account. Nothing else. No API key, no payment, no Earth Engine
+  registration.
+
+
+--------------------------------------------------------------------------------
+  STEP 1  -  OPEN COLAB
+--------------------------------------------------------------------------------
+
+  Go to            https://colab.research.google.com
+  Click            File -> New notebook
+
+
+--------------------------------------------------------------------------------
+  STEP 2  -  MOUNT GOOGLE DRIVE.  DO NOT SKIP THIS.
+--------------------------------------------------------------------------------
+
+  Paste into the first cell and run it. Approve the popup.
+
+      from google.colab import drive
+      drive.mount('/content/drive')
+
+  WHY IT MATTERS. This run takes two to four hours. Colab disconnects idle
+  runtimes and DELETES everything in /content when it does. With Drive
+  mounted, the script caches every finished site to Drive and picks up
+  exactly where it stopped. Without it, a disconnect at hour three means
+  starting again from zero.
+
+  The script works without Drive and will tell you it is not mounted. It is
+  simply not worth the risk.
+
+
+--------------------------------------------------------------------------------
+  STEP 3  -  INSTALL THE LIBRARIES
+--------------------------------------------------------------------------------
+
+  New cell, run it. Takes about a minute.
+
+      !pip install -q planetary-computer rasterio pyproj pandas
+
+  planetary-computer is NOT optional. It caches the access token. The first
+  version of this script did not use it and the run died after forty sites
+  with "HTTP Error 403: Forbidden" -- that was rate limiting, not a password
+  problem.
+
+
+--------------------------------------------------------------------------------
+  STEP 4  -  UPLOAD SITES_TO_DATE.CSV
+--------------------------------------------------------------------------------
+
+  Click the folder icon in the left sidebar, then the upload arrow, and pick
+  SITES_TO_DATE.csv.
+
+  The script looks for it in several places, so it does not matter much
+  where it lands. If it cannot find it, it prints every folder it searched
+  and the folder you are actually in.
+
+
+--------------------------------------------------------------------------------
+  STEP 5  -  PASTE THE SCRIPT AND RUN IT
+--------------------------------------------------------------------------------
+
+  Open colab_date_from_satellite.py in a text editor, select all, copy.
+  Paste into a new Colab cell. Run it.
+
+  DO NOT add main() at the end. The script already ends with
+
+      if __name__ == "__main__":
+          main()
+
+  and inside a Colab cell __name__ IS "__main__", so it starts on its own.
+  Adding another main() would run the whole thing twice.
+
+
+--------------------------------------------------------------------------------
+  WHAT YOU SHOULD SEE
+--------------------------------------------------------------------------------
+
+  First, the preflight. This checks everything cheap before anything slow:
+
+      input   /content/SITES_TO_DATE.csv
+      output  /content/drive/MyDrive/satellite_dates.csv
+      cache   /content/drive/MyDrive/sat_cache   (on Drive -- survives a
+                                                  disconnect)
+      133 sites, all preflight checks passed
+
+  Then geocoding, about twenty minutes. Addresses become coordinates:
+
+      geocoded 20/133
+      geocoded 40/133
+      ...
+      geocoded 107 of 133
+
+  Not all 133 will match. Industrial addresses geocode badly. 107 is normal
+  and the run continues with those.
+
+  Then the imagery, two to four hours, printing every five sites:
+
+      5/107 sites done
+      10/107 sites done
+
+  Then, at the end, the part that matters most:
+
+      VALIDATION on 94 sites with a known year
+        median error +0.0 years
+        within 1 year: 71%
+        high confidence only (>2): 88%
+
+  THIS IS THE POINT OF THE WHOLE EXERCISE. 100 of the 133 sites already have
+  a known opening year. The script estimates them anyway and compares. If it
+  cannot recover the dates we already know, the method is wrong and we throw
+  it away, having lost only machine time. Do not skip to the output without
+  reading these three numbers.
+
+
+--------------------------------------------------------------------------------
+  WHEN IT FINISHES
+--------------------------------------------------------------------------------
+
+  Download satellite_dates.csv and send it over. That is all.
+
+  If Drive is mounted it is already saved there and you can just tell me.
+
+
+--------------------------------------------------------------------------------
+  IF SOMETHING GOES WRONG
+--------------------------------------------------------------------------------
+
+  "HTTP Error 403: Forbidden" on most sites
+      Rate limiting. It means planetary-computer is not installed. Re-run
+      Step 3 and restart the runtime (Runtime -> Restart session).
+
+  "Cannot find SITES_TO_DATE.csv"
+      It prints every folder it looked in and the folder you are in. Upload
+      it again, or set INPUT_NAME near the top of the script to the full
+      path it shows you.
+
+  "is missing required column(s)"
+      Wrong CSV. It needs facility_id, address_full and open_year.
+
+  The runtime disconnected
+      Just run the cell again. Every finished site is cached and is skipped
+      instantly. If Drive was NOT mounted, the cache is gone -- mount it
+      (Step 2) and accept the restart.
+
+  It is taking longer than four hours
+      Normal if Colab gave you a slow machine. Leave it. It is caching.
+
+  You want to stop early
+      Interrupt it. satellite_dates.csv is written every five sites, so
+      whatever finished is saved. Send what you have -- a partial file is
+      useful and the validation block still runs on it.
+
+
+--------------------------------------------------------------------------------
+  RUNNING IT AGAIN WITH WHAT YOU ALREADY HAVE
+--------------------------------------------------------------------------------
+
+  The script is designed to be re-run. Nothing is repeated.
+
+      geocoded.csv        KEEP IT. Geocoding is twenty minutes and it does
+                          not change. If the file is there it is reused.
+
+      sat_cache/          KEEP IT. One small CSV per finished site. Re-running
+                          skips every site already in here.
+
+  So the only reason to delete anything is if you think a result is WRONG.
+  If you do, delete the individual site file from sat_cache/ and re-run --
+  that one site will be redone and nothing else.
+
+  If you only want to try a handful of sites first, cut SITES_TO_DATE.csv
+  down to ten rows in a spreadsheet and upload that. Keep the header row and
+  all the columns. Fifteen minutes, and you will see whether it works before
+  committing an afternoon.
+
+
+--------------------------------------------------------------------------------
+  WHAT THE OUTPUT COLUMNS MEAN
+--------------------------------------------------------------------------------
+
+  facility_id          our identifier, joins back to the panel
+  est_date             the month the ground changed. The new information.
+  confidence           signal-to-noise of the change. NOT a probability, and
+                       it must never be reported as one. Above 2 is a clean
+                       step in a quiet series; below 1 is probably noise.
+  n_scenes             usable cloud-free images found. Under 12 and the
+                       script declines to estimate at all.
+  open_year            what we already knew, where we knew it. This is the
+                       column the validation compares against.
+  osha_operating_by    the existing upper bound.
+
+
+--------------------------------------------------------------------------------
+  ONE HONEST CAVEAT
+--------------------------------------------------------------------------------
+
+  This dates CONSTRUCTION, not OPENING. A building is finished some months
+  before it starts dispatching vans, so the estimate is a lower bound on the
+  opening rather than the opening itself.
+
+  That is exactly what we need. OSHA already gives the upper bound. Two
+  bounds make an interval, and an interval is honest in a way a single
+  invented date is not.

@@ -1,0 +1,186 @@
+================================================================================
+  HOW TO FIND OPENING DATES FOR 13 DELIVERY STATIONS
+  Free public records. No account, no payment. About 10 minutes each.
+================================================================================
+
+WHY THIS IS THE LAST BLOCKER
+
+  Every facility we hold has an UPPER bound and no lower bound. OSHA proves
+  the building was operating by some date; nothing tells us when it opened.
+  That gap now blocks three separate things:
+
+      the 13 facilities below cannot enter the model at all
+      the warehousing covariate may contain its own outcome, because
+        open_year is currently just the OSHA bound restated
+      the line-haul covariate cannot be tested
+
+  We tried satellite imagery. It failed -- 36% of its estimates were
+  logically impossible. County records are the remaining free route, and
+  unlike satellite they are a MEASUREMENT rather than an inference.
+
+
+WHAT YOU ARE LOOKING FOR, IN PRIORITY ORDER
+
+  1. CERTIFICATE OF OCCUPANCY date       the building may legally be used.
+                                          Closest thing to an opening date.
+  2. FINAL BUILDING INSPECTION date      usually within weeks of the above.
+  3. BUILDING PERMIT ISSUED date         construction STARTED. A lower
+                                          bound, still useful.
+  4. ASSESSOR "YEAR BUILT"               year only, but every county has it
+                                          and it takes two minutes.
+
+  Any one of these is worth having. Number 4 alone would unblock the model.
+  Do not spend long hunting for 1 if 4 is on the screen in front of you.
+
+
+--------------------------------------------------------------------------------
+  THE FASTEST ROUTE -- TRY THIS FIRST FOR EVERY SITE
+--------------------------------------------------------------------------------
+
+  Search the county ASSESSOR, not the city. Assessors index by address and
+  publish "year built" for every parcel, because it drives the tax bill.
+
+  Search the web for:
+
+      <county name> county assessor parcel search
+
+  Then enter the street address. Look for a field called Year Built,
+  Effective Year Built, or Actual Year Built.
+
+  CAUTION. A warehouse is often built years before Amazon leases it. Year
+  Built tells you when the BUILDING appeared, not when Amazon arrived. If
+  Year Built is well before the OSHA date, note it and move to the permit
+  search -- Amazon usually files a tenant-improvement permit when it takes
+  a building over, and THAT is the date we want.
+
+
+--------------------------------------------------------------------------------
+  THE 13 SITES, WITH WHERE TO LOOK
+--------------------------------------------------------------------------------
+
+  The OSHA column is the upper bound we already hold. Whatever you find
+  must be EARLIER than it. If it is later, something is wrong -- write down
+  what you found anyway and flag it.
+
+   #  ADDRESS                      CITY, ST        OSHA BOUND   WHERE TO LOOK
+   -  ---------------------------  --------------  -----------  -------------
+   1  17341 W Minnezona Ave        Goodyear, AZ    2024-09-18   Maricopa County
+                                                                 Assessor
+   2  800 S 75th Ave               Phoenix, AZ     2017-06-02   Maricopa County
+                                                                 Assessor
+   3  6990 Haigh Dr                Orland, CA      2025-08-11   Glenn County
+                                                                 Assessor
+   4  4800 Midway Rd               Vacaville, CA   2025-08-04   Solano County
+                                                                 Assessor
+   5  920 Eubanks Dr               Vacaville, CA   2026-02-27   Solano County
+                                                                 Assessor
+   6  48 Boston Post Rd            Orange, CT      2023-11-21   Town of Orange
+                                                                 Assessor
+   7  137 Lathrop Rd               Plainfield, CT  2026-09-02   Town of
+                                                                 Plainfield
+   8  10 State St                  Nashua, NH      2020-01-09   Nashua City
+                                                                 Assessor
+   9  201 W Grumman Rd             Bethpage, NY    2021-10-13   Nassau County
+                                                                 Assessor
+  10  2000 Enterprise Pkwy         Hampton, VA     2024-09-18   Hampton City
+                                                                 Assessor
+  11  1833 Twin Mills Rd           Virginia Bch,VA 2026-04-30   Virginia Beach
+                                                                 City Assessor
+  12  501 N Keys Rd                Yakima, WA      2026-09-02   Yakima County
+                                                                 Assessor
+  13  W6331 Wally Way              Greenville, WI  2024-07-10   Outagamie
+                                                                 County
+
+  NOTES ON THE AWKWARD ONES
+
+    6, 7   Connecticut has no county government. Search the TOWN, not the
+           county. Both towns publish assessor data online.
+
+    10, 11 Virginia independent cities are their own assessor. Search the
+           CITY, not a county.
+
+    2      Phoenix, and the OSHA bound is 2017 -- the oldest of the 13.
+           This one is most likely to be a building Amazon took over rather
+           than built, so expect Year Built to predate Amazon by a lot.
+           The tenant-improvement permit is the useful record here.
+
+    11, 12 OSHA bounds in 2026, so these are recent. Recent permits are the
+           easiest to find; the portals surface them first.
+
+    3      Orland is a small rural county. If Glenn County has no online
+           portal, a phone call to the county planning department usually
+           gets an answer in one call. Their number is on the county site.
+
+
+--------------------------------------------------------------------------------
+  IF THE ASSESSOR IS NOT ENOUGH -- THE PERMIT PORTAL
+--------------------------------------------------------------------------------
+
+  Most US cities run one of four systems. Search:
+
+      <city name> building permit search
+
+  You will land on Accela Citizen Access, eTRAKiT, CitizenServe or Tyler
+  EnerGov. All four work the same way:
+
+      1. Choose "Search Permits" or "Permit Search"
+      2. Enter the street number and street name ONLY. Leave out the
+         suffix -- "17341 Minnezona" finds more than
+         "17341 West Minnezona Avenue"
+      3. Widen the date range to cover 2015 to today
+      4. Look for permit types: NEW COMMERCIAL, SHELL BUILDING, TENANT
+         IMPROVEMENT, CERTIFICATE OF OCCUPANCY
+
+  Amazon files under many names. If a search by address returns nothing,
+  try the APPLICANT or OWNER field with:
+
+      Amazon        Amazon.com Services       Amazon Logistics
+      Amazon.com    Amazon.com Services LLC   Amazon Fulfillment Services
+
+  and the landlord, since Amazon usually leases:
+
+      Prologis      Duke Realty     First Industrial     STAG Industrial
+
+
+--------------------------------------------------------------------------------
+  WHAT TO WRITE DOWN
+--------------------------------------------------------------------------------
+
+  Fill in dates_found.csv -- a template is in this folder with the 13 rows
+  already there. Columns:
+
+      facility_id        leave as is
+      address            leave as is
+      found_date         YYYY-MM-DD, or YYYY if you only have a year
+      date_type          co / final_inspection / permit_issued / year_built
+      source_url         the page you found it on
+      source_name        e.g. "Maricopa County Assessor"
+      confidence         high / medium / low -- your judgement
+      notes              anything odd. Especially: if the building predates
+                         Amazon, say so and give both dates if you have them
+
+  A BLANK ROW IS A VALID ANSWER. If a county has nothing online, write
+  "not found" in notes and move on. Nine of thirteen is a good result and
+  far better than a guessed date -- a wrong date is worse than no date,
+  because the model cannot tell it is wrong.
+
+
+--------------------------------------------------------------------------------
+  IF YOU ONLY HAVE TIME FOR SOME
+--------------------------------------------------------------------------------
+
+  Do these five first. They are the ones most likely to have a clean online
+  record and they span the widest range of years, which is what the model
+  needs most:
+
+      2   Phoenix, AZ        Maricopa is one of the best portals in the US
+      9   Bethpage, NY       Nassau County publishes permits online
+      10  Hampton, VA        small city, good records
+      11  Virginia Beach, VA recent, so easy to find
+      13  Greenville, WI     Outagamie County has a clean portal
+
+  Five dates would be enough to test whether the OSHA lag is short or long,
+  which is the question underneath all of this. If Amazon typically opens
+  within months of the OSHA inspection, the current open_year is nearly
+  right and defect 1 shrinks. If the lag is years, the warehousing covariate
+  has a real problem and we need to say so.

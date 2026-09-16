@@ -1,0 +1,44 @@
+facility_id,operator,facility_type,city,state,zip,site_address,latitude,longitude,open_year,open_quarter,close_year,close_quarter,square_feet,status,source_url,source_type,confidence
+DS-001,Amazon,DS,Mesa,AZ,85215,(osm),,,2021,,,,,open,see data/collection/results/,news,medium
+DS-002,Amazon,DS,FREMONT,CA,94538,44109 PACIFIC COMMONS BLVD.,,,2022,2,,,,open,see data/collection/results/,permit,high
+DS-003,Amazon,DS,Livermore,CA,94550,(osm),,,2019,,,,,open,see data/collection/results/,news,medium
+DS-004,Amazon,DS,OAKLAND,CA,94621,5800 COLISEUM WAY,,,2023,2,,,,open,see data/collection/results/,permit,high
+DS-005,Amazon,DS,RICHMOND,CA,94806,6045 GIANT HWY,,,2025,1,,,,open,see data/collection/results/,permit,high
+DS-006,Amazon,DS,San Jose,CA,95125,(osm),,,2023,,,,,open,see data/collection/results/,news,medium
+DS-007,Amazon,DS,San Jose,CA,95131,(osm),,,2021,,,,,open,see data/collection/results/,news,medium
+DS-008,Amazon,DS,San Jose,CA,95122,(osm),,,2020,,,,,open,see data/collection/results/,news,medium
+DS-009,Amazon,DS,?,CO,80011,(osm),,,2020,,,,,open,see data/collection/results/,news,medium
+DS-010,Amazon,DS,Broomfield,CO,80023,(osm),,,2021,,,,,open,see data/collection/results/,news,medium
+DS-011,Amazon,DS,Centennial,CO,80112,(osm),,,2022,,,,,open,see data/collection/results/,news,medium
+DS-012,Amazon,DS,DENVER,CO,80216,6150 DOWNING ST BUILDING 5,,,2019,4,,,,open,see data/collection/results/,permit,high
+DS-013,Amazon,DS,Denver,CO,80221,(osm),,,2021,,,,,open,see data/collection/results/,news,medium
+DS-014,Amazon,DS,Thornton,CO,80241,(osm),,,2020,,,,,open,see data/collection/results/,news,medium
+DS-015,Amazon,DS,BOCA RATON,FL,33431,700 BANYAN TRAIL,,,2021,2,,,,open,see data/collection/results/,permit,high
+DS-016,Amazon,DS,MIAMI,FL,33178,1900 NORTHWEST 132ND PLACE,,,2022,4,,,,open,see data/collection/results/,permit,high
+DS-017,Amazon,DS,NAMPA,ID,83687,1411 3RD AVE NORTH,,,2019,1,,,,open,see data/collection/results/,permit,high
+DS-018,Amazon,DS,CHICAGO,IL,60608,2801 S. WESTERN AVE.,,,2015,,2021,1,,closed,see data/collection/results/,permit,high
+DS-019,Amazon,DS,Chicago,IL,60628,(osm),,,2020,,,,,open,see data/collection/results/,news,medium
+DS-020,Amazon,DS,Chicago,IL,60632,(osm),,,2020,,,,,open,see data/collection/results/,news,medium
+DS-021,Amazon,DS,Chicago,IL,60609,(osm),,,2022,,,,,open,see data/collection/results/,news,medium
+DS-022,Amazon,DS,LISLE,IL,60532,4500 WESTERN AVE.,,,2018,3,,,,open,see data/collection/results/,permit,high
+DS-023,Amazon,DS,PALATINE,IL,60067,315 SOUTH HICKS ROAD,,,2021,3,,,,open,see data/collection/results/,permit,high
+DS-024,Amazon,DS,Skokie,IL,60076,(osm),,,2019,,,,,open,see data/collection/results/,news,medium
+DS-025,Amazon,DS,West Chicago,IL,60185,(osm),,,2020,,,,,open,see data/collection/results/,news,medium
+DS-026,Amazon,DS,BAYONNE,NJ,07002,39 BAYVIEW COURT,,,2022,3,,,,open,see data/collection/results/,permit,high
+DS-027,Amazon,DS,ELIZABETH,NJ,07201,630 SULLIVAN ROAD,,,2017,1,,,,open,see data/collection/results/,permit,high
+DS-028,Amazon,DS,KEARNY,NJ,07032,50 CENTRAL AVENUE,,,2023,3,,,,open,see data/collection/results/,permit,high
+DS-029,Amazon,DS,NEWARK,NJ,07105,429 DELANCY STREET,,,2025,1,,,,open,see data/collection/results/,permit,high
+DS-030,Amazon,DS,?,NY,11378,(osm),,,2023,,,,,open,see data/collection/results/,news,medium
+DS-031,Amazon,DS,FLUSHING,NY,11377,1 BULOVA AVENUE,,,2023,3,,,,open,see data/collection/results/,permit,high
+DS-032,Amazon,DS,AUSTIN,TX,78728,4616-6 HOWARD LANE,,,2019,3,,,,open,see data/collection/results/,permit,high
+DS-033,Amazon,DS,EVERETT,WA,98203,315 SHUKSAN WAY DWS4,,,2021,,,,,open,see data/collection/results/,permit,high
+DS-034,Amazon,DS,EVERETT,WA,98203,6617 ASSOCIATED BLVD,,,2021,4,,,,open,see data/collection/results/,permit,high
+DS-035,Amazon,DS,KENT,WA,98032,20202 84TH AVE S,,,2020,4,,,,open,see data/collection/results/,permit,high
+DS-036,Amazon,DS,KENT,WA,98032,22001 84TH AVE S,,,2023,4,,,,open,see data/collection/results/,permit,high
+DS-037,Amazon,DS,LAKEWOOD,WA,98439,14802 SPRING ST SW,,,2023,2,,,,open,see data/collection/results/,permit,high
+DS-038,Amazon,DS,MAPLE VALLEY,WA,98038,23226 WITTE RD SE,,,2022,3,,,,open,see data/collection/results/,permit,high
+DS-039,Amazon,DS,PUYALLUP,WA,98375,5509 MILITARY RD.,,,2023,,,,,open,see data/collection/results/,permit,high
+DS-040,Amazon,DS,RENTON,WA,98057,1101 SW 16TH ST,,,2020,4,,,,open,see data/collection/results/,permit,high
+DS-041,Amazon,DS,SUMNER,WA,98390,2201 140TH AVE E,,,2021,2,,,,open,see data/collection/results/,permit,high
+DS-042,Amazon,DS,SUMNER,WA,98390,3711 142ND AVE E,,,2022,1,,,,open,see data/collection/results/,permit,high
+DS-043,Amazon,DS,TUKWILA,WA,98168,2871 S 102ND ST,,,2023,2,,,,open,see data/collection/results/,permit,high

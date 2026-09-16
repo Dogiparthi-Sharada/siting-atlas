@@ -1,0 +1,49 @@
+For each Amazon address below, tell me what KIND of facility it is.
+
+Answer one line each:
+
+  1. DELIVERY STATION - "quote naming the address" - https://url
+  2. FULFILLMENT CENTER - "quote" - https://url
+  3. UNKNOWN
+
+The kinds:
+  DELIVERY STATION   vans load here and drive to homes. 100,000-250,000 sq ft.
+  SORTATION CENTER   sorts parcels between warehouses. No home delivery.
+  FULFILLMENT CENTER stores inventory, picks orders. 600,000+ sq ft.
+  AIR HUB / FRESH / OFFICE / DATA CENTER / OTHER
+
+What works, in order - please actually try these:
+  - the address in quotes with no mention of Amazon
+  - the address plus "DSP" or "delivery service partner"
+  - the address plus "square feet" (under 250,000 = delivery station,
+    over 600,000 = fulfillment centre)
+  - the address on hiring.amazon.com - the JOB TITLE gives it away
+  - warehouse.ninja, zonhack, selleressentials, mapcarta, amazontours.com
+
+Rules:
+  - Quote a sentence naming the street or the city. Give the URL.
+  - UNKNOWN if you cannot tell. Do not guess. Guessing the kind is worse than
+    not knowing, because it decides whether the site counts at all.
+  - OFFICE, DATA CENTRE, PHARMACY or WHOLE FOODS are useful answers, not
+    failures - they tell me to exclude the site.
+  - If it has CLOSED, say so with the year.
+
+Every address is a real Amazon site from US Department of Labor OSHA
+inspection records. The only question is which kind. The establishment name
+on the inspection was too generic to tell (usually just "Amazon.com Services
+LLC"), which is why these are unclassified rather than unverified.
+
+Answer in the order given, numbered, one line each.
+
+  1. 2000 ENTERPRISE PARKWAY, HAMPTON, VA 23666
+  2. AMAZON XR13 4949 COMMERCE RD, RICHMOND, VA 23234
+  3. 2002 BLUE HILLS DRIVE NE, ROANOKE, VA 24012
+  4. 2022 ASHLAND ROAD, ROCKVILLE, VA 23146
+  5. 42948 FRADELEY LN, STERLING, VA 20166
+  6. 2020 NORTHGATE COMMERCE PARKWAY, SUFFOLK, VA 23435
+  7. 1833 TWIN MILLS RD., VIRGINIA BEACH, VA 23456
+  8. 2712 WEST MAIN STREET, WAYNESBORO, VA 22980
+  9. W6331 WALLY WAY, GREENVILLE, WI 54942
+ 10. 3501 120TH AVENUE, KENOSHA, WI 53140
+ 11. 673 10TH STREET, HUNTINGTON, WV 25701
+ 12. 2650 EAST 2ND STREET, GILLETTE, WY 82718

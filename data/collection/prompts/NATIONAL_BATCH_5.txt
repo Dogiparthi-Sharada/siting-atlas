@@ -1,0 +1,74 @@
+For each Amazon address below, tell me what KIND of facility it is.
+
+Answer one line each:
+
+  1. DELIVERY STATION - "quote naming the address" - https://url
+  2. FULFILLMENT CENTER - "quote" - https://url
+  3. UNKNOWN
+
+The kinds:
+  DELIVERY STATION   vans load here and drive to homes. 100,000-250,000 sq ft.
+  SORTATION CENTER   sorts parcels between warehouses. No home delivery.
+  FULFILLMENT CENTER stores inventory, picks orders. 600,000+ sq ft.
+  AIR HUB / FRESH / OFFICE / DATA CENTER / OTHER
+
+What works, in order - please actually try these:
+  - the address in quotes with no mention of Amazon
+  - the address plus "DSP" or "delivery service partner"
+  - the address plus "square feet" (under 250,000 = delivery station,
+    over 600,000 = fulfillment centre)
+  - the address on hiring.amazon.com - the JOB TITLE gives it away
+  - warehouse.ninja, zonhack, selleressentials, mapcarta, amazontours.com
+
+Rules:
+  - Quote a sentence naming the street or the city. Give the URL.
+  - UNKNOWN if you cannot tell. Do not guess. Guessing the kind is worse than
+    not knowing, because it decides whether the site counts at all.
+  - OFFICE, DATA CENTRE, PHARMACY or WHOLE FOODS are useful answers, not
+    failures - they tell me to exclude the site.
+  - If it has CLOSED, say so with the year.
+
+Every address is a real Amazon site from US Department of Labor OSHA
+inspection records. The only question is which kind.
+
+ADDRESSES:
+
+1. 27400 CROSSROADS PARKWAY, ROSSFORD, OH 43460
+2. 50 CANTON WAY, ROBBINSVILLE, NJ 08691
+3. 18 APPLEGATE DRIVE, ROBBINSVILLE, NJ 08691
+4. 6701 S KOLB RD, TUCSON, AZ 85756
+5. 2101 AUIKI STREET, HONOLULU, HI 96819
+6. 300 CROCKER DRIVE, VACAVILLE, CA 95688
+7. 4800 MIDWAY ROAD, VACAVILLE, CA 95688
+8. 920 EUBANKS DRIVE, VACAVILLE, CA 95688
+9. 2321 INDUSTRIAL WAY SUITE A, VINELAND, NJ 08360
+10. 5045 PORTSMOUTH BOULEVARD, CHESAPEAKE, VA 23321
+11. 2000 ENTERPRISE PARKWAY, HAMPTON, VA 23666
+12. 2020 NORTHGATE COMMERCE PARKWAY, SUFFOLK, VA 23435
+13. 1833 TWIN MILLS RD., VIRGINIA BEACH, VA 23456
+14. 3315 N. KELSEY ST., VISALIA, CA 93291
+15. 8817 W. KIBLER AVE, VISALIA, CA 93291
+16. 19800 BELMONT CHASE DRIVE SUITE 160, ASHBURN, VA 20147
+17. 42948 FRADELEY LN, STERLING, VA 20166
+18. 7130 NORTH BROADWAY, PARK CITY, KS 67219
+19. 165 BUSINESS BLVD, CLEAR BROOK, VA 22624
+20. 1656 OLD GREENSBORO RD, KERNERSVILLE, NC 27284
+21. 515 DOUGLAS STREET, UXBRIDGE, MA 01569
+22. 501 N KEYS RD, YAKIMA, WA 98901
+23. 200 GOODMAN DRIVE, LEWISBERRY, PA 17339
+24. 73575 LEWIS AND CLARK RD, BOARDMAN, OR 97818
+25. 1050 S COLUMBIA AVE, CAMPBELLSVILLE, KY 42718
+26. 1 AMAZON WAY, COFFEYVILLE, KS 67337
+27. 2654 HWY 169, COFFEYVILLE, KS 67337
+28. 1600 E. NEWLANDS DRIVE, FERNLEY, NV 89408
+29. 1050 S COLUMBIA  AVE, FINLEY, KY 42718
+30. 1051 S. COLUMBIA AVENUE, FINLEY, KY 42718
+31. 2650 EAST 2ND STREET, GILLETTE, WY 82718
+32. 6250 ALTAMONT DR, KLAMATH FALLS, OR 97603
+33. 10 STATE ST, NASHUA, NH 03061
+34. 48 BOSTON POST ROAD, ORANGE, CT 06477
+35. 6990 HAIGH DRIVE, ORLAND, CA 95963
+36. 137 LATHROP ROAD, PLAINFIELD, CT 06374
+37. 29 RESEARCH PARKWAY, WALLINGFORD, CT 06492
+38. 150 RUANE DRIVE, WILMINGTON, OH 45177
+39. 400 OLD IRON ORE ROAD, WINDSOR, CT 06095

@@ -1,0 +1,70 @@
+1. SORTATION CENTER - "CVG5, Sort Center, 4805 Aero Pkwy, Florence, KY, 41042" - https://zonprep.com/resources/free-tools/amazon-fulfillment-centers-locations/
+2. SORTATION CENTER - "CVG8, Sort Center, 1155 Worldwide Blvd, Hebron, KY, 41048" - https://zonprep.com/resources/free-tools/amazon-fulfillment-centers-locations/
+3. SORTATION CENTER - "CVG7, Sort Center, 1600 Worldwide Blvd, Hebron, KY, 41048" - https://zonprep.com/resources/free-tools/amazon-fulfillment-centers-locations/
+4. SORTATION CENTER - "KCVG, Sort Center, 2285 Litton Ln, Hebron, KY, 41048" - https://zonprep.com/resources/free-tools/amazon-fulfillment-centers-locations/
+5. DELIVERY STATION - "DKY5 - Amazon warehouse facility in Hebron, KY. Address: 2305 Litton Ln, 41048." - https://warehouse.ninja/locations/amazon/dky5/
+6. FULFILLMENT CENTER - "3521 Point Pleasant Rd, Hebron, KY 41048. Kentucky, CVG6, FC" - https://selleressentials.com/amazon-fulfillment-center-locations/
+7. SORTATION CENTER - "CVG3, Sort Center, 3680 Langley Dr, Hebron, KY, 41048" - https://zonprep.com/resources/free-tools/amazon-fulfillment-centers-locations/
+8. DELIVERY STATION - "DKY4 - Amazon warehouse facility in Lexington, KY. Address: 1180 Newtown Pike, 40511." - https://warehouse.ninja/locations/amazon/dky4/
+9. FULFILLMENT CENTER - "172 Trade St, Lexington, KY 40511. Kentucky, LEX2, FC" - https://selleressentials.com/amazon-fulfillment-center-locations/
+10. FULFILLMENT CENTER - "1850 Mercer Rd, Lexington, KY 40511. Kentucky, LEX1, FC" - https://selleressentials.com/amazon-fulfillment-center-locations/
+11. SORTATION CENTER - "CVG9, Sort Center, 289 Wendell H Ford Blvd, Erlanger, KY, 41018" - https://zonprep.com/resources/free-tools/amazon-fulfillment-centers-locations/
+12. FULFILLMENT CENTER - "100 W. Thomas P. Echols Lane, Shepherdsville, KY 40165. Kentucky, SDF4, FC" - https://selleressentials.com/amazon-fulfillment-center-locations/
+13. FULFILLMENT CENTER - "649 Omega Pkwy, Shepherdsville, KY 40165. Kentucky, SDF9, FC" - https://selleressentials.com/amazon-fulfillment-center-locations/
+14. OTHER - "Amazon is leasing the parking lots at Kentucky Speedway in Sparta to store a stockpile of vans" - https://www.thedrive.com/news/37626/
+15. FULFILLMENT CENTER - "3550 NE Evangeline Thruway, Carencro, LA 70520. Louisiana, LFT1, FC" - https://selleressentials.com/amazon-fulfillment-center-locations/
+16. DELIVERY STATION - "DMC4 - Amazon warehouse facility in Bellingham, MA. Address: 351 Maple St, 02019." - https://warehouse.ninja/locations/amazon/dmc4/
+17. DELIVERY STATION - "DBT1 - Amazon warehouse facility in Everett, MA. Address: 201 Beacham St, 02149." - https://warehouse.ninja/locations/amazon/dbt1/
+18. FULFILLMENT CENTER - "1180 Innovation Way, Fall River, MA 02720. Massachusetts, BOS7, FC" - https://selleressentials.com/amazon-fulfillment-center-locations/
+19. FULFILLMENT CENTER - "1450 Osgood St, North Andover, MA 01845. Massachusetts, BOS3, FC" - https://selleressentials.com/amazon-fulfillment-center-locations/
+20. DELIVERY STATION - "DBO4 - Amazon warehouse facility in Norwood, MA. Address: 750 Everett St, 02062." - https://warehouse.ninja/locations/amazon/dbo4/
+21. SORTATION CENTER - "BOS5, Sort Center, 1000 Technology Center Drive, Stoughton, MA, 02072" - https://zonprep.com/resources/free-tools/amazon-fulfillment-centers-locations/
+22. DELIVERY STATION - "DOX1 - Amazon Delivery Station at 515 Douglas Street, Uxbridge, MA 01569" - https://warehouse.ninja/amazon-fulfillment-center-locations/
+23. DELIVERY STATION - "DBO6 - Amazon warehouse facility in Wilmington, MA. Address: 110 Fordham Rd, 01887." - https://warehouse.ninja/locations/amazon/dbo6/
+24. DELIVERY STATION - "DMD6 - Amazon warehouse facility in Aberdeen, MD. Address: 913 Old Philadelphia Rd, 21001." - https://warehouse.ninja/locations/amazon/dmd6/
+25. FULFILLMENT CENTER - "2010 Broening Hwy, Baltimore, MD 21224. Maryland, BWI2, FC" - https://selleressentials.com/amazon-fulfillment-center-locations/
+26. SORTATION CENTER - "BWI5, Sort Center, 1351 Mathison Way, Baltimore, MD, 21240" - https://zonprep.com/resources/free-tools/amazon-fulfillment-centers-locations/
+27. SORTATION CENTER - "DCA6, Sort Center, 1701 Finishing Mill Road, Baltimore, MD, 21219" - https://zonprep.com/resources/free-tools/amazon-fulfillment-centers-locations/
+28. SORTATION CENTER - "MTN1, Sort Center, 6001 Bethlehem Blvd, Baltimore, MD, 21219" - https://zonprep.com/resources/free-tools/amazon-fulfillment-centers-locations/
+29. DELIVERY STATION - "DBA4 - Amazon warehouse facility in Edgewood, MD. Address: 2203 Lakeside Blvd, 21040." - https://warehouse.ninja/locations/amazon/dba4/
+30. DELIVERY STATION - "DMD9 - Amazon warehouse facility in Elkridge, MD. Address: 7200 Dorsey Run Rd, 21075." - https://warehouse.ninja/locations/amazon/dmd9/
+31. FULFILLMENT CENTER - "1115 Wesel Blvd, Hagerstown, MD 21740. Maryland, HGR4, FC" - https://selleressentials.com/amazon-fulfillment-center-locations/
+32. FULFILLMENT CENTER - "13905 Crayton Blvd, Hagerstown, MD 21742. Maryland, HGR2, FC" - https://selleressentials.com/amazon-fulfillment-center-locations/
+33. SORTATION CENTER - "HGR8, Sort Center, 55 W Oak Ridge Dr, Hagerstown, MD, 21740" - https://zonprep.com/resources/free-tools/amazon-fulfillment-centers-locations/
+34. DELIVERY STATION - "DMD2 - Amazon warehouse facility in Baltimore, MD. Address: 5501 Holabird Ave, 21224." - https://warehouse.ninja/locations/amazon/dmd2/
+35. FULFILLMENT CENTER - "600 Principio Pkwy W, North East, MD 21901. Maryland, MDT2, FC" - https://selleressentials.com/amazon-fulfillment-center-locations/
+36. FULFILLMENT CENTER - "1700 Sparrows Point Blvd, Sparrows Point, MD 21219. Maryland, DCA1, FC" - https://selleressentials.com/amazon-fulfillment-center-locations/
+37. SORTATION CENTER - "DTW5, Sort Center, 19991 Brownstown Center Dr, Brownstown Charter Twp, MI, 48183" - https://zonprep.com/resources/free-tools/amazon-fulfillment-centers-locations/
+38. FULFILLMENT CENTER - "20110 Woodward Ave, Detroit, MI 48203. Michigan, DET3, FC" - https://selleressentials.com/amazon-fulfillment-center-locations/
+39. DELIVERY STATION - "DTD5 - Amazon warehouse facility in Hazel Park, MI. Address: 1400 E 10 Mile Rd, 48030." - https://warehouse.ninja/locations/amazon/dtd5/
+40. DELIVERY STATION - "Amazon Logistics announced plans to open a new delivery station at 550 W. Western Ave. in downtown Muskegon." - https://www.mlive.com/news/muskegon/2021/10/
+41. SORTATION CENTER - "DTW9, Sort Center, 9075 Haggerty Rd, Plymouth, MI, 48170" - https://zonprep.com/resources/free-tools/amazon-fulfillment-centers-locations/
+42. FULFILLMENT CENTER - "1300 Featherstone Rd, Pontiac, MI 48342. Michigan, DET1, FC" - https://selleressentials.com/amazon-fulfillment-center-locations/
+43. FULFILLMENT CENTER - "32801 Ecorse Rd, Romulus, MI 48174. Michigan, DTW1, FC" - https://selleressentials.com/amazon-fulfillment-center-locations/
+44. FULFILLMENT CENTER - "50500 Mound Rd, Shelby Township, MI 48315. Michigan, DET2, FC" - https://selleressentials.com/amazon-fulfillment-center-locations/
+45. FULFILLMENT CENTER - "9800 217th St W, Lakeville, MN 55044. Minnesota, MSP9, FC" - https://selleressentials.com/amazon-fulfillment-center-locations/
+46. DELIVERY STATION - "DMS1 - Amazon warehouse facility in Maple Grove, MN. Address: 10440 89th Ave N, 55369." - https://warehouse.ninja/locations/amazon/dms1/
+47. SORTATION CENTER - "MSP5, Sort Center, 10750 89th Ave N, Maple Grove, MN, 55369" - https://zonprep.com/resources/free-tools/amazon-fulfillment-centers-locations/
+48. DELIVERY STATION - "DMP1 - Amazon warehouse facility in Eagan, MN. Address: 3130 Lexington Ave S, 55121." - https://warehouse.ninja/locations/amazon/dmp1/
+49. DELIVERY STATION - "DLI1 - Amazon warehouse facility in Berkeley, MO. Address: 8850 Springdale Ave, 63134." - https://warehouse.ninja/locations/amazon/dli1/
+50. DELIVERY STATION - "DMC2 - Amazon warehouse facility in Blue Springs, MO. Address: 2400 NE Coronado Dr, 64014." - https://warehouse.ninja/locations/amazon/dmc2/
+51. FULFILLMENT CENTER - "4000 Premier Pkwy, St Peters, MO 63376. Missouri, STL8, FC" - https://selleressentials.com/amazon-fulfillment-center-locations/
+52. FULFILLMENT CENTER - "1615 Commerce Pkwy, Horn Lake, MS 38637. Mississippi, MEM3, FC" - https://selleressentials.com/amazon-fulfillment-center-locations/
+53. SORTATION CENTER - "CLT5, Sort Center, 10240 Old Dowd Road, Charlotte, NC, 28214" - https://zonprep.com/resources/free-tools/amazon-fulfillment-centers-locations/
+54. DELIVERY STATION - "DNC3 - Amazon warehouse facility in Colfax, NC. Address: 7929 National Service Rd, 27235." - https://warehouse.ninja/locations/amazon/dnc3/
+55. DELIVERY STATION - "DNC2 - Amazon warehouse facility in Concord, NC. Address: 413 Goodman Rd, 28027." - https://warehouse.ninja/locations/amazon/dnc2/
+56. SORTATION CENTER - "CLT9, Sort Center, 6500 Davidson Highway, Concord, NC, 28027" - https://zonprep.com/resources/free-tools/amazon-fulfillment-centers-locations/
+57. DELIVERY STATION - "DRT8 - Amazon warehouse facility in Durham, NC. Address: 1275 Person St, 27703." - https://warehouse.ninja/locations/amazon/drt8/
+58. SORTATION CENTER - "RDU5, Sort Center, 1805 TW Alexander Dr, Durham, NC, 27703" - https://zonprep.com/resources/free-tools/amazon-fulfillment-centers-locations/
+59. DELIVERY STATION - "DRT4 - Amazon warehouse facility in Garner, NC. Address: 1201 N Greenfield Pkwy, 27529." - https://warehouse.ninja/locations/amazon/drt4/
+60. FULFILLMENT CENTER - "4851 Jones Sausage Rd, Garner, NC 27529. North Carolina, RDU1, FC" - https://selleressentials.com/amazon-fulfillment-center-locations/
+61. FULFILLMENT CENTER - "GSO1 - Amazon Fulfillment Center at 1656 Old Greensboro Rd, Kernersville, NC 27284" - https://selleressentials.com/amazon-fulfillment-center-locations/
+62. SORTATION CENTER - "KRDU, Sort Center, 12000 Innovation Ave, Morrisville, NC, 27560" - https://zonprep.com/resources/free-tools/amazon-fulfillment-centers-locations/
+63. FULFILLMENT CENTER - "The 600,000 square-foot Amazon fulfillment center at 2150 US Highway 70 Business West in Smithfield officially opened" - https://jocoreport.com/amazon-fulfillment-center-in-smithfield-now-open/
+64. FULFILLMENT CENTER - "14248 Nebraska 370, Omaha, NE 68138. Nebraska, OMA2, FC" - https://selleressentials.com/amazon-fulfillment-center-locations/
+65. DELIVERY STATION - "Delivery Station Warehouse Associate - 10 State St" - https://hiring.amazon.com/jobDetail/en-US/Delivery-Station-Warehouse-Associate/Nashua/JOB-US-0000018825
+66. OTHER - "CLOSED 2015. Amazon shuttered its fulfillment center at 1600 E. Newlands Drive in Fernley, NV in 2015." - https://www.rgj.com/story/money/business/2014/10/30/amazon-close-fernley-facility/18182969/
+67. DELIVERY STATION - "DLV4 - Amazon warehouse facility in Henderson, NV. Address: 12300 S Bermuda Rd, 89044." - https://warehouse.ninja/locations/amazon/dlv4/
+68. DELIVERY STATION - "DLV7 - Amazon warehouse facility in Las Vegas, NV. Address: 3777 Marion Dr, 89115." - https://warehouse.ninja/locations/amazon/dlv7/
+69. FULFILLMENT CENTER - "4410 Nexus Way, Las Vegas, NV 89115. Nevada, VGT1, FC" - https://selleressentials.com/amazon-fulfillment-center-locations/
+70. SORTATION CENTER - "LAS5, Sort Center, 5802 E Tropical Pkwy, Las Vegas, NV, 89115" - https://zonprep.com/resources/free-tools/amazon-fulfillment-centers-locations/

@@ -1,0 +1,74 @@
+These are Amazon facilities that a first search could not identify. Try
+harder on these 29 - they are the leftovers, so expect to dig.
+
+For each, tell me what KIND of Amazon facility it is:
+
+  DELIVERY STATION   vans load here and drive to homes. 100,000-250,000 sq ft.
+  SORTATION CENTER   sorts parcels between warehouses. No home delivery.
+  FULFILLMENT CENTER stores inventory, picks orders. 600,000+ sq ft.
+  AIR HUB / FRESH / OFFICE / DATA CENTER / OTHER
+
+Answer one line each:
+
+  1. DELIVERY STATION - "quote naming the address" - https://url
+  2. UNKNOWN
+
+THINGS THAT WORK WHEN A NORMAL SEARCH FAILS - please actually try these:
+
+- Search the ADDRESS ALONE in quotes, with no mention of Amazon.
+  Often a leasing listing, a permit, or a trucking directory names the site.
+- Search the address plus "DSP" or "delivery service partner". Delivery
+  stations are surrounded by small contractor firms that publish the address
+  of the station they load at. This found several already.
+- Search the address plus "square feet" or "sq ft". Size settles it:
+  under 250,000 is a delivery station, over 600,000 is a fulfillment centre.
+- Search the address on hiring.amazon.com. The JOB TITLE gives it away:
+  "Delivery Station Warehouse Associate" vs "Fulfillment Center Warehouse
+  Associate" vs "Sortation Center Associate".
+- Search the city's planning or zoning agenda for the street name.
+- Try warehouse.ninja, zonhack, selleressentials, mapcarta, warehouse worker
+  network - these directories list Amazon codes against addresses.
+
+RULES:
+
+- Quote a sentence naming the street address or the city. Give the URL.
+- UNKNOWN if you cannot tell. Do not guess. Guessing the kind is worse than
+  not knowing, because it decides whether the site counts at all.
+- If the site is an OFFICE, DATA CENTRE, WHOLE FOODS or a corporate building,
+  say so - that is a useful answer, not a failure.
+- If you find the opening year too, add it. Bonus, not required.
+
+Every address below is a real Amazon site taken from US Department of Labor
+OSHA inspection records. The only question is which kind.
+
+ADDRESSES:
+
+1. 4616-6 HOWARD LANE, AUSTIN, TX 78728
+2. 9850 MISSISSIPPI ST., CROWN POINT, IN 46307
+3. 4500 WESTERN AVE., LISLE, IL 60532
+4. 1900 NORTHWEST 132ND PLACE, MIAMI, FL 33178
+5. 39 BAYVIEW COURT, BAYONNE, NJ 07002
+6. 201 W. GRUMMAN ROAD, BETHPAGE, NY 11714
+7. 630 SULLIVAN ROAD, ELIZABETH, NJ 07201
+8. 17341 WEST MINNEZONA AVENUE, GOODYEAR, AZ 85395
+9. 6395 N SARIVAL AVE, LITCHFIELD PARK, AZ 85340
+10. 5050 W MOHAVE ST, PHOENIX, AZ 85043
+11. 800 S 75TH AVE, PHOENIX, AZ 85043
+12. 3745 BAYSHORE BOULEVARD, BRISBANE, CA 94005
+13. 6045 GIANT HWY, RICHMOND, CA 94806
+14. 990 BEECHER ST., SAN LEANDRO, CA 94577
+15. 315 SHUKSAN WAY DWS4, EVERETT, WA 98203
+16. 315 SHUKSAN WAY, EVERETT, WA 98203
+17. 2056 59TH PL S, KENT, WA 98032
+18. 21005 64TH AVENUE S ATTN JESSICA ANG, KENT, WA 98032
+19. 22001 84TH AVE S, KENT, WA 98032
+20. 20526 59TH PLACE, KENT, WA 98032
+21. 11710 118TH AVENUE, KIRKLAND, WA 98034
+22. 23226 WITTE RD SE, MAPLE VALLEY, WA 98038
+23. 1101 SW 16TH ST, RENTON, WA 98057
+24. 1905 RAYMOND AVE SW, RENTON, WA 98057
+25. 549 S DAWSON, SEATTLE, WA 98108
+26. 76 S LANDER STREET, SEATTLE, WA 98134
+27. 1901 140TH AVE E BFI7, SUMNER, WA 98390
+28. 2201 140TH AVE E, SUMNER, WA 98390
+29. 3711 142ND AVE E, SUMNER, WA 98390

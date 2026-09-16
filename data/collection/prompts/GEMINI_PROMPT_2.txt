@@ -1,0 +1,74 @@
+Find the opening year for each Amazon delivery station location below.
+These are numbered 7 to 35, continuing from a previous list.
+
+FORMAT - one line each, nothing else:
+
+  7. 2020 Q3 - opened - "exact quote from the source naming the street or
+     neighbourhood and the date" - https://url
+  8. 2019 - opened - "quote" - https://url
+  9. UNKNOWN
+
+RULES:
+
+- Quote the source. One sentence that names the STREET ADDRESS or the
+  NEIGHBOURHOOD and the DATE. If you cannot quote it, it does not count.
+- If you cannot find a real dated source, write UNKNOWN. Do not estimate.
+  A blank is useful. A guessed date is worse than useless.
+- Do NOT use manifest.supplystudies.com. It cannot be verified.
+- Do not give me Amazon facility codes. Match on ZIP and coordinates only.
+- Quarter only if you know the month. Year alone is fine.
+- Write "announced" instead of "opened" if the source only says Amazon
+  planned, leased, or proposed the site.
+- If a site CLOSED, say so and give the year. Closures matter as much as
+  openings.
+- If a site is actually a fulfillment centre or sortation centre rather than
+  a delivery station, say so.
+
+WHAT GOOD LOOKS LIKE - two that were accepted:
+
+  "Amazon delivery stations recently opened in Downers Grove and West
+   Chicago" - CBS Chicago, 28 September 2020
+  "in October, opened a 245,000-square-foot Prime delivery distribution
+   center at 3601 Howard Street" - Village of Skokie newsletter, Winter 2020
+
+Both name a place and a date. That is the bar.
+
+SOURCES THAT WORKED: city and county planning agendas and building permits;
+official municipal newsletters; local TV and newspapers; The Guardian;
+commercial real-estate press. Local outlets for these areas: Denver Post,
+BizWest, Colorado Real Estate Journal, QNS and Crain's New York, Mercury
+News and SF Chronicle and Silicon Valley Business Journal, Seattle Times and
+Puget Sound Business Journal and The News Tribune, Phoenix Business Journal
+and AZCentral.
+
+LOCATIONS:
+
+7. Denver, CO 80221  (39.81384, -104.99896)
+8. Thornton, CO 80241  (39.92747, -104.97267)
+9. Broomfield, CO 80023  (39.98531, -104.99259)
+10. Centennial, CO 80112  (39.55684, -104.84203)
+11. unincorporated area, CO 80011  (39.7566, -104.75515)
+12. unincorporated area, NY 11378  (40.71985, -73.91388)
+13. San Jose, CA 95122  (37.33525, -121.85438)
+14. Dublin, CA 94568  (37.71273, -121.88958)
+15. Livermore, CA 94550  (37.70534, -121.70638)
+16. San Jose, CA 95131  (37.40333, -121.89833)
+17. Milpitas, CA 95035  (37.43967, -121.92463)
+18. San Jose, CA 95133  (37.36299, -121.86678)
+19. Milpitas, CA 95035  (37.43158, -121.92375)
+20. Fremont, CA 94538  (37.49801, -121.96737)
+21. San Jose, CA 95125  (37.30753, -121.87211)
+22. Lakewood, WA 98439  (47.12288, -122.53925)
+23. Maple Valley, WA 98038  (47.39104, -122.04062)
+24. Kent, WA 98032  (47.40531, -122.23216)
+25. Frederickson, WA 98375  (47.10651, -122.35486)
+26. Sumner, WA 98390  (47.22282, -122.23781)
+27. Everett, WA 98204  (47.93931, -122.24485)
+28. Phoenix, AZ 85034  (33.4199, -112.03531)
+29. Tempe, AZ 85281  (33.41033, -111.96431)
+30. Goodyear, AZ 85338  (33.44147, -112.36111)
+31. Chandler, AZ 85286  (33.25928, -111.8207)
+32. Chandler, AZ 85225  (33.34262, -111.83655)
+33. Phoenix, AZ 85027  (33.70014, -112.08076)
+34. Phoenix, AZ 85040  (33.41964, -111.99827)
+35. Mesa, AZ 85215  (33.47109, -111.71759)

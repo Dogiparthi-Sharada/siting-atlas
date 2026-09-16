@@ -1,0 +1,35 @@
+DCH1  |  Chicago, IL 60608  |  41.84046, -87.68357
+DIL3  |  Chicago, IL 60632  |  41.79878, -87.71207
+DIL5  |  West Chicago, IL 60185  |  41.87538, -88.25294
+DIL7  |  Skokie, IL 60076  |  42.01744, -87.71966
+DLN4  |  Chicago, IL 60628  |  41.70383, -87.5976
+DXH5  |  Chicago, IL 60609  |  41.82977, -87.66421
+DDE9  |  Denver, CO 80221  |  39.81384, -104.99896
+DDV2  |  Thornton, CO 80241  |  39.92747, -104.97267
+DDV3  |  Broomfield, CO 80023  |  39.98531, -104.99259
+DDV4  |  Centennial, CO 80112  |  39.55684, -104.84203
+DDV5  |  unknown city, CO 80011  |  39.7566, -104.75515
+DBK4  |  unknown city, NY 11378  |  40.71985, -73.91388
+DCX5  |  San Jose, CA 95122  |  37.33525, -121.85438
+DFA9  |  Dublin, CA 94568  |  37.71273, -121.88958
+DFO3  |  Livermore, CA 94550  |  37.70534, -121.70638
+DSF3  |  San Jose, CA 95131  |  37.40333, -121.89833
+DSF7  |  Milpitas, CA 95035  |  37.43967, -121.92463
+DSJ7  |  San Jose, CA 95133  |  37.36299, -121.86678
+DUR3  |  Milpitas, CA 95035  |  37.43158, -121.92375
+DXC5  |  Fremont, CA 94538  |  37.49801, -121.96737
+DXC8  |  San Jose, CA 95125  |  37.30753, -121.87211
+DSW5  |  Lakewood, WA 98439  |  47.12288, -122.53925
+DWA5  |  Maple Valley, WA 98038  |  47.39104, -122.04062
+DWA6  |  Kent, WA 98032  |  47.40531, -122.23216
+DWA7  |  Frederickson, WA 98375  |  47.10651, -122.35486
+DWA9  |  Sumner, WA 98390  |  47.22282, -122.23781
+DWS5  |  Everett, WA 98204  |  47.93931, -122.24485
+DAZ2  |  Phoenix, AZ 85034  |  33.4199, -112.03531   [lower priority]
+DPX4  |  Tempe, AZ 85281  |  33.41033, -111.96431   [lower priority]
+DPX6  |  Goodyear, AZ 85338  |  33.44147, -112.36111   [lower priority]
+DPX7  |  Chandler, AZ 85286  |  33.25928, -111.8207   [lower priority]
+DTU3  |  Chandler, AZ 85225  |  33.34262, -111.83655   [lower priority]
+DTU6  |  Phoenix, AZ 85027  |  33.70014, -112.08076   [lower priority]
+DTU8  |  Phoenix, AZ 85040  |  33.41964, -111.99827   [lower priority]
+DTU9  |  Mesa, AZ 85215  |  33.47109, -111.71759   [lower priority]

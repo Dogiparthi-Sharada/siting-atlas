@@ -1,0 +1,70 @@
+I need to know roughly WHEN each Amazon delivery station below started
+operating. I do NOT need an exact opening date. A range is fine.
+
+For each location give me EITHER or BOTH of these two things:
+
+  BY <year>  = the earliest evidence it WAS already operating
+  NOT <year> = the latest evidence it was NOT there yet
+
+Examples of what counts:
+
+  BY 2021   a job advert for that address, a Google review, a news mention,
+            a worker complaint, a business directory listing, a lawsuit,
+            a city inspection record - anything proving it existed
+  NOT 2019  an article saying Amazon "plans to build" there, a demolition
+            permit, a rezoning application, an empty lot in aerial imagery,
+            a different business at that address
+
+FORMAT - one line each:
+
+  7. BY 2021, NOT 2019 - "quote" - https://url
+  8. BY 2020 - "quote" - https://url
+  9. NOT 2020 - "quote" - https://url
+  10. UNKNOWN
+
+RULES:
+
+- Quote a sentence that names the STREET, the NEIGHBOURHOOD or the ZIP.
+- A URL for every claim.
+- UNKNOWN if you have nothing. Never estimate.
+- Do not use manifest.supplystudies.com.
+- No facility codes. Match on ZIP and coordinates.
+- If it CLOSED, say so with the year.
+- If it is really a fulfillment centre or sortation centre, say so.
+
+WHY THIS IS EASIER: you do not need anyone to have reported an opening.
+A job advert posted in March 2021 for that address proves it was operating
+by then, even if nobody wrote a story about it. An article from 2019 saying
+Amazon "plans to build" proves it was not open yet. Either one is useful to
+me; both together are ideal.
+
+LOCATIONS:
+
+6. Chicago, IL 60609  (41.82977, -87.66421)
+7. Denver, CO 80221  (39.81384, -104.99896)
+8. Thornton, CO 80241  (39.92747, -104.97267)
+9. Broomfield, CO 80023  (39.98531, -104.99259)
+10. Centennial, CO 80112  (39.55684, -104.84203)
+11. unincorporated, CO 80011  (39.7566, -104.75515)
+12. unincorporated, NY 11378  (40.71985, -73.91388)
+13. San Jose, CA 95122  (37.33525, -121.85438)
+14. Dublin, CA 94568  (37.71273, -121.88958)
+15. Livermore, CA 94550  (37.70534, -121.70638)
+16. San Jose, CA 95131  (37.40333, -121.89833)
+17. Milpitas, CA 95035  (37.43967, -121.92463)
+18. San Jose, CA 95133  (37.36299, -121.86678)
+19. Milpitas, CA 95035  (37.43158, -121.92375)
+20. Fremont, CA 94538  (37.49801, -121.96737)
+21. San Jose, CA 95125  (37.30753, -121.87211)
+22. Lakewood, WA 98439  (47.12288, -122.53925)
+23. Maple Valley, WA 98038  (47.39104, -122.04062)
+25. Frederickson, WA 98375  (47.10651, -122.35486)
+26. Sumner, WA 98390  (47.22282, -122.23781)
+27. Everett, WA 98204  (47.93931, -122.24485)
+28. Phoenix, AZ 85034  (33.4199, -112.03531)
+29. Tempe, AZ 85281  (33.41033, -111.96431)
+30. Goodyear, AZ 85338  (33.44147, -112.36111)
+31. Chandler, AZ 85286  (33.25928, -111.8207)
+32. Chandler, AZ 85225  (33.34262, -111.83655)
+33. Phoenix, AZ 85027  (33.70014, -112.08076)
+34. Phoenix, AZ 85040  (33.41964, -111.99827)
