@@ -1,0 +1,24 @@
+# Every stochastic step reads its seed from here. Nothing hardcodes one.
+# Changing a seed is a deliberate act and shows up in review.
+
+[global]
+seed = 20260908
+
+[models]
+hazard          = 20260908
+zinb            = 20260909
+lightgbm        = 20260910
+synthetic_ctrl  = 20260911
+
+[uncertainty]
+monte_carlo     = 20260912
+bootstrap       = 20260913
+conformal_split = 20260914
+
+[evaluation]
+train_test_split   = 20260915
+label_noise_sim    = 20260916
+placebo_permutation = 20260917
+
+[agent]
+tool_sampling = 20260918

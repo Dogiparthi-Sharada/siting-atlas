@@ -1,0 +1,348 @@
+% =====================================================================
+%  refs.bib -- bibliography for paper/siting_atlas_ieee.tex
+%
+%  DRAFT.  This file is the machine-readable twin of the inlined
+%  `thebibliography` block at the end of siting_atlas_ieee.tex.  The .tex
+%  does NOT run bibtex (so it compiles with pdflatex alone, on a minimal
+%  TeX install).  If you switch the .tex to
+%      \bibliographystyle{IEEEtran}\bibliography{refs}
+%  then this file becomes authoritative -- but until then the two must be
+%  kept in sync BY HAND.
+%
+%  Every entry carries a `confidence` note using the marks defined in
+%  docs/REFERENCES.md:
+%    [V]  verified against the full text, read for this project
+%    [T]  title and venue verified against a publisher/repository record;
+%         contents NOT read
+%    [K]  cited from knowledge; bibliographic details NOT confirmed
+%  Entries marked [K] MUST be checked against a source before submission.
+%  A fabricated reference is the worst outcome available to a document
+%  like this, and it has already happened once on this project (a
+%  hallucinated dataset URL), which is why the marks exist.
+% =====================================================================
+
+
+% ---------------------------------------------------------------------
+%  Facility location
+% ---------------------------------------------------------------------
+
+@article{hakimi1964,
+  author    = {Hakimi, S. L.},
+  title     = {Optimum Locations of Switching Centers and the Absolute
+               Centers and Medians of a Graph},
+  journal   = {Operations Research},
+  volume    = {12},
+  number    = {3},
+  pages     = {450--459},
+  year      = {1964},
+  month     = may,
+  publisher = {INFORMS},
+  note      = {[V] Read in full 2026-09-13, all ten printed pages including
+               the proof of the absolute-median theorem. JSTOR stable URL
+               https://www.jstor.org/stable/168125. Justifies solving the
+               depot layer over a discrete candidate set.}
+}
+
+@article{klosedrexl2005,
+  author  = {Klose, Andreas and Drexl, Andreas},
+  title   = {Facility location models for distribution system design},
+  journal = {European Journal of Operational Research},
+  volume  = {162},
+  number  = {1},
+  pages   = {4--29},
+  year    = {2005},
+  doi     = {10.1016/j.ejor.2003.10.031},
+  note    = {[V] Read in full 2026-09-13 (26 pages). The copy on disk carries
+             no volume/issue/page range on the document itself; the
+             162(1):4-29 line is from the publisher record.}
+}
+
+
+% ---------------------------------------------------------------------
+%  Continuous approximation -- READ THE NOTES BEFORE CITING ANY OF THIS
+%  docs/research/NOTES_daganzo_1984.md states in its own first line that
+%  the Daganzo paper was NOT read and is not on disk.
+% ---------------------------------------------------------------------
+
+@article{daganzo1984ts,
+  author  = {Daganzo, Carlos F.},
+  title   = {The Distance Traveled to Visit {N} Points with a Maximum of {C}
+             Stops per Vehicle: An Analytic Model and an Application},
+  journal = {Transportation Science},
+  volume  = {18},
+  number  = {4},
+  pages   = {331--350},
+  year    = {1984},
+  doi     = {10.1287/trsc.18.4.331},
+  note    = {[T] NOT READ. No copy could be obtained on the host where this
+             project was built; the DOI resolves to a publisher page behind a
+             challenge. What was retrieved and read is the abstract, via
+             api.openalex.org on 2026-09-14. Cited ONLY for the structural
+             decomposition the code implements (line haul shared across a
+             tour of C stops, plus local travel in k/sqrt(density)). It is
+             NOT cited for the numeric constant, and no page number,
+             section number or quotation from it appears anywhere in this
+             project. The abstract also states that zone SHAPE is the
+             paper's contribution, which our implementation does not
+             represent at all.}
+}
+
+@article{daganzo1984trb,
+  author  = {Daganzo, Carlos F.},
+  title   = {The length of tours in zones of different shapes},
+  journal = {Transportation Research Part B: Methodological},
+  volume  = {18},
+  number  = {2},
+  pages   = {135--145},
+  year    = {1984},
+  doi     = {10.1016/0191-2615(84)90027-4},
+  note    = {[T] NOT READ. Confirmed to exist via api.openalex.org
+             2026-09-14 (274 citations). Listed because it is the most
+             likely source of the local-travel constant bhh_constant=0.57
+             and was absent from this project's own code citations. Its
+             April 1984 date precedes the Transportation Science paper.}
+}
+
+@article{vaughan1984,
+  author  = {Vaughan, R. J.},
+  title   = {Approximate Formulas for Average Distances Associated with Zones},
+  journal = {Transportation Science},
+  volume  = {18},
+  number  = {3},
+  pages   = {231--244},
+  year    = {1984},
+  doi     = {10.1287/trsc.18.3.231},
+  note    = {[T] LISTED AS A CORRECTION, NOT AS SUPPORT. This DOI was cited
+             in src/siting_atlas/cost/params.py and docs/REFERENCES.md as
+             "Daganzo (1984), Approximate formulas ..., 18(3), 231-253" and
+             described as a companion paper and the source of the
+             zone-geometry constant. It is by Vaughan, spans pp. 231-244,
+             and concerns average distances between random points in zones:
+             no tour, no vehicle, no capacity, no tour-length constant.
+             Resolved against api.openalex.org twice independently
+             2026-09-14. It supports nothing in the cost model.}
+}
+
+@article{bhh1959,
+  author  = {Beardwood, Jillian and Halton, J. H. and Hammersley, J. M.},
+  title   = {The shortest path through many points},
+  journal = {Mathematical Proceedings of the Cambridge Philosophical Society},
+  volume  = {55},
+  number  = {4},
+  pages   = {299--327},
+  year    = {1959},
+  note    = {[K] The work is standard and certainly real; volume, issue and
+             page range are from memory and were NOT confirmed against the
+             document. CHECK BEFORE SUBMISSION. The constant it defines is a
+             property of the OPTIMUM tour and is therefore a lower limit,
+             which is why 0.57 is not admissible under the derivation
+             printed in cost/daganzo.py.}
+}
+
+@book{larsonodoni1981,
+  author    = {Larson, Richard C. and Odoni, Amedeo R.},
+  title     = {Urban Operations Research},
+  publisher = {Prentice-Hall},
+  address   = {Englewood Cliffs, NJ},
+  year      = {1981},
+  note      = {[V] Section 6.4.8 retrieved 2026-09-14 from
+               https://web.mit.edu/urban_or_book/www/book/chapter6/6.4.8.html
+               and read in full. It gives K approx. 0.765 (Stein 1978), notes
+               an earlier estimate of 0.75 (Eilon 1971), does not mention
+               Daganzo and does not mention 0.57. Caution: the page's
+               displayed equations are images and do not appear in the text
+               layer.}
+}
+
+
+% ---------------------------------------------------------------------
+%  Discrete choice
+% ---------------------------------------------------------------------
+
+@book{train2009,
+  author    = {Train, Kenneth E.},
+  title     = {Discrete Choice Methods with Simulation},
+  edition   = {2nd},
+  publisher = {Cambridge University Press},
+  address   = {Cambridge, UK},
+  year      = {2009},
+  note      = {[V] Read in full (chapters 1-14, references and index).
+               Second edition confirmed from typesetting marks in the
+               extracted text. Load-bearing sections for this project:
+               sec. 3.4 Example 2 (geographic aggregation, printed p. 54)
+               and sec. 3.7.1 (independence across observations, printed
+               p. 61) -- NOT sec. 2.2, which earlier drafts cited in error.}
+}
+
+
+% ---------------------------------------------------------------------
+%  This operator, and economies of density
+% ---------------------------------------------------------------------
+
+@article{houde2023,
+  author  = {Houde, Jean-Fran{\c c}ois and Newberry, Peter and Seim, Katja},
+  title   = {Nexus Tax Laws and Economies of Density in E-Commerce: A Study
+             of {Amazon's} Fulfillment Center Network},
+  journal = {Econometrica},
+  volume  = {91},
+  number  = {1},
+  pages   = {147--190},
+  year    = {2023},
+  note    = {[V] Read in full; journal line, volume, issue, pages and author
+             affiliations quoted from the document. The article DOI is not
+             printed in the text; the supplement cites
+             https://doi.org/10.3982/ECTA15265, which by Econometrica's
+             convention is the article DOI, but that is an INFERENCE and the
+             doi field is therefore left empty here. Open access,
+             CC BY-NC-ND. Uses the same MWPVL facility census this project
+             OCRs, which is the best availability argument for that source.}
+}
+
+@article{holmes2011,
+  author  = {Holmes, Thomas J.},
+  title   = {The Diffusion of {Wal-Mart} and Economies of Density},
+  journal = {Econometrica},
+  volume  = {79},
+  number  = {1},
+  pages   = {253--302},
+  year    = {2011},
+  doi     = {10.3982/ECTA7699},
+  note    = {[V] Read in full. Methodological ancestor of the optimiser.}
+}
+
+
+% ---------------------------------------------------------------------
+%  Scoring and evaluation
+% ---------------------------------------------------------------------
+
+@article{gneiting2007,
+  author  = {Gneiting, Tilmann and Raftery, Adrian E.},
+  title   = {Strictly Proper Scoring Rules, Prediction, and Estimation},
+  journal = {Journal of the American Statistical Association},
+  volume  = {102},
+  number  = {477},
+  pages   = {359--378},
+  year    = {2007},
+  doi     = {10.1198/016214506000001437},
+  note    = {[V] Read in full from a publisher-typeset copy; every page
+             number checked (journal page = PDF page + 358). Section 2.3,
+             printed p. 362, is the passage on skill scores being improper,
+             which is why this project reports raw Brier and raw top-k
+             against a uniform null and never a skill score.}
+}
+
+
+% ---------------------------------------------------------------------
+%  Record linkage, edit and imputation, data cleaning
+% ---------------------------------------------------------------------
+
+@article{fellegisunter1969,
+  author  = {Fellegi, Ivan P. and Sunter, Alan B.},
+  title   = {A Theory for Record Linkage},
+  journal = {Journal of the American Statistical Association},
+  volume  = {64},
+  number  = {328},
+  pages   = {1183--1210},
+  year    = {1969},
+  note    = {[K] The formal model Winkler's report rests on. Details from
+             memory; NOT verified against the document. CHECK BEFORE
+             SUBMISSION.}
+}
+
+@article{fellegiholt1976,
+  author  = {Fellegi, Ivan P. and Holt, D.},
+  title   = {A Systematic Approach to Automatic Edit and Imputation},
+  journal = {Journal of the American Statistical Association},
+  volume  = {71},
+  number  = {353},
+  pages   = {17--35},
+  year    = {1976},
+  month   = mar,
+  note    = {[V] Read in full 2026-09-13 including the appendix proofs.
+             JSTOR stable URL https://www.jstor.org/stable/2285726.
+             Applications Section. The design behind
+             warehouse/edits.py and the E_operating_by edit whose pass rate
+             is quoted in the paper.}
+}
+
+@techreport{winkler1999rl,
+  author      = {Winkler, William E.},
+  title       = {The State of Record Linkage and Current Research Problems},
+  institution = {Statistical Research Division, U.S. Bureau of the Census},
+  type        = {Statistical Research Report Series},
+  number      = {RR99/04},
+  year        = {1999},
+  note        = {[V] Read in full. Note this is NOT the same document as
+                 RR99-01 below, and not the same as Winkler's string-comparator
+                 papers. The report number is printed RR99/04 on the document
+                 and RR99-04 in some citing material.}
+}
+
+@techreport{winkler1999edit,
+  author      = {Winkler, William E.},
+  title       = {State of Statistical Data Editing and Current Research
+                 Problems},
+  institution = {Statistical Research Division, U.S. Bureau of the Census},
+  type        = {Research Report},
+  number      = {RR99-01},
+  year        = {1999},
+  month       = aug,
+  note        = {[V] Read in full 2026-09-13. PDF keywords field: "editing,
+                 Fellegi-Holt methods". A shorter version was presented at
+                 the Work Session on Statistical Data Editing, UN Economic
+                 Commission for Europe, Rome.}
+}
+
+@article{rahmdo2000,
+  author  = {Rahm, Erhard and Do, Hong Hai},
+  title   = {Data Cleaning: Problems and Current Approaches},
+  journal = {Bulletin of the IEEE Computer Society Technical Committee on
+             Data Engineering},
+  volume  = {23},
+  number  = {4},
+  pages   = {3--13},
+  year    = {2000},
+  month   = dec,
+  note    = {[V] Read in full 2026-09-13. University of Leipzig. The bulletin
+             issue is dated December 2000 and the paper is universally cited
+             as Rahm and Do (2000); the PDF metadata says 2001, which is
+             irrelevant. Supplies the single-source / multi-source problem
+             taxonomy used to structure the cleaning stage.}
+}
+
+@article{vandenbroeck2005,
+  author  = {Van den Broeck, Jan and Cunningham, Solveig Argeseanu and
+             Eeckels, Roger and Herbst, Kobus},
+  title   = {Data Cleaning: Detecting, Diagnosing, and Editing Data
+             Abnormalities},
+  journal = {PLoS Medicine},
+  volume  = {2},
+  number  = {10},
+  pages   = {e267, 966--970},
+  year    = {2005},
+  month   = oct,
+  doi     = {10.1371/journal.pmed.0020267},
+  note    = {[V] Read in full 2026-09-13. Policy Forum. Open access (CC-BY).
+             PMC1198040.}
+}
+
+
+% =====================================================================
+%  DELIBERATELY NOT INCLUDED
+%
+%  Little & Rubin, Statistical Analysis with Missing Data.  The project's
+%  notes file for it (docs/research/NOTES_little_rubin_ch1_3.md) carries a
+%  provenance warning saying no page of the book has been opened by anyone
+%  on this project and no copy is on disk.  Edition and year are therefore
+%  unknown and an entry here would be a guess.  The paper's not-MCAR
+%  statement is made without a citation rather than with a fabricated one.
+%
+%  Nishida (2012), Management Science.  docs/REFERENCES.md marks the author
+%  attribution and exact title UNCONFIRMED.  Not cited.
+%
+%  Daganzo & Smilowitz (2004).  Title UNCONFIRMED in docs/REFERENCES.md.
+%  Not cited.
+%
+%  Stein (1978) and Eilon (1971).  Known only second-hand, through Larson &
+%  Odoni sec. 6.4.8.  Cited through that source, not directly.
+% =====================================================================

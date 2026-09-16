@@ -1,0 +1,48 @@
+# Citation metadata. GitHub reads this file and adds a "Cite this repository"
+# button to the sidebar, which is how a dataset gets cited rather than
+# screenshotted.
+#
+# TWO FIELDS NEED YOUR NAME BEFORE THIS IS USEFUL -- see the <<< markers.
+# Everything else is filled in and correct.
+
+cff-version: 1.2.0
+message: "If you use this software or the facility dataset, please cite it."
+type: software
+
+title: "Siting Atlas: an open, reproducible model of where private infrastructure gets built"
+
+abstract: >-
+  An attempt to predict the siting of Amazon US last-mile delivery stations
+  from free public data, and a pre-registered report that it does not work at
+  either of the two geographic grains tested. Ships a parcel-level cost model
+  that does work, a dataset of 1,904 facilities recovered by OCR from an
+  image-only industry document, and a measured floor on the public-visibility
+  gap: federal enforcement records hold an inspection in 138 of the 488 US
+  cities where an independent census lists a delivery station.
+
+authors:
+  - family-names: "Dogiparthi"
+    given-names: "Sharada"
+    affiliation: "California State University, East Bay"
+
+license: MIT
+repository-code: "https://github.com/Dogiparthi-Sharada/siting-atlas"
+
+keywords:
+  - facility location
+  - last-mile logistics
+  - discrete choice
+  - pre-registration
+  - negative results
+  - open data
+  - reproducibility
+  - urban analytics
+  - data provenance
+
+# Volume I. Bump this on each release and let Zenodo mint a DOI per version.
+version: "1.0.0"
+date-released: "2026-09-16"
+
+# Once Zenodo has minted one, paste it here and it becomes the canonical
+# citation. Zenodo links to GitHub in two clicks: zenodo.org -> GitHub -> flip
+# the switch on this repository -> cut a release.

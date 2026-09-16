@@ -1,0 +1,44 @@
+# Runtime dependencies for Siting Atlas.
+#
+# pyproject.toml is the SOURCE OF TRUTH. This file exists because many people
+# and CI images expect a requirements.txt, and because `pip install -r` is the
+# instruction most readers reach for first. It mirrors [project.dependencies]
+# and is checked against it by scripts/preflight_publish.sh.
+#
+#     pip install -e .                 # preferred: installs the package too
+#     pip install -r requirements.txt  # equivalent dependency set, no package
+#
+# Ranges, not pins. For the exact versions this project's results were produced
+# with, use requirements-lock.txt instead -- that is the file to reach for if a
+# number does not reproduce.
+#
+# Python >= 3.11 is required. The scripts under scripts/grid/ are a separate
+# world: they run on a locked-down compute grid on Python 3.6 and install
+# nothing from here.
+
+duckdb>=1.0
+pandas>=2.2
+pyarrow>=16          # pandas' parquet engine; every L1 artefact is parquet
+openpyxl>=3.1        # pandas.read_excel: the OMB and BLS workbooks
+numpy>=1.26
+scipy>=1.11
+statsmodels>=0.14
+scikit-learn>=1.5
+matplotlib>=3.9      # viz.build is a pipeline stage, not an optional add-on
+requests>=2.32
+
+# ---------------------------------------------------------------------------
+# Optional groups, installable from pyproject:
+#
+#   pip install -e ".[docs]"   python-docx, python-pptx, pillow
+#                              -> needed to build the paper and the proposal
+#   pip install -e ".[viz]"    pydeck, streamlit
+#                              -> needed only to serve the dashboard
+#   pip install -e ".[dev]"    pytest, ruff
+#                              -> needed to run the test suite and the linter
+#   pip install -e ".[geo]"    geopandas, shapely, h3
+#                              -> not used yet; drags in GDAL/PROJ, which is
+#                                 the single most likely thing to fail on a
+#                                 clean machine. Kept out of the default.
+#
+# `make reproduce` needs the core set above plus [docs] for the figures.

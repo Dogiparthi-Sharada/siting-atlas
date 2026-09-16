@@ -1,0 +1,100 @@
+[build-system]
+requires = ["setuptools>=68", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "siting-atlas"
+version = "0.1.0"
+description = "An open model of where private infrastructure gets built"
+readme = "README.md"
+requires-python = ">=3.11"
+license = { file = "LICENSE" }
+
+# Only what src/siting_atlas actually imports. A dependency nothing imports
+# still has to resolve, build and install on every machine and in CI, so an
+# aspirational one costs real time and breaks real builds for no benefit.
+dependencies = [
+    "duckdb>=1.0",
+    "pandas>=2.2",
+    "pyarrow>=16",          # pandas' parquet engine; every L1 artefact
+    "openpyxl>=3.1",        # pandas.read_excel: the OMB and BLS workbooks
+    "numpy>=1.26",
+    "scipy>=1.11",
+    "statsmodels>=0.14",
+    "scikit-learn>=1.5",
+    "matplotlib>=3.9",      # viz.build is an L5 stage, not an optional add-on
+    "requests>=2.32",
+]
+
+[project.optional-dependencies]
+# The dashboard only. matplotlib is a core dependency because `make figures`
+# is part of the pipeline; these two are needed only to serve the app.
+viz = ["pydeck>=0.9", "streamlit>=1.37"]
+docs = ["python-docx>=1.1", "python-pptx>=1.0", "pillow>=10"]
+# The agent extra was removed on 2026-09-16: src/siting_atlas/agent/ was
+# retired to experiments/agent-demo/, so nothing in the package imports
+# langchain or mcp, and an extra that installs two large dependencies for
+# code that is no longer here is a trap for whoever installs it.
+# Geometry is not used yet and geopandas drags in GDAL/PROJ, which is the
+# single most likely thing to fail on a clean runner. It stays out of the
+# default install until something imports it.
+geo = ["geopandas>=1.0", "shapely>=2.0", "h3>=4.0"]
+dev = [
+    "pytest>=8", "pytest-cov>=5", "ruff>=0.6",
+    "mypy>=1.11", "pre-commit>=3.8",
+]
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[tool.ruff]
+line-length = 79
+target-version = "py311"
+# tools/ builds the proposal, deck and figures. It is hand-wrapped prose-heavy
+# code with hundreds of long literal strings, and reflowing it to satisfy E501
+# would rewrite the documents' source for no reader's benefit. It is linted on
+# demand (`make lint-tools`), not as a merge gate.
+extend-exclude = ["tools"]
+
+[tool.ruff.lint]
+select = ["E", "F", "W", "I", "N", "UP", "B", "C4", "SIM"]
+
+# black is deliberately not configured. It disagrees with this codebase in 32
+# of 44 files - the source is hand-wrapped to 79 columns so that comments sit
+# beside the code they explain - so enforcing it would mean a full reformat
+# that erases the layout on purpose. ruff's E/W rules police the column budget
+# instead.
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+addopts = "-q --strict-markers"
+pythonpath = ["src"]
+markers = [
+    "slow: takes more than a few seconds",
+    "integration: needs the warehouse",
+]
+# An unexpected pass is a test whose reason no longer holds. Each xfail here
+# documents a specific defect, so silently tolerating a pass would let the
+# note outlive the bug.
+xfail_strict = true
+
+# `pytest --cov` with no arguments measures the package. Coverage is not in
+# addopts on purpose: it costs ~20% on every run and interferes with pdb.
+[tool.coverage.run]
+source = ["src/siting_atlas"]
+branch = true
+omit = ["*/__main__.py"]
+
+[tool.coverage.report]
+show_missing = true
+exclude_lines = [
+    "pragma: no cover",
+    "if __name__ == .__main__.:",
+    "raise SystemExit",
+    "if TYPE_CHECKING:",
+]
+
+[tool.mypy]
+python_version = "3.11"
+warn_unused_ignores = true
+ignore_missing_imports = true

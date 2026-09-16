@@ -1,0 +1,199 @@
+# data is never committed - it is re-derivable from data/raw/manifest.jsonl
+data/raw/*
+data/interim/*
+data/processed/*
+data/external/*
+!data/**/.gitkeep
+!data/raw/manifest.jsonl
+
+# routing artifacts (see docs/engineering/DATA_ENGINEERING.md sec 2)
+*.osm.pbf
+*.osrm*
+
+# warehouse
+*.duckdb
+*.duckdb.wal
+
+# python
+__pycache__/
+*.py[cod]
+.venv/
+venv/
+.pytest_cache/
+.ruff_cache/
+.mypy_cache/
+*.egg-info/
+dist/
+build/
+
+# run logs are never committed. they record every URL, SQL statement and
+# shell command a run issued, so a single un-scrubbed line could publish a
+# credential. re-derivable by re-running; not worth the risk.
+logs/
+
+# notebooks
+.ipynb_checkpoints/
+
+# os / editor
+.DS_Store
+.vscode/
+.idea/
+
+# secrets
+.env
+*.key
+
+# Coverage database. Binary, and it stores an ABSOLUTE path for every source
+# file it measured -- 130 copies of the author's home directory. It was
+# tracked until 2026-09-15.
+.coverage
+.coverage.*
+htmlcov/
+
+# Container/session scratch. Records internal hostnames and the paths of
+# sandbox shared objects. Never useful, never publishable.
+vnc_logs/
+
+# manually-placed third-party data: re-obtainable via docs/data/ACQUISITION_GUIDE.md
+data/external/*
+!data/external/README.md
+!data/external/**/TEMPLATE.csv
+
+# ...with three exceptions, because "re-obtainable" is not true of all of it.
+# The Zillow tables (130MB) are one download and stay out. These are not:
+#
+#   facilities.csv / national_facilities.csv  are the TARGET VARIABLE. They
+#     were assembled by hand across several sessions of classification
+#     batches against OSHA records, press releases and permit filings. No
+#     URL returns them. Losing them loses the project. 22KB combined.
+#   nlrb_cases_amazon.csv  is a filtered export from an interactive search
+#     that caps results and has no stable query URL; reproducing it means
+#     redoing the search under six spellings of the company name. 877KB.
+#
+# Small, irreplaceable, and the whole reason the repo exists.
+#
+# NOTE ON THE PATTERN BELOW. `data/external/*` above excludes the SUBDIRECTORY
+# itself, and git will not descend into an excluded directory, so a bare
+# `!data/external/facility_panel/facilities.csv` silently never matches. The
+# directory has to be re-admitted first, then its contents re-excluded, then
+# the wanted files admitted. Verified with `git check-ignore -v`.
+!data/external/facility_panel/
+data/external/facility_panel/*
+!data/external/facility_panel/facilities.csv
+!data/external/facility_panel/national_facilities.csv
+
+!data/external/nlrb/
+data/external/nlrb/*
+!data/external/nlrb/nlrb_cases_amazon.csv
+!data/external/nlrb/HOWTO.md
+
+# CBP ZIP x industry detail: 7 vintages, ~120MB, one curl each. Regenerable
+# from https://www2.census.gov/programs-surveys/cbp/datasets/{year}/zbp{yy}detail.zip
+data/raw/cbp_zip_detail/
+
+# TIGER ZCTA boundaries (504MB) and cached Overpass responses: regenerable.
+data/raw/tiger_zcta/
+data/raw/osm_landuse/
+
+# Satellite dating output. NOT reproducible from this repo -- it came from a
+# Colab run against Microsoft Planetary Computer, whose imagery host the
+# university proxy blocks. Tracked because it is the EVIDENCE for a
+# documented negative result (docs/data/SATELLITE.md) and cannot be
+# regenerated here.
+!data/external/satellite/
+!data/external/satellite/*.csv
+
+# ---------------------------------------------------------------------------
+# MWPVL 2025 Q1 network article, and the two artefacts derived from it.
+#
+# TRACKED BECAUSE THEY CANNOT BE RE-FETCHED. The publisher states in the
+# article itself that they are withdrawing it from free circulation ("in
+# future we will no longer be updating this information online"), so the
+# saved copy IS the source. An audit on 2026-09-14 found the file previously
+# archived here was a DIFFERENT, smaller document -- 871 KB, whose image 34 is
+# a 14x16 thumbnail where the real one is the 828x26480 table strip that was
+# actually OCR'd. The extraction was therefore not reproducible from this
+# repository at all. Both files are kept: the 2012 vintage for comparison,
+# and the 2025 Q1 article that the panel is built from.
+#
+# The two CSVs are derived and regenerable ONLY while the PDF survives, which
+# is exactly the condition that is ending.
+!data/raw/mwpvl/
+!data/raw/mwpvl/*.pdf
+# ...but NOT the OCR intermediates underneath it. Un-ignoring the directory
+# re-included these; they are ~20 MB of extracted page images and word-
+# coordinate TSVs, both rebuilt in minutes by scripts/grid/run_ocr.sh from
+# the PDF above.
+data/raw/mwpvl/images/
+data/raw/mwpvl/tsv/
+!data/interim/mwpvl_facilities.csv
+!data/external/facility_panel/national_facilities_expanded.csv
+# Census Batch Geocoder output for those 700 rows. Re-runnable in seconds IF
+# the endpoint stays up and free, which is exactly the assumption that failed
+# for the MWPVL source. 455 matched coordinates cost nothing to keep.
+!data/external/facility_panel/geocoded_expanded.csv
+
+# Good Jobs First Subsidy Tracker, Amazon parent, downloaded 2026-09-14.
+# PAID (USD 25) and NOT re-fetchable from this host, which gets HTTP 403 from
+# the endpoint. 349 KB. Tracked for the same reason as the MWPVL article: a
+# source that cannot be re-downloaded is evidence, not a cache.
+!data/external/subsidies/
+!data/external/subsidies/*.csv
+
+# Relocated system binaries for the grid OCR run: tesseract, glibc and the
+# dynamic loader, ~20 MB. Built by scripts/grid/bundle_tesseract.sh, valid
+# only for one OS/arch, and rebuildable in seconds on any host that has
+# tesseract. Never in git.
+vendor/
+
+# ---------------------------------------------------------------------------
+# PUBLIC REPOSITORY OVERRIDE (2026-09-15)
+#
+# Everything above was written while this repository was private, where the
+# governing concern was preserving sources that cannot be re-downloaded.
+# Publishing inverts that reasoning for two of them: a file we cannot re-fetch
+# is still a file we have no right to redistribute. Both were verified as
+# COMMITTABLE by `git check-ignore -q` before these rules were added. They sit
+# last in the file so they win.
+
+# Good Jobs First Subsidy Tracker, Amazon parent. Purchased under a USD 25
+# subscription licence; redistribution is not ours to grant. The derived
+# aggregates ship instead, in outputs/metrics/subsidies.json, and
+# docs/DATA_SOURCES.md says where to buy the original.
+data/external/subsidies/
+
+# MWPVL International industry reports: third-party copyright, and the
+# publisher states in the article that it is being withdrawn from free
+# circulation. The FACTS extracted from them do ship, attributed, as
+# data/interim/mwpvl_facilities.csv -- facts are not copyrightable, the
+# document is.
+data/raw/mwpvl/*.pdf
+
+# THE TWO FILES THAT MAKE THIS REPOSITORY REPRODUCIBLE WITHOUT A DOWNLOAD.
+#
+# `data/raw/*` and `data/processed/*` above exclude everything on the grounds
+# that it is re-derivable. True, but re-deriving these two means ~4 GB of
+# downloads, three API keys and the better part of a working day -- so in
+# practice the exclusion made the repository un-runnable for anyone who
+# cloned it. With these two present, `make cost model scope figures`
+# reproduces the cost model, the choice model, the covariate search, the
+# leakage tests and every figure with NO network access and NO keys.
+#
+# 16.4 MB against GitHub's 100 MB per-file limit. The cheapest thing this
+# project can do to be useful to a stranger.
+!data/processed/panel.parquet
+!data/interim/cbp_detail.parquet
+
+# THE DIRECTORY READMEs UNDER data/.
+#
+# Everything under data/ is excluded by file above, which caught the READMEs
+# too -- so the directories that most need to explain themselves to someone
+# who cloned the repo (they arrive nearly empty, on purpose) were the ones
+# that shipped no explanation at all. Each has to be re-admitted by name:
+# a `data/**/README.md` glob does not reach into a directory git has already
+# excluded outright. Verified with `git check-ignore -v`.
+!data/raw/README.md
+!data/interim/README.md
+!data/processed/README.md
+!data/external/facility_panel/README.md
+!data/external/nlrb/README.md
