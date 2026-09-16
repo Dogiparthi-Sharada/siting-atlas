@@ -212,9 +212,14 @@ jobs:
         run: |
           set -euo pipefail
           python tools/figures/build_all.py
-          python tools/figures/fig_paper.py
+          python tools/figures/fig_paper.py     # column width, for the paper
+          python tools/figures/fig_readme.py    # 9.6in, for the front page
           python tools/figures/fig_hero_cost.py
           python tools/figures/fig_social_card.py
+          # fig_national_map.py is NOT built here. It needs the 528 MB TIGER
+          # ZCTA shapefile to derive state outlines, and geopandas/pyogrio are
+          # outside the [docs] extra. The check below still catches it going
+          # missing, because the README references it by path.
 
       - name: Every figure the docs reference exists
         run: |
