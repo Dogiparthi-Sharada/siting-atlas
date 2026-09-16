@@ -1,0 +1,214 @@
+name: CI
+
+# What this workflow can and cannot check, stated once so nobody has to
+# reverse-engineer it from a red tick:
+#
+#   * data/ is gitignored. A checkout therefore has NO inputs beyond
+#     data/raw/manifest.jsonl, so nothing downstream of L1 can run unless the
+#     cache is restored or the sources are re-fetched. Every data step below
+#     is gated on that, not assumed.
+#   * CENSUS_API_KEY and EIA_API_KEY are repository secrets and are absent on
+#     pull requests from forks. Steps that need them are gated on their
+#     presence rather than being allowed to fail.
+#   * .docx and .pptx are ZIP containers holding per-file timestamps, so a
+#     rebuild is never byte-identical (verified: three rebuilds, three
+#     hashes). They are validated and uploaded, never diffed. The .txt twins
+#     are produced by pure string processing and ARE reproducible, so those
+#     are diffed - that is the check that actually catches a stale document.
+
+on:
+  push: { branches: [main] }
+  pull_request: { branches: [main] }
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  lint:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with: { python-version: "3.11", cache: pip }
+      - run: pip install ruff
+      # tools/ is excluded in pyproject.toml, with the reason. `make
+      # lint-tools` runs it on demand.
+      - run: ruff check src tests
+
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with: { python-version: "3.11", cache: pip }
+      - run: pip install -e ".[dev]"
+      # The suite is deliberately independent of data/: it builds its
+      # fixtures in tmp_path. Pointing the root at an empty directory proves
+      # that, so a green tick here means the tests test the code and not the
+      # developer's cache.
+      - name: Tests
+        env:
+          SITING_ATLAS_ROOT: ${{ runner.temp }}/empty-root
+        run: |
+          mkdir -p "$SITING_ATLAS_ROOT"
+          pytest --cov=siting_atlas --cov-report=term-missing \
+                 --cov-report=xml
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with: { name: coverage-xml, path: coverage.xml }
+
+  smoke:
+    # Proves the package installs and every documented entry point is real.
+    # Then, and only if the inputs are actually available, runs the pipeline
+    # end to end on them.
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with: { python-version: "3.11", cache: pip }
+
+      - name: Install
+        run: pip install -e .
+
+      # An import from the repo root would succeed via the source tree even
+      # with no install at all, which is exactly the failure this catches.
+      - name: Package is importable without PYTHONPATH
+        run: cd "$RUNNER_TEMP" && python -c "import siting_atlas"
+
+      # The Makefile used to name modules that did not exist
+      # (warehouse.features, models.run, cost.od_matrix). This is the check
+      # that keeps it honest: import every stage and confirm it has a main().
+      # Import, not `--help`, because report.scope takes no arguments and
+      # would start doing real work.
+      - name: Every module the Makefile names is real
+        run: |
+          python - <<'PY'
+          import importlib
+          mods = """
+            ingest.probe ingest.acquire ingest.normalise
+            ingest.normalise_external ingest.census_api ingest.eia_api
+            ingest.external warehouse.schema warehouse.panel
+            cost.runner models.choice_runner models.metro_entry
+            models.refit_expanded
+            report.scope viz.build
+          """.split()
+          bad = [m for m in mods
+                 if not callable(getattr(
+                     importlib.import_module("siting_atlas." + m),
+                     "main", None))]
+          print("checked", len(mods), "stages")
+          raise SystemExit(f"no main(): {bad}" if bad else 0)
+          PY
+
+      - name: Restore the source cache
+        id: cache
+        uses: actions/cache@v4
+        with:
+          path: |
+            data/raw
+            data/external
+          key: sources-${{ hashFiles('data/raw/manifest.jsonl') }}
+
+      - name: Do we have credentials?
+        id: creds
+        env:
+          CENSUS_API_KEY: ${{ secrets.CENSUS_API_KEY }}
+          EIA_API_KEY: ${{ secrets.EIA_API_KEY }}
+        run: |
+          if [ -n "${CENSUS_API_KEY:-}" ] && [ -n "${EIA_API_KEY:-}" ]; then
+            echo "have=yes" >> "$GITHUB_OUTPUT"
+          else
+            echo "have=no" >> "$GITHUB_OUTPUT"
+            echo "::notice::No API keys (fork PR, or secrets unset); the L0 fetch is skipped, not faked."
+          fi
+
+      - name: L0 - acquire (needs keys and network)
+        if: steps.creds.outputs.have == 'yes'
+        env:
+          CENSUS_API_KEY: ${{ secrets.CENSUS_API_KEY }}
+          EIA_API_KEY: ${{ secrets.EIA_API_KEY }}
+        run: python -m siting_atlas.ingest.acquire
+
+      # data/external holds files a human downloads by hand (Zillow, BLS,
+      # EJScreen). They cannot be fetched in CI, so the pipeline runs only
+      # when a warm cache supplied them.
+      - name: Are the inputs actually here?
+        id: inputs
+        run: |
+          if compgen -G 'data/external/zillow_zori/*.csv' > /dev/null \
+             && compgen -G 'data/raw/gaz_zcta/*' > /dev/null; then
+            echo "have=yes" >> "$GITHUB_OUTPUT"
+          else
+            echo "have=no" >> "$GITHUB_OUTPUT"
+            echo "::notice::No warm source cache; L1-L5 skipped."
+          fi
+
+      # Real invocations, not imports: a stage that imports cleanly and then
+      # dies on the first read_parquet is exactly what this is here to catch.
+      - name: L1..L5 - the offline pipeline
+        if: steps.inputs.outputs.have == 'yes'
+        timeout-minutes: 30
+        run: |
+          set -euo pipefail
+          python -m siting_atlas.ingest.normalise
+          python -m siting_atlas.ingest.normalise_external
+          python -m siting_atlas.warehouse.schema
+          python -m siting_atlas.warehouse.panel
+          python -m siting_atlas.cost.runner --all-scenarios
+          python -m siting_atlas.models.choice_runner
+          python -m siting_atlas.report.scope
+          python -m siting_atlas.viz.build --all-scenarios
+
+
+      - uses: actions/upload-artifact@v4
+        if: steps.inputs.outputs.have == 'yes'
+        with:
+          name: pipeline-outputs
+          path: |
+            outputs/metrics/*.json
+            outputs/figures/*.png
+
+  documents:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with: { python-version: "3.11", cache: pip }
+
+      # The pre-registration seal. docs/PREREG_METRO_MODEL.md fixed the
+      # hypothesis before the metro model was fitted, and its md5 is recorded
+      # inside the result artefact. If the two ever disagree, either the
+      # pre-registration was edited after the fact or the artefact was
+      # regenerated against a different one -- and the whole claim to having
+      # pre-registered evaporates. Corrections belong in the ERRATA file,
+      # which is deliberately not covered by this hash.
+      - name: Pre-registration seal matches the recorded hash
+        run: |
+          set -euo pipefail
+          recorded=$(python -c "import json;print(json.load(open('outputs/metrics/metro_entry.json'))['prereg_md5'])")
+          actual=$(md5sum docs/PREREG_METRO_MODEL.md | cut -d' ' -f1)
+          echo "recorded in artefact : $recorded"
+          echo "actual on disk       : $actual"
+          test "$recorded" = "$actual"
+
+      - run: pip install -e ".[viz,docs]"
+
+      - name: Build and validate figures, proposal and decks
+        run: |
+          set -euo pipefail
+          python tools/figures/build_all.py
+          python tools/proposal/build_v4.py
+          python tools/deck/build_deck.py
+          for v in v1_overview v2_technical; do
+            python tools/deck/check_layout.py \
+              "docs/proposal/Siting_Atlas_Deck_${v}.pptx"
+          done
+
+      - uses: actions/upload-artifact@v4
+        with:
+          name: siting-atlas-documents
+          path: |
+            docs/proposal/*.docx
+            docs/proposal/*.pptx
+            docs/figures/*.png
