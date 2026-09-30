@@ -1,0 +1,17 @@
+{
+  "run_id": "20260929-203421-5a9e",
+  "written_at": "2026-09-29T20:34:24+00:00",
+  "baseline": {
+    "scenario": "baseline",
+    "year": 2023,
+    "quarter": 4,
+    "zctas": 2333,
+    "figures": [
+      "outputs/figures/cost_vs_density_2023q4_baseline.png",
+      "outputs/figures/cost_by_metro_2023q4_baseline.png",
+      "outputs/figures/cost_decomposition_2023q4_baseline.png",
+      "outputs/figures/cumulative_coverage_2023q4_baseline.png"
+    ],
+    "overflow": {}
+  }
+}

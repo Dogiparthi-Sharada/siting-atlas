@@ -1,205 +1,374 @@
-# docs/ — the index
+# Siting Atlas
 
-*One line per document, grouped by who needs it. Updated 2026-09-16.*
+<!-- Replace YOURNAME in the first badge with your GitHub username. The other
+     four are static and work as-is. Add the Zenodo badge once you have a DOI;
+     zenodo.org mints one from a GitHub release in two clicks. -->
 
-> **Cost model rebuilt 2026-09-16.** The depot layer is no longer a solved
-> 334-site p-median; it is the operator's 501 real geocoded delivery stations.
-> Median cost per parcel $1.0830 → **$1.1389** over 2,333 → **8,037** ZCTAs,
-> and the "zero of 43 facilities sit in their metro's cheapest decile"
-> statistic is **withdrawn** — the test is unidentified once depots are the
-> facilities. [`NUMBERS.md`](NUMBERS.md) §10 is the record;
-> [`EXPERIMENTS.md`](EXPERIMENTS.md) E17 is the run;
-> [`LESSONS.md`](LESSONS.md) §6.5 is why the withdrawal is itself a lesson.
-> Documents dated before 2026-09-16 describe the retired pilot.
+[![CI](https://github.com/YOURNAME/siting-atlas/actions/workflows/ci.yml/badge.svg)](https://github.com/YOURNAME/siting-atlas/actions/workflows/ci.yml)
+![tests](https://img.shields.io/badge/tests-663%20passing-brightgreen)
+![reproducible](https://img.shields.io/badge/reproducible-offline%2C%20no%20API%20keys-1f4e79)
+![pre-registered](https://img.shields.io/badge/pre--registered-hash%20verified%20in%20CI-6f42c1)
+![licence](https://img.shields.io/badge/licence-MIT-lightgrey)
 
-**Two rules before you read anything else.**
-[`STATUS.md`](STATUS.md) is the current state of the project.
-[`NUMBERS.md`](NUMBERS.md) is the tie-breaker on any figure — it re-derives
-every headline number from the artefact that emitted it, and names the stale
-variants still in circulation. Where a document and `NUMBERS.md` disagree,
-`NUMBERS.md` wins and the document is the bug.
+**Where does Amazon build its next delivery station, and what does it cost to
+put a parcel on a doorstep?**
+
+Two questions, asked of Amazon's US network using nothing but data a member of
+the public can download for free.
+
+**The second we can now answer to the cent**, for any of 8,037 ZIP code areas
+covering 57.8% of US households — from road geometry, population density and
+the operator's 501 real delivery stations, with no Amazon disclosure of any
+kind. The first turned out to be the better question, because the answer is
+that **almost nobody outside the company can see where the network is going**,
+and this repository measures exactly how far short the public record falls.
+
+Three things here are useful whether or not you care about the modelling — **a
+dataset**, **a cost model**, and **a screening rule** that tells you which
+covariates to throw away before you fit anything.
+
+```
+  1,904    Amazon facilities recovered from a PDF whose tables are images
+  1,420    of them carry an opening date
+    693    in the analysis panel · 687 buildings · 230 metros · 50 states
+  8,037    ZIP-code areas costed against 501 real delivery stations
+  $1.1389  median cost to deliver one parcel     p10 $1.00   p90 $1.34
+    138    of 488 US cities with a delivery station appear in federal records
+    663    tests · reproduces offline from a clone, no API keys
+```
+
+![Every geocoded Amazon delivery station in the lower 48, with the 25 largest metros drawn as bubbles sized by station count and shaded by median cost per parcel](docs/figures/hero_national_map.png)
+
+Every small dot is one delivery station at its geocoded street address — 497
+of them. The bubbles are the 25 largest metros: **area is how many stations
+they hold**, **shade is what it costs to put a parcel on a doorstep there**,
+pale for cheap and deep red for dear. Miami is the cheapest metro at
+**$0.98**; the dearest single station is in Enid, Oklahoma at **$1.71**.
+
+Every state outline on that map is *derived* — from the TIGER ZCTA polygons
+already on disk, by morphological closing — because no basemap package was
+installable here. [`tools/figures/usboundary.py`](tools/figures/usboundary.py)
+has the method and its error bound.
+
+### And what the map cannot show: how wide the spread is inside a metro
+
+![Median and interquartile cost per parcel for the 25 metros holding five or more costed stations](docs/figures/fig_cost_per_parcel_by_metro.png)
+
+A bubble carries one colour, so it hides its own range. Washington DC and
+Atlanta land on the same median — **$1.14** — and tell different stories: DC's
+middle half of stations spans **$0.16**, Atlanta's spans **$0.06**, and DC's
+upper quartile reaches $1.28 where Atlanta's stops at $1.17. Same colour on
+the map, three times the internal spread. The bar here is that interquartile
+range, and the dot shade is the same ramp as the map, so the two figures read
+as one.
 
 ---
+
+## The finding
+
+Most of Amazon's network is invisible in the public record. We measured it.
+
+![Federal records see 138 of 488 cities](docs/figures/fig_visibility_gap_wide.png)
+
+OSHA enforcement data is the best free source of facility addresses in the
+United States. It holds a record in **138 of the 488 US cities** where an
+independent industry census lists an Amazon delivery station. That is a
+*floor* on the gap, not an estimate — two independent lists, counted.
+
+So we tried to predict the next opening anyway — and committed, in advance
+and in writing, to what would count as success.
+
+![Out-of-time AUC by held-out year: the model against a zero-parameter households baseline, with the gap it lost by printed in the band](docs/figures/fig_auc_by_year.png)
+
+**It cannot be done from public data — and because we wrote the bar down
+first, that is a measurement rather than an opinion.** The question, sample,
+covariates, baselines, evaluation and a numeric success criterion were fixed
+and hashed before a single model was fitted. The pre-registration is in this
+repository, its MD5 is recorded inside the result artefact, and CI re-checks
+the match on every push:
+
+```bash
+md5sum docs/PREREG_METRO_MODEL.md          # 946f7ef75db69e5278eea409a04c3823
+```
+
+Out of time, the model lost to a zero-parameter rule that ranks metros by
+household count in **0 of 7 held-out years**. Pooled AUC 0.7323 against
+0.8949; metro-clustered bootstrap difference −0.1628 [−0.2011, −0.1313].
+
+That is a measurement, not a shortfall — and it is the paragraph the
+pre-registration committed us to publishing if the model failed:
+
+> *Free public data cannot predict siting at any grain tested. The ZIP-level
+> failure is not a resolution problem but a general one: the variables that
+> drive the decision are not public at any resolution.*
+
+## Why open data cannot see it — and how to tell in advance
+
+![Within-metro coefficient of variation for 21 candidate covariates, against whether the fitted coefficient reached the interior or pinned at the boundary](docs/figures/fig_dispersion_wide.png)
+
+A conditional choice model can only use a covariate that varies *inside* a
+metro. Most free US public data is published at county grain and arrives as
+about **nine distinct values across two hundred candidate ZIP codes**. A
+near-constant cannot rank anything, however large its real-world effect.
+
+That yields a screening test you can run before fitting anything — measure a
+covariate's within-metro coefficient of variation:
+
+```
+  cv below 0.6    it will fail        7 of 7
+  cv 0.6 – 1.3    nothing lands here
+  cv above 1.3    it may work         9 of 14
+```
+
+The rule runs **one way**: low dispersion is sufficient for failure; high
+dispersion is necessary but not sufficient. Descriptive, 21 non-independent
+terms, one run.
+
+## What does work
+
+The cost model. 8,037 ZIP-code areas costed with a Daganzo continuous
+approximation, with the depot layer taken from the operator's **501 real
+geocoded delivery stations** rather than solved. Median **$1.1389** per parcel,
+five stress scenarios spanning −17.2% to +7.7%. The bill is
+**59.75% driver time at the door**, 21.63% vehicle, 12.63% driving, 5.98%
+distance. Labour still carries it, but driving is now nearly a fifth of the
+stop rather than a tenth, because line haul to a real building is **9.09
+miles** against 4.02 to a solved one.
+
+**Real depots cost more than optimal ones, and that is a result.** Replacing
+the 334-depot p-median solve with the 501 buildings Amazon actually operates
+moves the median **+5.2%** and more than doubles line haul. A p-median
+minimises demand-weighted distance by construction; real siting is constrained
+by land, labour, zoning and lease terms, and the gap between the two is what
+that 5.2% measures. Full before/after in [`docs/NUMBERS.md`](docs/NUMBERS.md)
+§10.3.
+
+**Why the cost surface cannot rank where Amazon will build.** Under Daganzo
+cost falls as one over the square root of density, so the cheapest ZIPs to
+serve are the densest — and the densest are exactly where a warehouse cannot
+physically be built. **Feasibility binds before economics**, which is also why
+a raw warehouse count out-predicts everything else we fitted: that count
+measures where building is *possible*, not where delivering is cheap. This is
+an argument about the cost function and the land market. It used to be
+attached to a statistic — "zero of 43 facilities sit in their metro's cheapest
+decile" — and **that statistic is withdrawn**: once the depots are the
+facilities, a ZCTA holding a station has a line haul of ~0 because the station
+is inside it, so the test measures its own circularity. See
+[`docs/NUMBERS.md`](docs/NUMBERS.md) §10.4 for the withdrawal and the two
+leave-one-out arms that disagree in sign.
+
+*"Works" means the method is published, the parameters are sourced or flagged
+as unsourced, and the result survives five stress scenarios. It does **not**
+mean validated against Amazon's realised costs — nobody publishes those.*
+
+*Coverage, stated up front: 20 of the 501 stations have no ZCTA within 15
+miles; 316 ZCTAs (0.83% of catchment households) are dropped for having no
+OEWS driver wage and **nothing is imputed**; 8 of the 501 are `announced`
+rather than open; all 501 are Amazon delivery stations.*
 
 ## Start here
 
-| Document | Who it is for |
-|---|---|
-| [`STATUS.md`](STATUS.md) | Anyone. What works, what is fitted, what is blocked, what failed, what is pending — with a `run_id` behind every number |
-| [`NUMBERS.md`](NUMBERS.md) | Anyone about to quote a figure. Every headline re-derived from its artefact, plus a list of quantities that are easily confused |
-| [`EXPLAINER.md`](EXPLAINER.md) | A reader who has not followed the engineering. The four models in plain English, and how each performs |
-| [`ROADMAP.md`](ROADMAP.md) | Anyone asking "what next". The only forward-looking document: decisions owed, Phases 3/5/6, the cut list, Volume II |
+**Pick the row that describes you.** Most people want the first or second.
 
-## Reproducing a result
+| You want… | Do this | Takes |
+|---|---|---|
+| **Just the facility data** | download [`data/interim/mwpvl_facilities.csv`](data/interim/mwpvl_facilities.csv) — no install, no code | seconds |
+| **To reproduce our results** | Path A below — everything needed already ships | ~10 min |
+| **To rebuild from raw public sources** | Path B below — ~4 GB of downloads and three free API keys | most of a day |
+| **To understand the findings** | [`docs/EXPLAINER.md`](docs/EXPLAINER.md), then [`paper/`](paper/) | 20 min |
 
-| Document | Who it is for |
-|---|---|
-| [`DATA_SOURCES.md`](DATA_SOURCES.md) | Someone fetching the ingredients. Every source, how to get it, what ships already derived, and §18 for the offline path |
-| [`REPRODUCE.md`](REPRODUCE.md) | Someone going cold clone to cost table: credentials, manual files, the ordered commands, expected counts and runtimes |
-| [`../Makefile`](../Makefile) | `make help` lists every pipeline stage |
-| [`ARCHITECTURE.md`](ARCHITECTURE.md) | Someone reading the code. The L0–L5 layer model, the data flow, the star schema. **Dated 2026-09-12 and stale** on the module inventory |
-| [`engineering/`](engineering/) | Three documents: the pipeline as built, what a run logs, and pre-build sizing |
+### Path A — reproduce the results (no network, no API keys)
 
-## Method — why the models are what they are
+```bash
+git clone <repo> && cd siting-atlas
+python -m venv .venv && source .venv/bin/activate
 
-| Document | Who it is for |
-|---|---|
-| [`METHODS_RESEARCH.md`](METHODS_RESEARCH.md) | Anyone challenging a method choice. Every claim tagged SAYS / WE / OPEN with a section number; §10 is a corrections log of the claims that did not survive the source; §14 is the unit-of-analysis diagnosis; §15 is the ledger of which paper changed which line of code |
-| [`MODEL_SPEC.md`](MODEL_SPEC.md) | Anyone reading the choice model. The specification, written before any model code and checked clause by clause against Train. **Read §0.3 first** — the three places the fit departs from the spec |
-| [`PREREG_METRO_MODEL.md`](PREREG_METRO_MODEL.md) | Anyone who suspects the negative result was chosen after the fact. The pre-registration, md5 `946f7ef75db69e5278eea409a04c3823`, with both outcomes' language written in advance |
-| [`EXPERIMENTS.md`](EXPERIMENTS.md) | Anyone asking "what did you actually try?". Every experiment the project ran — the question, what was tested against what, the result with its artefact and `run_id`, and what the result does **not** support |
-| [`ALGORITHMS.md`](ALGORITHMS.md) | Anyone asking "what methods, and why those?". Every algorithm and estimator, in plain language then precisely, each naming the `src/` file that implements it |
-| [`research/`](research/) | One notes file per paper read in full, so no paper is opened twice, plus the per-experiment notes. See [`research/README.md`](research/README.md) |
-| [`REFERENCES.md`](REFERENCES.md) | The bibliography, every entry marked [V] read in full / [T] title and venue checked / [K] from memory, verify before use |
-| [`READING_LIST.md`](READING_LIST.md) | Papers not yet acquired, each annotated with the decision it gates |
-
-## Decisions, errors and history
-
-| Document | Who it is for |
-|---|---|
-| [`DECISION_LOG.md`](DECISION_LOG.md) | **Check §3 before asking a question — it may already be answered.** §1 what was decided and why, §2 every error made and what caught it, §3 questions already answered, §4 found during verification and not yet fixed |
-| [`adr/`](adr/) | The four decisions formal enough to have their own record. ADR-0004 (the model change) is *proposed*, not accepted |
-| [`ALTERNATIVES.md`](ALTERNATIVES.md) | The owner, deciding where the project goes. Five options, what each costs, the evidence in hand, and what would make each fail |
-| [`AUDIT_2026_09_14.md`](AUDIT_2026_09_14.md) | A full audit of what the project had lost track of across data, code, parameters, features and literature. Historical — its test-coverage figures are superseded by `NUMBERS.md` §12 |
-| [`LESSONS.md`](LESSONS.md) | Anyone building something else. 54 things this project learned the hard way, grouped by the kind of mistake — statistics, estimators, parameters, artefacts, checks that do not check, data, near-misses, conduct — each with the code or artefact that establishes it, what it cost, and why it was easy to get wrong. Ends with the five that generalise beyond this problem |
-
-## Data
-
-| Document | Who it is for |
-|---|---|
-| [`data/README.md`](data/README.md) | The index of all 30-odd data documents: the registry, the quality audit, the cleaning literature, every parameter with its provenance |
-| [`data/FACILITY_PANEL_PROVENANCE.md`](data/FACILITY_PANEL_PROVENANCE.md) | **Read before using the target variable.** How the panel was collected, the methods that failed first, and every known defect |
-| [`data/PARAMETERS.md`](data/PARAMETERS.md) | Every constant, its source, and its measured sensitivity |
-| [`data/DATA_QUALITY.md`](data/DATA_QUALITY.md) | The audit against Rahm & Do, with numbers |
-| [`data/COST_MODEL.md`](data/COST_MODEL.md) | The Daganzo cost model from zero, with a worked two-ZCTA example |
-| [`figures/`](figures/) | 9 generated illustration PNGs. **Read `figures/README.md` before showing any of them** — most contain no real results |
-
----
-
-## I want to...
-
-```
-  ...know the measured state of everything, today
-        STATUS.md
-
-  ...check a number before I quote it
-        NUMBERS.md                       then outputs/metrics/*.json
-
-  ...understand the project without the engineering
-        EXPLAINER.md
-
-  ...know what failed and why
-        STATUS.md  §4         what failed
-        METHODS_RESEARCH.md  §14   the diagnosis, as method
-
-  ...know what we got WRONG and how we caught it
-        DECISION_LOG.md  §2
-
-  ...check whether I already asked this
-        DECISION_LOG.md  §3
-
-  ...know why we chose this method over another
-        METHODS_RESEARCH.md        then adr/
-
-  ...know whether the DATA is any good
-        data/DATA_QUALITY.md       the audit, with numbers
-        data/CLEANING_LITERATURE.md  why the approach changed
-
-  ...know what was cleaned, and how to undo it
-        data/CLEANING_CHANGELOG.md
-
-  ...know where a number came from
-        NUMBERS.md                 headline figures
-        data/PARAMETERS.md         every constant
-        REFERENCES.md              the bibliography
-
-  ...know what a paper actually said, without reading it again
-        research/README.md         the index, then the notes file
-
-  ...know where the DATA came from
-        DATA_SOURCES.md                    every source, how to fetch it
-        data/FACILITY_PANEL_PROVENANCE.md  the target variable
-
-  ...reproduce a result
-        DATA_SOURCES.md §18        the offline path, no keys
-        REPRODUCE.md               the long form
-
-  ...find out what is still broken
-        STATUS.md  §6              known open defects
-
-  ...find out what to do next, in order
-        STATUS.md  §5              pending, ranked by what it buys
-        ROADMAP.md                 everything further out
-
-  ...decide where the project GOES, not just what to do next
-        ALTERNATIVES.md
-
-  ...understand the code
-        ../src/README.md           then the README in each sub-package
+pip install -e ".[dev,docs]"       # or: pip install -r requirements.txt
+make reproduce                     # cost model, choice model, scope, figures
 ```
 
----
-
-## What not to trust, specifically
-
-This project reports its defects rather than hiding them. These will cost you
-time if you do not know them.
-
-0. **Anything describing a "solved 334-depot network" as the current cost
-   model is stale**, including `REPRODUCE.md` §5, `DECISION_LOG.md` §4.2,
-   `ARCHITECTURE.md`, `docs/data/COST_MODEL.md` and the two cost figures under
-   `docs/figures/`. Those are dated records of the retired pilot and their
-   numbers are correct *for what they describe*. The current model is
-   `NUMBERS.md` §10.1. Related: `cost/stations.py`'s `CATCHMENT_MILES`
-   docstring still claims the 15-mile catchment is denser than the pilot — it
-   is sparser, 350 against 475 stops/sq mi, and the docstring is wrong.
-1. **`ARCHITECTURE.md` and `REPRODUCE.md` are stale.** Both predate the panel
-   expansion. `REPRODUCE.md:502` claims the `enabled` column is `0.00%`
-   non-null; it is 100% non-null (2.58% TRUE), and §4.4 of the same document
-   says so 200 lines earlier. `REPRODUCE.md:513` gives 79,484 vans and
-   $14,089,759/day against the artefact's 78,292 and $14,001,626.
-2. **`lift_by_market_size.json` is retired and unregenerable** — no emitter,
-   no `run_id`, an internally contradictory `finding` field. Five sites still
-   cite it. Its 6.14 / 6.42 pair must not be quoted; use
-   `panel_experiments.json`.
-3. **Any GBM figure from `gbm_benchmark.json:headline_split`** is
-   non-reproducible by the artefact's own measurement. Quote `across_repeats`.
-4. **`covariate_search.json`'s 694-vs-687 disagreement is resolved.** The
-   2026-09-15 re-run completed and the artefact reads **687 at every stage**,
-   with no occurrence of 694; the figures quoted from it across `docs/` have
-   been re-derived. **What is not fixed is the stamp:** the emitter reuses one
-   `run_id` across successive writes and stamps `written_at` at the first
-   write, so two materially different versions of the file carried an
-   identical stamp and `run_id` cannot tell them apart. Check
-   `facilities: 687` and the `stage_ledger`. `NUMBERS.md` carries the fix.
-5. **Seven artefacts carry no `run_id` and no `written_at`** —
-   `panel_experiments`, `white_space`, `mwpvl_coverage`,
-   `national_panel_expanded`, `subsidies`, `logrel_*` and `percapita_*`. Only
-   a file mtime backs them. Any document citing "a run" for those numbers is
-   citing something the artefact does not record.
-6. **The 693-row facility panel is not committed.**
-   `national_facilities_expanded.csv` and `geocoded_expanded.csv` are
-   untracked, so the panel behind most of §2 of `STATUS.md` exists on one
-   disk. [`STATUS.md`](STATUS.md) §3 blocker 5.
-
----
-
-## Generated files
+That is the whole thing. It runs offline because two derived tables ship with
+the repository:
 
 ```
-  docs/figures/*.png        python tools/figures/build_all.py
-  docs/data/README.md       python tools/docs/gen_data_docs.py (from the
-  docs/data/<source>.md       source registry)
-  everything under
-    outputs/                the pipeline. `make help` lists the stages.
-
-  Edit the generator, not the output.
+  data/processed/panel.parquet     15 MB   the 1,081,312-row ZCTA-quarter panel
+  data/interim/cbp_detail.parquet   1 MB   warehousing establishments by ZIP
 ```
 
-`scripts/build_docs.sh` renders every Markdown file in the repository to a
-plain-ASCII `.txt` twin at 80 columns. **The twins were removed from this
-repository and are not being restored** — they doubled the file count and
-every correction sweep had to touch two copies of the same document. Running
-the script still regenerates them in the working tree; the CI `documents` job
-diffs tracked files only, so untracked twins do not fail the build. If you run
-it, do not commit the output.
+Re-deriving those two from source is Path B — ~4 GB of downloads, three API
+keys and most of a working day. Shipping them instead is the cheapest thing
+this project can do to be useful to a stranger, and it is why you can check
+our numbers in ten minutes rather than deciding not to bother.
+
+**If a number does not reproduce**, install the exact versions the published
+results were produced with:
+
+```bash
+pip install -r requirements-lock.txt && pip install -e . --no-deps
+```
+
+### Path B — rebuild from raw public sources
+
+Only necessary if you want to change a source, extend the window, or verify
+the derived tables themselves.
+
+```bash
+#  1. Get three free API keys and put them in .env (never commit it)
+#     CENSUS_API_KEY   https://api.census.gov/data/key_signup.html
+#     EIA_API_KEY      https://www.eia.gov/opendata/register.php
+#     DOL_GOV_API_KEY  https://dataportal.dol.gov/registration
+cp .env.example .env && $EDITOR .env
+
+#  2. Check every source is still reachable before downloading anything
+make probe
+
+#  3. Fetch into a content-addressed cache (SHA-256 manifest). ~4 GB
+make acquire
+
+#  4. Six sources cannot be fetched automatically and must be placed by hand.
+#     docs/DATA_SOURCES.md names each one, where to get it, and where to put it
+$EDITOR docs/DATA_SOURCES.md
+
+#  5. Build the layers: raw -> typed parquet -> star schema -> panel
+make normalise normalise-external warehouse panel
+
+#  6. You have now regenerated data/processed/panel.parquet. Confirm it
+#     matches the one that shipped before trusting anything downstream
+make reproduce
+```
+
+**How the two paths meet.** Step 5 writes exactly the files Path A ships. If
+your rebuilt `panel.parquet` disagrees with the committed one, a source has
+moved or a vintage has changed — that is a finding, and
+[`docs/DATA_SOURCES.md`](docs/DATA_SOURCES.md) records which sources are
+single-vintage snapshots that will never reproduce.
+
+### Everything else
+
+```bash
+make help                          # every stage, with a one-line description
+make test                          # 660 tests
+make lint                          # ruff over src and tests
+bash scripts/preflight_publish.sh  # secrets, licensing, prereg seal, file sizes
+python tools/figures/fig_readme.py # rebuild the README figures
+python tools/figures/fig_paper.py  # rebuild the paper figures (column width)
+python tools/paper/build_docx.py   # rebuild the paper as .docx
+```
+
+## How it fits together
+
+Six layers. Everything above L3 is ignorant of where the bytes came from,
+which is why a second volume would be a data swap rather than a rewrite.
+
+```mermaid
+flowchart TD
+    SRC["<b>14 public sources</b><br/>Census ACS · CBP · Building Permits<br/>BLS OES · OSHA · NLRB · EJScreen<br/>TIGER · OpenStreetMap · Zillow · EIA"]
+    PDF["<b>MWPVL network article</b><br/>tables are images, no text layer"]
+
+    SRC -->|"make acquire<br/><i>3 API keys, ~4 GB</i>"| L0["<b>L0</b> content-addressed cache<br/>SHA-256 manifest per file"]
+    PDF -->|"tools/ocr/grid_ocr.py<br/><i>tesseract + poppler</i>"| OCR["<b>1,904 facilities</b><br/>1,420 with opening years<br/>validated 3 ways"]
+
+    L0 -->|make normalise| L1["<b>L1</b> one typed parquet per source"]
+    L1 -->|make warehouse| L2["<b>L2</b> DuckDB star schema"]
+    OCR --> PANEL["<b>693-row facility panel</b><br/>the target variable"]
+    PANEL --> L2
+    L2 -->|make panel| L3["<b>L3</b> panel.parquet<br/>1,081,312 ZCTA-quarters"]
+
+    L3 --> COST["<b>L4</b> cost to serve<br/>Daganzo CA + 501 real stations"]
+    L3 --> CHOICE["<b>L4</b> conditional choice<br/><i>which ZIP, given one opening</i>"]
+    L3 --> METRO["<b>L4</b> metro entry<br/><i>pre-registered · which metro next</i>"]
+
+    COST --> OUT["<b>L5</b> figures · scope · dashboard"]
+    CHOICE --> OUT
+    METRO --> OUT
+
+    classDef ships fill:#dce9f5,stroke:#1f4e79,stroke-width:2px
+    classDef works fill:#e3f0e3,stroke:#2d6a2d
+    classDef null fill:#f7e6e2,stroke:#b3452f
+    class L3,OCR,PANEL ships
+    class COST works
+    class CHOICE,METRO null
+```
+
+**Reading the colours.** Blue nodes **ship with the repository** — that is why
+`make reproduce` needs no network. Green works. Red returned a negative result
+and is reported as one, in the language fixed before the run.
+
+| Layer | Command | In | Out |
+|---|---|---|---|
+| L0 | `make acquire` | 14 public sources | cache + SHA-256 manifest |
+| L1 | `make normalise` | cache | one typed parquet per source |
+| L2 | `make warehouse` | parquet + facility panel | DuckDB star schema |
+| L3 | `make panel` | star schema | `panel.parquet`, 1,081,312 rows |
+| L4 | `make cost` | panel | cost per parcel, 8,037 ZCTAs |
+| L4 | `make model` | panel | conditional choice fit |
+| L4 | `make metro` | panel | the pre-registered test |
+| L5 | `make figures` `make scope` | L4 outputs | figures, study scope |
+
+`make reproduce` runs the shaded path only — L4 and L5 — because L3 ships.
+
+Five further programmes — a survival model, a gravity formulation of network
+pull, two covariate transforms and a portfolio optimiser — were built, run and
+retired. Their code, artefacts and notes are archived in
+[`experiments/`](experiments/README.md), which records what each one asked and
+what came back. Nothing in `src/` imports any of it.
+
+## The data is yours
+
+The facility table is the part of this project most likely to be useful to
+someone who does not care about our model:
+
+| File | What |
+|---|---|
+| [`data/interim/mwpvl_facilities.csv`](data/interim/mwpvl_facilities.csv) | 1,904 facilities, 1,420 with opening years |
+| [`data/external/facility_panel/national_facilities_expanded.csv`](data/external/facility_panel/national_facilities_expanded.csv) | the 693-row analysis panel |
+
+Opening dates were read by OCR out of MWPVL International's public network
+article, whose tables are images, and validated three ways before any row
+entered a model (94.71% pass an external falsification bound). **The facts are
+MWPVL's and are credited as theirs**; see
+[`docs/DATA_SOURCES.md`](docs/DATA_SOURCES.md) for every source, its licence,
+and how to fetch it.
+
+## What is and isn't new
+
+**No novelty is claimed in any individual technique.** Esri ships a
+cannibalization tool, Coupa and AIMMS have optimised multi-facility networks
+for twenty years, and Houde, Newberry and Seim modelled this operator in
+*Econometrica*. Three of our four claims are still ambitions — read the
+right-hand column before repeating the left.
+
+| Claim | Evidenced? |
+|---|---|
+| 1. **Inferential-integrity gates** — a write that passes every data check and still invalidates a causal assumption | **Partly.** Both gates are built and run against the real warehouse; that they *reliably detect* the failure class is not demonstrated |
+| 2. **A cannibalization decay radius** for same-day delivery | **No.** Not estimated, and the outcome variable it needs is not in the panel |
+| 3. **The public-data explainability ceiling** | **Yes, and it is lower than hoped.** A pre-registered model loses to a households baseline in 7 of 7 years. Cross-operator transfer: no, the panel has one operator |
+| 4. **The artefact** — free, open, reproducible, inspectable | **Yes.** 660 tests, an offline reproduction, and the panel's provenance written down including the four collection methods that failed |
+
+## Where to read next
+
+| | |
+|---|---|
+| [`docs/STATUS.md`](docs/STATUS.md) | the measured state of everything, with a `run_id` behind every number |
+| [`docs/NUMBERS.md`](docs/NUMBERS.md) | every headline figure re-derived from its artefact. **The tie-breaker** |
+| [`docs/EXPERIMENTS.md`](docs/EXPERIMENTS.md) | all 21 experiments, and what each does *not* support |
+| [`docs/ALGORITHMS.md`](docs/ALGORITHMS.md) | every method used, in plain language then precisely |
+| [`docs/DATA_SOURCES.md`](docs/DATA_SOURCES.md) | how to fetch every ingredient |
+| [`paper/`](paper/) | an IEEE-format write-up of the whole result. Draft, not submitted |
+| [`docs/README.md`](docs/README.md) | the full documentation index |
+
+## Contributing
+
+See [`CONTRIBUTING.md`](CONTRIBUTING.md). The short version: numbers are quoted
+from artefacts with their `run_id` rather than typed into prose, and every
+claim must be checkable. This project has shipped a figure with hand-entered
+values and a fabricated confidence band; it found it in its own audit, fixed
+it, and wrote the rule that prevents the next one.
+
+## Licence
+
+Code under the [MIT Licence](LICENSE). See [`TRADEMARKS.md`](TRADEMARKS.md).
+
+**Not affiliated with, endorsed by, or sponsored by Amazon.com, Inc. or any
+other operator analysed.** All operator names are used descriptively to
+identify the subject of study.
