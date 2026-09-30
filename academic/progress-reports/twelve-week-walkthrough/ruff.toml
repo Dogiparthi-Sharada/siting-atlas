@@ -1,0 +1,36 @@
+# Lint profile for the walkthrough. Deliberately not the repository's.
+#
+# This directory is a DOCUMENT GENERATOR, not part of siting-atlas, and two
+# of the repository's rules fight that shape. Both are switched off here
+# with a reason, and the one that guards a real bug is replaced by a check
+# that guards it directly.
+
+line-length = 79
+
+[lint]
+select = ["E", "F", "W", "I", "UP", "B", "C4", "SIM", "RUF", "DTZ", "PERF"]
+
+ignore = [
+    # C408 -- prefer {"k": v} over dict(k=v).
+    #
+    # The twelve week entries are a declarative table with a dozen fields
+    # each. dict(n=1, title=..., mode=...) reads as a record; the brace form
+    # adds a quote and a colon to every one of roughly 140 keys and makes a
+    # data file look like JSON that happens to be Python. Style only -- no
+    # correctness content either way.
+    "C408",
+
+    # ISC004 -- implicit string concatenation inside a collection literal.
+    #
+    # This one guards something real: a missing comma between two list
+    # elements merges them silently, so two caveats become one and a reader
+    # loses a caveat without any error. Every prose field here is wrapped
+    # across lines, so the rule fires 39 times on correct code.
+    #
+    # It is switched off and REPLACED, not simply dropped. spec.py asserts
+    # a length ceiling on every prose field at import; two merged caveats
+    # blow through it, so the failure mode the rule exists for still fails
+    # loudly -- and fails on the invariant itself rather than on a proxy
+    # for it.
+    "ISC004",
+]
