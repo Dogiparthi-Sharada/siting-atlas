@@ -1,0 +1,18 @@
+model NHTS 2017; Amazon rate 0.897 parcels/household/week (PB 2024)
+ZIPs 32,828  households 128,701,376
+national Amazon parcels/yr implied: new 6.00bn   old 6.16bn
+old formula average multiplier 1.023 (new is 1.000 by construction)
+per-household demand, new vs old: rank correlation 0.694; ZIPs moved >20%: 40.7% (households in them 18.8%)
+new/old per-household ratio, p10 / median / p90: 0.62 / 0.87 / 1.12
+  ZIP 95140: hh 32  income nan  size 1.28  renters 0%  Amazon/day new 2  old 5
+  ZIP 89084: hh 12,508  income 93,673  size 2.97  renters 27%  Amazon/day new 2,330  old 2,028
+  ZIP 10069: hh 3,202  income 226,151  size 2.08  renters 71%  Amazon/day new 803  old 707
+
+STATION WORKLOADS (Amazon parcels/day; real range 20,000-60,000)
+  old formula  stations 481  median 21,397  p10 6,822  p90 45,031  below 219  within 241  above 21  states(5+) inside 24 of 29
+  NHTS model   stations 481  median 21,470  p10 6,833  p90 48,017  below 222  within 236  above 23  states(5+) inside 22 of 29
+
+COST PER PARCEL (median over costed ZIPs)
+  old formula  $1.1808   p10 $1.03   p90 $1.45
+  NHTS model   $1.1810   p10 $1.03   p90 $1.46
+  NHTS model, parcels/stop 1.2: $1.3702

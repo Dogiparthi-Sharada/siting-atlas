@@ -1,0 +1,228 @@
+DEMAND MODEL (NHTS) - RESULTS AND DEFENCE ARGUMENT
+Built 28 Oct 2026. Folder: msba_progress/demand_model_nhts/
+(The project folder siting-atlas/ is on a read-only file system on this
+machine, so nothing could be written there. See section 9 for moving it in.)
+
+=============================================================================
+1. ONE PARAGRAPH FOR THE PROFESSOR
+=============================================================================
+
+  "We replaced our demand assumption with a fitted model. We used the US
+  DOT's National Household Travel Survey, where real households report how
+  many goods were delivered to their home in the past 30 days. We fitted a
+  regression of deliveries on income, household size, renting, workers,
+  density and age, and tested it on 20% of households it never saw: it
+  predicts group averages closely and beats 'everyone gets the average' by
+  24% on deviance. We then applied it to every US ZIP using Census data, and
+  set the total to Amazon's published 2024 volume from the Pitney Bowes
+  Parcel Shipping Index. The survey tells us WHERE demand is; Pitney Bowes
+  tells us HOW MUCH. The result: income matters more than we assumed (0.44,
+  not 0.35), but station workloads and the cost per parcel ($1.18) barely
+  change, so our earlier results stand."
+
+=============================================================================
+2. THE DATA (all verified, files in sources/)
+=============================================================================
+
+  NHTS 2022 (public v2)      7,520 households used (of 7,893)
+                             target: DELIV_GOOD = goods delivered, past 30 days
+  NHTS 2017                  124,947 households used (of 129,696)
+                             target: DELIVER = online purchases delivered
+  Pitney Bowes Parcel Shipping Index, 2026 report:
+    US parcels 21.7bn (2023), 22.4bn (2024), 23.1bn (2025)
+    171 parcels per household in 2025 (= 3.29 a week; matches our old 3.2)
+    Amazon Logistics 6.3bn (2024), 6.9bn (2025) - now the largest carrier
+    -> Amazon per household per week = 6.3bn / 135m households / 52 = 0.90
+  Census ACS (already in the project): 32,828 ZIPs, 128.7m households
+
+  What US households actually report (weighted to the US):
+    2022: 8.6 goods deliveries a month = 1.98 a week
+    2017: 5.0 online purchases a month  = 1.15 a week   (+73% in 5 years)
+
+=============================================================================
+3. THE MODEL
+=============================================================================
+
+  log(expected deliveries per month) = b0 + b1 ln(income) + b2 household size
+                                       + b3 renter + b4 workers
+                                       + b5 ln(density) + b6 adult age
+
+  Type: Poisson regression (the standard model for counts), weighted so the
+  sample represents the US.
+
+  Why "log": it makes every effect a percentage. Example: b2 = 0.143 means
+  each extra person in the household multiplies deliveries by e^0.143 =
+  1.154, i.e. +15.4%.
+
+=============================================================================
+4. WHAT IT FOUND (coefficients, 95% confidence intervals)
+=============================================================================
+
+                         NHTS 2022 (main)            NHTS 2017 (check)
+  Income sensitivity     0.44  [0.40, 0.48]          0.51  [0.50, 0.52]
+  Each extra person      +15%                        +11%
+  Renter vs owner        -17%                        -13%
+  Each extra worker      +10%                        +8%
+  Density (log)          ~0  (-0.016)                ~0  (+0.025)
+  Each year of age       -0.3%                       -1.8%
+
+How to read them, with examples:
+  INCOME 0.44: a household with 10% more income gets about 4.4% more
+    deliveries. Doubling income: 2^0.44 = 1.36 -> +36%.
+    Our old guess was 0.35. Two independent surveys say 0.44-0.51, with
+    tight intervals, AFTER controlling for household size. So the guess was
+    too low.
+  HOUSEHOLD SIZE: a family of 4 vs a couple: 1.154^2 = 1.33 -> +33%.
+  RENTERS: -17%, even at the same income (fewer places to receive parcels,
+    smaller homes - our interpretation, not tested).
+  DENSITY: almost no effect. City and rural households order about the
+    same once income and household size are accounted for.
+  AGE: older households order a bit less; the effect was much stronger in
+    2017 than 2022 (older people caught up during the pandemic - our
+    interpretation, not tested).
+
+=============================================================================
+5. HOW ACCURATE IS IT? (the hold-out test)
+=============================================================================
+
+We hid 20% of households from the model, fitted on the other 80%, then
+predicted the hidden ones.
+
+                                        2022              2017
+  Deviance explained vs "average only"  24.3%             27.2%
+  Mean error, model                     6.15 /month       3.98 /month
+  Mean error, "everyone = average"      7.22 /month       4.82 /month
+  -> improvement                        15%               17%
+
+Group averages on the hidden households (2022), deliveries a month:
+
+  Model's predicted fifth   lowest   2nd    middle   4th    highest
+  Observed                  3.86     5.26   8.33     9.67   16.82
+  Predicted                 3.28     5.75   7.59     10.50  15.84
+
+  By income bracket: observed vs predicted within about 1 delivery a month
+  for most brackets; the worst is bracket 8 ($100-125k: 12.1 observed vs
+  10.4 predicted), and the two lowest brackets (few households) are
+  under-predicted by about 1. The 2017 hold-out, with 16 times more
+  households, is closer still (section output in fit_output.txt).
+
+IF THE PROFESSOR SAYS "24% is low":
+  "For one household, yes; whether a single family orders 3 or 15 times
+  this month depends on things no survey records. But we don't use it to
+  predict single households. We use it for ZIP averages, and on hidden
+  households the group averages line up closely, from about 4 a month in
+  the lowest fifth to about 17 in the highest."
+
+=============================================================================
+6. APPLIED TO EVERY US ZIP - WHAT CHANGED
+=============================================================================
+
+  Each ZIP's per-household demand vs the old formula (2022 model):
+    rank correlation with the old formula        0.83
+    median ZIP changes by                        -3%  (ratio 0.97)
+    10th-90th percentile of the change           -17% to +13%
+    ZIPs that move more than 20%                 11.5% (7.2% of households)
+
+  National Amazon total implied: 6.0bn a year (Pitney Bowes 6.3bn; the gap
+  is our Census household count, 128.7m vs ~135m).
+  The old formula inflated the total by 2.3%; the new one is exact by
+  construction.
+
+  Example ZIPs (Amazon parcels a day):
+                               old formula     NHTS model
+    89084 North Las Vegas      2,028           2,151   (bigger households)
+    10069 Manhattan            707             601     (71% renters, small
+                                                        households)
+    95140 rural California     5               4
+
+=============================================================================
+7. DOES IT CHANGE OUR RESULTS?
+=============================================================================
+
+  Station workloads (Amazon parcels/day; real range 20,000-60,000):
+                    median    within   below   above   states(5+) inside
+    old formula     21,397    241      219     21      24 of 29
+    NHTS model      20,822    231      230     20      22 of 29
+
+  Cost per parcel (median):
+    old formula     $1.1808
+    NHTS model      $1.1810
+    NHTS model with 1.2 parcels per stop: $1.37
+
+  CONCLUSION: the fitted model confirms the old assumption was roughly right
+  about WHERE demand is (rank correlation 0.83), corrects the income effect,
+  and adds household size and renting. The station check and the cost per
+  parcel do not change. The correction that mattered was the LEVEL (all
+  carriers 3.2 -> Amazon 0.90), and that is now pinned to a published source.
+
+=============================================================================
+8. LIMITATIONS - SAY THEM BEFORE HE DOES
+=============================================================================
+
+  1. Self-reported counts: people round and forget.
+  2. Deliveries, not parcels: one delivery can be two boxes.
+  3. All retailers, not just Amazon: we assume Amazon's share of
+     deliveries is the same in every kind of ZIP. That is the biggest
+     assumption left.
+  4. Learned on households, applied to ZIP medians: a ZIP's "average
+     household" is not a real household.
+  5. Confidence intervals ignore the survey's complex design (NHTS
+     publishes replicate weights we did not use), so they are somewhat too
+     narrow. The 2017-vs-2022 agreement is the more convincing evidence.
+  6. Timing: Amazon volume is 2024, Census is 2019-2023, survey is 2022.
+  7. Delivery days: we divide weekly demand by 6 days, as the cost model
+     does. Amazon delivers 7 days a week; at 7, every daily station load is
+     14% lower (median about 17,800), which pushes more stations below
+     20,000. Worth saying.
+  8. Unlabelled codes: the data dictionary has variable names but not
+     value labels. Income brackets and the renter code were matched to
+     known US figures (renters 30% vs US ~34%; urban 81% vs Census ~80%).
+     The NHTS codebook with value labels would confirm them.
+
+=============================================================================
+9. LIKELY QUESTIONS AND ANSWERS
+=============================================================================
+
+"Is this circular, like week 1?"
+  "No. In week 1 the target was invented from our own assumptions. Here the
+  target is what real households reported to the US DOT. The model learns
+  from data we didn't make up, and we test it on households it never saw."
+
+"Why not predict Amazon's demand directly?"
+  "No public data has Amazon deliveries per household or per ZIP. So the
+  survey gives the pattern across households, and Amazon's published
+  national volume gives the level."
+
+"Why should I trust 0.44?"
+  "Two separate surveys, five years apart, with 7,500 and 125,000
+  households, give 0.44 and 0.51, both after controlling for household
+  size. Our old 0.35 was a guess; the published HNS figure measures a
+  different thing (a spending ratio)."
+
+"So what was the point, if the cost didn't change?"
+  "The point was to stop the cost result resting on a guess. It now rests
+  on a tested model and a published Amazon volume, and we can show the
+  cost is robust to it."
+
+"What would you do next?"
+  "Use the replicate weights for proper confidence intervals, and find a
+  source for parcels per stop, which moves the cost more than demand does."
+
+=============================================================================
+10. FILES
+=============================================================================
+
+  nhts_load.py           builds the household table from NHTS
+  fit_model.py           fits the model, hold-out test -> model_2022.json,
+                         model_2017.json; output in fit_output.txt
+  zip_features.py        Census features for every ZIP -> zip_features.parquet
+  apply_zips.py          applies to ZIPs, station + cost checks
+                         -> zip_demand_<year>.parquet, station_loads_<year>.csv,
+                            apply_output_<year>.txt
+  sources/               downloaded data (NHTS, Pitney Bowes, BEA)
+  RESULTS_AND_DEFENSE.txt  this file
+
+Rerun (from the siting-atlas folder):
+  .venv/bin/python <folder>/zip_features.py
+  .venv/bin/python <folder>/fit_model.py
+  NHTS_YEAR=2022 .venv/bin/python <folder>/apply_zips.py

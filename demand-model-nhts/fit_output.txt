@@ -1,0 +1,68 @@
+
+================ NHTS 2022 ================
+households: train 6,022  hold-out 1,498
+hold-out deviance explained vs 'everyone gets the average': 24.3%
+hold-out mean absolute error: model 6.15  average-only 7.22 deliveries/month
+hold-out calibration by income bracket (deliveries/month):
+                households  observed  predicted
+income_bracket                                 
+1                       56      3.34       2.12
+2                       34      3.49       2.71
+3                       87      3.00       3.95
+4                       99      4.55       4.95
+5                      147      6.56       5.75
+6                      282      7.19       7.00
+7                      219      9.10       9.16
+8                      172     12.10      10.40
+9                      124     11.61      11.95
+10                     129     14.17      13.86
+11                     149     14.93      15.33
+hold-out calibration by predicted fifth (lowest -> highest):
+   households  observed  predicted
+1         300      3.86       3.28
+2         299      5.26       5.75
+3         300      8.33       7.59
+4         299      9.67      10.50
+5         300     16.82      15.84
+coefficients, all households (95% CI):
+  const         -3.0070  [ -3.4415,  -2.5725]   x0.049 per unit
+  ln_income      0.4405  [  0.4030,   0.4780]   x1.553 per unit
+  hh_size        0.1432  [  0.1226,   0.1639]   x1.154 per unit
+  renter        -0.1900  [ -0.2632,  -0.1169]   x0.827 per unit
+  workers        0.0970  [  0.0626,   0.1315]   x1.102 per unit
+  ln_density    -0.0164  [ -0.0327,  -0.0002]   x0.984 per unit
+  adult_age     -0.0031  [ -0.0050,  -0.0011]   x0.997 per unit
+
+================ NHTS 2017 ================
+households: train 100,300  hold-out 24,647
+hold-out deviance explained vs 'everyone gets the average': 27.2%
+hold-out mean absolute error: model 3.98  average-only 4.82 deliveries/month
+hold-out calibration by income bracket (deliveries/month):
+                households  observed  predicted
+income_bracket                                 
+1                     1270      1.37       1.12
+2                     1202      1.56       1.70
+3                     2316      2.42       2.32
+4                     2351      2.73       2.92
+5                     3052      3.61       3.61
+6                     4353      4.54       4.88
+7                     3457      6.30       6.17
+8                     2479      7.18       7.33
+9                     1384      8.33       8.33
+10                    1347      8.71       9.22
+11                    1436     12.23      11.16
+hold-out calibration by predicted fifth (lowest -> highest):
+   households  observed  predicted
+1        4930      1.15       1.27
+2        4929      2.68       2.49
+3        4929      3.91       3.75
+4        4929      5.73       5.68
+5        4930      9.49       9.75
+coefficients, all households (95% CI):
+  const         -3.7091  [ -3.8474,  -3.5708]   x0.024 per unit
+  ln_income      0.5119  [  0.4996,   0.5243]   x1.669 per unit
+  hh_size        0.1009  [  0.0945,   0.1072]   x1.106 per unit
+  renter        -0.1361  [ -0.1563,  -0.1159]   x0.873 per unit
+  workers        0.0750  [  0.0631,   0.0868]   x1.078 per unit
+  ln_density     0.0252  [  0.0201,   0.0302]   x1.025 per unit
+  adult_age     -0.0183  [ -0.0190,  -0.0176]   x0.982 per unit
